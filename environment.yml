@@ -1,0 +1,9 @@
+name: DublinBusTest4
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - pandas
+  - django
+  - mysqlclient
+prefix: /Users/eoinbarr/opt/anaconda3/envs/DublinBusTest4
