@@ -5,7 +5,7 @@ import {
   DirectionsRenderer,
 } from "@react-google-maps/api";
 
-import RouteOptions from "./RouteOptions";
+import { errorTypes } from "../components/journey";
 import { routeErrorCheck, getMapContainerStyle } from "../components/journey";
 import { MapDetailsContext, MapRefContext } from "../App";
 import { LoadingSpinner } from "../components/loading/loading";
@@ -20,6 +20,8 @@ export default function Home() {
   // const [isDarkMode] = useTheme();
   const [isExpanded] = useExpanded();
   const destinationRef = useRef(null);
+  const [time, setTime] = useState("");
+  const [loading, setLoading] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(null);
   const [inputError, setInputError] = useState(null);
   const { setMapRefContext } = useContext(MapRefContext);
@@ -36,15 +38,24 @@ export default function Home() {
     if (routeErrorCheck(originVal, destinationVal, setInputError)) return;
     const dirServ = new window.google.maps.DirectionsService();
 
-    const results = await dirServ.route({
-      origin: originVal,
-      destination: destinationVal,
-      travelMode: window.google.maps.TravelMode.TRANSIT,
-      transitOptions: { modes: ["BUS"] },
-      provideRouteAlternatives: true,
-    });
-    console.log("res", results);
-    setMapDetails({ resObj: results, routeIdx: 0, markers: [] });
+    try {
+      setLoading(true);
+      const results = await dirServ.route({
+        origin: originVal,
+        destination: destinationVal,
+        travelMode: window.google.maps.TravelMode.TRANSIT,
+        transitOptions: { modes: ["BUS"] },
+        provideRouteAlternatives: true,
+      });
+
+      setLoading(false);
+      console.log("res", results);
+      setMapDetails({ resObj: results, routeIdx: 0, markers: [] });
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+      setInputError(errorTypes.GENERAL);
+    }
   };
 
   const clearRoute = () => {
