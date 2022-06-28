@@ -1,6 +1,20 @@
 import { errorTypes } from ".";
 import { center, darkStyles } from "../../lib/map";
 
+export const currentBrowser = (window) => getBrowser(window);
+
+function getBrowser(window) {
+  let cb = "Not known";
+  if (window.navigator.userAgent.indexOf("Chrome") !== -1) {
+    cb = "Google Chrome";
+  } else if (window.navigator.userAgent.indexOf("Firefox") !== -1) {
+    cb = "Mozilla Firefox";
+  } else {
+    console.log("Others");
+  }
+  return cb;
+}
+
 export function routeErrorCheck(originVal, destinationVal, setInputError) {
   if (originVal === "" || destinationVal === "") {
     setInputError(errorTypes.MISSING_INPUT);

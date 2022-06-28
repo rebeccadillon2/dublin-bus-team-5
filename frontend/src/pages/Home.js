@@ -6,7 +6,12 @@ import {
 } from "@react-google-maps/api";
 
 import { errorTypes } from "../components/journey";
-import { routeErrorCheck, getMapContainerStyle } from "../components/journey";
+import {
+  routeErrorCheck,
+  getMapContainerStyle,
+  getInputOptions,
+  setUserLocation,
+} from "../components/journey";
 import { MapDetailsContext, MapRefContext } from "../App";
 import { LoadingSpinner } from "../components/loading/loading";
 import { center, libraries } from "../lib/map";
@@ -65,6 +70,16 @@ export default function Home() {
     destinationRef.current.value = "";
   };
 
+  const handleFocus = () => {
+    setInputError(null);
+  };
+
+  const handleSwitch = () => {
+    const temp = originRef.current.value;
+    originRef.current.value = destinationRef.current.value;
+    destinationRef.current.value = temp;
+  };
+
   const getRoute = () => {
     if (mapDetails.routeIdx) {
       return parseInt(mapDetails.routeIdx);
@@ -90,9 +105,18 @@ export default function Home() {
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
       <JourneyContainer
+        time={time}
+        setTime={setTime}
+        loading={loading}
         originRef={originRef}
-        calculateRoute={calculateRoute}
+        inputError={inputError}
+        clearRoute={clearRoute}
+        handleFocus={handleFocus}
+        inputOptions={getInputOptions()}
+        handleSwitch={handleSwitch}
         destinationRef={destinationRef}
+        calculateRoute={calculateRoute}
+        setUserLocation={setUserLocation}
       />
       <GoogleMap
         center={center}
