@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./styles/globals.css";
@@ -10,8 +10,12 @@ import Signup from "./pages/Signup";
 
 export const MapDetailsContext = createContext({});
 export const MapRefContext = createContext({});
+export const ExpandedContext = createContext({});
+export const ThemeContext = createContext({});
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isExpanded, setisExpanded] = useState(false);
   const [mapRefContext, setMapRefContext] = useState(null);
   const [mapDetails, setMapDetails] = useState({
     resObj: null,
@@ -19,18 +23,35 @@ function App() {
     markers: [],
   });
 
+  if (typeof document === "undefined") {
+    React.useLayoutEffect = React.useEffect;
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("darkMode")) {
+      setIsDarkMode(localStorage.getItem("darkMode") === "true");
+    }
+    // if (localStorage.getItem("token")) {
+    //   toggleAuthenticated(isUserAuthenticated());
+    // }
+  }, []);
+
   return (
-    <MapRefContext.Provider value={{ mapRefContext, setMapRefContext }}>
-      <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
-        <BrowserRouter>
-          <Routes>
-            <Route path={"/"} element={<Home />} />
-            <Route path={"/login"} element={<Login />} />
-            <Route path={"/signup"} element={<Signup />} />
-          </Routes>
-        </BrowserRouter>
-      </MapDetailsContext.Provider>
-    </MapRefContext.Provider>
+    <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+      <ExpandedContext.Provider value={{ isExpanded, setisExpanded }}>
+        <MapRefContext.Provider value={{ mapRefContext, setMapRefContext }}>
+          <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
+            <BrowserRouter>
+              <Routes>
+                <Route path={"/"} element={<Home />} />
+                <Route path={"/login"} element={<Login />} />
+                <Route path={"/signup"} element={<Signup />} />
+              </Routes>
+            </BrowserRouter>
+          </MapDetailsContext.Provider>
+        </MapRefContext.Provider>
+      </ExpandedContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 
