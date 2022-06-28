@@ -1,5 +1,5 @@
-import Link from "react-route-dom";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { useTheme } from "../../../hooks";
 
@@ -20,7 +20,7 @@ const getType = (type) => {
 const BaseButton = ({ href, children, ...rest }) => {
   if (href && href.startsWith("/")) {
     return (
-      <Link href={href}>
+      <Link to={href}>
         <a {...rest}>{children}</a>
       </Link>
     );

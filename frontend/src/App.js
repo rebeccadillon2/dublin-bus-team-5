@@ -4,19 +4,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/globals.css";
 import "tailwindcss/tailwind.css";
 
-import Home from "./journey/Journey";
-import Login from "./auth/Login";
-import Signup from "./auth/Signup";
+import Journey from "./journey/Journey";
+// import Login from "./auth/Login";
+// import Signup from "./auth/Signup";
+import { isUserAuthenticated } from "./lib/auth";
+import { Navbar } from "./navbar";
 
 export const MapDetailsContext = createContext({});
 export const MapRefContext = createContext({});
 export const ExpandedContext = createContext({});
 export const ThemeContext = createContext({});
+export const AuthenticatedContext = createContext({});
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isExpanded, toggleExpanded] = useState(false);
   const [mapRefContext, setMapRefContext] = useState(null);
+  const [isAuthenticated, toggleAuthenticated] = useState(false);
   const [mapDetails, setMapDetails] = useState({
     resObj: null,
     routeIdx: null,
@@ -31,27 +35,32 @@ function App() {
     if (localStorage.getItem("darkMode")) {
       setIsDarkMode(localStorage.getItem("darkMode") === "true");
     }
-    // if (localStorage.getItem("token")) {
-    //   toggleAuthenticated(isUserAuthenticated());
-    // }
+    if (localStorage.getItem("token")) {
+      toggleAuthenticated(isUserAuthenticated());
+    }
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
-      <ExpandedContext.Provider value={{ isExpanded, toggleExpanded }}>
-        <MapRefContext.Provider value={{ mapRefContext, setMapRefContext }}>
-          <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
-            <BrowserRouter>
-              <Routes>
-                <Route path={"/"} element={<Home />} />
-                <Route path={"/login"} element={<Login />} />
-                <Route path={"/signup"} element={<Signup />} />
-              </Routes>
-            </BrowserRouter>
-          </MapDetailsContext.Provider>
-        </MapRefContext.Provider>
-      </ExpandedContext.Provider>
-    </ThemeContext.Provider>
+    <AuthenticatedContext.Provider
+      value={{ isAuthenticated, toggleAuthenticated }}
+    >
+      <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+        <ExpandedContext.Provider value={{ isExpanded, toggleExpanded }}>
+          <MapRefContext.Provider value={{ mapRefContext, setMapRefContext }}>
+            <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
+              <BrowserRouter>
+                {/* <Navbar /> */}
+                <Routes>
+                  <Route path={"/"} element={<Journey />} />
+                  {/* <Route path={"/login"} element={<Login />} />
+                  <Route path={"/signup"} element={<Signup />} /> */}
+                </Routes>
+              </BrowserRouter>
+            </MapDetailsContext.Provider>
+          </MapRefContext.Provider>
+        </ExpandedContext.Provider>
+      </ThemeContext.Provider>
+    </AuthenticatedContext.Provider>
   );
 }
 
