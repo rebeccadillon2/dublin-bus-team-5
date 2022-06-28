@@ -1,23 +1,24 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import {
-  useJsApiLoader,
   GoogleMap,
-  Autocomplete,
+  useJsApiLoader,
   DirectionsRenderer,
 } from "@react-google-maps/api";
 
 import RouteOptions from "./RouteOptions";
-import { routeErrorCheck } from "../components/journey";
+import { routeErrorCheck, getMapContainerStyle } from "../components/journey";
 import { MapDetailsContext, MapRefContext } from "../App";
 import { LoadingSpinner } from "../components/loading/loading";
 import { center, libraries } from "../lib/map";
-const searchLimits = {
-  componentRestrictions: { country: ["ie"] },
-};
+import { JourneyContainer } from "../components/journey/journey";
+import { useWindowSize, useTheme, useExpanded } from "../hooks";
 
 export default function Home() {
   const mapRef = useRef();
   const originRef = useRef(null);
+  const [width] = useWindowSize();
+  // const [isDarkMode] = useTheme();
+  const [isExpanded] = useExpanded();
   const destinationRef = useRef(null);
   const [mapLoaded, setMapLoaded] = useState(null);
   const [inputError, setInputError] = useState(null);
@@ -72,25 +73,16 @@ export default function Home() {
 
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
-      <div>
-        <Autocomplete options={searchLimits}>
-          <input ref={originRef} placeholder={"Origin"} type='text' />
-        </Autocomplete>
-        <Autocomplete options={searchLimits}>
-          <input ref={destinationRef} placeholder={"Destination"} type='text' />
-        </Autocomplete>
-        <button
-          style={{ backgroundColor: "blue", color: "white" }}
-          onClick={calculateRoute}
-        >
-          Search
-        </button>
-        {mapDetails.resObj && <RouteOptions />}
-      </div>
+      <JourneyContainer
+        originRef={originRef}
+        calculateRoute={calculateRoute}
+        destinationRef={destinationRef}
+      />
       <GoogleMap
         center={center}
         zoom={12}
-        mapContainerStyle={{ width: "100%", height: "100%" }}
+        // mapContainerStyle={{ width: "100%", height: "100%" }}
+        mapContainerStyle={getMapContainerStyle(width, isExpanded)}
         options={{ fullscreenControl: false, streetViewControl: false }}
         onLoad={(mapLoaded) => setMapLoaded(mapLoaded)}
       >

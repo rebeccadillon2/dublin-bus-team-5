@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { MdOutlineExpandMore, MdOutlineExpandLess } from "react-icons/md";
 
-import { ThemeContext, ExpandedContext } from "../App";
+import { useTheme, useExpanded } from "../../hooks";
 
 function ExpandToggle() {
-  const { isDarkMode } = useContext(ThemeContext);
-  const { isExpanded, setIsExpanded } = useContext(ExpandedContext);
+  const [isDarkMode] = useTheme();
+  const [isExpanded, handleExpandedToggle] = useExpanded();
 
   const themeClasses = `${
     isDarkMode
@@ -15,7 +15,7 @@ function ExpandToggle() {
   const classes = `flex items-center justify-center h-6 w-8 rounded-tl-lg item-center transition-all ease-in-out duration-500 absolute bottom-0 z-50 cursor-pointer ${themeClasses}`;
 
   return (
-    <div onClick={() => setIsExpanded(!isExpanded)} className={classes}>
+    <div onClick={() => handleExpandedToggle()} className={classes}>
       {isExpanded ? (
         <MdOutlineExpandLess className='h4 w-4' />
       ) : (
@@ -27,8 +27,8 @@ function ExpandToggle() {
 
 export function ContentContainer(props) {
   const { children, ...rest } = props;
-  const { isDarkMode } = useContext(ThemeContext);
-  const { isExpanded } = useContext(ExpandedContext);
+  const [isDarkMode] = useTheme();
+  const [isExpanded] = useExpanded();
 
   const containerClasses = `relative flex items-end flex-col w-full overflow-y-scroll shadow-2xl  md:absolute md:top-20 md:left-4 md:z-50 md:w-100.1 md:rounded-lg`;
   const themeClasses = `${isDarkMode ? "bg-system-grey6" : "bg-system-grey2"}`;

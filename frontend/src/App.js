@@ -15,7 +15,7 @@ export const ThemeContext = createContext({});
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isExpanded, setisExpanded] = useState(false);
+  const [isExpanded, toggleExpanded] = useState(false);
   const [mapRefContext, setMapRefContext] = useState(null);
   const [mapDetails, setMapDetails] = useState({
     resObj: null,
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
-      <ExpandedContext.Provider value={{ isExpanded, setisExpanded }}>
+      <ExpandedContext.Provider value={{ isExpanded, toggleExpanded }}>
         <MapRefContext.Provider value={{ mapRefContext, setMapRefContext }}>
           <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
             <BrowserRouter>

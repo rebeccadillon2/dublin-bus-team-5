@@ -11,3 +11,15 @@ export function routeErrorCheck(originVal, destinationVal, setInputError) {
   }
   return false;
 }
+
+export function getMapContainerStyle(width, isExpanded) {
+  return {
+    width: "100vw",
+    height:
+      width >= 768
+        ? "calc(100vh - 64px)"
+        : isExpanded
+        ? "calc(100vh - 64px - 80vh)"
+        : "calc(100vh - 64px - 216px)",
+  };
+}
