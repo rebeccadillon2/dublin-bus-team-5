@@ -34,7 +34,6 @@ export default function Home() {
     const originVal = originRef.current.value;
     const destinationVal = destinationRef.current.value;
     if (routeErrorCheck(originVal, destinationVal, setInputError)) return;
-
     const dirServ = new window.google.maps.DirectionsService();
 
     const results = await dirServ.route({
@@ -44,9 +43,15 @@ export default function Home() {
       transitOptions: { modes: ["BUS"] },
       provideRouteAlternatives: true,
     });
-
     console.log("res", results);
     setMapDetails({ resObj: results, routeIdx: 0, markers: [] });
+  };
+
+  const clearRoute = () => {
+    setInputError(null);
+    setMapDetails({ resObj: null, routeIdx: 0, markers: [] });
+    originRef.current.value = "";
+    destinationRef.current.value = "";
   };
 
   const getRoute = () => {
