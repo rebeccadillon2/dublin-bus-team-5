@@ -8,7 +8,8 @@ import { currentBrowser } from ".";
 import { useTheme } from "../../hooks";
 import { MapDetailsContext } from "../../App";
 import { ContentContainer } from "../container";
-import RouteOptions from "../../pages/RouteOptions";
+import RouteOptions from "../../journey/RouteOptions";
+import JourneyForm from "../../journey/Form";
 
 const searchLimits = {
   componentRestrictions: { country: ["ie"] },
@@ -40,75 +41,20 @@ export function JourneyContainer(props) {
 
   return (
     <ContentContainer>
-      <div>
-        <div>
-          <div className='flex items-center'>
-            <div>
-              <Autocomplete options={inputOptions}>
-                <input
-                  ref={originRef}
-                  onFocus={handleFocus}
-                  className={inputClasses}
-                />
-              </Autocomplete>
-              <div className='h-2' />
-              <Autocomplete options={inputOptions}>
-                <input
-                  ref={destinationRef}
-                  onFocus={handleFocus}
-                  className={inputClasses}
-                />
-              </Autocomplete>
-            </div>
-            <div className='pl-2 sm:pl-4'>
-              {currentBrowser(window) !== "Google Chrome" && (
-                <div className='flex items-center justify-center bg-primary-blue p-1.5 rounded-lg text-system-grey2 mb-4'>
-                  <IoMdLocate onClick={() => setUserLocation(originRef)} />
-                </div>
-              )}
-
-              <HiOutlineSwitchVertical
-                onClick={handleSwitch}
-                className={`h-7 w-7 hover:cursor-pointer ${
-                  isDarkMode ? "text-system-grey4" : "text-system-grey5"
-                }`}
-              />
-            </div>
-          </div>
-          <div className='h-2' />
-          <Input
-            error={inputError}
-            type='text'
-            value={time}
-            variant='small'
-            onChange={setTime}
-            // onFocus={handleFocus}
-            placeholder='Select a time'
-            label='Select a time'
-            className='max-h-10'
-          />
-          {inputError ? (
-            <div className='flex items-center h-6'>
-              <p className='py-0 my-0 px-2 text-xs text-primary-red'>
-                {inputError}
-              </p>
-            </div>
-          ) : (
-            <div className='h-6' />
-          )}
-          <button
-            onClick={calculateRoute}
-            className='h-10 rounded-xl bg-primary-blue w-60 text-white active:bg-dark-blue1'
-          >
-            Submit
-          </button>
-          <button
-            onClick={clearRoute}
-            className='h-10 rounded-xl bg-system-grey5 w-18 ml-2 text-white active:bg-system-grey4'
-          >
-            Clear
-          </button>
-        </div>
+      <div className='input-container overflow-y-scroll	'>
+        <JourneyForm
+          time={time}
+          setTime={setTime}
+          originRef={originRef}
+          inputError={inputError}
+          clearRoute={clearRoute}
+          handleFocus={handleFocus}
+          inputOptions={inputOptions}
+          handleSwitch={handleSwitch}
+          calculateRoute={calculateRoute}
+          destinationRef={destinationRef}
+          setUserLocation={setUserLocation}
+        />
         {mapDetails.resObj && <RouteOptions />}
       </div>
     </ContentContainer>

@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/globals.css";
 import "tailwindcss/tailwind.css";
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Home from "./journey/Journey";
+import Login from "./auth/Login";
+import Signup from "./auth/Signup";
 
 export const MapDetailsContext = createContext({});
 export const MapRefContext = createContext({});

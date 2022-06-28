@@ -234,9 +234,6 @@ export default function RouteOptions() {
               handleClick={handleClick}
               routeOpen={routeOpen}
             />
-            {/* <button style={bgColor(index)} onClick={() => pickRoute(index)}>
-              Route {index}
-            </button> */}
             <ExpandedContext
               route={route}
               index={index}
