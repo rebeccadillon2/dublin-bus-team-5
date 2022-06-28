@@ -5,6 +5,7 @@ import { useTheme } from "../hooks";
 import RouteOptions from "./RouteOptions";
 import { MapDetailsContext } from "../App";
 import { ContentContainer } from "../components/container";
+import ExploreContent from "./ExploreContent";
 
 export const ContainerType = {
   DEFAULT: "default",
@@ -75,7 +76,10 @@ export default function JourneyContainer(props) {
           )}
         </div>
       ) : containerType.type === ContainerType.EXPLORE ? (
-        <></>
+        <ExploreContent
+          setContainerType={setContainerType}
+          containerType={containerType}
+        />
       ) : (
         <></>
       )}

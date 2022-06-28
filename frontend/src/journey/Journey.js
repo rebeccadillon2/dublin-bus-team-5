@@ -1,5 +1,12 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useContext,
+  useEffect,
+  useCallback,
+} from "react";
 import {
+  Marker,
   GoogleMap,
   useJsApiLoader,
   DirectionsRenderer,
@@ -27,7 +34,7 @@ export default function Home() {
   const destinationRef = useRef(null);
   const [time, setTime] = useState("");
   const [loading, setLoading] = useState(false);
-  const [mapLoaded, setMapLoaded] = useState(null);
+  // const [mapLoaded, setMapLoaded] = useState(null);
   const [inputError, setInputError] = useState(null);
   const { setMapRefContext } = useContext(MapRefContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
@@ -87,9 +94,9 @@ export default function Home() {
     return 0;
   };
 
-  // const onMapLoad = useCallback((map) => {
-  //   mapRef.current = map;
-  // }, []);
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
 
   useEffect(() => {
     setMapRefContext(mapRef);
@@ -123,9 +130,16 @@ export default function Home() {
         zoom={12}
         // mapContainerStyle={{ width: "100%", height: "100%" }}
         mapContainerStyle={getMapContainerStyle(width, isExpanded)}
-        options={{ fullscreenControl: false, streetViewControl: false }}
-        onLoad={(mapLoaded) => setMapLoaded(mapLoaded)}
+        onLoad={onMapLoad}
       >
+        {mapDetails.markers &&
+          mapDetails.markers.length >= 1 &&
+          mapDetails.markers.map((marker, idx) => (
+            <Marker
+              key={`${marker.lat}${idx}`}
+              position={{ lat: marker.lat, lng: marker.lng }}
+            />
+          ))}
         {mapDetails.resObj && (
           <DirectionsRenderer
             directions={mapDetails.resObj}
