@@ -15,7 +15,7 @@ import {
 import { MapDetailsContext, MapRefContext } from "../App";
 import { LoadingSpinner } from "../components/loading/loading";
 import { center, libraries } from "../lib/map";
-import { JourneyContainer } from "../components/journey/journey";
+import JourneyContainer from "./Container";
 import { useWindowSize, useTheme, useExpanded } from "../hooks";
 
 export default function Home() {

@@ -7,6 +7,7 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { useTheme } from "../hooks";
 import { MapDetailsContext } from "../App";
 import { Display } from "../components/container";
+import Explore from "./Explore";
 
 function Header(props) {
   const { title } = props;
@@ -211,7 +212,7 @@ function ExpandedContext(props) {
   );
 }
 
-export default function RouteOptions() {
+export default function RouteOptions({ setContainerType }) {
   const { mapDetails } = useContext(MapDetailsContext);
   const [routeOpen, setRouteOpen] = useState(null);
 
@@ -242,6 +243,7 @@ export default function RouteOptions() {
           </li>
         ))}
       </Display>
+      <Explore setContainerType={setContainerType} />
     </>
   );
 }
