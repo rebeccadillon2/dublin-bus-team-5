@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "./hooks";
-import { ThemeToggle } from "./toggle";
+import { getLiveWeather } from "./lib/api";
+import { icons } from "./lib/weather";
 
 function Links() {
   const [isDarkMode] = useTheme();
@@ -61,11 +62,73 @@ function Links() {
   );
 }
 
+function WeatherDisplay(props) {
+  const { variant, className, ...rest } = props;
+  const [error, setError] = useState(false);
+  const [temp, setTemp] = useState(null);
+  const [icon, setIcon] = useState(null);
+
+  useEffect(() => {
+    const getWeatherData = async () => {
+      try {
+        const weatherRes = await getLiveWeather();
+        setTemp(String(Math.round(weatherRes.data.main.temp - 273.15)));
+        setIcon(weatherRes.data.weather[0].icon);
+      } catch (err) {
+        console.log(err);
+        setError(true);
+      }
+    };
+    getWeatherData();
+  }, []);
+
+  if (error) return <></>;
+  return (
+    <div className='flex items-center justify-center' {...rest}>
+      {icon && temp && (
+        <WeatherContainer
+          className={`flex items-center justify-center ${className}`}
+          variant={variant}
+          temp={temp}
+          icon={icons[icon]}
+        />
+      )}
+    </div>
+  );
+}
+
+function WeatherContainer(props) {
+  const { icon, temp, variant, ...rest } = props;
+  const Icon = icon;
+  const [isDarkMode] = useTheme();
+
+  const themeClasses = `${
+    isDarkMode ? "text-system-grey2" : "text-system-grey7"
+  }`;
+  const iconClasses = `${
+    variant === "large" ? "h-8 w-8" : "h-6 w-6"
+  } ${themeClasses}`;
+  const tempClasses = `${
+    variant === "large" ? "text-lg" : "text-md"
+  } ${themeClasses} pl-2`;
+
+  return (
+    <div className='flex items-center justify-center' {...rest}>
+      {Icon && <Icon className={iconClasses} />}
+      <p className={tempClasses}>{temp}°C</p>
+    </div>
+  );
+}
+
 export default function Nav() {
   return (
     <div className='navbar-N flex items-center justify-between md:px-6 px-4 h-16 w-100'>
       <Links />
-      {/* <ThemeToggle /> */}
+      <div className='hidden md:ml-6 md:block'>
+        <div className='flex items-center'>
+          <WeatherDisplay variant='large' className='pr-3' />
+        </div>
+      </div>
     </div>
   );
 }
