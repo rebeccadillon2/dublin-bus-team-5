@@ -1,5 +1,10 @@
 import React from "react";
+import { ThemeToggle } from "../toggle";
 
 export default function Login() {
-  return <div>Login</div>;
+  return (
+    <div>
+      <ThemeToggle />
+    </div>
+  );
 }

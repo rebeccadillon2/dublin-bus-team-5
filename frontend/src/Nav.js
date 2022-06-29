@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+
 import { useTheme } from "./hooks";
 import { getLiveWeather } from "./lib/api";
 import { icons } from "./lib/weather";
+import { isUserAuthenticated } from "./lib/auth";
+import { PrimaryButton, SecondaryButton } from "./components/elements/button";
 
 function Links() {
   const [isDarkMode] = useTheme();
@@ -120,13 +123,115 @@ function WeatherContainer(props) {
   );
 }
 
+function DropDown() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode] = useTheme();
+
+  const themeBgClasses = `${
+    isDarkMode ? "bg-system-grey7" : "bg-system-grey2"
+  }`;
+  const themeMenuClasses = `${
+    isDarkMode
+      ? "text-system-grey3 hover:text-system-grey1"
+      : "text-system-grey5 hover:text-system-grey7"
+  }`;
+
+  const handleSignout = async () => {
+    const inner = async () => {
+      await window.localStorage.removeItem("token");
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
+    };
+    try {
+      inner();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <div className='ml-3 relative z-10'>
+      <div onClick={() => setIsOpen(!isOpen)}>
+        <div className='flex text-sm rounded-full '>
+          <span className='sr-only'>Open user menu</span>
+          <img
+            alt={"profile"}
+            className='rounded-full'
+            height={32}
+            width={32}
+            style={{ height: "32px", width: "32px" }}
+            src={
+              "https://res.cloudinary.com/dk0r9bcxy/image/upload/v1633014391/project-image-upload-test/pqqrv32aicedep9a5usi.jpg"
+            }
+          />
+        </div>
+      </div>
+
+      {isOpen && (
+        <div
+          className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${themeBgClasses}`}
+        >
+          <div>
+            <a
+              href='/'
+              className={`
+                          block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+            >
+              Spotify
+            </a>
+          </div>
+          <div>
+            <a
+              href='/account'
+              className={`
+                            active ? "" : ""
+                          block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+            >
+              Account
+            </a>
+          </div>
+          <div>
+            <a
+              href='/'
+              onClick={handleSignout}
+              className={`
+                            active ? "" : ""
+                          block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+            >
+              Sign out
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Nav() {
+  const [auth, setAuth] = useState(false);
+
+  useEffect(() => {
+    setAuth(isUserAuthenticated());
+  }, []);
   return (
     <div className='navbar-N flex items-center justify-between md:px-6 px-4 h-16 w-100'>
       <Links />
       <div className='hidden md:ml-6 md:block'>
         <div className='flex items-center'>
           <WeatherDisplay variant='large' className='pr-3' />
+          {auth ? (
+            <DropDown />
+          ) : (
+            <>
+              <a href='/signup'>
+                <PrimaryButton type='action'>Signup</PrimaryButton>
+              </a>
+              <div className='w-2' />
+              <a href='/login'>
+                <SecondaryButton type='action'>Login</SecondaryButton>
+              </a>
+            </>
+          )}
         </div>
       </div>
     </div>
