@@ -11,21 +11,21 @@ import Journey from "./journey/Journey";
 import Account from "./account/Account";
 import { isUserAuthenticated } from "./lib/auth";
 
-export const MapDetailsContext = createContext({});
+export const ThemeContext = createContext({});
 export const MapRefContext = createContext({});
 export const ExpandedContext = createContext({});
-export const ThemeContext = createContext({});
+export const MapDetailsContext = createContext({});
 export const AuthenticatedContext = createContext({});
-export const ProfileDropdownContext = createContext({});
 export const MobileDropDownContext = createContext({});
+export const ProfileDropdownContext = createContext({});
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isExpanded, toggleExpanded] = useState(false);
   const [mapRefContext, setMapRefContext] = useState(null);
   const [isAuthenticated, toggleAuthenticated] = useState(false);
-  const [isProfileDropDown, setIsProfileDropDown] = useState(false);
   const [isMobileDropDown, setIsMobileDropDown] = useState(false);
+  const [isProfileDropDown, setIsProfileDropDown] = useState(false);
 
   const [mapDetails, setMapDetails] = useState({
     resObj: null,

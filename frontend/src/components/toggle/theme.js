@@ -2,8 +2,8 @@ import React from "react";
 import { FaSun } from "react-icons/fa";
 import { BsMoonFill } from "react-icons/bs";
 
-import { useTheme } from "../../hooks";
 import { Toggle } from ".";
+import { useTheme } from "../../hooks";
 
 export function ThemeToggle() {
   const [isDarkMode, handleThemeToggle] = useTheme();

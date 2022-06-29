@@ -119,10 +119,10 @@ export default function Home() {
         inputError={inputError}
         clearRoute={clearRoute}
         handleFocus={handleFocus}
-        inputOptions={getInputOptions()}
         handleSwitch={handleSwitch}
         destinationRef={destinationRef}
         calculateRoute={calculateRoute}
+        inputOptions={getInputOptions()}
         setUserLocation={setUserLocation}
       />
       <GoogleMap

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-import { useMobileDropDown, useProfileDropDown, useTheme } from "./hooks";
-import { getLiveWeather } from "./lib/api";
+import {
+  useTheme,
+  useAuthenticate,
+  useMobileDropDown,
+  useProfileDropDown,
+} from "./hooks";
 import { icons } from "./lib/weather";
+import { getLiveWeather } from "./lib/api";
 import { isUserAuthenticated } from "./lib/auth";
 import { PrimaryButton, SecondaryButton } from "./components/elements/button";
-import { useAuthenticate } from "./hooks";
 
 function Links() {
   const [isDarkMode] = useTheme();
