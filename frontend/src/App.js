@@ -15,12 +15,15 @@ export const MapRefContext = createContext({});
 export const ExpandedContext = createContext({});
 export const ThemeContext = createContext({});
 export const AuthenticatedContext = createContext({});
+export const ProfileDropdownContext = createContext({});
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isExpanded, toggleExpanded] = useState(false);
   const [mapRefContext, setMapRefContext] = useState(null);
   const [isAuthenticated, toggleAuthenticated] = useState(false);
+  const [isProfileDropDown, setIsProfileDropDown] = useState(false);
+
   const [mapDetails, setMapDetails] = useState({
     resObj: null,
     routeIdx: null,
@@ -40,27 +43,40 @@ function App() {
     }
   }, []);
 
+  const handleClick = () => {
+    if (!isProfileDropDown) {
+      return;
+    }
+    setIsProfileDropDown(false);
+  };
+
   return (
-    <AuthenticatedContext.Provider
-      value={{ isAuthenticated, toggleAuthenticated }}
+    <ProfileDropdownContext.Provider
+      value={{ isProfileDropDown, setIsProfileDropDown }}
     >
-      <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
-        <ExpandedContext.Provider value={{ isExpanded, toggleExpanded }}>
-          <MapRefContext.Provider value={{ mapRefContext, setMapRefContext }}>
-            <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
-              <BrowserRouter>
-                <Nav />
-                <Routes>
-                  <Route path={"/"} element={<Journey />} />
-                  <Route path={"/login"} element={<Login />} />
-                  <Route path={"/signup"} element={<Signup />} />
-                </Routes>
-              </BrowserRouter>
-            </MapDetailsContext.Provider>
-          </MapRefContext.Provider>
-        </ExpandedContext.Provider>
-      </ThemeContext.Provider>
-    </AuthenticatedContext.Provider>
+      <AuthenticatedContext.Provider
+        value={{ isAuthenticated, toggleAuthenticated }}
+      >
+        <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+          <ExpandedContext.Provider value={{ isExpanded, toggleExpanded }}>
+            <MapRefContext.Provider value={{ mapRefContext, setMapRefContext }}>
+              <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
+                <div onClick={handleClick}>
+                  <BrowserRouter>
+                    <Nav />
+                    <Routes>
+                      <Route path={"/"} element={<Journey />} />
+                      <Route path={"/login"} element={<Login />} />
+                      <Route path={"/signup"} element={<Signup />} />
+                    </Routes>
+                  </BrowserRouter>
+                </div>
+              </MapDetailsContext.Provider>
+            </MapRefContext.Provider>
+          </ExpandedContext.Provider>
+        </ThemeContext.Provider>
+      </AuthenticatedContext.Provider>
+    </ProfileDropdownContext.Provider>
   );
 }
 

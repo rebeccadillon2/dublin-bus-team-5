@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-import { useTheme } from "./hooks";
+import { useProfileDropDown, useTheme } from "./hooks";
 import { getLiveWeather } from "./lib/api";
 import { icons } from "./lib/weather";
 import { isUserAuthenticated } from "./lib/auth";
@@ -126,7 +126,8 @@ function WeatherContainer(props) {
 }
 
 function DropDown() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isProfileDropDown, handleProfileDropdownToggle] = useProfileDropDown();
+  // const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode] = useTheme();
 
   const themeBgClasses = `${
@@ -151,9 +152,18 @@ function DropDown() {
     }
   };
 
+  const handleImageClick = (e) => {
+    handleProfileDropdownToggle();
+    e.stopPropagation();
+  };
+
+  const handleDropdownClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <div className='ml-3 relative z-10'>
-      <div onClick={() => setIsOpen(!isOpen)}>
+      <div onClick={(e) => handleImageClick(e)}>
         <div className='flex text-sm rounded-full '>
           <span className='sr-only'>Open user menu</span>
           <img
@@ -169,8 +179,9 @@ function DropDown() {
         </div>
       </div>
 
-      {isOpen && (
+      {isProfileDropDown && (
         <div
+          onClick={(e) => handleDropdownClick(e)}
           className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${themeBgClasses}`}
         >
           <div>
@@ -214,7 +225,7 @@ function DesktopRight() {
     <div className='hidden md:ml-6 md:block'>
       <div className='flex items-center'>
         <WeatherDisplay variant='large' className='pr-3' />
-        {auth ? (
+        {!auth ? (
           <DropDown />
         ) : (
           <>
