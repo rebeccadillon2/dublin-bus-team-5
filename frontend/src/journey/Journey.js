@@ -1,8 +1,8 @@
 import React, {
-  useState,
   useRef,
-  useContext,
+  useState,
   useEffect,
+  useContext,
   useCallback,
 } from "react";
 import {
@@ -12,18 +12,18 @@ import {
   DirectionsRenderer,
 } from "@react-google-maps/api";
 
-import { errorTypes } from "../components/journey";
 import {
-  routeErrorCheck,
-  getMapContainerStyle,
-  getInputOptions,
-  setUserLocation,
   getMapOptions,
+  setUserLocation,
+  routeErrorCheck,
+  getInputOptions,
+  getMapContainerStyle,
 } from "../components/journey";
+import JourneyContainer from "./Container";
+import { center, libraries } from "../lib/map";
+import { errorTypes } from "../components/journey";
 import { MapDetailsContext, MapRefContext } from "../App";
 import { LoadingSpinner } from "../components/loading/loading";
-import { center, libraries } from "../lib/map";
-import JourneyContainer from "./Container";
 import { useWindowSize, useTheme, useExpanded } from "../hooks";
 
 export default function Home() {
@@ -35,7 +35,6 @@ export default function Home() {
   const destinationRef = useRef(null);
   const [time, setTime] = useState("");
   const [loading, setLoading] = useState(false);
-  // const [mapLoaded, setMapLoaded] = useState(null);
   const [inputError, setInputError] = useState(null);
   const { setMapRefContext } = useContext(MapRefContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
@@ -105,7 +104,7 @@ export default function Home() {
 
   if (!isLoaded)
     return (
-      <div className='h-100 w-100 flex items-center justify-center'>
+      <div className='h-[100vh] w-[100vw] flex items-center justify-center'>
         <LoadingSpinner size={"large"} />
       </div>
     );
@@ -130,7 +129,6 @@ export default function Home() {
         center={center}
         zoom={12}
         options={getMapOptions(isDarkMode)}
-        // mapContainerStyle={{ width: "100%", height: "100%" }}
         mapContainerStyle={getMapContainerStyle(width, isExpanded)}
         onLoad={onMapLoad}
       >
