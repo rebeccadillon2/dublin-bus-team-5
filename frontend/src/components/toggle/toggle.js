@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch } from "@headlessui/react";
 
-import { useTheme } from "../hooks";
+import { useTheme } from "../../hooks";
 
 export function Toggle(props) {
   const { check, callback, iconOne, iconTwo, fillOne, fillTwo } = props;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "../hooks";
 
-import { FareToggle, ThemeToggle } from "../toggle";
+import { FareToggle, ThemeToggle } from "../components/toggle";
 import { AccountSection, Card } from "../components/container";
 
 export default function GeneralSettings() {
