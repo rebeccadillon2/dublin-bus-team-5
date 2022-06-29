@@ -1,10 +1,15 @@
 import React from "react";
-import { ThemeToggle } from "../toggle";
+import { LoginForm } from "../components/auth";
+import { FormHeader } from "../components/elements/form";
+import { PageContainer, AuthContainer } from "../components/container";
 
 export default function Login() {
   return (
-    <div>
-      <ThemeToggle />
-    </div>
+    <PageContainer>
+      <AuthContainer>
+        <FormHeader title={"Login"} />
+        <LoginForm />
+      </AuthContainer>
+    </PageContainer>
   );
 }
