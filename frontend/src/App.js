@@ -1,15 +1,14 @@
-import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useState, createContext, useEffect } from "react";
 
 import "./styles/globals.css";
 import "tailwindcss/tailwind.css";
 
-import Journey from "./journey/Journey";
+import Nav from "./Nav";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
+import Journey from "./journey/Journey";
 import { isUserAuthenticated } from "./lib/auth";
-import Navbar from "./navbar/Navbar";
-import Nav from "./Nav";
 
 export const MapDetailsContext = createContext({});
 export const MapRefContext = createContext({});
@@ -50,7 +49,6 @@ function App() {
           <MapRefContext.Provider value={{ mapRefContext, setMapRefContext }}>
             <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
               <BrowserRouter>
-                {/* <Navbar /> */}
                 <Nav />
                 <Routes>
                   <Route path={"/"} element={<Journey />} />
