@@ -15,7 +15,7 @@ export function ModalHeader(props) {
           className='block'
           height={90}
           width={90}
-          style={{ height: "90px", width: "90px" }}
+          style={{ height: "4.5rem", width: "7rem" }}
           src={
             "https://res.cloudinary.com/dk0r9bcxy/image/upload/v1654877396/research-practicum/bl2e_qkc1u6.png"
           }
