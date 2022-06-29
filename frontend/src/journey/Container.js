@@ -57,7 +57,7 @@ export default function JourneyContainer(props) {
   return (
     <ContentContainer>
       {containerType.type === ContainerType.DEFAULT ? (
-        <div className='input-container overflow-y-scroll	'>
+        <div className='input-container overflow-y-scroll	md:mt-2'>
           <JourneyForm
             time={time}
             setTime={setTime}
