@@ -4,7 +4,7 @@ import { Menu, Transition } from "@headlessui/react";
 
 import { useTheme } from "../hooks";
 
-export function DropDown() {
+export default function DropDown() {
   const navigate = useNavigate();
   const [isDarkMode] = useTheme();
   const themeBgClasses = `${

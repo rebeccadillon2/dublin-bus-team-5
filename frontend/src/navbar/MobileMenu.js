@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import React, { useEffect, useState } from "react";
 
-import { WeatherDisplay } from ".";
+import WeatherDisplay from "./Weather";
 import { isUserAuthenticated } from "../lib/auth";
 import { useAuthenticate, useTheme } from "../hooks";
 
-export function MobileMenu() {
+export default function MobileMenu() {
   const [auth, setAuth] = useState(false);
   const [isAuthenticated] = useAuthenticate();
   const [isDarkMode] = useTheme();

@@ -1,9 +1,12 @@
 import { Disclosure } from "@headlessui/react";
 
 import { useTheme } from "../hooks";
-import { Links, DesktopRight, MobileButton, MobileMenu } from ".";
+import Links from "./Links";
+import DesktopRight from "./DesktopRight";
+import MobileButton from "./MobileButton";
+import MobileMenu from "./MobileMenu";
 
-export function Navbar() {
+export default function Navbar() {
   const [isDarkMode] = useTheme();
 
   return (

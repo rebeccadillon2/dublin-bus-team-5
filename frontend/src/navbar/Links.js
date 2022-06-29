@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { useTheme } from "../hooks";
 
-export function Links() {
+export default function Links() {
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode

@@ -5,10 +5,11 @@ import "./styles/globals.css";
 import "tailwindcss/tailwind.css";
 
 import Journey from "./journey/Journey";
-// import Login from "./auth/Login";
-// import Signup from "./auth/Signup";
+import Login from "./auth/Login";
+import Signup from "./auth/Signup";
 import { isUserAuthenticated } from "./lib/auth";
-import { Navbar } from "./navbar";
+import Navbar from "./navbar/Navbar";
+import Nav from "./Nav";
 
 export const MapDetailsContext = createContext({});
 export const MapRefContext = createContext({});
@@ -50,10 +51,11 @@ function App() {
             <MapDetailsContext.Provider value={{ mapDetails, setMapDetails }}>
               <BrowserRouter>
                 {/* <Navbar /> */}
+                <Nav />
                 <Routes>
                   <Route path={"/"} element={<Journey />} />
-                  {/* <Route path={"/login"} element={<Login />} />
-                  <Route path={"/signup"} element={<Signup />} /> */}
+                  <Route path={"/login"} element={<Login />} />
+                  <Route path={"/signup"} element={<Signup />} />
                 </Routes>
               </BrowserRouter>
             </MapDetailsContext.Provider>

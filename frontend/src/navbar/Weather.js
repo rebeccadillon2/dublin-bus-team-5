@@ -4,7 +4,7 @@ import { useTheme } from "../hooks";
 import { icons } from "../lib/weather";
 import { getLiveWeather } from "../lib/api";
 
-export function WeatherDisplay(props) {
+export default function WeatherDisplay(props) {
   const { variant, className, ...rest } = props;
   const [error, setError] = useState(false);
   const [temp, setTemp] = useState(null);

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "../toggle";
-import { WeatherDisplay, DropDown } from ".";
+import WeatherDisplay from "./Weather";
+import DropDown from "./Dropdown";
 import { isUserAuthenticated } from "../lib/auth";
 import { PrimaryButton, SecondaryButton } from "../components/elements/button";
 
-export function DesktopRight() {
+export default function DesktopRight() {
   const [auth, setAuth] = useState(false);
   const navigate = useNavigate();
 

@@ -4,7 +4,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 import { useTheme } from "../hooks";
 
-export function MobileButton(props) {
+export default function MobileButton(props) {
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode
