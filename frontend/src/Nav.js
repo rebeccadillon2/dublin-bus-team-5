@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 import { useTheme } from "./hooks";
 import { getLiveWeather } from "./lib/api";
@@ -174,8 +175,7 @@ function DropDown() {
           <div>
             <a
               href='/'
-              className={`
-                          block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+              className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
             >
               Spotify
             </a>
@@ -183,9 +183,7 @@ function DropDown() {
           <div>
             <a
               href='/account'
-              className={`
-                            active ? "" : ""
-                          block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+              className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
             >
               Account
             </a>
@@ -194,9 +192,7 @@ function DropDown() {
             <a
               href='/'
               onClick={handleSignout}
-              className={`
-                            active ? "" : ""
-                          block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+              className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
             >
               Sign out
             </a>
@@ -207,32 +203,65 @@ function DropDown() {
   );
 }
 
-export default function Nav() {
+function DesktopRight() {
   const [auth, setAuth] = useState(false);
-
   useEffect(() => {
     setAuth(isUserAuthenticated());
   }, []);
+
   return (
-    <div className='navbar-N flex items-center justify-between md:px-6 px-4 h-16 w-100'>
-      <Links />
-      <div className='hidden md:ml-6 md:block'>
-        <div className='flex items-center'>
-          <WeatherDisplay variant='large' className='pr-3' />
-          {auth ? (
-            <DropDown />
-          ) : (
-            <>
-              <a href='/signup'>
-                <PrimaryButton type='action'>Signup</PrimaryButton>
-              </a>
-              <div className='w-2' />
-              <a href='/login'>
-                <SecondaryButton type='action'>Login</SecondaryButton>
-              </a>
-            </>
-          )}
-        </div>
+    <div className='hidden md:ml-6 md:block'>
+      <div className='flex items-center'>
+        <WeatherDisplay variant='large' className='pr-3' />
+        {auth ? (
+          <DropDown />
+        ) : (
+          <>
+            <a href='/signup'>
+              <PrimaryButton type='action'>Signup</PrimaryButton>
+            </a>
+            <div className='w-2' />
+            <a href='/login'>
+              <SecondaryButton type='action'>Login</SecondaryButton>
+            </a>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MobileButton() {
+  const [mobileButtonOpen, setMobileButtonOpen] = useState(false);
+  const [isDarkMode] = useTheme();
+  const themeClasses = `${
+    isDarkMode
+      ? "text-system-grey3 hover:text-system-grey1"
+      : "text-system-grey5 hover:text-system-grey7"
+  }`;
+  return (
+    <div className='-mr-2 flex md:hidden transition-all ease-in-out duration-300'>
+      <div
+        className={`inline-flex items-center justify-center p-2 rounded-md ${themeClasses} transition-all ease-in-out duration-300	`}
+      >
+        <span className='sr-only'>Open main menu</span>
+        {mobileButtonOpen ? (
+          <AiOutlineClose className='block h-6 w-6' aria-hidden='true' />
+        ) : (
+          <AiOutlineMenu className='block h-6 w-6' aria-hidden='true' />
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function Nav() {
+  return (
+    <div className='mx-auto px-4 sm:px-6 lg:px-6'>
+      <div className='flex items-center justify-between h-16'>
+        <Links />
+        <DesktopRight />
+        <MobileButton />
       </div>
     </div>
   );
