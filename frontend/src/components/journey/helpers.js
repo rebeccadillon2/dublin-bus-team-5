@@ -29,13 +29,15 @@ export function routeErrorCheck(originVal, destinationVal, setInputError) {
 
 export function getMapContainerStyle(width, isExpanded) {
   return {
-    width: "100vw",
+    width: width >= 768 ? "calc(100vw - 400px)" : "100vw",
     height:
       width >= 768
         ? "calc(100vh - 64px)"
         : isExpanded
         ? "calc(100vh - 64px - 80vh)"
         : "calc(100vh - 64px - 216px)",
+    position: "absolute",
+    right: "0",
   };
 }
 
