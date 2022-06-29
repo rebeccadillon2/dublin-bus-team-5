@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-import { useProfileDropDown, useTheme } from "./hooks";
+import { useMobileDropDown, useProfileDropDown, useTheme } from "./hooks";
 import { getLiveWeather } from "./lib/api";
 import { icons } from "./lib/weather";
 import { isUserAuthenticated } from "./lib/auth";
@@ -244,23 +244,37 @@ function DesktopRight() {
 }
 
 function MobileButton() {
-  const [mobileButtonOpen, setMobileButtonOpen] = useState(false);
+  const [isMobileDropDown, handleMobileDropdownToggle] = useMobileDropDown();
+  // const [mobileButtonOpen, setMobileButtonOpen] = useState(false);
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode
       ? "text-system-grey3 hover:text-system-grey1"
       : "text-system-grey5 hover:text-system-grey7"
   }`;
+  const handleClick = (e) => {
+    handleMobileDropdownToggle();
+    e.stopPropagation();
+  };
+
   return (
     <div className='-mr-2 flex md:hidden transition-all ease-in-out duration-300'>
       <div
         className={`inline-flex items-center justify-center p-2 rounded-md ${themeClasses} transition-all ease-in-out duration-300	`}
       >
         <span className='sr-only'>Open main menu</span>
-        {mobileButtonOpen ? (
-          <AiOutlineClose className='block h-6 w-6' aria-hidden='true' />
+        {isMobileDropDown ? (
+          <AiOutlineClose
+            onClick={(e) => handleClick(e)}
+            className='block h-6 w-6'
+            aria-hidden='true'
+          />
         ) : (
-          <AiOutlineMenu className='block h-6 w-6' aria-hidden='true' />
+          <AiOutlineMenu
+            onClick={(e) => handleClick(e)}
+            className='block h-6 w-6'
+            aria-hidden='true'
+          />
         )}
       </div>
     </div>
@@ -268,14 +282,17 @@ function MobileButton() {
 }
 
 function MobileMenu() {
+  const [isMobileDropDown, handleMobileDropdownToggle] = useMobileDropDown();
   const [auth, setAuth] = useState(false);
   const [isAuthenticated] = useAuthenticate();
   const [isDarkMode] = useTheme();
+
   const themeClasses = `${
     isDarkMode
       ? "bg-primary-black text-system-grey3 hover:text-system-grey1 hover:bg-system-grey7"
       : "bg-system-grey2 text-system-grey5 hover:text-system-grey7 hover:bg-system-grey3"
   }`;
+
   useEffect(() => {
     setAuth(isUserAuthenticated());
   }, []);
@@ -293,85 +310,94 @@ function MobileMenu() {
     }
   };
 
+  const handleClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className='md:hidden transition-all ease-in-out duration-300'>
-      <div className='px-2 pt-2 pb-3 space-y-1'>
-        <div
-          className={`${themeClasses} flex mb-0.5 justify-between px-3 py-2 rounded-md transition ease-in-out duration-300	`}
-        >
-          <>Weather</>
-          {/* <WeatherDisplay variant='small' /> */}
-        </div>
-        <a href='/'>
+    <div
+      onClick={(e) => handleClick(e)}
+      className='md:hidden transition-all ease-in-out duration-300'
+    >
+      {isMobileDropDown && (
+        <div className='px-2 pt-2 pb-3 space-y-1'>
           <div
-            className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
+            className={`${themeClasses} flex mb-0.5 justify-between px-3 py-2 rounded-md transition ease-in-out duration-300	`}
           >
-            Journey Planner
+            <>Weather</>
+            {/* <WeatherDisplay variant='small' /> */}
           </div>
-        </a>
-        <a href='/'>
-          <div
-            className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
-          >
-            Stops
-          </div>
-        </a>
-        <a href='/'>
-          <div
-            className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
-          >
-            Routes
-          </div>
-        </a>
-        <a href='/'>
-          <div
-            className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
-          >
-            Fare Calculator
-          </div>
-        </a>
-        {auth ? (
-          <>
-            <a href='/'>
-              <div
-                className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
-              >
-                Spotify
-              </div>
-            </a>
-            <a href='/account'>
-              <div
-                className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
-              >
-                Account
-              </div>
-            </a>
+          <a href='/'>
             <div
-              onClick={handleSignout}
-              className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
+              className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
             >
-              Sign out
+              Journey Planner
             </div>
-          </>
-        ) : (
-          <>
-            <a href='/signup'>
+          </a>
+          <a href='/'>
+            <div
+              className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
+            >
+              Stops
+            </div>
+          </a>
+          <a href='/'>
+            <div
+              className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
+            >
+              Routes
+            </div>
+          </a>
+          <a href='/'>
+            <div
+              className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
+            >
+              Fare Calculator
+            </div>
+          </a>
+          {auth ? (
+            <>
+              <a href='/'>
+                <div
+                  className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
+                >
+                  Spotify
+                </div>
+              </a>
+              <a href='/account'>
+                <div
+                  className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
+                >
+                  Account
+                </div>
+              </a>
               <div
-                className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
-              >
-                Signup
-              </div>
-            </a>
-            <a href='/login'>
-              <div
+                onClick={handleSignout}
                 className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
               >
-                Login
+                Sign out
               </div>
-            </a>
-          </>
-        )}
-      </div>
+            </>
+          ) : (
+            <>
+              <a href='/signup'>
+                <div
+                  className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
+                >
+                  Signup
+                </div>
+              </a>
+              <a href='/login'>
+                <div
+                  className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
+                >
+                  Login
+                </div>
+              </a>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
