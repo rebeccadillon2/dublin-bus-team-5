@@ -4,8 +4,8 @@ import JourneyForm from "./Form";
 import { useTheme } from "../hooks";
 import RouteOptions from "./RouteOptions";
 import { MapDetailsContext } from "../App";
-import { ContentContainer } from "../components/container";
 import ExploreContent from "./ExploreContent";
+import { ContentContainer } from "../components/container";
 
 export const ContainerType = {
   DEFAULT: "default",

@@ -18,6 +18,7 @@ import {
   getMapContainerStyle,
   getInputOptions,
   setUserLocation,
+  getMapOptions,
 } from "../components/journey";
 import { MapDetailsContext, MapRefContext } from "../App";
 import { LoadingSpinner } from "../components/loading/loading";
@@ -29,7 +30,7 @@ export default function Home() {
   const mapRef = useRef();
   const originRef = useRef(null);
   const [width] = useWindowSize();
-  // const [isDarkMode] = useTheme();
+  const [isDarkMode] = useTheme();
   const [isExpanded] = useExpanded();
   const destinationRef = useRef(null);
   const [time, setTime] = useState("");
@@ -128,6 +129,7 @@ export default function Home() {
       <GoogleMap
         center={center}
         zoom={12}
+        options={getMapOptions(isDarkMode)}
         // mapContainerStyle={{ width: "100%", height: "100%" }}
         mapContainerStyle={getMapContainerStyle(width, isExpanded)}
         onLoad={onMapLoad}

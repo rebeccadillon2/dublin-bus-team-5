@@ -403,16 +403,24 @@ function MobileMenu() {
 }
 
 export default function Nav() {
+  const [isDarkMode] = useTheme();
+
   return (
-    <>
-      <div className='mx-auto px-4 sm:px-6 lg:px-6'>
-        <div className='flex items-center justify-between h-16'>
-          <Links />
-          <DesktopRight />
-          <MobileButton />
+    <div
+      className={`${
+        isDarkMode ? "bg-primary-black" : "bg-system-grey1"
+      } transition-all ease-in-out`}
+    >
+      <>
+        <div className='mx-auto px-4 sm:px-6 lg:px-6'>
+          <div className='flex items-center justify-between h-16'>
+            <Links />
+            <DesktopRight />
+            <MobileButton />
+          </div>
         </div>
-      </div>
-      <MobileMenu />
-    </>
+        <MobileMenu />
+      </>
+    </div>
   );
 }

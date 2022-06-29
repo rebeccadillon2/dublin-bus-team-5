@@ -8,6 +8,7 @@ import Nav from "./Nav";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import Journey from "./journey/Journey";
+import Account from "./account/Account";
 import { isUserAuthenticated } from "./lib/auth";
 
 export const MapDetailsContext = createContext({});
@@ -85,6 +86,7 @@ function App() {
                           <Route path={"/"} element={<Journey />} />
                           <Route path={"/login"} element={<Login />} />
                           <Route path={"/signup"} element={<Signup />} />
+                          <Route path={"/account"} element={<Account />} />
                         </Routes>
                       </BrowserRouter>
                     </div>
