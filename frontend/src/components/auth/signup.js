@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../elements/form";
 import { PrimaryButton } from "../elements/button";
 
-export function SignpForm() {
+export function SignupForm() {
   const navigate = useNavigate();
   const [dummy, setDummy] = useState(null);
   const [name, setName] = useState("");
