@@ -6,7 +6,7 @@ import { Input } from "../components/elements/form";
 import { LoadingSpinner } from "../components/loading";
 import { PrimaryButton } from "../components/elements/button";
 
-export default function EditProfileInfo({
+export default function EditProfileEmail({
   setIsEditingEmail,
   setPopup,
   setPopupText,
@@ -44,6 +44,7 @@ export default function EditProfileInfo({
 
     try {
       setLoading(true);
+      console.log("FD", formData);
       await editUser(userId, formData);
       setPopupText("Successfully updated email");
       setLoading(false);

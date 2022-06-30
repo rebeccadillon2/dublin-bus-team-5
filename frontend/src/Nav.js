@@ -8,8 +8,8 @@ import {
   useProfileDropDown,
 } from "./hooks";
 import { icons } from "./lib/weather";
-import { getLiveWeather } from "./lib/api";
-import { isUserAuthenticated } from "./lib/auth";
+import { getLiveWeather, getUser } from "./lib/api";
+import { getPayload, isUserAuthenticated } from "./lib/auth";
 import { PrimaryButton, SecondaryButton } from "./components/elements/button";
 
 function Links() {
@@ -19,6 +19,7 @@ function Links() {
       ? "text-system-grey3 hover:text-system-grey1"
       : "text-system-grey5 hover:text-system-grey7"
   }`;
+
   return (
     <div className='LEFT flex justify-start items-center'>
       <div className='flex items-center'>
@@ -133,7 +134,9 @@ function DropDown() {
   const [isProfileDropDown, handleProfileDropdownToggle] = useProfileDropDown();
   // const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode] = useTheme();
-
+  const [profileImage, setProfileImage] = useState(
+    "https://res.cloudinary.com/dk0r9bcxy/image/upload/v1633014391/project-image-upload-test/pqqrv32aicedep9a5usi.jpg"
+  );
   const themeBgClasses = `${
     isDarkMode ? "bg-system-grey7" : "bg-system-grey2"
   }`;
@@ -152,6 +155,20 @@ function DropDown() {
     e.stopPropagation();
   };
 
+  useEffect(() => {
+    const userId = getPayload().sub;
+    const getUserData = async (userId) => {
+      try {
+        await getUser(userId).then((res) => {
+          setProfileImage(res.data.profileImage);
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getUserData(userId);
+  }, []);
+
   return (
     <div className='ml-3 relative'>
       <div onClick={(e) => handleImageClick(e)}>
@@ -163,9 +180,7 @@ function DropDown() {
             height={32}
             width={32}
             style={{ height: "32px", width: "32px" }}
-            src={
-              "https://res.cloudinary.com/dk0r9bcxy/image/upload/v1633014391/project-image-upload-test/pqqrv32aicedep9a5usi.jpg"
-            }
+            src={profileImage}
           />
         </div>
       </div>

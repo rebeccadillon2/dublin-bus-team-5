@@ -24,11 +24,7 @@ export default function GeneralSettings() {
         </div>
         <ThemeToggle />
       </Card>
-      <div
-        className={`${
-          isDarkMode ? "bg-system-grey7" : "bg-primary-white"
-        } h-px`}
-      />
+      <div className={`${isDarkMode ? "bg-system-grey7 h-px" : ""} `} />
       <Card isLast={true}>
         <div className='pr-10'>
           <p
