@@ -70,7 +70,7 @@ export function Input(props) {
           {label}
           {error && (
             <p className='text-xs inline-block pl-1 text-system-grey5'>
-              {error}
+              {error.charAt(0).toUpperCase() + error.slice(1)}
             </p>
           )}
         </label>

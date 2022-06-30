@@ -229,7 +229,7 @@ function DesktopRight() {
     <div className='hidden md:ml-6 md:block'>
       <div className='flex items-center'>
         <WeatherDisplay variant='large' className='pr-3' />
-        {!auth ? (
+        {auth ? (
           <DropDown />
         ) : (
           <>

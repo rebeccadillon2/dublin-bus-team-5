@@ -1,89 +1,147 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useTheme } from "../../hooks";
 import { Input } from "../elements/form";
+import { LoadingSpinner } from "../loading";
+import { registerUser } from "../../lib/api";
 import { PrimaryButton } from "../elements/button";
 
 export function SignupForm() {
-  const navigate = useNavigate();
-  const [dummy, setDummy] = useState(null);
-  const [name, setName] = useState("");
-  const [name2, setName2] = useState("");
-  const [name3, setName3] = useState("");
+  const [isDarkMode] = useTheme();
+  const initialState = {
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+    profileImage:
+      "https://res.cloudinary.com/dn11uqgux/image/upload/v1631736676/sei_project_3_studio_images/Screenshot_2021-09-15_at_21.09.58_vd6hdq.png",
+  };
 
-  const handleSignup = async () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [formErrors, setFormErrors] = useState(null);
+  const [formData, setFormData] = useState(initialState);
+  const [missingError, setMissingValuesError] = useState(null);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setFormData({
+      ...formData,
+      [e.target.name]: value,
+      username: formData.email,
+    });
+  };
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
     try {
-      console.log("here");
-      await window.localStorage.removeItem("token");
+      setLoading(true);
+      await registerUser(formData);
+      setLoading(false);
       navigate("/login");
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      setLoading(false);
+      setFormErrors(err.response.data);
+      if (!formData.email) {
+        setMissingValuesError("Must provide an email");
+      } else if (!formData.password) {
+        setMissingValuesError("Must provide a password");
+      } else if (!formData.passwordConfirmation) {
+        setMissingValuesError("Must provide password confirmation");
+      }
     }
   };
 
-  const handleChange = (e) => {
-    setName(e.target.value);
-  };
-  const handleChange2 = (e) => {
-    setName2(e.target.value);
-  };
-  const handleChange3 = (e) => {
-    setName3(e.target.value);
+  const handleFocus = () => {
+    setFormErrors(null);
+    setMissingValuesError(null);
   };
 
   return (
     <>
       <Input
-        specialWidth
-        error={dummy}
         type='text'
-        value={name}
-        variant='large'
-        onChange={handleChange}
-        // onFocus={handleFocus}
-        placeholder='Email'
+        specialWidth
         label='Email'
+        name={"email"}
+        variant='large'
+        placeholder='Email'
+        onFocus={handleFocus}
+        value={formData.email}
         className='md:w-90 w-78'
+        onChange={(e) => handleChange(e)}
+        error={formErrors && formErrors.email && formErrors.email[0]}
       />
       <div className='h-3' />
       <Input
         specialWidth
-        error={dummy}
         type='password'
-        value={name2}
+        name='password'
         variant='large'
-        onChange={handleChange2}
-        // onFocus={handleFocus}
-        placeholder='Password'
         label='Password'
+        onFocus={handleFocus}
+        placeholder='Password'
         className='md:w-90 w-78'
+        value={formData.password}
+        onChange={(e) => handleChange(e)}
+        error={formErrors && formErrors.password && formErrors.password[0]}
       />
       <div className='h-3' />
 
       <Input
+        error={
+          formErrors &&
+          formErrors.passwordConfirmation &&
+          formErrors.passwordConfirmation[0]
+        }
         specialWidth
-        error={dummy}
         type='password'
-        value={name3}
         variant='large'
-        onChange={handleChange3}
-        // onFocus={handleFocus}
-        placeholder='Confirm Password'
+        onFocus={handleFocus}
         label='Confirm Password'
         className='md:w-90 w-78'
+        name='passwordConfirmation'
+        placeholder='Confirm Password'
+        onChange={(e) => handleChange(e)}
+        value={formData.passwordConfirmation}
       />
-      <div className='pt-6' />
+      {missingError ? (
+        <div className='flex items-center justify-center h-6 px-2 text-sm text-primary-red'>
+          <p>{missingError}</p>
+        </div>
+      ) : (
+        <div className='h-6' />
+      )}
       <PrimaryButton onClick={handleSignup} type='large'>
-        Signup
+        {loading ? (
+          <LoadingSpinner size={"small"} color='border-primary-white' />
+        ) : (
+          "Signup"
+        )}
       </PrimaryButton>
-      <a href={"/login"}>
-        <div className='flex items-center justify-center text-sm mt-3 text-system-grey5'>
+      <div
+        className={`flex flex-col items-center justify-center text-sm mt-4 isDarkMode ${
+          isDarkMode ? "text-system-grey4" : "text-system-grey5"
+        } text-center`}
+      >
+        <p>
+          By continuing, you agree to our Terms of Service and acknowledge
+          you've read our <strong>Privacy Policy</strong>
+        </p>
+        <div
+          className={`border-b ${
+            isDarkMode ? "border-b-system-grey4" : "border-b-system-grey4"
+          }  w-[90%] my-2`}
+        />
+        <a href={"/login"}>
           <p className='text-center'>
             Already have an account?
-            <br /> Click here to login
+            <br />
+            <strong>Click here to login</strong>
           </p>
-        </div>
-      </a>
+        </a>
+      </div>
     </>
   );
 }
