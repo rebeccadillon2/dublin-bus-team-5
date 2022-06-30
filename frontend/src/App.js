@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  Outlet,
+  Navigate,
+  BrowserRouter,
+} from "react-router-dom";
 import React, { useState, createContext, useEffect } from "react";
 
 import "./styles/globals.css";
@@ -60,12 +66,9 @@ function App() {
     setIsProfileDropDown(false);
   };
 
-  // const ProtectedRoute = ({ isAuth, children }) => {
-  //   if (!isAuth) {
-  //     <Navigate to='/' replace />;
-  //   }
-  //   return children;
-  // };
+  const ProtectedRoute = () => {
+    return isUserAuthenticated() ? <Outlet /> : <Navigate to='/' replace />;
+  };
 
   return (
     <MobileDropDownContext.Provider
@@ -93,7 +96,9 @@ function App() {
                           <Route path={"/"} element={<Journey />} />
                           <Route path={"/login"} element={<Login />} />
                           <Route path={"/signup"} element={<Signup />} />
-                          <Route path={"/account"} element={<Account />} />
+                          <Route element={<ProtectedRoute />}>
+                            <Route path={"/account"} element={<Account />} />
+                          </Route>
                         </Routes>
                       </BrowserRouter>
                     </div>
