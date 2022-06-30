@@ -9,7 +9,7 @@ export function ModalHeader(props) {
 
   return (
     <div {...rest}>
-      <div className='mx-auto flex items-center justify-center h-16 w-16 rounded-full '>
+      <div className='mx-auto mt-1 mb-4 flex items-center justify-center h-16 w-16 rounded-full '>
         <img
           alt={"logo"}
           className='block'

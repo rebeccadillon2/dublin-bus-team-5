@@ -1,26 +1,75 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import { Modal, ModalHeader } from ".";
 import { Input } from "../elements/form";
+import { LoadingSpinner } from "../loading";
+import { editUser, getUser } from "../../lib/api";
 import { DestructiveButton } from "../elements/button";
+import { getPayload, removeToken } from "../../lib/auth";
 
 export function DeleteModal(props) {
   const { open, setOpen, handleClose, ...rest } = props;
-  const [dummy, setDummy] = useState(null);
-  const [name, setName] = useState("");
+  const navigate = useNavigate();
+  const userId = getPayload().sub;
+
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState(null);
+  const [inputError, setInputError] = useState(null);
 
   const handleChange = (e) => {
-    setName(e.target.value);
+    setInput(e.target.value);
   };
 
-  const navigate = useNavigate();
-
-  const handleDelete = () => {
-    setOpen(false);
-    navigate("/");
+  const handleDelete = async () => {
+    if (!input) {
+      setError("Must type delete");
+      return;
+    }
+    if (!formData) {
+      setError("Network error");
+      return;
+    }
+    if (input !== "delete") {
+      setInputError("Must type delete");
+      return;
+    }
+    try {
+      setLoading(true);
+      await editUser(userId, formData);
+      setLoading(false);
+      setOpen(false);
+      removeToken();
+      navigate("/");
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
+    } catch (err) {
+      setLoading(false);
+      setError("Network error");
+    }
   };
 
+  useEffect(() => {
+    const userId = getPayload().sub;
+    const now = String(Math.floor(Date.now() / 1000));
+    const getUserData = async (userId) => {
+      try {
+        const { data } = await getUser(userId);
+        setFormData({ email: `${now}${data.email}` });
+      } catch (err) {
+        console.log("err", err);
+        setError("Network error");
+      }
+    };
+    getUserData(userId);
+  }, []);
+
+  const handleFocus = () => {
+    setError(false);
+    setInputError(null);
+  };
   return (
     <Modal modalOpen={open} setModalOpen={setOpen}>
       <div {...rest}>
@@ -30,20 +79,30 @@ export function DeleteModal(props) {
         />
         <Input
           specialWidth
-          error={dummy}
           type='text'
-          value={name}
-          variant='large'
-          onChange={handleChange}
-          // onFocus={handleFocus}
-          placeholder='delete'
+          value={input}
           label='delete'
-          className='my-6'
+          variant='large'
+          className='mt-6'
+          error={inputError}
+          placeholder='delete'
+          onFocus={handleFocus}
+          onChange={handleChange}
         />
-
-        <div className='mt-5 sm:mt-6'>
+        {error ? (
+          <div className='flex items-center justify-center h-6 px-2 text-sm text-primary-red'>
+            <p>{error}</p>
+          </div>
+        ) : (
+          <div className='h-6' />
+        )}
+        <div>
           <DestructiveButton onClick={handleDelete} type='large'>
-            Delete Account
+            {loading ? (
+              <LoadingSpinner size={"small"} color='border-primary-white' />
+            ) : (
+              "Login"
+            )}
           </DestructiveButton>
         </div>
       </div>
