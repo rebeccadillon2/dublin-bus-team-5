@@ -413,7 +413,7 @@ export default function Nav() {
     <div
       className={`${
         isDarkMode ? "bg-primary-black" : "bg-system-grey1"
-      } transition-all ease-in-out`}
+      } transition ease-in-out duration-300`}
     >
       <>
         <div className='mx-auto px-4 sm:px-6 lg:px-6'>
