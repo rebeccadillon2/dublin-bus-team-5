@@ -143,19 +143,6 @@ function DropDown() {
       : "text-system-grey5 hover:text-system-grey7"
   }`;
 
-  const handleLogout = async () => {
-    const inner = async () => {
-      await window.localStorage.removeItem("token");
-      // eslint-disable-next-line no-restricted-globals
-      location.reload();
-    };
-    try {
-      inner();
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   const handleImageClick = (e) => {
     handleProfileDropdownToggle();
     e.stopPropagation();
@@ -202,15 +189,6 @@ function DropDown() {
               className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
             >
               Account
-            </a>
-          </div>
-          <div>
-            <a
-              href='/'
-              onClick={handleLogout}
-              className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
-            >
-              Logout
             </a>
           </div>
         </div>
@@ -301,19 +279,6 @@ function MobileMenu() {
     setAuth(isUserAuthenticated());
   }, []);
 
-  const handleLogout = () => {
-    const inner = async () => {
-      await window.localStorage.removeItem("token");
-      // eslint-disable-next-line no-restricted-globals
-      location.reload();
-    };
-    try {
-      inner();
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   const handleClick = (e) => {
     e.stopPropagation();
   };
@@ -375,12 +340,6 @@ function MobileMenu() {
                   Account
                 </div>
               </a>
-              <div
-                onClick={handleLogout}
-                className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
-              >
-                Logout
-              </div>
             </>
           ) : (
             <>
