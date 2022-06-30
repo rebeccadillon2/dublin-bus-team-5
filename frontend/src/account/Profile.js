@@ -2,26 +2,29 @@ import React, { useState } from "react";
 
 import { useTheme } from "../hooks";
 import EditProfileInfo from "./Edit";
+import { Popup } from "../components/popup";
 import { LogoutModal } from "../components/modal";
 import { AccountSection, Card } from "../components/container";
 import { SecondaryButton } from "../components/elements/button";
 
 export default function ProfileSettings() {
   const [isDarkMode] = useTheme();
-  const [isEditing, setIsEditing] = useState(false);
+  const [popup, setPopup] = useState(false);
+  const [popupText, setPopupText] = useState("");
+  const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
   const handleClose = () => {
     setLogoutModalOpen(false);
   };
 
-  const handleClick = () => {
-    setIsEditing(true);
+  const handleEditEmailClick = () => {
+    setIsEditingEmail(!isEditingEmail);
   };
 
   return (
     <AccountSection title='Profile'>
-      <Card isFirst={true}>
+      <Card isFirst={true} className='relative'>
         <div className='sm:pr-10'>
           <p
             className={`${
@@ -31,13 +34,21 @@ export default function ProfileSettings() {
             Edit
           </p>
           <p className='text-sm'>Change the email linked with your account.</p>
-          {isEditing && <EditProfileInfo />}
+          {isEditingEmail && (
+            <EditProfileInfo
+              setPopup={setPopup}
+              setPopupText={setPopupText}
+              setIsEditingEmail={setIsEditingEmail}
+            />
+          )}
         </div>
-        {!isEditing && (
-          <SecondaryButton onClick={handleClick} type='action'>
-            Edit
-          </SecondaryButton>
-        )}
+        <SecondaryButton
+          className='absolute top-8 right-4'
+          onClick={handleEditEmailClick}
+          type='action'
+        >
+          {isEditingEmail ? "Close" : "Edit"}
+        </SecondaryButton>
       </Card>
       <div
         className={`${
@@ -66,6 +77,7 @@ export default function ProfileSettings() {
         handleClose={handleClose}
         setOpen={setLogoutModalOpen}
       />
+      <Popup popup={popup} text={popupText} />
     </AccountSection>
   );
 }

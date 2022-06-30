@@ -66,7 +66,7 @@ export function Input(props) {
     <div className={classes}>
       <input ref={ref} className={inputClasses} value={value} {...rest} />
       {value && (
-        <label htmlFor='name' className={labelClasses}>
+        <label htmlFor='name' className={`${labelClasses} truncate`}>
           {label}
           {error && (
             <p className='text-xs inline-block pl-1 text-system-grey5'>

@@ -33,6 +33,14 @@ export function getUser(userId) {
   return axios.get(`${baseUrl}/api/auth/profile/${userId}/`, headers());
 }
 
+export function editUser(userId, formData) {
+  return axios.put(
+    `${baseUrl}/api/auth/profile/${userId}/edit/`,
+    formData,
+    headers()
+  );
+}
+
 // Google
 
 // export function getRestaurants() {

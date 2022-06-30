@@ -153,7 +153,7 @@ function DropDown() {
   };
 
   return (
-    <div className='ml-3 relative z-10'>
+    <div className='ml-3 relative'>
       <div onClick={(e) => handleImageClick(e)}>
         <div className='flex text-sm rounded-full '>
           <span className='sr-only'>Open user menu</span>
@@ -173,7 +173,7 @@ function DropDown() {
       {isProfileDropDown && (
         <div
           onClick={(e) => handleDropdownClick(e)}
-          className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${themeBgClasses}`}
+          className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${themeBgClasses} z-10`}
         >
           <div>
             <a
