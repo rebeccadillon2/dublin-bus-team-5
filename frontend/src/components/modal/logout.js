@@ -9,7 +9,7 @@ export function LogoutModal(props) {
 
   const navigate = useNavigate();
 
-  const handleSignout = () => {
+  const handleLogout = () => {
     const inner = async () => {
       await window.localStorage.removeItem("token");
       // eslint-disable-next-line no-restricted-globals
@@ -26,12 +26,12 @@ export function LogoutModal(props) {
     <Modal modalOpen={open} setModalOpen={setOpen}>
       <div {...rest}>
         <ModalHeader
-          title='Are you sure you want to sign out?'
-          subtitle='When you sign out you will still have full access to all bus related functionality.'
+          title='Are you sure you want to logout?'
+          subtitle='When you logout you will still have full access to all bus related functionality.'
         />
         <div className='mt-5 sm:mt-6'>
-          <PrimaryButton onClick={handleSignout} type='large'>
-            Sign out
+          <PrimaryButton onClick={handleLogout} type='large'>
+            Logout
           </PrimaryButton>
         </div>
       </div>

@@ -51,14 +51,14 @@ export default function ProfileSettings() {
               isDarkMode ? "text-primary-white" : "text-primary-black"
             }`}
           >
-            Sign out
+            Logout
           </p>
           <p className='text-sm'>
-            You will still be able to access bus routes when you sign out.
+            You will still be able to access bus routes when you logout.
           </p>
         </div>
         <SecondaryButton onClick={() => setLogoutModalOpen(true)} type='action'>
-          Sign out
+          Logout
         </SecondaryButton>
       </Card>
       <LogoutModal

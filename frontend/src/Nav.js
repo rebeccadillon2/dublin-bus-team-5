@@ -143,7 +143,7 @@ function DropDown() {
       : "text-system-grey5 hover:text-system-grey7"
   }`;
 
-  const handleSignout = async () => {
+  const handleLogout = async () => {
     const inner = async () => {
       await window.localStorage.removeItem("token");
       // eslint-disable-next-line no-restricted-globals
@@ -207,10 +207,10 @@ function DropDown() {
           <div>
             <a
               href='/'
-              onClick={handleSignout}
+              onClick={handleLogout}
               className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
             >
-              Sign out
+              Logout
             </a>
           </div>
         </div>
@@ -301,7 +301,7 @@ function MobileMenu() {
     setAuth(isUserAuthenticated());
   }, []);
 
-  const handleSignout = () => {
+  const handleLogout = () => {
     const inner = async () => {
       await window.localStorage.removeItem("token");
       // eslint-disable-next-line no-restricted-globals
@@ -376,10 +376,10 @@ function MobileMenu() {
                 </div>
               </a>
               <div
-                onClick={handleSignout}
+                onClick={handleLogout}
                 className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
               >
-                Sign out
+                Logout
               </div>
             </>
           ) : (
