@@ -2,11 +2,19 @@ export function setToken(token) {
   window.localStorage.setItem("token", token);
 }
 
+export function removeToken() {
+  window.localStorage.removeItem("token");
+}
+
+export function getToken() {
+  return window.localStorage.getItem("token");
+}
+
 export function getPayload() {
   if (!window) {
     return false;
   }
-  const userToken = window.localStorage.getItem("token");
+  const userToken = getToken();
   if (!userToken) return false;
   const segments = userToken.split(".");
   if (segments.length < 3) return false;
