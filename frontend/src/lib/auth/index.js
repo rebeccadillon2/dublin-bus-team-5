@@ -1,3 +1,7 @@
+export function setToken(token) {
+  window.localStorage.setItem("token", token);
+}
+
 export function getPayload() {
   if (!window) {
     return false;
