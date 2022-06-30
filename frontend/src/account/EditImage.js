@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import { useTheme } from "../hooks";
 import { getPayload } from "../lib/auth";
 import { editUser, getUser } from "../lib/api";
 
@@ -8,6 +9,7 @@ const cloudinaryUploadUrl = process.env.REACT_APP_CLOUDINARY_URL;
 const cloudinaryUploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
 export default function EditProfileImage() {
+  const [isDarkMode] = useTheme();
   const userId = getPayload().sub;
   const [error, setError] = useState(null);
   const [userImage, setUserImage] = useState(null);
@@ -85,11 +87,19 @@ export default function EditProfileImage() {
           </div>
         </>
       ) : (
-        <div className=' w-60 h-33.5 rounded-md pt-3'>
+        <div className={` w-60 h-33.5 rounded-md pt-3`}>
           <div className='flex animate-pulse flex flex-col items-start h-full justify-center'>
-            <div className='w-25 bg-gray-300 h-25 rounded-full '></div>
+            <div
+              className={`${
+                isDarkMode ? "bg-system-grey6" : "bg-system-grey3"
+              } w-25 h-25 rounded-full `}
+            ></div>
             <div className='flex flex-col '>
-              <div className='w-36 bg-gray-300 h-6 rounded-md mt-1 '></div>
+              <div
+                className={`${
+                  isDarkMode ? "bg-system-grey6" : "bg-system-grey3"
+                } w-36 h-6 rounded-md mt-1`}
+              ></div>
             </div>
           </div>
         </div>
