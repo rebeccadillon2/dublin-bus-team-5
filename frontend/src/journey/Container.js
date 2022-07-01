@@ -65,7 +65,7 @@ export default function JourneyContainer(props) {
             setUserLocation={setUserLocation}
           />
           {loading ? (
-            <div className='mt-5'>
+            <div className='mt-20'>
               <LoadingSpinner />
             </div>
           ) : (

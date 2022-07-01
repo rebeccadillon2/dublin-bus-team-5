@@ -10,8 +10,8 @@ import React, { useState, createContext, useEffect } from "react";
 import "./styles/globals.css";
 import "tailwindcss/tailwind.css";
 
-import Nav from "./Nav";
 import { getUser } from "./lib/api";
+import { Nav } from "./components/nav/";
 import Journey from "./journey/Journey";
 import Login from "./components/account/Login";
 import Signup from "./components/account/Signup";
