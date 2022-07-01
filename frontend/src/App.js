@@ -65,10 +65,10 @@ function App() {
           userId: data.id,
           profileImage: data.profileImage,
         });
-        console.log("DATA", data);
       };
       getUserInfo();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleProfileClick = () => {

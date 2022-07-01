@@ -7,9 +7,9 @@ import { LoadingSpinner } from "../loading";
 import { PrimaryButton } from "../elements/button";
 
 export default function EditProfileEmail({
-  setIsEditingEmail,
   setPopup,
   setPopupText,
+  setIsEditingEmail,
 }) {
   const initalState = {
     email: "",
