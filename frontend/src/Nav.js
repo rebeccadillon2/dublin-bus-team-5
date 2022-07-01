@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-import {
-  useTheme,
-  useAuthenticate,
-  useMobileDropDown,
-  useProfileDropDown,
-} from "./hooks";
 import { icons } from "./lib/weather";
-import { getLiveWeather, getUser } from "./lib/api";
-import { getPayload, isUserAuthenticated } from "./lib/auth";
+import { UserDetailsContext } from "./App";
+import { getLiveWeather } from "./lib/api";
+import { isUserAuthenticated } from "./lib/auth";
+import { useTheme, useMobileDropDown, useProfileDropDown } from "./hooks";
 import { PrimaryButton, SecondaryButton } from "./components/elements/button";
 
 function Links() {
@@ -132,11 +128,9 @@ function WeatherContainer(props) {
 
 function DropDown() {
   const [isProfileDropDown, handleProfileDropdownToggle] = useProfileDropDown();
-  // const [isOpen, setIsOpen] = useState(false);
+  const { userDetails } = useContext(UserDetailsContext);
   const [isDarkMode] = useTheme();
-  const [profileImage, setProfileImage] = useState(
-    "https://res.cloudinary.com/dk0r9bcxy/image/upload/v1633014391/project-image-upload-test/pqqrv32aicedep9a5usi.jpg"
-  );
+
   const themeBgClasses = `${
     isDarkMode ? "bg-system-grey7" : "bg-system-grey2"
   }`;
@@ -155,32 +149,18 @@ function DropDown() {
     e.stopPropagation();
   };
 
-  useEffect(() => {
-    const userId = getPayload().sub;
-    const getUserData = async (userId) => {
-      try {
-        await getUser(userId).then((res) => {
-          setProfileImage(res.data.profileImage);
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getUserData(userId);
-  }, []);
-
   return (
     <div className='ml-3 relative'>
       <div onClick={(e) => handleImageClick(e)}>
         <div className='flex text-sm rounded-full '>
           <span className='sr-only'>Open user menu</span>
           <img
+            width={32}
+            height={32}
             alt={"profile"}
             className='rounded-full'
-            height={32}
-            width={32}
+            src={userDetails.profileImage}
             style={{ height: "32px", width: "32px" }}
-            src={profileImage}
           />
         </div>
       </div>
@@ -242,7 +222,6 @@ function DesktopRight() {
 
 function MobileButton() {
   const [isMobileDropDown, handleMobileDropdownToggle] = useMobileDropDown();
-  // const [mobileButtonOpen, setMobileButtonOpen] = useState(false);
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode
@@ -279,10 +258,9 @@ function MobileButton() {
 }
 
 function MobileMenu() {
-  const [isMobileDropDown, handleMobileDropdownToggle] = useMobileDropDown();
-  const [auth, setAuth] = useState(false);
-  const [isAuthenticated] = useAuthenticate();
   const [isDarkMode] = useTheme();
+  const [auth, setAuth] = useState(false);
+  const [isMobileDropDown] = useMobileDropDown();
 
   const themeClasses = `${
     isDarkMode

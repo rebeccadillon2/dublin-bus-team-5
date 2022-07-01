@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { useTheme } from "../hooks";
+import { editUser } from "../lib/api";
 import { getPayload } from "../lib/auth";
-import { editUser, getUser } from "../lib/api";
+import { UserDetailsContext } from "../App";
 
 const cloudinaryUploadUrl = process.env.REACT_APP_CLOUDINARY_URL;
 const cloudinaryUploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
@@ -12,9 +13,8 @@ export default function EditProfileImage() {
   const [isDarkMode] = useTheme();
   const userId = getPayload().sub;
   const [error, setError] = useState(null);
-  const [userImage, setUserImage] = useState(null);
-  const [userEmail, setUserEmail] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const { userDetails, setUserDetails } = useContext(UserDetailsContext);
 
   const handleUpload = async (e) => {
     setIsUploading(true);
@@ -26,9 +26,9 @@ export default function EditProfileImage() {
         try {
           editUser(userId, {
             profileImage: res.data.url,
-            email: userEmail,
+            email: userDetails.email,
           });
-          setUserImage(res.data.url);
+          setUserDetails({ ...userDetails, profileImage: res.data.url });
           setIsUploading(false);
         } catch (e) {
           setIsUploading(false);
@@ -41,30 +41,14 @@ export default function EditProfileImage() {
     }
   };
 
-  useEffect(() => {
-    const userId = getPayload().sub;
-    const getUserData = async (userId) => {
-      try {
-        const { data } = await getUser(userId);
-        console.log("data", data);
-        setUserImage(data.profileImage);
-        setUserEmail(data.email);
-      } catch (err) {
-        console.log("err", err);
-        setError("Network error");
-      }
-    };
-    getUserData(userId);
-  }, []);
-
   return (
     <div>
       {!isUploading ? (
         <>
-          {userImage && (
+          {userDetails.profileImage && (
             <div className='width-[200px] my-3'>
               <img
-                src={userImage}
+                src={userDetails.profileImage}
                 alt='selected'
                 className='w-[100px] h-[100px] rounded-full'
               />
