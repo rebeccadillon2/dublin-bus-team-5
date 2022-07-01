@@ -35,12 +35,17 @@ export function SignupForm() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (formData.password !== formData.passwordConfirmation) {
+      setMissingValuesError("Password and confirmation do not match");
+      return;
+    }
     try {
       setLoading(true);
       await registerUser(formData);
       setLoading(false);
       navigate("/login");
     } catch (err) {
+      console.log(err);
       setLoading(false);
       setFormErrors(err.response.data);
       if (!formData.email) {
@@ -71,7 +76,7 @@ export function SignupForm() {
         value={formData.email}
         className='md:w-90 w-78'
         onChange={(e) => handleChange(e)}
-        error={formErrors && formErrors.email && formErrors.email[0]}
+        error={formErrors && formErrors.username && formErrors.username[0]}
       />
       <div className='h-3' />
       <Input

@@ -44,11 +44,12 @@ function App() {
   }
 
   useEffect(() => {
-    if (localStorage.getItem("darkMode")) {
-      setIsDarkMode(localStorage.getItem("darkMode") === "true");
-    }
     if (localStorage.getItem("token")) {
       toggleAuthenticated(isUserAuthenticated());
+    }
+
+    if (localStorage.getItem("darkMode")) {
+      setIsDarkMode(localStorage.getItem("darkMode") === "true");
     }
   }, []);
 
