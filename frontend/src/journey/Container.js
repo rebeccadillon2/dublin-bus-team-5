@@ -5,6 +5,7 @@ import RouteOptions from "./RouteOptions";
 import { MapDetailsContext } from "../App";
 import ExploreContent from "./ExploreContent";
 import { ContentContainer } from "../components/container";
+import { LoadingSpinner } from "../components/loading";
 
 export const ContainerType = {
   DEFAULT: "default",
@@ -63,8 +64,14 @@ export default function JourneyContainer(props) {
             destinationRef={destinationRef}
             setUserLocation={setUserLocation}
           />
-          {mapDetails.resObj && (
-            <RouteOptions setContainerType={setContainerType} />
+          {loading ? (
+            <div className='mt-5'>
+              <LoadingSpinner />
+            </div>
+          ) : (
+            mapDetails.resObj && (
+              <RouteOptions setContainerType={setContainerType} />
+            )
           )}
         </div>
       ) : containerType.type === ContainerType.EXPLORE ? (

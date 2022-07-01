@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 import { icons } from "./lib/weather";
 import { UserDetailsContext } from "./App";
@@ -21,7 +22,7 @@ function Links() {
       <div className='flex items-center'>
         <div className='flex-shrink-0'>
           <div className='pt-1'>
-            <a href='/'>
+            <Link to='/'>
               <img
                 alt='profile'
                 className='block'
@@ -32,35 +33,35 @@ function Links() {
                   "https://res.cloudinary.com/dk0r9bcxy/image/upload/v1654877396/research-practicum/bl2e_qkc1u6.png"
                 }
               />
-            </a>
+            </Link>
           </div>
         </div>
         <div className='hidden md:block md:ml-6'>
           <div className='flex space-x-4'>
-            <a
-              href={"/"}
+            <Link
+              to={"/"}
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
             >
               Journey Planner
-            </a>
-            <a
-              href='/'
+            </Link>
+            <Link
+              to='/'
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
             >
               Stops
-            </a>
-            <a
-              href='/'
+            </Link>
+            <Link
+              to='/'
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
             >
               Routes
-            </a>
-            <a
-              href='/'
+            </Link>
+            <Link
+              to='/'
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
             >
               Fare Calculator
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -171,20 +172,20 @@ function DropDown() {
           className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${themeBgClasses} z-10`}
         >
           <div>
-            <a
-              href='/'
+            <Link
+              to='/'
               className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
             >
               Spotify
-            </a>
+            </Link>
           </div>
           <div>
-            <a
-              href='/account'
+            <Link
+              to='/account'
               className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
             >
               Account
-            </a>
+            </Link>
           </div>
         </div>
       )}
@@ -206,13 +207,13 @@ function DesktopRight() {
           <DropDown />
         ) : (
           <>
-            <a href='/signup'>
+            <Link to='/signup'>
               <PrimaryButton type='action'>Signup</PrimaryButton>
-            </a>
+            </Link>
             <div className='w-2' />
-            <a href='/login'>
+            <Link to='/login'>
               <SecondaryButton type='action'>Login</SecondaryButton>
-            </a>
+            </Link>
           </>
         )}
       </div>
@@ -289,67 +290,67 @@ function MobileMenu() {
             <>Weather</>
             {/* <WeatherDisplay variant='small' /> */}
           </div>
-          <a href='/'>
+          <Link to='/'>
             <div
               className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
             >
               Journey Planner
             </div>
-          </a>
-          <a href='/'>
+          </Link>
+          <Link to='/'>
             <div
               className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
             >
               Stops
             </div>
-          </a>
-          <a href='/'>
+          </Link>
+          <Link to='/'>
             <div
               className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
             >
               Routes
             </div>
-          </a>
-          <a href='/'>
+          </Link>
+          <Link to='/'>
             <div
               className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
             >
               Fare Calculator
             </div>
-          </a>
+          </Link>
           {auth ? (
             <>
-              <a href='/'>
+              <Link to='/'>
                 <div
                   className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
                 >
                   Spotify
                 </div>
-              </a>
-              <a href='/account'>
+              </Link>
+              <Link to='/account'>
                 <div
                   className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
                 >
                   Account
                 </div>
-              </a>
+              </Link>
             </>
           ) : (
             <>
-              <a href='/signup'>
+              <Link to='/signup'>
                 <div
                   className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
                 >
                   Signup
                 </div>
-              </a>
-              <a href='/login'>
+              </Link>
+              <Link to='/login'>
                 <div
                   className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
                 >
                   Login
                 </div>
-              </a>
+              </Link>
             </>
           )}
         </div>
