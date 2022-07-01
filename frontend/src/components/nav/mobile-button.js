@@ -1,41 +1,31 @@
 import React from "react";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { Disclosure } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
-import { useTheme, useMobileDropDown } from "../../hooks";
+import { useTheme } from "../../hooks";
 
-export function MobileButton() {
-  const [isMobileDropDown, handleMobileDropdownToggle] = useMobileDropDown();
+export function MobileButton(props) {
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode
       ? "text-system-grey3 hover:text-system-grey1"
       : "text-system-grey5 hover:text-system-grey7"
   }`;
-  const handleClick = (e) => {
-    handleMobileDropdownToggle();
-    e.stopPropagation();
-  };
 
+  const { open } = props;
   return (
     <div className='-mr-2 flex md:hidden transition-all ease-in-out duration-300'>
-      <div
+      {/* Mobile menu button */}
+      <Disclosure.Button
         className={`inline-flex items-center justify-center p-2 rounded-md ${themeClasses} transition-all ease-in-out duration-300	`}
       >
         <span className='sr-only'>Open main menu</span>
-        {isMobileDropDown ? (
-          <AiOutlineClose
-            onClick={(e) => handleClick(e)}
-            className='block h-6 w-6'
-            aria-hidden='true'
-          />
+        {open ? (
+          <XIcon className='block h-6 w-6' aria-hidden='true' />
         ) : (
-          <AiOutlineMenu
-            onClick={(e) => handleClick(e)}
-            className='block h-6 w-6'
-            aria-hidden='true'
-          />
+          <MenuIcon className='block h-6 w-6' aria-hidden='true' />
         )}
-      </div>
+      </Disclosure.Button>
     </div>
   );
 }

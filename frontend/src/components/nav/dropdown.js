@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
+import { Menu, Transition } from "@headlessui/react";
 
+import { useTheme } from "../../hooks";
 import { UserDetailsContext } from "../../App";
-import { useProfileDropDown, useTheme } from "../../hooks";
 
 export function DropDown() {
-  const [isProfileDropDown, handleProfileDropdownToggle] = useProfileDropDown();
   const { userDetails } = useContext(UserDetailsContext);
   const [isDarkMode] = useTheme();
-
   const themeBgClasses = `${
     isDarkMode ? "bg-system-grey7" : "bg-system-grey2"
   }`;
@@ -18,54 +17,76 @@ export function DropDown() {
       : "text-system-grey5 hover:text-system-grey7"
   }`;
 
-  const handleImageClick = (e) => {
-    handleProfileDropdownToggle();
-    e.stopPropagation();
-  };
-
-  const handleDropdownClick = (e) => {
-    e.stopPropagation();
+  const handleSignout = async () => {
+    const inner = async () => {
+      await window.localStorage.removeItem("token");
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
+    };
+    try {
+      inner();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
-    <div className='ml-3 relative'>
-      <div onClick={(e) => handleImageClick(e)}>
-        <div className='flex text-sm rounded-full '>
+    <Menu as='div' className='ml-3 relative z-10'>
+      <div>
+        <Menu.Button className='flex text-sm rounded-full '>
           <span className='sr-only'>Open user menu</span>
           <img
             width={32}
             height={32}
-            alt={"profile"}
-            className='rounded-full'
-            src={userDetails.profileImage}
-            style={{ height: "32px", width: "32px" }}
+            alt='profile'
+            className='rounded-full h-8 w-8'
+            src={
+              userDetails.profileImage ||
+              "https://res.cloudinary.com/dk0r9bcxy/image/upload/v1633014391/project-image-upload-test/pqqrv32aicedep9a5usi.jpg"
+            }
           />
-        </div>
+        </Menu.Button>
       </div>
-
-      {isProfileDropDown && (
-        <div
-          onClick={(e) => handleDropdownClick(e)}
-          className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${themeBgClasses} z-10`}
+      <Transition
+        as={Fragment}
+        enter='transition ease-out duration-100'
+        enterFrom='transform opacity-0 scale-95'
+        enterTo='transform opacity-100 scale-100'
+        leave='transition ease-in duration-75'
+        leaveFrom='transform opacity-100 scale-100'
+        leaveTo='transform opacity-0 scale-95'
+      >
+        <Menu.Items
+          className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${themeBgClasses}`}
         >
-          <div>
-            <Link
-              to='/'
-              className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
-            >
-              Spotify
-            </Link>
+          <Link
+            to='#'
+            className={`
+            block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+          >
+            <Menu.Item>
+              <>Spotify</>
+            </Menu.Item>
+          </Link>
+          <Link
+            to='/account'
+            className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+          >
+            <Menu.Item>
+              <>Account</>
+            </Menu.Item>
+          </Link>
+          <div
+            href='#'
+            onClick={handleSignout}
+            className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	cursor-pointer`}
+          >
+            <Menu.Item>
+              <>Sign out</>
+            </Menu.Item>
           </div>
-          <div>
-            <Link
-              to='/account'
-              className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
-            >
-              Account
-            </Link>
-          </div>
-        </div>
-      )}
-    </div>
+        </Menu.Items>
+      </Transition>
+    </Menu>
   );
 }
