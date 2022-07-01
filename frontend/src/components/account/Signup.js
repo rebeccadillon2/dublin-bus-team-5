@@ -1,7 +1,7 @@
 import React from "react";
-import { SignupForm } from "../components/auth";
-import { AuthContainer, PageContainer } from "../components/container";
-import { FormHeader } from "../components/elements/form";
+import { SignupForm } from "../auth";
+import { AuthContainer, PageContainer } from "../container";
+import { FormHeader } from "../elements/form";
 
 export default function Signup() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import { LoginForm } from "../components/auth";
-import { FormHeader } from "../components/elements/form";
-import { PageContainer, AuthContainer } from "../components/container";
+import { LoginForm } from "../auth";
+import { FormHeader } from "../elements/form";
+import { PageContainer, AuthContainer } from "../container";
 
 export default function Login() {
   return (
