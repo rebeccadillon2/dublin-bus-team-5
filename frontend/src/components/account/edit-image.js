@@ -9,7 +9,7 @@ import { UserDetailsContext } from "../../App";
 const cloudinaryUploadUrl = process.env.REACT_APP_CLOUDINARY_URL;
 const cloudinaryUploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
-export default function EditProfileImage({
+export function EditProfileImage({
   setPopup,
   setPopupText,
   setIsEditingProfileImage,

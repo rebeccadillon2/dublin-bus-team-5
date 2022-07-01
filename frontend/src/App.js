@@ -12,10 +12,7 @@ import "tailwindcss/tailwind.css";
 
 import { getUser } from "./lib/api";
 import { Nav } from "./components/nav/";
-import Login from "./components/account/Login";
-import { Journey } from "./components/journey";
-import Signup from "./components/account/Signup";
-import Account from "./components/account/Account";
+import { Signup, Journey, Account, Login } from "./pages";
 import { getPayload, isUserAuthenticated } from "./lib/auth";
 
 export const ThemeContext = createContext({});

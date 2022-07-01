@@ -4,7 +4,7 @@ import { useTheme } from "../../hooks";
 import { FareToggle, ThemeToggle } from "../toggle";
 import { AccountSection, Card } from "../container";
 
-export default function GeneralSettings() {
+export function GeneralSettings() {
   const [isDarkMode] = useTheme();
 
   return (

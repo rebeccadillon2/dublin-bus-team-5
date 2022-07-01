@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 import { editUser } from "../../lib/api";
-import { Input } from "..//elements/form";
+import { Input } from "../elements/form";
 import { getPayload } from "../../lib/auth";
 import { LoadingSpinner } from "../loading";
 import { PrimaryButton } from "../elements/button";
 
-export default function EditProfileEmail({
+export function EditProfileEmail({
   setPopup,
   setPopupText,
   setIsEditingEmail,

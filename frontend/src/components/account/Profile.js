@@ -3,12 +3,11 @@ import React, { useState } from "react";
 import { Popup } from "../popup";
 import { useTheme } from "../../hooks";
 import { LogoutModal } from "../modal";
-import EditProfileImage from "./EditImage";
-import EditProfileEmail from "./EditEmail";
 import { AccountSection, Card } from "../container";
 import { SecondaryButton } from "../elements/button";
+import { EditProfileImage, EditProfileEmail } from ".";
 
-export default function ProfileSettings() {
+export function ProfileSettings() {
   const [isDarkMode] = useTheme();
   const [popup, setPopup] = useState(false);
   const [popupText, setPopupText] = useState("");

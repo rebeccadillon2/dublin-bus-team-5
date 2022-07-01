@@ -20,11 +20,11 @@ import {
   getInputOptions,
   JourneyContainer,
   getMapContainerStyle,
-} from ".";
-import { LoadingSpinner } from "../loading";
-import { center, libraries } from "../../lib/map";
-import { MapDetailsContext, MapRefContext } from "../../App";
-import { useWindowSize, useTheme, useExpanded } from "../../hooks";
+} from "../components/journey";
+import { center, libraries } from "../lib/map";
+import { LoadingSpinner } from "../components/loading";
+import { MapDetailsContext, MapRefContext } from "../App";
+import { useWindowSize, useTheme, useExpanded } from "../hooks";
 
 export function Journey() {
   const mapRef = useRef();

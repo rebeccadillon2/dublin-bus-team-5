@@ -5,7 +5,7 @@ import { DeleteModal } from "../modal";
 import { AccountSection, Card } from "../container";
 import { DestructiveButton } from "../elements/button";
 
-export default function DangerSettings() {
+export function DangerSettings() {
   const [isDarkMode] = useTheme();
   const [deletetModalOpen, setDeleteModalOpen] = useState(false);
 
