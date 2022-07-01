@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 
 import JourneyForm from "./Form";
-import { useTheme } from "../hooks";
 import RouteOptions from "./RouteOptions";
 import { MapDetailsContext } from "../App";
 import ExploreContent from "./ExploreContent";
@@ -46,13 +45,6 @@ export default function JourneyContainer(props) {
     setUserLocation,
   } = props;
   const { mapDetails } = useContext(MapDetailsContext);
-  const [isDarkMode] = useTheme();
-
-  const inputClasses = `h-10 rounded-xl w-80 px-2 focus:outline-none hover:placeholder-primary-blue ${
-    isDarkMode
-      ? "bg-primary-black text-system-grey1 placeholder-system-grey4"
-      : "bg-primary-white text-system-grey7"
-  }`;
 
   return (
     <ContentContainer>
