@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import { useTheme } from "../hooks";
-import { DeleteModal } from "../components/modal";
-import { AccountSection, Card } from "../components/container";
-import { DestructiveButton } from "../components/elements/button";
+import { useTheme } from "../../hooks";
+import { DeleteModal } from "../modal";
+import { AccountSection, Card } from "../container";
+import { DestructiveButton } from "../elements/button";
 
 export default function DangerSettings() {
   const [isDarkMode] = useTheme();

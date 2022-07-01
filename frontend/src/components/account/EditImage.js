@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 
-import { editUser } from "../lib/api";
-import { getPayload } from "../lib/auth";
-import { UserDetailsContext } from "../App";
-import { ImageSkeleton } from "../components/skeleton";
+import { editUser } from "../../lib/api";
+import { ImageSkeleton } from "../skeleton";
+import { getPayload } from "../../lib/auth";
+import { UserDetailsContext } from "../../App";
 
 const cloudinaryUploadUrl = process.env.REACT_APP_CLOUDINARY_URL;
 const cloudinaryUploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;

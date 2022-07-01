@@ -1,8 +1,8 @@
 import React from "react";
-import { useTheme } from "../hooks";
 
-import { FareToggle, ThemeToggle } from "../components/toggle";
-import { AccountSection, Card } from "../components/container";
+import { useTheme } from "../../hooks";
+import { FareToggle, ThemeToggle } from "../toggle";
+import { AccountSection, Card } from "../container";
 
 export default function GeneralSettings() {
   const [isDarkMode] = useTheme();

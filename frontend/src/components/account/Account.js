@@ -3,7 +3,7 @@ import React from "react";
 import DangerSettings from "./Danger";
 import ProfileSettings from "./Profile";
 import GeneralSettings from "./General";
-import { PageContainer } from "../components/container";
+import { PageContainer } from "../container";
 
 export default function Account() {
   return (

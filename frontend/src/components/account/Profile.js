@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 
-import { useTheme } from "../hooks";
+import { Popup } from "../popup";
+import { useTheme } from "../../hooks";
+import { LogoutModal } from "../modal";
 import EditProfileImage from "./EditImage";
 import EditProfileEmail from "./EditEmail";
-import { Popup } from "../components/popup";
-import { LogoutModal } from "../components/modal";
-import { AccountSection, Card } from "../components/container";
-import { SecondaryButton } from "../components/elements/button";
+import { AccountSection, Card } from "../container";
+import { SecondaryButton } from "../elements/button";
 
 export default function ProfileSettings() {
   const [isDarkMode] = useTheme();
   const [popup, setPopup] = useState(false);
   const [popupText, setPopupText] = useState("");
   const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [isEditingProfileImage, setIsEditingProfileImage] = useState(false);
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  const [isEditingProfileImage, setIsEditingProfileImage] = useState(false);
 
   const handleClose = () => {
     setLogoutModalOpen(false);

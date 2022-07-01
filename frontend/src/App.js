@@ -15,7 +15,7 @@ import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import { getUser } from "./lib/api";
 import Journey from "./journey/Journey";
-import Account from "./account/Account";
+import Account from "./components/account/Account";
 import { getPayload, isUserAuthenticated } from "./lib/auth";
 
 export const ThemeContext = createContext({});
