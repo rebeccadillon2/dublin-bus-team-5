@@ -62,7 +62,7 @@ export function EditProfileImage({
           setIsUploading(false);
           setPopup(true);
           setTimeout(() => {
-            setPopup(true);
+            setPopup(false);
           }, 2000);
           setIsEditingProfileImage(false);
         }
