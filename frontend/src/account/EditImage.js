@@ -1,16 +1,15 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 
-import { useTheme } from "../hooks";
 import { editUser } from "../lib/api";
 import { getPayload } from "../lib/auth";
 import { UserDetailsContext } from "../App";
+import { ImageSkeleton } from "../components/skeleton";
 
 const cloudinaryUploadUrl = process.env.REACT_APP_CLOUDINARY_URL;
 const cloudinaryUploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
 export default function EditProfileImage() {
-  const [isDarkMode] = useTheme();
   const userId = getPayload().sub;
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -18,7 +17,28 @@ export default function EditProfileImage() {
 
   const handleUpload = async (e) => {
     setIsUploading(true);
+    setError(null);
+
     const data = new FormData();
+    console.log(e);
+    if (
+      !e.target ||
+      !e.target.files ||
+      !e.target.files[0] ||
+      !e.target.files[0].type
+    ) {
+      setIsUploading(false);
+      return;
+    }
+    console.log(e.target.files[0].type);
+
+    const type = e.target.files[0].type;
+
+    if (type !== "image/png" && type !== "image/jpeg" && type !== "image/jpg") {
+      setIsUploading(false);
+      setError("Only PNG and JPEG images are allowed");
+      return;
+    }
     data.append("file", e.target.files[0]);
     data.append("upload_preset", cloudinaryUploadPreset);
     try {
@@ -62,31 +82,20 @@ export default function EditProfileImage() {
               name={"profileImage"}
               onChange={(e) => handleUpload(e)}
             />
+
             <label
               className='upload-btn bg-primary-blue py-1.5 px-3 rounded-xl text-white'
               htmlFor='files'
             >
               Upload Image
             </label>
+            <div className='flex items-center mt-4 h-4'>
+              {error && <p className='text-primary-red text-xs'>{error}</p>}
+            </div>
           </div>
         </>
       ) : (
-        <div className={` w-60 h-33.5 rounded-md pt-3`}>
-          <div className='flex animate-pulse flex flex-col items-start h-full justify-center'>
-            <div
-              className={`${
-                isDarkMode ? "bg-system-grey6" : "bg-system-grey3"
-              } w-25 h-25 rounded-full `}
-            ></div>
-            <div className='flex flex-col '>
-              <div
-                className={`${
-                  isDarkMode ? "bg-system-grey6" : "bg-system-grey3"
-                } w-36 h-6 rounded-md mt-1`}
-              ></div>
-            </div>
-          </div>
-        </div>
+        <ImageSkeleton />
       )}
     </div>
   );
