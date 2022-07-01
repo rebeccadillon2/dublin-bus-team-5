@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { useTheme } from "../../hooks";
 import { Input } from "../elements/form";
@@ -101,7 +101,7 @@ export function LoginForm() {
           "Login"
         )}
       </PrimaryButton>
-      <a href={"/signup"}>
+      <Link to={"/signup"}>
         <div
           className={`flex items-center justify-center text-sm mt-3 text-center ${
             isDarkMode ? "text-system-grey4" : "text-system-grey5"
@@ -112,7 +112,7 @@ export function LoginForm() {
             <br /> <strong> Click here to signup</strong>
           </p>
         </div>
-      </a>
+      </Link>
     </>
   );
 }

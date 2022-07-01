@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import { editUser } from "../../lib/api";
 import { ImageSkeleton } from "../skeleton";
@@ -14,16 +14,22 @@ export function EditProfileImage({
   setPopupText,
   setIsEditingProfileImage,
 }) {
+  const _isMounted = useRef(true);
   const userId = getPayload().sub;
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const { userDetails, setUserDetails } = useContext(UserDetailsContext);
 
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
+
   const handleUpload = async (e) => {
     setIsUploading(true);
     setError(null);
 
-    console.log(e);
     if (
       !e.target ||
       !e.target.files ||
@@ -46,23 +52,19 @@ export function EditProfileImage({
     data.append("upload_preset", cloudinaryUploadPreset);
     try {
       await axios.post(cloudinaryUploadUrl, data).then((res) => {
-        try {
+        if (_isMounted.current) {
           editUser(userId, {
             profileImage: res.data.url,
             email: userDetails.email,
           });
           setUserDetails({ ...userDetails, profileImage: res.data.url });
-          setIsUploading(false);
           setPopupText("Successfully updated profile image");
+          setIsUploading(false);
           setPopup(true);
           setTimeout(() => {
             setPopup(true);
           }, 2000);
           setIsEditingProfileImage(false);
-        } catch (e) {
-          setIsUploading(false);
-          console.log(e);
-          return;
         }
       });
     } catch (err) {

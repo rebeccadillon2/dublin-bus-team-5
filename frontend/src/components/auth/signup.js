@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { useTheme } from "../../hooks";
 import { Input } from "../elements/form";
@@ -139,13 +139,13 @@ export function SignupForm() {
             isDarkMode ? "border-b-system-grey4" : "border-b-system-grey4"
           }  w-[90%] my-2`}
         />
-        <a href={"/login"}>
+        <Link to={"/login"}>
           <p className='text-center'>
             Already have an account?
             <br />
             <strong>Click here to login</strong>
           </p>
-        </a>
+        </Link>
       </div>
     </>
   );

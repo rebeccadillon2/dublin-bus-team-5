@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Popup } from "../popup";
 import { useTheme } from "../../hooks";
@@ -26,6 +26,12 @@ export function ProfileSettings() {
   const handleEditProfileImageClick = () => {
     setIsEditingProfileImage(!isEditingProfileImage);
   };
+
+  useEffect(() => {
+    return () => {
+      setPopup(false);
+    };
+  }, []);
 
   return (
     <AccountSection title='Profile'>

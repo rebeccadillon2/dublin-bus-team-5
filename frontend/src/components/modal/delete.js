@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Modal, ModalHeader } from ".";
+import { editUser } from "../../lib/api";
 import { Input } from "../elements/form";
 import { LoadingSpinner } from "../loading";
-import { editUser, getUser } from "../../lib/api";
+import { UserDetailsContext } from "../../App";
 import { DestructiveButton } from "../elements/button";
 import { getPayload, removeToken } from "../../lib/auth";
 
@@ -12,12 +13,12 @@ export function DeleteModal(props) {
   const { open, setOpen, handleClose, ...rest } = props;
   const navigate = useNavigate();
   const userId = getPayload().sub;
-
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(null);
   const [inputError, setInputError] = useState(null);
+  const { userDetails } = useContext(UserDetailsContext);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -40,11 +41,11 @@ export function DeleteModal(props) {
       setLoading(true);
       await editUser(userId, formData);
       setLoading(false);
-      setOpen(false);
       removeToken();
       navigate("/");
       // eslint-disable-next-line no-restricted-globals
       location.reload();
+      setOpen(false);
     } catch (err) {
       setLoading(false);
       setError("Network error");
@@ -52,24 +53,20 @@ export function DeleteModal(props) {
   };
 
   useEffect(() => {
-    const userId = getPayload().sub;
     const now = String(Math.floor(Date.now() / 1000));
-    const getUserData = async (userId) => {
-      try {
-        const { data } = await getUser(userId);
-        setFormData({ email: `${now}${data.email}` });
-      } catch (err) {
-        console.log("err", err);
-        setError("Network error");
-      }
-    };
-    getUserData(userId);
+    try {
+      setFormData({ email: `${now}${userDetails.email}` });
+    } catch (err) {
+      console.log("err", err);
+      setError("Network error");
+    }
   }, []);
 
   const handleFocus = () => {
     setError(false);
     setInputError(null);
   };
+
   return (
     <Modal modalOpen={open} setModalOpen={setOpen}>
       <div {...rest}>
@@ -101,7 +98,7 @@ export function DeleteModal(props) {
             {loading ? (
               <LoadingSpinner size={"small"} color='border-primary-white' />
             ) : (
-              "Login"
+              "Delete"
             )}
           </DestructiveButton>
         </div>
