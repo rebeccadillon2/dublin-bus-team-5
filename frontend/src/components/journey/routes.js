@@ -4,10 +4,10 @@ import React, { useContext, useState } from "react";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
-import { useTheme } from "../hooks";
-import { MapDetailsContext } from "../App";
-import { Display } from "../components/container";
-import Explore from "./Explore";
+import { Explore } from ".";
+import { useTheme } from "../../hooks";
+import { Display } from "../container";
+import { MapDetailsContext } from "../../App";
 
 function Header(props) {
   const { title } = props;
@@ -212,7 +212,7 @@ function ExpandedContext(props) {
   );
 }
 
-export default function RouteOptions({ setContainerType }) {
+export function RouteOptions({ setContainerType }) {
   const { mapDetails } = useContext(MapDetailsContext);
   const [routeOpen, setRouteOpen] = useState(null);
 

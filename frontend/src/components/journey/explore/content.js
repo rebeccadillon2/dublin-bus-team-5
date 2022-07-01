@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { AiFillPushpin, AiOutlinePushpin } from "react-icons/ai";
 
-import { MapRefContext, MapDetailsContext } from "../App";
-import { useTheme } from "../hooks";
-import { ContainerType } from "./Container";
-import { LoadingSpinner } from "../components/loading";
-import { SearchInput } from "../components/elements/form";
-import { Error } from "../components/error";
+import { Error } from "../../error";
+import { useTheme } from "../../../hooks";
+import { ContainerType } from "../container";
+import { LoadingSpinner } from "../../loading";
+import { SearchInput } from "../../elements/form";
+import { MapRefContext, MapDetailsContext } from "../../../App";
 
 const arr = [1, 2, 3, 4, 5];
 
@@ -222,7 +222,7 @@ function Header(props) {
   );
 }
 
-export default function ExploreContent(props) {
+export function ExploreContent(props) {
   const { setContainerType, containerType, ...rest } = props;
   const [places, setPlaces] = useState(null);
   const [error, setError] = useState(false);

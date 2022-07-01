@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
 
-import JourneyForm from "./Form";
-import RouteOptions from "./RouteOptions";
-import { MapDetailsContext } from "../App";
-import ExploreContent from "./ExploreContent";
-import { ContentContainer } from "../components/container";
-import { LoadingSpinner } from "../components/loading";
+import { LoadingSpinner } from "../loading";
+import { MapDetailsContext } from "../../App";
+import { ContentContainer } from "../container";
+import { RouteOptions, JourneyForm, ExploreContent } from ".";
 
 export const ContainerType = {
   DEFAULT: "default",
@@ -25,7 +23,7 @@ export const PlaceType = {
   GROCERIES: "supermarket",
 };
 
-export default function JourneyContainer(props) {
+export function JourneyContainer(props) {
   const [containerType, setContainerType] = useState({
     type: ContainerType.DEFAULT,
     place: null,

@@ -3,12 +3,12 @@ import { Autocomplete } from "@react-google-maps/api";
 import { IoMdLocate } from "react-icons/io";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 
-import { currentBrowser } from "../components/journey";
-import { useTheme } from "../hooks";
+import { currentBrowser } from ".";
+import { useTheme } from "../../hooks";
 
-import { Input } from "../components/elements/form";
+import { Input } from "../elements/form";
 
-export default function JourneyForm(props) {
+export function JourneyForm(props) {
   const {
     time,
     setTime,

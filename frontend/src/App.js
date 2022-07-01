@@ -12,8 +12,8 @@ import "tailwindcss/tailwind.css";
 
 import { getUser } from "./lib/api";
 import { Nav } from "./components/nav/";
-import Journey from "./journey/Journey";
 import Login from "./components/account/Login";
+import { Journey } from "./components/journey";
 import Signup from "./components/account/Signup";
 import Account from "./components/account/Account";
 import { getPayload, isUserAuthenticated } from "./lib/auth";
@@ -53,7 +53,7 @@ function App() {
     if (localStorage.getItem("token")) {
       toggleAuthenticated(isUserAuthenticated());
     }
-    if (!userDetails.email) {
+    if (!userDetails.email && isUserAuthenticated()) {
       if (localStorage.getItem("darkMode")) {
         setIsDarkMode(localStorage.getItem("darkMode") === "true");
       }

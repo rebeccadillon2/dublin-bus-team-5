@@ -1,8 +1,8 @@
+import { CgGym } from "react-icons/cg";
 import React, { useState } from "react";
+import { AiFillBank } from "react-icons/ai";
 import { BiRestaurant } from "react-icons/bi";
 import { RiHotelBedFill } from "react-icons/ri";
-import { AiFillBank } from "react-icons/ai";
-import { CgGym } from "react-icons/cg";
 import {
   MdExpandLess,
   MdOutlineMoreHoriz,
@@ -13,8 +13,8 @@ import {
   MdOutlineLocalHospital,
 } from "react-icons/md";
 
-import { useTheme } from "../hooks";
-import { ContainerType, PlaceType } from "./Container";
+import { useTheme } from "../../hooks";
+import { ContainerType, PlaceType } from "./container";
 
 function OptionCircle(props) {
   const {
@@ -162,7 +162,7 @@ function ExtraOptions(props) {
   );
 }
 
-export default function Explore(props) {
+export function Explore(props) {
   const { setContainerType, ...rest } = props;
   const [seeMore, setSeeMore] = useState(false);
   const [isDarkMode] = useTheme();
