@@ -19,8 +19,7 @@ export function getLiveWeather() {
   );
 }
 
-// Users
-
+// USERS
 export function registerUser(formData) {
   return axios.post(`${baseUrl}/api/auth/register/`, formData);
 }
@@ -40,10 +39,3 @@ export function editUser(userId, formData) {
     headers()
   );
 }
-
-// Google
-
-// export function getRestaurants() {
-//   return axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&key=${process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_MAPS_API_KEY}
-// `);
-// }
