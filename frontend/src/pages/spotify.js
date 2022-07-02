@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+
+import { PodcastList } from "../components/spotify";
 import { getSpotifyAuthUrl, isSpotifyAuthenticated } from "../lib/api";
 
 export function Spotify() {
@@ -20,7 +22,7 @@ export function Spotify() {
   return (
     <div>
       {spotifyAuthenticated ? (
-        <div>Logged in to spotify</div>
+        <PodcastList />
       ) : (
         <button
           onClick={() => loginToSpotify()}
