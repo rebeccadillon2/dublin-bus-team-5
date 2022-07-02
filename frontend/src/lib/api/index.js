@@ -39,3 +39,12 @@ export function editUser(userId, formData) {
     headers()
   );
 }
+
+// SPOTIFY
+export function isSpotifyAuthenticated() {
+  return axios.get(`${baseUrl}/api/spotify/is-authenticated/`, headers());
+}
+
+export function getSpotifyAuthUrl() {
+  return axios.get(`${baseUrl}/api/spotify/get-auth-url/`, headers());
+}
