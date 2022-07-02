@@ -12,8 +12,8 @@ import "tailwindcss/tailwind.css";
 
 import { getUser } from "./lib/api";
 import { Nav } from "./components/nav/";
-import { Signup, Journey, Account, Login } from "./pages";
 import { getPayload, isUserAuthenticated } from "./lib/auth";
+import { Signup, Journey, Account, Login, Spotify } from "./pages";
 
 export const ThemeContext = createContext({});
 export const MapRefContext = createContext({});
@@ -52,6 +52,7 @@ function App() {
     if (!userDetails.email && isUserAuthenticated()) {
       const getUserInfo = async () => {
         const userId = getPayload().sub;
+        console.log(userId);
         const { data } = await getUser(userId);
         setUserDetails({
           email: data.email,
@@ -85,6 +86,7 @@ function App() {
                     <Route path={"/signup"} element={<Signup />} />
                     <Route element={<ProtectedRoute />}>
                       <Route path={"/account"} element={<Account />} />
+                      <Route path={"/spotify"} element={<Spotify />} />
                     </Route>
                   </Routes>
                 </BrowserRouter>
