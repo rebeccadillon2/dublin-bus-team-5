@@ -48,3 +48,45 @@ export function isSpotifyAuthenticated() {
 export function getSpotifyAuthUrl() {
   return axios.get(`${baseUrl}/api/spotify/get-auth-url/`, headers());
 }
+
+export function getDublinPodcasts() {
+  return axios.get(`${baseUrl}/api/spotify/get-podcasts/`, headers());
+}
+
+export function getDublinPodcastEpisodes(id, userId) {
+  return axios.get(
+    `${baseUrl}/api/spotify/get-podcast-episodes/`,
+    {
+      params: {
+        id: id,
+        uid: userId,
+      },
+    },
+    headers()
+  );
+}
+
+export function PlayTrack(uri, uid) {
+  return axios.get(
+    `${baseUrl}/api/spotify/play-track/`,
+    {
+      params: {
+        uri,
+        uid,
+      },
+    },
+    headers()
+  );
+}
+
+export function PauseTrack(uid) {
+  return axios.get(
+    `${baseUrl}/api/spotify/pause-track/`,
+    {
+      params: {
+        uid,
+      },
+    },
+    headers()
+  );
+}
