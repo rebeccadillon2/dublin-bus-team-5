@@ -171,6 +171,7 @@ export function Explore(props) {
     isDarkMode ? "text-system-grey2" : "text-system-grey7"
   }`;
   const headerTextClasses = `text-xl font-semibold ${headerThemeClasses}`;
+
   const toggleSeeMore = () => {
     setSeeMore(!seeMore);
   };

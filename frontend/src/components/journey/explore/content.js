@@ -171,7 +171,7 @@ export function PlaceCard(props) {
   );
 }
 
-function Navigation(props) {
+export function Navigation(props) {
   const { setContainerType, ...rest } = props;
   const [isDarkMode] = useTheme();
   const themeClasses = `${
