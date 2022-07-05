@@ -1,0 +1,76 @@
+import { BsSpotify } from "react-icons/bs";
+import React, { useEffect, useState, useContext } from "react";
+
+import { useTheme } from "../../hooks";
+import { SpotifyContext } from "../../App";
+import { useIsMounted } from "../../hooks";
+import { getSpotifyAuthUrl, isSpotifyAuthenticated } from "../../lib/api";
+
+const ConnectSpotify = ({ setContainerType }) => {
+  const isMounted = useIsMounted();
+  let [isSportifyAuthenticated, setIsSpotifyAuthenticated] = useState(false);
+  const { updateSpotifyStateTwo } = useContext(SpotifyContext);
+  const [isDarkMode] = useTheme();
+
+  const headerThemeClasses = `${
+    isDarkMode ? "text-system-grey2" : "text-system-grey7"
+  }`;
+  const headerTextClasses = `text-xl font-semibold ${headerThemeClasses}`;
+
+  useEffect(() => {
+    const check = async () => {
+      try {
+        const { data } = await isSpotifyAuthenticated();
+        if (isMounted) {
+          setIsSpotifyAuthenticated(data.status);
+          updateSpotifyStateTwo(data.status);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    check();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const LoginSpotify = async () => {
+    let res = await getSpotifyAuthUrl();
+    window.location.replace(res.data.url);
+  };
+
+  const LoginButton = () => {
+    return (
+      <div
+        onClick={LoginSpotify}
+        className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white active:bg-[#00a240] cursor-pointer'
+      >
+        <BsSpotify /> <p className='pl-2'>Connect to spotify</p>
+      </div>
+    );
+  };
+
+  const handleClick = () => {
+    setContainerType({ type: "spotify", place: null });
+  };
+
+  return (
+    <div className='mb-6'>
+      <div className='mt-6 mb-4'>
+        <p className={headerTextClasses}>Spotify</p>
+      </div>
+      {isSportifyAuthenticated ? (
+        <div
+          onClick={handleClick}
+          className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white active:bg-[#00a240] cursor-pointer'
+        >
+          <BsSpotify />
+          <p className='pl-2'>Dublin on spotify</p>
+        </div>
+      ) : (
+        LoginButton()
+      )}
+    </div>
+  );
+};
+
+export default ConnectSpotify;

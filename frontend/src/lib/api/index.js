@@ -49,44 +49,91 @@ export function getSpotifyAuthUrl() {
   return axios.get(`${baseUrl}/api/spotify/get-auth-url/`, headers());
 }
 
-export function getDublinPodcasts() {
-  return axios.get(`${baseUrl}/api/spotify/get-podcasts/`, headers());
+export async function getDublinPodcasts() {
+  let res;
+  try {
+    res = await axios.get(`${baseUrl}/api/spotify/get-podcasts/`, headers());
+  } catch (e) {
+    console.log(e.message);
+    res = e.message;
+  }
+  return res;
 }
 
-export function getDublinPodcastEpisodes(id, userId) {
-  return axios.get(
-    `${baseUrl}/api/spotify/get-podcast-episodes/`,
-    {
-      params: {
-        id: id,
-        uid: userId,
+export async function getDublinPodcastEpisodes(id, userId) {
+  let res;
+  try {
+    res = await axios.get(
+      `${baseUrl}/api/spotify/get-podcast-episodes/`,
+      {
+        params: {
+          id: id,
+          uid: userId,
+        },
       },
-    },
-    headers()
-  );
+      headers()
+    );
+  } catch (e) {
+    console.log(e.message);
+    res = e.mesage;
+  }
+  return res;
 }
 
-export function PlayTrack(uri, uid) {
-  return axios.get(
-    `${baseUrl}/api/spotify/play-track/`,
-    {
-      params: {
-        uri,
-        uid,
+export async function playTrack(uri, uid) {
+  let res;
+  try {
+    res = await axios.get(
+      `${baseUrl}/api/spotify/play-track/`,
+      {
+        params: {
+          uri,
+          uid,
+        },
       },
-    },
-    headers()
-  );
+      headers()
+    );
+  } catch (e) {
+    console.log(e);
+    res = e.message;
+  }
+  return res;
 }
 
-export function PauseTrack(uid) {
-  return axios.get(
-    `${baseUrl}/api/spotify/pause-track/`,
-    {
-      params: {
-        uid,
+export async function pauseTrack(uid) {
+  let res;
+  try {
+    res = await axios.get(
+      `${baseUrl}/api/spotify/pause-track/`,
+      {
+        params: {
+          uid,
+        },
       },
-    },
-    headers()
-  );
+      headers()
+    );
+  } catch (e) {
+    console.log(e.message);
+    res = e.message;
+  }
+  return res;
+}
+
+export async function getAccesssToken(uid) {
+  let res;
+  try {
+    res = await axios.get(
+      `${baseUrl}/api/spotify/get-access-token`,
+      {
+        params: {
+          uid,
+        },
+      },
+      headers()
+    );
+  } catch (e) {
+    console.log(e);
+    res = e.message;
+  }
+  return res;
 }
