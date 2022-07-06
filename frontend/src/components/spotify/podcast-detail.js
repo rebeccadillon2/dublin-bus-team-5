@@ -82,7 +82,7 @@ const PodcastDetail = (props) => {
         <TrackDetail
           type={"podcast"}
           moveForwards={moveForwards}
-          movaBackwards={moveBackwards}
+          moveBackwards={moveBackwards}
           track={episodeDetails.episodes[episodeDetails.episode_chosen]}
           key={episodeDetails.episodes[episodeDetails.episode_chosen].id}
         />
