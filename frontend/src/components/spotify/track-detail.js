@@ -3,6 +3,7 @@ import { BsSpotify } from "react-icons/bs";
 import { FaStepBackward, FaStepForward } from "react-icons/fa";
 import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 
+import { useTheme } from "../../hooks";
 import { SpotifyContext } from "../../App";
 import CurrentTrackContext from "./context";
 import { getPayload } from "../../lib/auth";
@@ -10,7 +11,16 @@ import { playTrack, pauseTrack } from "../../lib/api";
 import { CalculateTrackLength, SpotifyProgressBar } from ".";
 
 const TrackDetail = (props) => {
-  const { type, track, preview, moveForwards, movaBackwards, ...rest } = props;
+  const {
+    type,
+    track,
+    preview,
+    loading,
+    moveForwards,
+    moveBackwards,
+    ...rest
+  } = props;
+  const [isDarkMode] = useTheme();
   const uid = getPayload().sub;
   const { playSpotifyTrack } = useContext(SpotifyContext);
   let currentTrackDetails = useContext(CurrentTrackContext);
@@ -49,11 +59,13 @@ const TrackDetail = (props) => {
         <div className='flex flex-1 justify-start'>
           {preview ? null : (
             <div
-              className='h-2 w-2 text-system-grey6 pb-4 hover-pointer active:text-system-grey4'
+              className={`${
+                isDarkMode ? "text-system-grey3" : "text-system-grey6"
+              } h-2 w-2  pb-4 cursor-pointer active:text-system-grey4`}
               onClick={(e) => {
                 e.stopPropagation();
                 pauseTrack(uid);
-                movaBackwards();
+                moveBackwards();
               }}
             >
               <FaStepBackward />
@@ -64,7 +76,9 @@ const TrackDetail = (props) => {
           ) : null}
         </div>
         <div
-          className=' text-system-grey6 hover-pointer active:text-system-grey4'
+          className={`${
+            isDarkMode ? "text-system-grey3" : "text-system-grey6"
+          } cursor-pointer active:text-system-grey4`}
           onClick={(e) => {
             e.stopPropagation();
             is_playing == false ? playTrackNow() : pauseTrackNow();
@@ -79,7 +93,9 @@ const TrackDetail = (props) => {
         <div className='flex flex-1 justify-end'>
           {preview ? null : (
             <div
-              className='h-2 w-2 text-system-grey6 pb-4 mr-2 hover-pointer active:text-system-grey4'
+              className={`${
+                isDarkMode ? "text-system-grey3" : "text-system-grey6"
+              } h-2 w-2 pb-4 mr-2 cursor-pointer active:text-system-grey4`}
               onClick={() => {
                 pauseTrack(uid);
                 moveForwards();
@@ -90,13 +106,16 @@ const TrackDetail = (props) => {
           )}
         </div>
       </div>
+
       {preview ? null : (
         <>
           <div className='w-100% my-1'>
             <SpotifyProgressBar progress={progress} trackLength={trackLength} />
           </div>
-          <div className='flex w-100%'>
-            <p className='text-[10px] text-system-grey4'>{track.name}</p>
+          <div className='flex w-100% pt-0.5'>
+            <p className='text-[11px] text-system-grey4 truncate'>
+              {track.name}
+            </p>
           </div>
         </>
       )}

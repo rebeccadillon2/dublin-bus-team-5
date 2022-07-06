@@ -44,7 +44,7 @@ const ConnectSpotify = ({ setContainerType }) => {
         onClick={LoginSpotify}
         className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white active:bg-[#00a240] cursor-pointer'
       >
-        <BsSpotify /> <p className='pl-2'>Connect to spotify</p>
+        <BsSpotify /> <p className='pl-2'>Connect to Spotify</p>
       </div>
     );
   };
@@ -64,7 +64,7 @@ const ConnectSpotify = ({ setContainerType }) => {
           className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white active:bg-[#00a240] cursor-pointer'
         >
           <BsSpotify />
-          <p className='pl-2'>Dublin on spotify</p>
+          <p className='pl-2'>Dublin on Spotify</p>
         </div>
       ) : (
         LoginButton()

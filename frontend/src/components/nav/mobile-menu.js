@@ -74,13 +74,6 @@ export function MobileMenu() {
         </Link>
         {auth ? (
           <>
-            <Link to='/spotify'>
-              <Disclosure.Button
-                className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
-              >
-                Spotify
-              </Disclosure.Button>
-            </Link>
             <Link to='/account'>
               <Disclosure.Button
                 className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300 flex w-full`}
