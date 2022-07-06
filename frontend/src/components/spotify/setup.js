@@ -17,7 +17,6 @@ const SetupSpotifyWebPlayer = ({ authenticated, sdkReady }) => {
       name: "Dublin Bus Player",
       getOAuthToken: async (cb) => {
         let res = await getAccesssToken(uid);
-        console.log("cb", res);
         cb(res.data.accessToken);
       },
       volume: 1.0,
@@ -32,7 +31,6 @@ const SetupSpotifyWebPlayer = ({ authenticated, sdkReady }) => {
     });
 
     player.addListener("ready", ({ device_id }) => {
-      console.log("ready", device_id);
       const iframe = document.querySelector(
         'iframe[src="https://sdk.scdn.co/embedded/index.html"]'
       );

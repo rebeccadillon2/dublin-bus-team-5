@@ -67,7 +67,6 @@ const UpdateCurrentTrack = ({ authenticated }) => {
     if (podRes.status == 200) {
       try {
         trackInfo = parseTrack(podRes.data);
-        console.log("td", trackInfo);
       } catch (e) {}
     }
 
@@ -109,7 +108,6 @@ const UpdateCurrentTrack = ({ authenticated }) => {
       return null;
     }
     let response = await getAccesssToken(uid);
-    console.log("RES", response.data);
 
     UpdateHandler = setInterval(
       () => getTrackDetails(response.data.accessToken),
