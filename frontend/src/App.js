@@ -12,9 +12,9 @@ import "tailwindcss/tailwind.css";
 
 import { getUser } from "./lib/api";
 import { Nav } from "./components/nav/";
-import { Signup, Journey, Account, Login } from "./pages";
 import { getPayload, isUserAuthenticated } from "./lib/auth";
 import SetupSpotifyWebPlayer from "./components/spotify/setup";
+import { Signup, Journey, Account, Login, Testing } from "./pages";
 import UpdateCurrentTrack from "./components/spotify/update-track";
 import { CurrentTrackContextProvider } from "./components/spotify/context";
 
@@ -142,6 +142,7 @@ function App() {
                         <Route path={"/"} element={<Journey />} />
                         <Route path={"/login"} element={<Login />} />
                         <Route path={"/signup"} element={<Signup />} />
+                        <Route path={"/testing"} element={<Testing />} />
                         <Route element={<ProtectedRoute />}>
                           <Route path={"/account"} element={<Account />} />
                         </Route>
