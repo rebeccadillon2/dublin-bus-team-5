@@ -7,25 +7,7 @@ import { SpotifyContent } from "../spotify/content";
 
 import { RouteOptions, JourneyForm, ExploreContent } from ".";
 import { AuthenticatedContext, MapDetailsContext } from "../../App";
-
-export const ContainerType = {
-  DEFAULT: "default",
-  EXPLORE: "explore",
-  SPOTIFY: "spotify",
-};
-
-export const PlaceType = {
-  GYM: "gym",
-  BANK: "bank",
-  COFFEE: "cafe",
-  HOTEL: "lodging",
-  TOGGLE: "toggle",
-  HOSPITAL: "hospital",
-  PHARMACY: "pharmacy",
-  RESTAURANT: "restaurant",
-  TAKEOUT: "meal_takeaway",
-  GROCERIES: "supermarket",
-};
+import { ContainerType } from "../../App";
 
 export function JourneyContainer(props) {
   const { isAuthenticated } = useContext(AuthenticatedContext);
