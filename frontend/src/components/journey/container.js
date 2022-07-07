@@ -1,13 +1,17 @@
 import React, { useContext, useState } from "react";
 
 import { LoadingSpinner } from "../loading";
-import { MapDetailsContext } from "../../App";
 import { ContentContainer } from "../container";
+import ConnectSpotify from "../spotify/connect";
+import { SpotifyContent } from "../spotify/content";
+
 import { RouteOptions, JourneyForm, ExploreContent } from ".";
+import { AuthenticatedContext, MapDetailsContext } from "../../App";
 
 export const ContainerType = {
   DEFAULT: "default",
   EXPLORE: "explore",
+  SPOTIFY: "spotify",
 };
 
 export const PlaceType = {
@@ -24,6 +28,8 @@ export const PlaceType = {
 };
 
 export function JourneyContainer(props) {
+  const { isAuthenticated } = useContext(AuthenticatedContext);
+
   const [containerType, setContainerType] = useState({
     type: ContainerType.DEFAULT,
     place: null,
@@ -77,8 +83,19 @@ export function JourneyContainer(props) {
           setContainerType={setContainerType}
           containerType={containerType}
         />
+      ) : containerType.type === ContainerType.SPOTIFY ? (
+        <SpotifyContent
+          setContainerType={setContainerType}
+          containerType={containerType}
+        />
       ) : (
         <></>
+      )}
+      {isAuthenticated && containerType.type === ContainerType.DEFAULT && (
+        <ConnectSpotify
+          containerType={containerType}
+          setContainerType={setContainerType}
+        />
       )}
     </ContentContainer>
   );
