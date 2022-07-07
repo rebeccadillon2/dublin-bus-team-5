@@ -8,7 +8,7 @@ export function SpotifyProgressBar({ progress, trackLength }) {
         height='5px'
         completed={progress}
         isLabelVisible={false}
-        bgColor='rgba(0, 0, 0, 0.6)'
+        bgColor='rgba(0, 0, 0, 0.4)'
       />
       <div className='flex w-100% mt-0.5'>
         <div className='flex justify-start flex-1'>
