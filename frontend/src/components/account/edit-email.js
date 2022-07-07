@@ -69,52 +69,54 @@ export function EditProfileEmail({
   };
 
   return (
-    <div className='pt-6'>
-      <Input
-        specialTheme
-        type='email'
-        name={"email"}
-        variant='small'
-        label='New email'
-        onFocus={handleFocus}
-        value={formData.email}
-        placeholder='New email'
-        className='md:w-90 w-86'
-        onChange={(e) => handleChange(e)}
-        error={formErrors && formErrors.email && formErrors.email[0]}
-      />
-      <div className='h-3' />
-      <Input
-        specialTheme
-        type='email'
-        variant='small'
-        value={confirmEmail}
-        name={"confirmEmail"}
-        onFocus={handleFocus}
-        label='Confirm email'
-        placeholder='Confirm email'
-        className='md:w-90 w-86'
-        onChange={(e) => handleConfirmEmail(e)}
-        error={formErrors && formErrors.email && formErrors.email[0]}
-      />
-      {missingError ? (
-        <div className='flex items-center h-6 px-2 text-sm text-primary-red'>
-          <p>{missingError}</p>
-        </div>
-      ) : (
-        <div className='h-6' />
-      )}
-      <PrimaryButton
-        className='min-h-9 min-w-19.5'
-        onClick={handleSubmit}
-        type='action'
-      >
-        {loading ? (
-          <LoadingSpinner size={"small"} color='border-primary-white' />
+    <div className='collapse' id='collapseEditEmail'>
+      <div className='pt-6'>
+        <Input
+          specialTheme
+          type='email'
+          name={"email"}
+          variant='small'
+          label='New email'
+          onFocus={handleFocus}
+          value={formData.email}
+          placeholder='New email'
+          className='md:w-90 w-86'
+          onChange={(e) => handleChange(e)}
+          error={formErrors && formErrors.email && formErrors.email[0]}
+        />
+        <div className='h-3' />
+        <Input
+          specialTheme
+          type='email'
+          variant='small'
+          value={confirmEmail}
+          name={"confirmEmail"}
+          onFocus={handleFocus}
+          label='Confirm email'
+          placeholder='Confirm email'
+          className='md:w-90 w-86'
+          onChange={(e) => handleConfirmEmail(e)}
+          error={formErrors && formErrors.email && formErrors.email[0]}
+        />
+        {missingError ? (
+          <div className='flex items-center h-6 px-2 text-sm text-primary-red'>
+            <p>{missingError}</p>
+          </div>
         ) : (
-          "Submit"
+          <div className='h-6' />
         )}
-      </PrimaryButton>
+        <PrimaryButton
+          className='min-h-9 min-w-19.5'
+          onClick={handleSubmit}
+          type='action'
+        >
+          {loading ? (
+            <LoadingSpinner size={"small"} color='border-primary-white' />
+          ) : (
+            "Submit"
+          )}
+        </PrimaryButton>
+      </div>
     </div>
   );
 }
