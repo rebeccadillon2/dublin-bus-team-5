@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,html}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+  ],
   darkMode: "media", // or 'media' or 'class'
   theme: {
     maxWidth: {
@@ -324,5 +327,5 @@ module.exports = {
     },
     opacity: ({ after }) => after(["disabled"]),
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin")],
 };
