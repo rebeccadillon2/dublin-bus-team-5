@@ -1,9 +1,19 @@
 import React from "react";
+import { getStopTimes } from "../lib/api";
 
 export function Testing() {
+  const handleClick = async () => {
+    try {
+      const data = await getStopTimes("8240DB000226", "07:00:00");
+      console.log("DATA", data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
-      <p class='md:space-x-1 space-y-1 md:space-y-0 mb-4'>
+      {/* <p class='md:space-x-1 space-y-1 md:space-y-0 mb-4'>
         <button
           className='inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
           type='button'
@@ -21,6 +31,15 @@ export function Testing() {
           hidden by default but revealed when the user activates the relevant
           trigger.
         </div>
+      </div>
+      */}
+      <div className='text-white p-4'>
+        <button
+          onClick={handleClick}
+          className='p-2 rounded-lg bg-primary-blue'
+        >
+          Get all Stop Times
+        </button>
       </div>
     </>
   );
