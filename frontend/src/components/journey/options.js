@@ -14,7 +14,7 @@ import {
 } from "react-icons/md";
 
 import { useTheme } from "../../hooks";
-import { ContainerType, PlaceType } from "./container";
+import { ContainerType, PlaceType } from "../../App";
 
 function OptionCircle(props) {
   const {
