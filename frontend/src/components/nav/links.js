@@ -45,7 +45,7 @@ export function Links() {
               Journey Planner
             </Link>
             <Link
-              to='/'
+              to='/stops'
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
             >
               Stops
