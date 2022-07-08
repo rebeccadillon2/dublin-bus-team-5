@@ -12,6 +12,7 @@ import SetupSpotifyWebPlayer from "./components/spotify/setup";
 import { Signup, Journey, Account, Login, Testing, Stops } from "./pages";
 import UpdateCurrentTrack from "./components/spotify/update-track";
 import { CurrentTrackContextProvider } from "./components/spotify/context";
+import { Testing2 } from "./pages/testing2";
 
 export const ContainerType = {
   DEFAULT: "default",
@@ -163,6 +164,7 @@ function App() {
                           <Route path={"/login"} element={<Login />} />
                           <Route path={"/signup"} element={<Signup />} />
                           <Route path={"/testing"} element={<Testing />} />
+                          <Route path={"/testing2"} element={<Testing2 />} />
                           <Route path={"/stops"} element={<Stops />} />
                           <Route element={<ProtectedRoute />}>
                             {" "}
