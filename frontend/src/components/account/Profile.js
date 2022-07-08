@@ -6,7 +6,7 @@ import { LogoutModal } from "../modal";
 import { AccountSection, Card } from "../container";
 import { SecondaryButton } from "../elements/button";
 import { EditProfileImage, EditProfileEmail } from ".";
-
+//update file name
 export function ProfileSettings() {
   const [isDarkMode] = useTheme();
   const [popup, setPopup] = useState(false);
