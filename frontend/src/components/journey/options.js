@@ -86,7 +86,8 @@ function ExtraOptions(props) {
 
   return (
     <div
-      className='flex justify-around items-start border-t border-system-grey3 mb-6'
+      className='flex justify-around items-start border-t border-system-grey3 mb-6 collapse'
+      id='collapseOptions'
       {...rest}
     >
       <div className='flex flex-col items-start justify-start mt-3'>
@@ -206,20 +207,28 @@ export function Explore() {
           handle={PlaceType.TAKEOUT}
           icon={MdOutlineTakeoutDining}
         />
-        <OptionCircle
-          title='More'
-          title2='Less'
-          toggle={true}
-          seeMore={seeMore}
-          direction={"col"}
-          icon2={MdExpandLess}
-          handle={PlaceType.TOGGLE}
-          icon={MdOutlineMoreHoriz}
-          bgColor={"bg-system-grey5"}
-          toggleSeeMore={toggleSeeMore}
-        />
+        <button
+          aria-expanded='false'
+          data-bs-toggle='collapse'
+          aria-controls='collapseOptions'
+          data-bs-target='#collapseOptions'
+        >
+          <OptionCircle
+            title='More'
+            title2='Less'
+            toggle={true}
+            seeMore={seeMore}
+            direction={"col"}
+            icon2={MdExpandLess}
+            handle={PlaceType.TOGGLE}
+            icon={MdOutlineMoreHoriz}
+            bgColor={"bg-system-grey5"}
+            toggleSeeMore={toggleSeeMore}
+          />
+        </button>
       </div>
-      {seeMore && <ExtraOptions seeMore={seeMore} />}
+      {/* {seeMore && <ExtraOptions seeMore={seeMore} />} */}
+      <ExtraOptions seeMore={seeMore} />
     </div>
   );
 }
