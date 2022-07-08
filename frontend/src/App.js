@@ -17,6 +17,8 @@ export const ContainerType = {
   DEFAULT: "default",
   EXPLORE: "explore",
   SPOTIFY: "spotify",
+  REALTIME: "realtime",
+  FAV_STOPS: "fav_stops",
 };
 
 export const PlaceType = {
