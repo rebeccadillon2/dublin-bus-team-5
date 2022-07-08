@@ -1,25 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { LoadingSpinner } from "../loading";
 import { ContentContainer } from "../container";
 import ConnectSpotify from "../spotify/connect";
 import { SpotifyContent } from "../spotify/content";
 
-import { RouteOptions, JourneyForm, ExploreContent } from ".";
 import {
   ContainerType,
   MapDetailsContext,
   AuthenticatedContext,
 } from "../../App";
 import { useMapContainerType } from "../../hooks";
+import { RouteOptions, JourneyForm, ExploreContent, Header } from ".";
 
 export function JourneyContainer(props) {
-  const { isAuthenticated } = useContext(AuthenticatedContext);
   const [mapContainerType] = useMapContainerType();
-  // const [containerType, setContainerType] = useState({
-  //   type: ContainerType.DEFAULT,
-  //   place: null,
-  // });
+  const { isAuthenticated } = useContext(AuthenticatedContext);
 
   const {
     time,
@@ -40,37 +36,40 @@ export function JourneyContainer(props) {
   return (
     <ContentContainer>
       {mapContainerType.type === ContainerType.DEFAULT ? (
-        <div className='input-container overflow-y-scroll	md:mt-2'>
-          <JourneyForm
-            time={time}
-            setTime={setTime}
-            originRef={originRef}
-            inputError={inputError}
-            clearRoute={clearRoute}
-            handleFocus={handleFocus}
-            inputOptions={inputOptions}
-            handleSwitch={handleSwitch}
-            calculateRoute={calculateRoute}
-            destinationRef={destinationRef}
-            setUserLocation={setUserLocation}
-          />
-          {loading ? (
-            <div className='mt-20'>
-              <LoadingSpinner />
-            </div>
-          ) : (
-            mapDetails.resObj && <RouteOptions />
-          )}
-        </div>
+        <>
+          <div className='md:flex hidden'>
+            <Header variant={true} title={"Search"} />
+          </div>
+          <div className='input-container overflow-y-scroll	md:mt-2'>
+            <JourneyForm
+              time={time}
+              setTime={setTime}
+              originRef={originRef}
+              inputError={inputError}
+              clearRoute={clearRoute}
+              handleFocus={handleFocus}
+              inputOptions={inputOptions}
+              handleSwitch={handleSwitch}
+              calculateRoute={calculateRoute}
+              destinationRef={destinationRef}
+              setUserLocation={setUserLocation}
+            />
+            {loading ? (
+              <div className='mt-20'>
+                <LoadingSpinner />
+              </div>
+            ) : (
+              mapDetails.resObj && <RouteOptions />
+            )}
+            {isAuthenticated && <ConnectSpotify />}
+          </div>
+        </>
       ) : mapContainerType.type === ContainerType.EXPLORE ? (
         <ExploreContent />
       ) : mapContainerType.type === ContainerType.SPOTIFY ? (
         <SpotifyContent />
       ) : (
         <></>
-      )}
-      {isAuthenticated && mapContainerType.type === ContainerType.DEFAULT && (
-        <ConnectSpotify />
       )}
     </ContentContainer>
   );

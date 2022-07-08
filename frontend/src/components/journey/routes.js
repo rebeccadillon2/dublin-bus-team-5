@@ -9,8 +9,8 @@ import { useTheme } from "../../hooks";
 import { Display } from "../container";
 import { MapDetailsContext } from "../../App";
 
-function Header(props) {
-  const { title } = props;
+export function Header(props) {
+  const { title, variant } = props;
   const [isDarkMode] = useTheme();
   const headerThemeClasses = `${
     isDarkMode ? "text-system-grey2" : "text-system-grey7"
@@ -18,7 +18,7 @@ function Header(props) {
   const headerTextClasses = `text-xl font-semibold ${headerThemeClasses}`;
 
   return (
-    <div className='mt-10 mb-4'>
+    <div className={`${variant ? "mt-4 mb-2" : "mt-10 mb-4"}`}>
       <p className={headerTextClasses}>{title}</p>
     </div>
   );

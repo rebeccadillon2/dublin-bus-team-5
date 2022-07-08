@@ -60,7 +60,9 @@ export function JourneyForm(props) {
           <HiOutlineSwitchVertical
             onClick={handleSwitch}
             className={`h-7 w-7 hover:cursor-pointer ${
-              isDarkMode ? "text-system-grey4" : "text-system-grey5"
+              isDarkMode
+                ? "text-system-grey4 active:text-system-grey5"
+                : "text-system-grey5 active:text-system-grey3"
             }`}
           />
         </div>
