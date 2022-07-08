@@ -6,16 +6,20 @@ import ConnectSpotify from "../spotify/connect";
 import { SpotifyContent } from "../spotify/content";
 
 import { RouteOptions, JourneyForm, ExploreContent } from ".";
-import { AuthenticatedContext, MapDetailsContext } from "../../App";
-import { ContainerType } from "../../App";
+import {
+  ContainerType,
+  MapDetailsContext,
+  AuthenticatedContext,
+} from "../../App";
+import { useMapContainerType } from "../../hooks";
 
 export function JourneyContainer(props) {
   const { isAuthenticated } = useContext(AuthenticatedContext);
-
-  const [containerType, setContainerType] = useState({
-    type: ContainerType.DEFAULT,
-    place: null,
-  });
+  const [mapContainerType] = useMapContainerType();
+  // const [containerType, setContainerType] = useState({
+  //   type: ContainerType.DEFAULT,
+  //   place: null,
+  // });
 
   const {
     time,
@@ -35,7 +39,7 @@ export function JourneyContainer(props) {
 
   return (
     <ContentContainer>
-      {containerType.type === ContainerType.DEFAULT ? (
+      {mapContainerType.type === ContainerType.DEFAULT ? (
         <div className='input-container overflow-y-scroll	md:mt-2'>
           <JourneyForm
             time={time}
@@ -55,29 +59,18 @@ export function JourneyContainer(props) {
               <LoadingSpinner />
             </div>
           ) : (
-            mapDetails.resObj && (
-              <RouteOptions setContainerType={setContainerType} />
-            )
+            mapDetails.resObj && <RouteOptions />
           )}
         </div>
-      ) : containerType.type === ContainerType.EXPLORE ? (
-        <ExploreContent
-          setContainerType={setContainerType}
-          containerType={containerType}
-        />
-      ) : containerType.type === ContainerType.SPOTIFY ? (
-        <SpotifyContent
-          setContainerType={setContainerType}
-          containerType={containerType}
-        />
+      ) : mapContainerType.type === ContainerType.EXPLORE ? (
+        <ExploreContent />
+      ) : mapContainerType.type === ContainerType.SPOTIFY ? (
+        <SpotifyContent />
       ) : (
         <></>
       )}
-      {isAuthenticated && containerType.type === ContainerType.DEFAULT && (
-        <ConnectSpotify
-          containerType={containerType}
-          setContainerType={setContainerType}
-        />
+      {isAuthenticated && mapContainerType.type === ContainerType.DEFAULT && (
+        <ConnectSpotify />
       )}
     </ContentContainer>
   );

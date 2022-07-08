@@ -6,7 +6,12 @@ import { Error } from "../../error";
 import { useTheme } from "../../../hooks";
 import { LoadingSpinner } from "../../loading";
 import { SearchInput } from "../../elements/form";
-import { MapRefContext, MapDetailsContext, ContainerType } from "../../../App";
+import {
+  MapRefContext,
+  MapDetailsContext,
+  ContainerType,
+  MapContainerContext,
+} from "../../../App";
 
 const arr = [1, 2, 3, 4, 5];
 
@@ -170,8 +175,8 @@ export function PlaceCard(props) {
   );
 }
 
-export function Navigation(props) {
-  const { setContainerType, ...rest } = props;
+export function Navigation() {
+  const { setMapContainerType } = useContext(MapContainerContext);
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode
@@ -183,10 +188,9 @@ export function Navigation(props) {
   return (
     <div
       onClick={() =>
-        setContainerType({ type: ContainerType.DEFAULT, place: null })
+        setMapContainerType({ type: ContainerType.DEFAULT, place: null })
       }
       className={classes}
-      {...rest}
     >
       <HiOutlineArrowNarrowLeft />
     </div>
@@ -194,7 +198,9 @@ export function Navigation(props) {
 }
 
 function Header(props) {
-  const { containerType, setSearchTerm, searchTerm, ...rest } = props;
+  const { setSearchTerm, searchTerm, ...rest } = props;
+  const { mapContainerType } = useContext(MapContainerContext);
+
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode ? "text-system-grey3" : "text-system-grey6"
@@ -205,8 +211,8 @@ function Header(props) {
     <div className={classes} {...rest}>
       <div className='ml-2'>
         Explore{" "}
-        {containerType.place &&
-          `${containerType.place[0].toUpperCase()}${containerType.place
+        {mapContainerType.place &&
+          `${mapContainerType.place[0].toUpperCase()}${mapContainerType.place
             .substring(1)
             .replaceAll("_", " ")}s`}
       </div>
@@ -221,8 +227,8 @@ function Header(props) {
   );
 }
 
-export function ExploreContent(props) {
-  const { setContainerType, containerType, ...rest } = props;
+export function ExploreContent() {
+  const { mapContainerType } = useContext(MapContainerContext);
   const [places, setPlaces] = useState(null);
   const [error, setError] = useState(false);
   const { mapRefContext } = useContext(MapRefContext);
@@ -230,38 +236,47 @@ export function ExploreContent(props) {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const service = new window.google.maps.places.PlacesService(
-    mapRefContext.current
-  );
-
   useEffect(() => {
     setLoading(true);
-    try {
-      service.nearbySearch(
-        {
-          location: {
-            lat: mapDetails.resObj.routes[0].legs[0].end_location.lat(),
-            lng: mapDetails.resObj.routes[0].legs[0].end_location.lng(),
-          },
-          radius: 2500,
-          type: [containerType.place],
-        },
-        // eslint-disable-next-line prefer-arrow-callback
-        function (results, status) {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            console.log(results);
-            setPlaces(results);
-            setLoading(false);
-          } else {
-            setLoading(false);
-            setError(true);
-          }
-        }
+
+    const getPlaces = () => {
+      const service = new window.google.maps.places.PlacesService(
+        mapRefContext.current
       );
-    } catch (e) {
-      console.log(e);
-      setLoading(false);
-      setError(true);
+      try {
+        service.nearbySearch(
+          {
+            location: {
+              lat: mapDetails.resObj.routes[0].legs[0].end_location.lat(),
+              lng: mapDetails.resObj.routes[0].legs[0].end_location.lng(),
+            },
+            radius: 2500,
+            type: [mapContainerType.place],
+          },
+          // eslint-disable-next-line prefer-arrow-callback
+          function (results, status) {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+              console.log(results);
+              setPlaces(results);
+              setLoading(false);
+            } else {
+              setLoading(false);
+              setError(true);
+            }
+          }
+        );
+      } catch (e) {
+        console.log(e);
+        setLoading(false);
+        setError(true);
+      }
+    };
+    if (!mapRefContext.current) {
+      setTimeout(() => {
+        getPlaces();
+      }, 250);
+    } else {
+      getPlaces();
     }
   }, []);
 
@@ -277,14 +292,10 @@ export function ExploreContent(props) {
   };
 
   return (
-    <div className='mb-6' {...rest}>
-      <Navigation setContainerType={setContainerType} />
+    <div className='mb-6'>
+      <Navigation />
       {!error && (
-        <Header
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          containerType={containerType}
-        />
+        <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       )}
       {loading ? (
         <div className='mt-8'>

@@ -4,8 +4,7 @@ import { useTheme } from "../../hooks";
 import { Navigation } from "../journey";
 import PodcastList from "./podcast-list";
 
-export function SpotifyContent(props) {
-  const { setContainerType, containerType, ...rest } = props;
+export function SpotifyContent() {
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode ? "text-primary-white" : "text-system-grey7"
@@ -13,8 +12,8 @@ export function SpotifyContent(props) {
   const classes = `text-lg font-semibold ml-2 mb-2 ${themeClasses} `;
 
   return (
-    <div className='mb-6' {...rest}>
-      <Navigation setContainerType={setContainerType} />
+    <div className='mb-6'>
+      <Navigation />
       <div className={classes}>
         <p>Dublin Podcasts</p>
       </div>
