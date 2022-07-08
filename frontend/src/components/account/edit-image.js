@@ -64,7 +64,7 @@ export function EditProfileImage({
           setTimeout(() => {
             setPopup(false);
           }, 2000);
-          setIsEditingProfileImage(false);
+          // setIsEditingProfileImage(false);
         }
       });
     } catch (err) {
