@@ -314,9 +314,10 @@ export function ExploreContent() {
           ))}
         </>
       ) : (
-        <div className='mt-8'>
-          <Error variant='no-results' />
-        </div>
+        <></>
+        // <div className='mt-8'>
+        //   <Error variant='no-results' />
+        // </div>
       )}
     </div>
   );
