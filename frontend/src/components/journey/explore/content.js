@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import React, { useState, useContext, useEffect } from "react";
 import { AiFillPushpin, AiOutlinePushpin } from "react-icons/ai";
 
 import { Error } from "../../error";
@@ -9,7 +9,6 @@ import { SearchInput } from "../../elements/form";
 import {
   MapRefContext,
   MapDetailsContext,
-  ContainerType,
   MapContainerContext,
 } from "../../../App";
 
@@ -175,7 +174,7 @@ export function PlaceCard(props) {
   );
 }
 
-export function Navigation() {
+export function Navigation({ type }) {
   const { setMapContainerType } = useContext(MapContainerContext);
   const [isDarkMode] = useTheme();
   const themeClasses = `${
@@ -187,9 +186,7 @@ export function Navigation() {
 
   return (
     <div
-      onClick={() =>
-        setMapContainerType({ type: ContainerType.DEFAULT, place: null })
-      }
+      onClick={() => setMapContainerType({ type: type, place: null })}
       className={classes}
     >
       <HiOutlineArrowNarrowLeft />
@@ -293,7 +290,7 @@ export function ExploreContent() {
 
   return (
     <div className='mb-6'>
-      <Navigation />
+      <Navigation type={"default"} />
       {!error && (
         <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       )}

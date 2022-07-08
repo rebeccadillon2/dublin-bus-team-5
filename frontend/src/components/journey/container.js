@@ -6,11 +6,11 @@ import {
 } from "../../App";
 
 import { LoadingSpinner } from "../loading";
-import { RealTimeContent } from "../realtime";
 import ConnectSpotify from "../spotify/connect";
 import { ContentContainer } from "../container";
 import { useMapContainerType } from "../../hooks";
 import { SpotifyContent } from "../spotify/content";
+import { RealTimeContent, FavouriteStops } from "../realtime";
 import { RouteOptions, JourneyForm, ExploreContent, Header } from ".";
 
 export function JourneyContainer(props) {
@@ -71,7 +71,7 @@ export function JourneyContainer(props) {
       ) : mapContainerType.type === ContainerType.REALTIME ? (
         <RealTimeContent />
       ) : mapContainerType.type === ContainerType.FAV_STOPS ? (
-        <div>Fav stops</div>
+        <FavouriteStops />
       ) : (
         <></>
       )}

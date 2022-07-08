@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
-import { MapContainerContext } from "../../App";
-import { SearchInput } from "../elements/form";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+
 import { Header } from "../journey";
+import { SearchInput } from "../elements/form";
+import { MapContainerContext } from "../../App";
 
 export function RealTimeContent() {
   const [stopSearch, setStopSearch] = useState("");
@@ -9,13 +11,20 @@ export function RealTimeContent() {
     useContext(MapContainerContext);
 
   const handleFavClick = () => {
-    setMapContainerType({ ...mapContainerType, type: "fav_stop" });
+    setMapContainerType({ ...mapContainerType, type: "fav_stops" });
   };
 
   return (
     <div>
-      <div className='md:flex hidden ml-1'>
+      <div className='flex items-center justify-between ml-1'>
         <Header variant={true} title={"Realtime"} />
+        <div
+          onClick={handleFavClick}
+          className='flex items-center justify-center text-primary-blue active:text-dark-blue1 cursor-pointer text-sm pr-1'
+        >
+          <p className='pr-1'>Favourites</p>
+          <HiOutlineArrowNarrowRight />
+        </div>
       </div>
       <div className='mb-4 mt-2'>
         <SearchInput
@@ -24,14 +33,7 @@ export function RealTimeContent() {
           onChange={(e) => setStopSearch(e.target.value)}
         />
       </div>
-      <div>
-        <button
-          onClick={handleFavClick}
-          className='h-10 rounded-xl bg-primary-blue w-95 text-white active:bg-dark-blue1'
-        >
-          Favourites
-        </button>
-      </div>
+      <div></div>
     </div>
   );
 }
