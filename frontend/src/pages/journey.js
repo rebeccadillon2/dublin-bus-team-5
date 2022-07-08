@@ -33,7 +33,7 @@ export function Journey() {
   const [isDarkMode] = useTheme();
   const [isExpanded] = useExpanded();
   const destinationRef = useRef(null);
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(new Date());
   const [loading, setLoading] = useState(false);
   const [inputError, setInputError] = useState(null);
   const { setMapRefContext } = useContext(MapRefContext);
@@ -52,6 +52,7 @@ export function Journey() {
 
     try {
       setLoading(true);
+      console.log("time", time);
       const results = await dirServ.route({
         origin: originVal,
         destination: destinationVal,
