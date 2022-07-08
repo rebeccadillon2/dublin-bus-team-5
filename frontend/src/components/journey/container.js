@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
-
-import { LoadingSpinner } from "../loading";
-import { ContentContainer } from "../container";
-import ConnectSpotify from "../spotify/connect";
-import { SpotifyContent } from "../spotify/content";
-
 import {
   ContainerType,
   MapDetailsContext,
   AuthenticatedContext,
 } from "../../App";
+
+import { LoadingSpinner } from "../loading";
+import { RealTimeContent } from "../realtime";
+import ConnectSpotify from "../spotify/connect";
+import { ContentContainer } from "../container";
 import { useMapContainerType } from "../../hooks";
+import { SpotifyContent } from "../spotify/content";
 import { RouteOptions, JourneyForm, ExploreContent, Header } from ".";
 
 export function JourneyContainer(props) {
   const [mapContainerType] = useMapContainerType();
+  const { mapDetails } = useContext(MapDetailsContext);
   const { isAuthenticated } = useContext(AuthenticatedContext);
 
   const {
@@ -31,7 +32,6 @@ export function JourneyContainer(props) {
     calculateRoute,
     setUserLocation,
   } = props;
-  const { mapDetails } = useContext(MapDetailsContext);
 
   return (
     <ContentContainer>
@@ -68,6 +68,10 @@ export function JourneyContainer(props) {
         <ExploreContent />
       ) : mapContainerType.type === ContainerType.SPOTIFY ? (
         <SpotifyContent />
+      ) : mapContainerType.type === ContainerType.REALTIME ? (
+        <RealTimeContent />
+      ) : mapContainerType.type === ContainerType.FAV_STOPS ? (
+        <div>Fav stops</div>
       ) : (
         <></>
       )}

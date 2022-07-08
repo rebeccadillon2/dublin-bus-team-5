@@ -23,8 +23,13 @@ import {
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
 import { LoadingSpinner } from "../components/loading";
-import { MapDetailsContext, MapRefContext } from "../App";
 import { useWindowSize, useTheme, useExpanded } from "../hooks";
+import {
+  MapDetailsContext,
+  MapRefContext,
+  MapContainerContext,
+  ContainerType,
+} from "../App";
 
 export function Journey() {
   const mapRef = useRef();
@@ -38,6 +43,7 @@ export function Journey() {
   const [inputError, setInputError] = useState(null);
   const { setMapRefContext } = useContext(MapRefContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
+  const { mapContainerType } = useContext(MapContainerContext);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -133,19 +139,26 @@ export function Journey() {
         mapContainerStyle={getMapContainerStyle(width, isExpanded)}
         onLoad={onMapLoad}
       >
-        {mapDetails.markers &&
-          mapDetails.markers.length >= 1 &&
-          mapDetails.markers.map((marker, idx) => (
-            <Marker
-              key={`${marker.lat}${idx}`}
-              position={{ lat: marker.lat, lng: marker.lng }}
-            />
-          ))}
-        {mapDetails.resObj && (
-          <DirectionsRenderer
-            directions={mapDetails.resObj}
-            routeIndex={getRoute()}
-          />
+        {mapContainerType.type === ContainerType.REALTIME ||
+        mapContainerType.type === ContainerType.FAV_STOPS ? (
+          <></>
+        ) : (
+          <>
+            {mapDetails.markers &&
+              mapDetails.markers.length >= 1 &&
+              mapDetails.markers.map((marker, idx) => (
+                <Marker
+                  key={`${marker.lat}${idx}`}
+                  position={{ lat: marker.lat, lng: marker.lng }}
+                />
+              ))}
+            {mapDetails.resObj && (
+              <DirectionsRenderer
+                directions={mapDetails.resObj}
+                routeIndex={getRoute()}
+              />
+            )}
+          </>
         )}
       </GoogleMap>
     </div>

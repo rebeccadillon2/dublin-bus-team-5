@@ -68,17 +68,6 @@ export function JourneyForm(props) {
       </div>
       <div className='h-2' />
       <BasicDateTimePicker time={time} setTime={setTime} />
-      {/* <Input
-        error={inputError}
-        type='text'
-        value={time}
-        variant='small'
-        onChange={setTime}
-        // onFocus={handleFocus}
-        placeholder='Select a time'
-        label='Select a time'
-        className='max-h-10'
-      /> */}
       {inputError ? (
         <div className='flex items-center h-6'>
           <p className='py-0 my-0 px-2 text-xs text-primary-red'>
