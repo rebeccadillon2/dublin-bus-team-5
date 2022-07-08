@@ -1,12 +1,12 @@
 import { BsSpotify } from "react-icons/bs";
 import React, { useEffect, useState, useContext } from "react";
 
-import { useTheme } from "../../hooks";
-import { SpotifyContext } from "../../App";
-import { useIsMounted } from "../../hooks";
+import { SpotifyContext, MapContainerContext } from "../../App";
+import { useIsMounted, useTheme } from "../../hooks";
 import { getSpotifyAuthUrl, isSpotifyAuthenticated } from "../../lib/api";
 
-const ConnectSpotify = ({ setContainerType }) => {
+const ConnectSpotify = () => {
+  const { setMapContainerType } = useContext(MapContainerContext);
   const isMounted = useIsMounted();
   let [isSportifyAuthenticated, setIsSpotifyAuthenticated] = useState(false);
   const { updateSpotifyStateTwo } = useContext(SpotifyContext);
@@ -50,7 +50,7 @@ const ConnectSpotify = ({ setContainerType }) => {
   };
 
   const handleClick = () => {
-    setContainerType({ type: "spotify", place: null });
+    setMapContainerType({ type: "spotify", place: null });
   };
 
   return (

@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useTheme } from "../../hooks";
+import { MapContainerContext } from "../../App";
 
 export function Links() {
   const [isDarkMode] = useTheme();
@@ -10,6 +11,11 @@ export function Links() {
       ? "text-system-grey3 hover:text-system-grey1"
       : "text-system-grey5 hover:text-system-grey7"
   }`;
+  const navigate = useNavigate();
+
+  // const handleHomeClick = () => {
+  //   navigate('/')
+  // }
 
   return (
     <div className='LEFT flex justify-start items-center'>

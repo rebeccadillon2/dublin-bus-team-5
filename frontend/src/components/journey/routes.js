@@ -212,9 +212,9 @@ function ExpandedContext(props) {
   );
 }
 
-export function RouteOptions({ setContainerType }) {
-  const { mapDetails } = useContext(MapDetailsContext);
+export function RouteOptions() {
   const [routeOpen, setRouteOpen] = useState(null);
+  const { mapDetails } = useContext(MapDetailsContext);
 
   const handleClick = (key) => {
     setRouteOpen(routeOpen !== key ? key : null);
@@ -243,7 +243,7 @@ export function RouteOptions({ setContainerType }) {
           </li>
         ))}
       </Display>
-      <Explore setContainerType={setContainerType} />
+      <Explore />
     </>
   );
 }
