@@ -9,6 +9,7 @@ import {
   Marker,
   GoogleMap,
   useJsApiLoader,
+  MarkerClusterer,
   DirectionsRenderer,
 } from "@react-google-maps/api";
 
@@ -30,6 +31,7 @@ import {
   MapContainerContext,
   ContainerType,
 } from "../App";
+import { getAllStops } from "../lib/api";
 
 export function Journey() {
   const mapRef = useRef();
@@ -42,8 +44,10 @@ export function Journey() {
   const [loading, setLoading] = useState(false);
   const [inputError, setInputError] = useState(null);
   const { setMapRefContext } = useContext(MapRefContext);
-  const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
   const { mapContainerType } = useContext(MapContainerContext);
+  const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
+
+  const [allStops, setAllStops] = useState(null);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -109,6 +113,19 @@ export function Journey() {
     setMapRefContext(mapRef);
   }, []);
 
+  useEffect(() => {
+    const getAllStopsData = async () => {
+      try {
+        const { data } = await getAllStops();
+        console.log("ALl stops: ", data);
+        setAllStops(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getAllStopsData();
+  }, []);
+
   if (!isLoaded)
     return (
       <div className='h-[100vh] w-[100vw] flex items-center justify-center'>
@@ -141,7 +158,21 @@ export function Journey() {
       >
         {mapContainerType.type === ContainerType.REALTIME ||
         mapContainerType.type === ContainerType.FAV_STOPS ? (
-          <></>
+          <>
+            {allStops && (
+              <MarkerClusterer>
+                {(clusterer) =>
+                  allStops.map((stop) => (
+                    <Marker
+                      key={stop.id}
+                      clusterer={clusterer}
+                      position={{ lat: stop.stopLat, lng: stop.stopLon }}
+                    />
+                  ))
+                }
+              </MarkerClusterer>
+            )}
+          </>
         ) : (
           <>
             {mapDetails.markers &&

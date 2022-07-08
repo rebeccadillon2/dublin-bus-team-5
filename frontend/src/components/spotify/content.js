@@ -13,7 +13,7 @@ export function SpotifyContent() {
 
   return (
     <div className='mb-6'>
-      <Navigation />
+      <Navigation type={"default"} />
       <div className={classes}>
         <p>Dublin Podcasts</p>
       </div>
