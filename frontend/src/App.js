@@ -1,11 +1,6 @@
-import {
-  Route,
-  Routes,
-  Outlet,
-  Navigate,
-  BrowserRouter,
-} from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import React, { useState, createContext, useEffect } from "react";
+import { ProtectedRoute } from "./pages/protected";
 
 import "./styles/globals.css";
 import "tailwindcss/tailwind.css";
@@ -14,7 +9,7 @@ import { getUser } from "./lib/api";
 import { Nav } from "./components/nav/";
 import { getPayload, isUserAuthenticated } from "./lib/auth";
 import SetupSpotifyWebPlayer from "./components/spotify/setup";
-import { Signup, Journey, Account, Login, Testing } from "./pages";
+import { Signup, Journey, Account, Login, Testing, Stops } from "./pages";
 import UpdateCurrentTrack from "./components/spotify/update-track";
 import { CurrentTrackContextProvider } from "./components/spotify/context";
 
@@ -126,10 +121,6 @@ function App() {
 
   window.onSpotifyWebPlaybackSDKReady = () => setSdkReady(true);
 
-  const ProtectedRoute = () => {
-    return isUserAuthenticated() ? <Outlet /> : <Navigate to='/' replace />;
-  };
-
   return (
     <MapContainerContext.Provider
       value={{ mapContainerType, setMapContainerType }}
@@ -170,7 +161,9 @@ function App() {
                           <Route path={"/login"} element={<Login />} />
                           <Route path={"/signup"} element={<Signup />} />
                           <Route path={"/testing"} element={<Testing />} />
+                          <Route path={"/stops"} element={<Stops />} />
                           <Route element={<ProtectedRoute />}>
+                            {" "}
                             <Route path={"/account"} element={<Account />} />
                           </Route>
                         </Routes>

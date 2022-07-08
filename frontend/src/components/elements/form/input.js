@@ -57,7 +57,7 @@ export function Input(props) {
     !value
       ? "no-value"
       : error
-      ? "value-&-error caret-primary-red"
+      ? "value-&-error caret-primary-red "
       : "value-&-no-error"
   }`;
   const inputClasses = `${inputBase} ${inputExtra}`;
@@ -69,7 +69,7 @@ export function Input(props) {
         <label htmlFor='name' className={`${labelClasses} truncate`}>
           {label}
           {error && (
-            <p className='text-xs inline-block pl-1 text-system-grey5'>
+            <p className='text-xs inline-block pl-1 text-primary-red'>
               {error.charAt(0).toUpperCase() + error.slice(1)}
             </p>
           )}
