@@ -52,7 +52,7 @@ export function EditProfileEmail({
       setTimeout(() => {
         setPopup(false);
       }, 2000);
-      setIsEditingEmail(false);
+      // setIsEditingEmail(false);
     } catch (err) {
       setLoading(false);
       console.log(err.response.data);
