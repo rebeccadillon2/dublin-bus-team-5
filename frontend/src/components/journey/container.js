@@ -19,6 +19,10 @@ export function JourneyContainer(props) {
   const { isAuthenticated } = useContext(AuthenticatedContext);
 
   const {
+    panTo,
+    allStops,
+    selectedStop,
+    setSelectedStop,
     time,
     setTime,
     loading,
@@ -69,7 +73,12 @@ export function JourneyContainer(props) {
       ) : mapContainerType.type === ContainerType.SPOTIFY ? (
         <SpotifyContent />
       ) : mapContainerType.type === ContainerType.REALTIME ? (
-        <RealTimeContent />
+        <RealTimeContent
+          panTo={panTo}
+          allStops={allStops}
+          selectedStop={selectedStop}
+          setSelectedStop={setSelectedStop}
+        />
       ) : mapContainerType.type === ContainerType.FAV_STOPS ? (
         <FavouriteStops />
       ) : (

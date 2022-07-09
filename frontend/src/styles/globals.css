@@ -21,8 +21,12 @@ code {
   color: black;
 }
 
-.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-  border: none;
+.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline,
+.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline:focus,
+.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline:active {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .MuiButtonBase-root.MuiIconButton-root.MuiIconButton-edgeEnd.MuiIconButton-sizeMedium.css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root {
@@ -48,4 +52,20 @@ code {
 
 .MuiButtonBase-root.MuiPickersDay-root.MuiPickersDay-dayWithMargin.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root:hover {
   background-color: #c3c4c8;
+}
+
+.MuiOutlinedInput-input.MuiInputBase-input.MuiInputBase-inputAdornedEnd.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input,
+.MuiOutlinedInput-input.MuiInputBase-input.MuiInputBase-inputAdornedEnd.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input:active {
+  max-height: 40px;
+  padding: 8px;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 10px;
+  caret-color: #3377ff;
+  color: #969ba5;
+}
+
+.MuiOutlinedInput-input.MuiInputBase-input.MuiInputBase-inputAdornedEnd.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input::placeholder:hover {
+  color: #3377ff !important;
 }
