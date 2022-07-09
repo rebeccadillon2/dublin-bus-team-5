@@ -1,25 +1,28 @@
-import { useEffect, useState } from "react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import React from "react";
 import { Combobox } from "@headlessui/react";
-import { useTheme } from "../hooks";
-import { getAllStops } from "../lib/api";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+
+import { useTheme } from "../../../hooks";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function Testing2() {
-  const [stops, setStops] = useState(null);
+export function StopsSearch({
+  stops,
+  searchTerm,
+  selectedStop,
+  setSearchTerm,
+  setSelectedStop,
+}) {
   const [isDarkMode] = useTheme();
-  const [query, setQuery] = useState("");
-  const [selectedStop, setSelectedStop] = useState();
 
   const filteredStops = () => {
-    if (query === "") {
+    if (searchTerm === "") {
       return stops.slice(0, 20);
     } else {
       const filtered = stops.filter((stop) => {
-        return stop.stopName.toLowerCase().includes(query.toLowerCase());
+        return stop.stopName.toLowerCase().includes(searchTerm.toLowerCase());
       });
       if (filtered.length <= 20) {
         return filtered;
@@ -29,23 +32,6 @@ export function Testing2() {
     }
   };
 
-  useEffect(() => {
-    const getAllStopsData = async () => {
-      try {
-        const { data } = await getAllStops();
-        console.log("ALl stops: ", data);
-        setStops(data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getAllStopsData();
-  }, []);
-
-  useEffect(() => {
-    console.log(selectedStop);
-  }, [selectedStop]);
-
   return (
     <div
       className={`w-100 h-[100vh] ${
@@ -53,7 +39,7 @@ export function Testing2() {
       }`}
     >
       {stops && (
-        <div className='w-90 p-4'>
+        <div className='w-90'>
           <Combobox
             as='div'
             value={selectedStop}
@@ -68,7 +54,7 @@ export function Testing2() {
                     ? "bg-primary-black text-system-grey4"
                     : "bg-primary-white text-sytem-grey5"
                 }`}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => setSearchTerm(event.target.value)}
                 displayValue={(stop) => stop?.stopName}
               />
               <Combobox.Button className='absolute inset-y-0 right-0 flex items-center rounded-r-md px-2'>

@@ -47,6 +47,7 @@ export function Journey() {
   const { mapContainerType } = useContext(MapContainerContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
 
+  const [selectedStop, setSelectedStop] = useState(null);
   const [allStops, setAllStops] = useState(null);
 
   const { isLoaded } = useJsApiLoader({
@@ -126,6 +127,11 @@ export function Journey() {
     getAllStopsData();
   }, []);
 
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(20);
+  }, []);
+
   if (!isLoaded)
     return (
       <div className='h-[100vh] w-[100vw] flex items-center justify-center'>
@@ -136,6 +142,10 @@ export function Journey() {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <JourneyContainer
+        panTo={panTo}
+        allStops={allStops}
+        selectedStop={selectedStop}
+        setSelectedStop={setSelectedStop}
         time={time}
         setTime={setTime}
         loading={loading}
