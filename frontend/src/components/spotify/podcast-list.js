@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Error } from "../error";
-import { LoadingSpinner } from "../loading";
+import { TableSkeleton } from "../skeleton";
 import PodcastDetail from "./podcast-detail";
 import { getDublinPodcasts } from "../../lib/api";
 
@@ -30,7 +30,7 @@ const PodcastList = () => {
     <>
       {loading ? (
         <div className='pt-6'>
-          <LoadingSpinner />
+          <TableSkeleton />
         </div>
       ) : error ? (
         <div className='pt-6'>

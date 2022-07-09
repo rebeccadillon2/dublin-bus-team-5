@@ -35,7 +35,7 @@ export function StopsSearch({
   return (
     <div>
       {stops && (
-        <div className='w-90'>
+        <div className='w-90 '>
           <Combobox
             as='div'
             value={selectedStop}
@@ -45,7 +45,7 @@ export function StopsSearch({
             <div className='relative mt-1'>
               <Combobox.Input
                 placeholder='Search stops'
-                className={`w-full rounded-md border-0  py-2 pl-3 pr-10 sm:text-sm  caret-primary-blue focus:border-0 focus:outline-0  focus:ring-0 focus:shadow-0	 ${
+                className={`w-full rounded-md border-0 shadow-lg py-2 pl-3 pr-10 sm:text-sm  caret-primary-blue focus:border-0 focus:outline-0  focus:ring-0 focus:shadow-0	 ${
                   isDarkMode
                     ? "bg-primary-black text-system-grey4"
                     : "bg-primary-white text-sytem-grey5"
