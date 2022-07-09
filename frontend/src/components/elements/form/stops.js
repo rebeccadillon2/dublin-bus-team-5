@@ -33,11 +33,7 @@ export function StopsSearch({
   };
 
   return (
-    <div
-      className={`w-100 h-[100vh] ${
-        isDarkMode ? "bg-system-grey6" : "bg-system-grey2"
-      }`}
-    >
+    <div>
       {stops && (
         <div className='w-90'>
           <Combobox
