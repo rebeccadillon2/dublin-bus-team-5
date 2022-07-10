@@ -80,7 +80,7 @@ export function JourneyContainer(props) {
           setSelectedStop={setSelectedStop}
         />
       ) : mapContainerType.type === ContainerType.FAV_STOPS ? (
-        <FavouriteStops />
+        <FavouriteStops setSelectedStop={setSelectedStop} />
       ) : (
         <></>
       )}

@@ -115,6 +115,7 @@ export function Journey() {
   }, []);
 
   useEffect(() => {
+    console.log("jere");
     const getAllStopsData = async () => {
       try {
         const { data } = await getAllStops();
@@ -172,9 +173,9 @@ export function Journey() {
             {allStops && (
               <MarkerClusterer>
                 {(clusterer) =>
-                  allStops.map((stop) => (
+                  allStops.map((stop, idx) => (
                     <Marker
-                      key={stop.id}
+                      key={`${stop.id}${idx}`}
                       clusterer={clusterer}
                       position={{ lat: stop.stopLat, lng: stop.stopLon }}
                     />
