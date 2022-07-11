@@ -27,14 +27,15 @@ export const getDisplayData = async (
   setError
 ) => {
   try {
+    setError(false);
     setLoading(true);
     const { data } = await getStopTimes(selectedStop.stopId, time);
+    console.log("check", data);
     const res = await getShortRouteName(
       data[0].tripId,
       data[1].tripId,
       data[2].tripId,
-      data[3].tripId,
-      data[4].tripId
+      data[3].tripId
     );
 
     const newState = data.map((obj) => {
@@ -66,13 +67,6 @@ export const getDisplayData = async (
         return {
           ...obj,
           routeShortName: res.data[3].routeShortName,
-          arrivingIn: arrivingIn,
-        };
-      }
-      if (obj.tripId === res.data[4].tripId) {
-        return {
-          ...obj,
-          routeShortName: res.data[4].routeShortName,
           arrivingIn: arrivingIn,
         };
       }

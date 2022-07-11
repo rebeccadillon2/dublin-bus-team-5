@@ -176,7 +176,8 @@ function App() {
                         sdkReady={sdkReady}
                         authenticated={spotAuth}
                       />
-                      <UpdateCurrentTrack authenticated={spotAuth} />
+                      {/* Uncomment when in production */}
+                      {/* <UpdateCurrentTrack authenticated={spotAuth} /> */}
                     </CurrentTrackContextProvider>
                   </MapDetailsContext.Provider>
                 </MapRefContext.Provider>

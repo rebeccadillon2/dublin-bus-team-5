@@ -27,14 +27,13 @@ export function getShortRouteNames(stopTimeObj) {
   });
 }
 
-export function getShortRouteName(tripId1, tripId2, tripId3, tripId4, tripId5) {
+export function getShortRouteName(tripId1, tripId2, tripId3, tripId4) {
   return axios.get(`${baseUrl}/api/bus/get-route-name/`, {
     params: {
       tripId1,
       tripId2,
       tripId3,
       tripId4,
-      tripId5,
     },
   });
 }

@@ -15,13 +15,28 @@ function getBrowser(window) {
   return cb;
 }
 
-export function routeErrorCheck(originVal, destinationVal, setInputError) {
+export function routeErrorCheck(
+  originVal,
+  destinationVal,
+  setInputError,
+  time
+) {
   if (originVal === "" || destinationVal === "") {
     setInputError(errorTypes.MISSING_INPUT);
     return true;
   }
   if (originVal === destinationVal) {
     setInputError(errorTypes.SAME);
+    return true;
+  }
+
+  if (!time.getHours()) {
+    setInputError(errorTypes.INVALID_TIME);
+    return true;
+  }
+  const now = new Date();
+  if (time.getTime() < now.getTime() - 180000) {
+    setInputError(errorTypes.PAST_TIME);
     return true;
   }
   return false;
