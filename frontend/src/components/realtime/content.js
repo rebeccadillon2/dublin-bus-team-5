@@ -13,8 +13,36 @@ import { Header } from "../journey";
 import { TableSkeleton } from "../skeleton";
 import { StopsSearch } from "../elements/form";
 import { MapContainerContext } from "../../App";
-import { getPayload, isUserAuthenticated } from "../../lib/auth";
 import { favouriteStop, getUser } from "../../lib/api";
+import { getPayload, isUserAuthenticated } from "../../lib/auth";
+
+function FavouriteSection({
+  selectedStop,
+  isInFavStops,
+  handleViewFavClick,
+  handleAddRemoveFav,
+}) {
+  return (
+    <div className='flex itesm-center justify-between'>
+      <div className='text-primary-red mr-2 mt-0.75 cursor-pointer'>
+        {selectedStop === null ? (
+          <></>
+        ) : isInFavStops() ? (
+          <AiFillHeart onClick={handleAddRemoveFav} />
+        ) : (
+          <AiOutlineHeart onClick={handleAddRemoveFav} />
+        )}
+      </div>
+      <div
+        onClick={handleViewFavClick}
+        className='flex items-center justify-center text-primary-blue active:text-dark-blue1 cursor-pointer text-sm pr-1'
+      >
+        <p className='pr-1'>Favourites</p>
+        <HiOutlineArrowNarrowRight />
+      </div>
+    </div>
+  );
+}
 
 export function RealTimeContent({
   panTo,
@@ -23,9 +51,8 @@ export function RealTimeContent({
   setSelectedStop,
 }) {
   const userId = getPayload().sub;
-
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [favStops, setFavStops] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,7 +68,6 @@ export function RealTimeContent({
     const getFavStops = async () => {
       try {
         const { data } = await getUser(userId);
-        console.log("data", data.favouritedStops);
         setFavStops(data.favouritedStops);
       } catch (e) {
         console.log(e);
@@ -89,39 +115,26 @@ export function RealTimeContent({
       <div className='flex items-center justify-between ml-1'>
         <Header variant={true} title={"Realtime"} />
         {isUserAuthenticated() && (
-          <div className='flex itesm-center justify-between'>
-            <div className='mr-2 mt-0.5'>
-              {console.log("ss", selectedStop)}
-              {selectedStop === null ? (
-                <></>
-              ) : isInFavStops() ? (
-                <AiFillHeart onClick={handleAddRemoveFav} />
-              ) : (
-                <AiOutlineHeart onClick={handleAddRemoveFav} />
-              )}
-            </div>
-            <div
-              onClick={handleViewFavClick}
-              className='flex items-center justify-center text-primary-blue active:text-dark-blue1 cursor-pointer text-sm pr-1'
-            >
-              <p className='pr-1'>Favourites</p>
-              <HiOutlineArrowNarrowRight />
-            </div>
-          </div>
+          <FavouriteSection
+            selectedStop={selectedStop}
+            isInFavStops={isInFavStops}
+            handleAddRemoveFav={handleAddRemoveFav}
+            handleViewFavClick={handleViewFavClick}
+          />
         )}
       </div>
       <div className='mb-4 mt-2'>
         <StopsSearch
-          selectedStop={selectedStop}
-          setSelectedStop={setSelectedStop}
           stops={allStops}
           searchTerm={searchTerm}
+          selectedStop={selectedStop}
           setSearchTerm={setSearchTerm}
+          setSelectedStop={setSelectedStop}
         />
       </div>
       <div className='pt-2'>
         {error ? (
-          <Error />
+          <Error variant={"bus-stop"} />
         ) : loading ? (
           <TableSkeleton />
         ) : displayValues.length > 0 ? (

@@ -6,6 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useTheme } from "../../../hooks";
 
 export function BasicDateTimePicker({ time, setTime }) {
+  const today = new Date();
   const [isDarkMode] = useTheme();
   const theme = isDarkMode
     ? {
@@ -33,6 +34,7 @@ export function BasicDateTimePicker({ time, setTime }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateTimePicker
+        minDate={today}
         InputProps={{
           style,
         }}

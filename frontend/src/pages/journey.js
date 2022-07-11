@@ -58,12 +58,12 @@ export function Journey() {
   const calculateRoute = async () => {
     const originVal = originRef.current.value;
     const destinationVal = destinationRef.current.value;
-    if (routeErrorCheck(originVal, destinationVal, setInputError)) return;
+    if (routeErrorCheck(originVal, destinationVal, setInputError, time)) return;
     const dirServ = new window.google.maps.DirectionsService();
 
     try {
+      setInputError(null);
       setLoading(true);
-      console.log("time", time);
       const results = await dirServ.route({
         origin: originVal,
         destination: destinationVal,
