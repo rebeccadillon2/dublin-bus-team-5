@@ -1,5 +1,10 @@
 import React from "react";
-import { favouriteStop, getAllStops, getUser } from "../lib/api";
+import {
+  favouriteStop,
+  getAllStops,
+  getForecastWeather,
+  getUser,
+} from "../lib/api";
 import { getPayload } from "../lib/auth";
 
 export function Testing() {
@@ -33,6 +38,15 @@ export function Testing() {
     }
   };
 
+  const handleGetForecastWeather = async () => {
+    try {
+      const { data } = await getForecastWeather();
+      console.log("wether", data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <div>
@@ -53,6 +67,12 @@ export function Testing() {
           className='p-2 rounded-lg bg-primary-green m-4'
         >
           Get all stops
+        </button>
+        <button
+          onClick={handleGetForecastWeather}
+          className='p-2 rounded-lg bg-primary-green m-4'
+        >
+          Get forecast weather
         </button>
       </div>
     </>
