@@ -25,10 +25,11 @@ export function Links() {
     navigate("/");
     setMapContainerType({ ...mapContainerType, type: "default" });
   };
-  // const handleHomeClick = () => {
-  //   navigate('/')
-  // }
 
+  const handleWeatherClick = () => {
+    navigate("/");
+    setMapContainerType({ ...mapContainerType, type: "weather" });
+  };
   return (
     <div className='LEFT flex justify-start items-center'>
       <div className='flex items-center'>
@@ -70,16 +71,19 @@ export function Links() {
             {/* </Link> */}
             <Link
               to='/'
-              className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
+              className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}
             >
               Routes
             </Link>
-            <Link
-              to='/'
-              className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
+            {/* <Link
+              to='/' */}
+            <div
+              onClick={handleWeatherClick}
+              className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}
             >
-              Fare Calculator
-            </Link>
+              Weather
+            </div>
+            {/* </Link> */}
           </div>
         </div>
       </div>
