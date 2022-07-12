@@ -29,6 +29,7 @@ export const PlaceType = {
   COFFEE: "cafe",
   HOTEL: "lodging",
   TOGGLE: "toggle",
+  REALTIME: "realtime",
   HOSPITAL: "hospital",
   PHARMACY: "pharmacy",
   RESTAURANT: "restaurant",

@@ -18,18 +18,27 @@ export function Links() {
 
   const handleStopsClick = () => {
     navigate("/");
-    setMapContainerType({ ...mapContainerType, type: "realtime" });
+    setMapContainerType({
+      ...mapContainerType,
+      type: "realtime",
+      place: "realtime",
+    });
   };
 
   const handleJourneyClick = () => {
     navigate("/");
-    setMapContainerType({ ...mapContainerType, type: "default" });
+    setMapContainerType({
+      ...mapContainerType,
+      type: "default",
+      place: null,
+    });
   };
 
   const handleWeatherClick = () => {
     navigate("/");
     setMapContainerType({ ...mapContainerType, type: "weather" });
   };
+
   return (
     <div className='LEFT flex justify-start items-center'>
       <div className='flex items-center'>
@@ -51,39 +60,30 @@ export function Links() {
         </div>
         <div className='hidden md:block md:ml-6'>
           <div className='flex space-x-4'>
-            {/* <Link
-              to={"/"} */}
             <div
               onClick={handleJourneyClick}
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300 cursor-pointer`}
             >
               Journey Planner
-              {/* </Link> */}
             </div>
-            {/* <Link
-              to='/stops' */}
             <div
               onClick={handleStopsClick}
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}
             >
               Real Time
             </div>
-            {/* </Link> */}
             <Link
               to='/'
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}
             >
               Routes
             </Link>
-            {/* <Link
-              to='/' */}
             <div
               onClick={handleWeatherClick}
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}
             >
               Weather
             </div>
-            {/* </Link> */}
           </div>
         </div>
       </div>

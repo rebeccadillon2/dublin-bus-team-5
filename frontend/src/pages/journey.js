@@ -30,6 +30,7 @@ import {
   MapRefContext,
   MapContainerContext,
   ContainerType,
+  PlaceType,
 } from "../App";
 import { getAllStops } from "../lib/api";
 
@@ -168,7 +169,8 @@ export function Journey() {
         onLoad={onMapLoad}
       >
         {mapContainerType.type === ContainerType.REALTIME ||
-        mapContainerType.type === ContainerType.FAV_STOPS ? (
+        mapContainerType.type === ContainerType.FAV_STOPS ||
+        mapContainerType.place === PlaceType.REALTIME ? (
           <>
             {allStops && (
               <MarkerClusterer>
