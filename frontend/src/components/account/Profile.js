@@ -6,7 +6,7 @@ import { LogoutModal } from "../modal";
 import { AccountSection, Card } from "../container";
 import { SecondaryButton } from "../elements/button";
 import { EditProfileImage, EditProfileEmail } from ".";
-
+//update file name
 export function ProfileSettings() {
   const [isDarkMode] = useTheme();
   const [popup, setPopup] = useState(false);
@@ -45,18 +45,20 @@ export function ProfileSettings() {
             Email
           </p>
           <p className='text-sm'>Change the email linked with your account.</p>
-          {isEditingEmail && (
-            <EditProfileEmail
-              setPopup={setPopup}
-              setPopupText={setPopupText}
-              setIsEditingEmail={setIsEditingEmail}
-            />
-          )}
+          <EditProfileEmail
+            setPopup={setPopup}
+            setPopupText={setPopupText}
+            setIsEditingEmail={setIsEditingEmail}
+          />
         </div>
         <SecondaryButton
-          className='absolute top-8 right-4'
-          onClick={handleEditEmailClick}
           type='action'
+          aria-expanded='false'
+          data-bs-toggle='collapse'
+          onClick={handleEditEmailClick}
+          aria-controls='collapseEditEmail'
+          className='absolute top-8 right-4'
+          data-bs-target='#collapseEditEmail'
         >
           {isEditingEmail ? "Close" : "Edit"}
         </SecondaryButton>
@@ -74,18 +76,20 @@ export function ProfileSettings() {
           <p className='text-sm'>
             Change the profile image linked with your account.
           </p>
-          {isEditingProfileImage && (
-            <EditProfileImage
-              setPopup={setPopup}
-              setPopupText={setPopupText}
-              setIsEditingProfileImage={setIsEditingProfileImage}
-            />
-          )}
+          <EditProfileImage
+            setPopup={setPopup}
+            setPopupText={setPopupText}
+            setIsEditingProfileImage={setIsEditingProfileImage}
+          />
         </div>
         <SecondaryButton
-          className='absolute top-8 right-4'
-          onClick={handleEditProfileImageClick}
           type='action'
+          aria-expanded='false'
+          data-bs-toggle='collapse'
+          aria-controls='collapseEditImage'
+          className='absolute top-8 right-4'
+          data-bs-target='#collapseEditImage'
+          onClick={handleEditProfileImageClick}
         >
           {isEditingProfileImage ? "Close" : "Edit"}
         </SecondaryButton>

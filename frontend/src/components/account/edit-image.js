@@ -64,7 +64,7 @@ export function EditProfileImage({
           setTimeout(() => {
             setPopup(false);
           }, 2000);
-          setIsEditingProfileImage(false);
+          // setIsEditingProfileImage(false);
         }
       });
     } catch (err) {
@@ -75,42 +75,40 @@ export function EditProfileImage({
   };
 
   return (
-    <>
-      <div>
-        {!isUploading ? (
-          <>
-            {userDetails.profileImage && (
-              <div className='width-[200px] my-3'>
-                <img
-                  src={userDetails.profileImage}
-                  alt='selected'
-                  className='w-[100px] h-[100px] rounded-full'
-                />
-              </div>
-            )}
-            <div className='mt-4'>
-              <input
-                type='file'
-                id='files'
-                className='hidden'
-                name={"profileImage"}
-                onChange={(e) => handleUpload(e)}
+    <div className='collapse' id='collapseEditImage'>
+      {!isUploading ? (
+        <>
+          {userDetails.profileImage && (
+            <div className='width-[200px] my-3'>
+              <img
+                src={userDetails.profileImage}
+                alt='selected'
+                className='w-[100px] h-[100px] rounded-full'
               />
-              <label
-                className='upload-btn bg-primary-blue py-1.5 px-3 rounded-xl text-white'
-                htmlFor='files'
-              >
-                Upload Image
-              </label>
-              <div className='flex items-center mt-4 h-4'>
-                {error && <p className='text-primary-red text-xs'>{error}</p>}
-              </div>
             </div>
-          </>
-        ) : (
-          <ImageSkeleton />
-        )}
-      </div>
-    </>
+          )}
+          <div className='mt-4'>
+            <input
+              type='file'
+              id='files'
+              className='hidden'
+              name={"profileImage"}
+              onChange={(e) => handleUpload(e)}
+            />
+            <label
+              className='upload-btn bg-primary-blue py-1.5 px-3 rounded-xl text-white'
+              htmlFor='files'
+            >
+              Upload Image
+            </label>
+            <div className='flex items-center mt-4 h-4'>
+              {error && <p className='text-primary-red text-xs'>{error}</p>}
+            </div>
+          </div>
+        </>
+      ) : (
+        <ImageSkeleton />
+      )}
+    </div>
   );
 }

@@ -1,20 +1,20 @@
 import { CgGym } from "react-icons/cg";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiFillBank } from "react-icons/ai";
 import { BiRestaurant } from "react-icons/bi";
 import { RiHotelBedFill } from "react-icons/ri";
 import {
   MdExpandLess,
-  MdOutlineMoreHoriz,
-  MdOutlineTakeoutDining,
   MdOutlineCoffee,
-  MdOutlineDeliveryDining,
-  MdOutlineLocalPharmacy,
+  MdOutlineMoreHoriz,
   MdOutlineLocalHospital,
+  MdOutlineLocalPharmacy,
+  MdOutlineTakeoutDining,
+  MdOutlineDeliveryDining,
 } from "react-icons/md";
 
 import { useTheme } from "../../hooks";
-import { ContainerType, PlaceType } from "./container";
+import { ContainerType, MapContainerContext, PlaceType } from "../../App";
 
 function OptionCircle(props) {
   const {
@@ -28,9 +28,10 @@ function OptionCircle(props) {
     seeMore,
     direction,
     toggleSeeMore,
-    setContainerType,
     ...rest
   } = props;
+
+  const { setMapContainerType } = useContext(MapContainerContext);
 
   const [isDarkMode] = useTheme();
   const Icon = icon;
@@ -49,7 +50,7 @@ function OptionCircle(props) {
   const iconContainerClasses = `flex items-center justify-center h-12 w-12 rounded-full ${bgColor} shadow-md `;
 
   const handleClick = () => {
-    setContainerType({ type: ContainerType.EXPLORE, place: handle });
+    setMapContainerType({ type: ContainerType.EXPLORE, place: handle });
   };
 
   return (
@@ -81,11 +82,12 @@ function OptionCircle(props) {
 }
 
 function ExtraOptions(props) {
-  const { seeMore, setContainerType, ...rest } = props;
+  const { seeMore, ...rest } = props;
 
   return (
     <div
-      className='flex justify-around items-start border-t border-system-grey3 mb-6'
+      className='flex justify-around items-start border-t border-system-grey3 mb-6 collapse'
+      id='collapseOptions'
       {...rest}
     >
       <div className='flex flex-col items-start justify-start mt-3'>
@@ -98,7 +100,6 @@ function ExtraOptions(props) {
           bgColor={"bg-system-grey5"}
           handle={PlaceType.BANK}
           icon={AiFillBank}
-          setContainerType={setContainerType}
         />
         <OptionCircle
           icon2={null}
@@ -109,7 +110,6 @@ function ExtraOptions(props) {
           handle={PlaceType.COFFEE}
           bgColor={"bg-system-grey5"}
           icon={MdOutlineCoffee}
-          setContainerType={setContainerType}
         />
         <OptionCircle
           icon2={null}
@@ -120,7 +120,6 @@ function ExtraOptions(props) {
           handle={PlaceType.GYM}
           bgColor={"bg-system-grey5"}
           icon={CgGym}
-          setContainerType={setContainerType}
         />
       </div>
       <div className='flex flex-col items-start justify-start mt-3'>
@@ -133,7 +132,6 @@ function ExtraOptions(props) {
           handle={PlaceType.TAKEOUT}
           bgColor={"bg-system-grey5"}
           icon={MdOutlineDeliveryDining}
-          setContainerType={setContainerType}
         />
         <OptionCircle
           icon2={null}
@@ -144,7 +142,6 @@ function ExtraOptions(props) {
           handle={PlaceType.PHARMACY}
           bgColor={"bg-system-grey5"}
           icon={MdOutlineLocalPharmacy}
-          setContainerType={setContainerType}
         />
         <OptionCircle
           icon2={null}
@@ -155,15 +152,13 @@ function ExtraOptions(props) {
           handle={PlaceType.HOSPITAL}
           bgColor={"bg-system-grey5"}
           icon={MdOutlineLocalHospital}
-          setContainerType={setContainerType}
         />
       </div>
     </div>
   );
 }
 
-export function Explore(props) {
-  const { setContainerType, ...rest } = props;
+export function Explore() {
   const [seeMore, setSeeMore] = useState(false);
   const [isDarkMode] = useTheme();
 
@@ -177,11 +172,11 @@ export function Explore(props) {
   };
 
   return (
-    <div {...rest}>
-      <div className='mt-10 mb-4' {...rest}>
+    <div>
+      <div className='mt-10 mb-4'>
         <p className={headerTextClasses}>Explore</p>
       </div>
-      <div className='flex items-center justify-between mb-2' {...rest}>
+      <div className='flex items-center justify-between mb-2'>
         <OptionCircle
           icon2={null}
           toggle={false}
@@ -191,7 +186,6 @@ export function Explore(props) {
           icon={BiRestaurant}
           bgColor={" bg-[#188038]"}
           handle={PlaceType.RESTAURANT}
-          setContainerType={setContainerType}
         />
         <OptionCircle
           icon2={null}
@@ -202,7 +196,6 @@ export function Explore(props) {
           icon={RiHotelBedFill}
           bgColor={"bg-[#129eaf]"}
           handle={PlaceType.HOTEL}
-          setContainerType={setContainerType}
         />
         <OptionCircle
           icon2={null}
@@ -213,25 +206,29 @@ export function Explore(props) {
           bgColor={"bg-[#c5221f]"}
           handle={PlaceType.TAKEOUT}
           icon={MdOutlineTakeoutDining}
-          setContainerType={setContainerType}
         />
-        <OptionCircle
-          title='More'
-          title2='Less'
-          toggle={true}
-          seeMore={seeMore}
-          direction={"col"}
-          icon2={MdExpandLess}
-          handle={PlaceType.TOGGLE}
-          icon={MdOutlineMoreHoriz}
-          bgColor={"bg-system-grey5"}
-          toggleSeeMore={toggleSeeMore}
-          setContainerType={setContainerType}
-        />
+        <button
+          aria-expanded='false'
+          data-bs-toggle='collapse'
+          aria-controls='collapseOptions'
+          data-bs-target='#collapseOptions'
+        >
+          <OptionCircle
+            title='More'
+            title2='Less'
+            toggle={true}
+            seeMore={seeMore}
+            direction={"col"}
+            icon2={MdExpandLess}
+            handle={PlaceType.TOGGLE}
+            icon={MdOutlineMoreHoriz}
+            bgColor={"bg-system-grey5"}
+            toggleSeeMore={toggleSeeMore}
+          />
+        </button>
       </div>
-      {seeMore && (
-        <ExtraOptions seeMore={seeMore} setContainerType={setContainerType} />
-      )}
+      {/* {seeMore && <ExtraOptions seeMore={seeMore} />} */}
+      <ExtraOptions seeMore={seeMore} />
     </div>
   );
 }

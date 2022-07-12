@@ -1,15 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useTheme } from "../../hooks";
+import { MapContainerContext } from "../../App";
 
 export function Links() {
+  const navigate = useNavigate();
   const [isDarkMode] = useTheme();
+  const { mapContainerType, setMapContainerType } =
+    useContext(MapContainerContext);
+
   const themeClasses = `${
     isDarkMode
       ? "text-system-grey3 hover:text-system-grey1"
       : "text-system-grey5 hover:text-system-grey7"
   }`;
+
+  const handleStopsClick = () => {
+    navigate("/");
+    setMapContainerType({ ...mapContainerType, type: "realtime" });
+  };
+
+  const handleJourneyClick = () => {
+    navigate("/");
+    setMapContainerType({ ...mapContainerType, type: "default" });
+  };
+  // const handleHomeClick = () => {
+  //   navigate('/')
+  // }
 
   return (
     <div className='LEFT flex justify-start items-center'>
@@ -32,18 +50,24 @@ export function Links() {
         </div>
         <div className='hidden md:block md:ml-6'>
           <div className='flex space-x-4'>
-            <Link
-              to={"/"}
-              className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
+            {/* <Link
+              to={"/"} */}
+            <div
+              onClick={handleJourneyClick}
+              className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300 cursor-pointer`}
             >
               Journey Planner
-            </Link>
-            <Link
-              to='/'
-              className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}
+              {/* </Link> */}
+            </div>
+            {/* <Link
+              to='/stops' */}
+            <div
+              onClick={handleStopsClick}
+              className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}
             >
-              Stops
-            </Link>
+              Real Time
+            </div>
+            {/* </Link> */}
             <Link
               to='/'
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	`}

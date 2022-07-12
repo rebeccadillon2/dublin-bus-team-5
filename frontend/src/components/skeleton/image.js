@@ -9,13 +9,13 @@ export function ImageSkeleton() {
       <div className='flex animate-pulse flex flex-col items-start h-full justify-center'>
         <div
           className={`${
-            isDarkMode ? "bg-system-grey6" : "bg-system-grey3"
+            isDarkMode ? "bg-system-grey5" : "bg-system-grey3"
           } w-25 h-25 rounded-full `}
         ></div>
         <div className='flex flex-col '>
           <div
             className={`${
-              isDarkMode ? "bg-system-grey6" : "bg-system-grey3"
+              isDarkMode ? "bg-system-grey5" : "bg-system-grey3"
             } w-34 h-8 rounded-xl mt-2`}
           ></div>
         </div>

@@ -25,6 +25,8 @@ export function Error(props) {
       </div>
       {variant === "default" ? (
         <p>Ow snap! something seems to have gone wrong...</p>
+      ) : variant === "bus-stop" ? (
+        <p>No available information for this stop</p>
       ) : (
         <p>We couldn't find anything for you to explore...</p>
       )}

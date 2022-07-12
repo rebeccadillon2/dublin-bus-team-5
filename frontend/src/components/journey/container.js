@@ -1,41 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import {
+  ContainerType,
+  MapDetailsContext,
+  AuthenticatedContext,
+} from "../../App";
 
 import { LoadingSpinner } from "../loading";
-import { ContentContainer } from "../container";
 import ConnectSpotify from "../spotify/connect";
+import { ContentContainer } from "../container";
+import { useMapContainerType } from "../../hooks";
 import { SpotifyContent } from "../spotify/content";
-
-import { RouteOptions, JourneyForm, ExploreContent } from ".";
-import { AuthenticatedContext, MapDetailsContext } from "../../App";
-
-export const ContainerType = {
-  DEFAULT: "default",
-  EXPLORE: "explore",
-  SPOTIFY: "spotify",
-};
-
-export const PlaceType = {
-  GYM: "gym",
-  BANK: "bank",
-  COFFEE: "cafe",
-  HOTEL: "lodging",
-  TOGGLE: "toggle",
-  HOSPITAL: "hospital",
-  PHARMACY: "pharmacy",
-  RESTAURANT: "restaurant",
-  TAKEOUT: "meal_takeaway",
-  GROCERIES: "supermarket",
-};
+import { RealTimeContent, FavouriteStops } from "../realtime";
+import { RouteOptions, JourneyForm, ExploreContent, Header } from ".";
 
 export function JourneyContainer(props) {
+  const [mapContainerType] = useMapContainerType();
+  const { mapDetails } = useContext(MapDetailsContext);
   const { isAuthenticated } = useContext(AuthenticatedContext);
 
-  const [containerType, setContainerType] = useState({
-    type: ContainerType.DEFAULT,
-    place: null,
-  });
-
   const {
+    panTo,
+    allStops,
+    selectedStop,
+    setSelectedStop,
     time,
     setTime,
     loading,
@@ -49,53 +36,53 @@ export function JourneyContainer(props) {
     calculateRoute,
     setUserLocation,
   } = props;
-  const { mapDetails } = useContext(MapDetailsContext);
 
   return (
     <ContentContainer>
-      {containerType.type === ContainerType.DEFAULT ? (
-        <div className='input-container overflow-y-scroll	md:mt-2'>
-          <JourneyForm
-            time={time}
-            setTime={setTime}
-            originRef={originRef}
-            inputError={inputError}
-            clearRoute={clearRoute}
-            handleFocus={handleFocus}
-            inputOptions={inputOptions}
-            handleSwitch={handleSwitch}
-            calculateRoute={calculateRoute}
-            destinationRef={destinationRef}
-            setUserLocation={setUserLocation}
-          />
-          {loading ? (
-            <div className='mt-20'>
-              <LoadingSpinner />
-            </div>
-          ) : (
-            mapDetails.resObj && (
-              <RouteOptions setContainerType={setContainerType} />
-            )
-          )}
-        </div>
-      ) : containerType.type === ContainerType.EXPLORE ? (
-        <ExploreContent
-          setContainerType={setContainerType}
-          containerType={containerType}
+      {mapContainerType.type === ContainerType.DEFAULT ? (
+        <>
+          <div className='md:flex hidden'>
+            <Header variant={true} title={"Search"} />
+          </div>
+          <div className='input-container overflow-y-scroll	md:mt-2'>
+            <JourneyForm
+              time={time}
+              setTime={setTime}
+              originRef={originRef}
+              inputError={inputError}
+              clearRoute={clearRoute}
+              handleFocus={handleFocus}
+              inputOptions={inputOptions}
+              handleSwitch={handleSwitch}
+              calculateRoute={calculateRoute}
+              destinationRef={destinationRef}
+              setUserLocation={setUserLocation}
+            />
+            {loading ? (
+              <div className='mt-20'>
+                <LoadingSpinner />
+              </div>
+            ) : (
+              mapDetails.resObj && <RouteOptions />
+            )}
+            {isAuthenticated && <ConnectSpotify />}
+          </div>
+        </>
+      ) : mapContainerType.type === ContainerType.EXPLORE ? (
+        <ExploreContent />
+      ) : mapContainerType.type === ContainerType.SPOTIFY ? (
+        <SpotifyContent />
+      ) : mapContainerType.type === ContainerType.REALTIME ? (
+        <RealTimeContent
+          panTo={panTo}
+          allStops={allStops}
+          selectedStop={selectedStop}
+          setSelectedStop={setSelectedStop}
         />
-      ) : containerType.type === ContainerType.SPOTIFY ? (
-        <SpotifyContent
-          setContainerType={setContainerType}
-          containerType={containerType}
-        />
+      ) : mapContainerType.type === ContainerType.FAV_STOPS ? (
+        <FavouriteStops setSelectedStop={setSelectedStop} />
       ) : (
         <></>
-      )}
-      {isAuthenticated && containerType.type === ContainerType.DEFAULT && (
-        <ConnectSpotify
-          containerType={containerType}
-          setContainerType={setContainerType}
-        />
       )}
     </ContentContainer>
   );

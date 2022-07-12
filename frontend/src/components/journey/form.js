@@ -1,12 +1,11 @@
 import React from "react";
-import { Autocomplete } from "@react-google-maps/api";
 import { IoMdLocate } from "react-icons/io";
+import { Autocomplete } from "@react-google-maps/api";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 
 import { currentBrowser } from ".";
 import { useTheme } from "../../hooks";
-
-import { Input } from "../elements/form";
+import { BasicDateTimePicker } from "../elements/form";
 
 export function JourneyForm(props) {
   const {
@@ -60,23 +59,15 @@ export function JourneyForm(props) {
           <HiOutlineSwitchVertical
             onClick={handleSwitch}
             className={`h-7 w-7 hover:cursor-pointer ${
-              isDarkMode ? "text-system-grey4" : "text-system-grey5"
+              isDarkMode
+                ? "text-system-grey4 active:text-system-grey5"
+                : "text-system-grey5 active:text-system-grey3"
             }`}
           />
         </div>
       </div>
       <div className='h-2' />
-      <Input
-        error={inputError}
-        type='text'
-        value={time}
-        variant='small'
-        onChange={setTime}
-        // onFocus={handleFocus}
-        placeholder='Select a time'
-        label='Select a time'
-        className='max-h-10'
-      />
+      <BasicDateTimePicker time={time} setTime={setTime} />
       {inputError ? (
         <div className='flex items-center h-6'>
           <p className='py-0 my-0 px-2 text-xs text-primary-red'>

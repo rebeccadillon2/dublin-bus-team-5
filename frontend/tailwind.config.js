@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,html}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+  ],
   darkMode: "media", // or 'media' or 'class'
   theme: {
     maxWidth: {
@@ -103,6 +106,7 @@ module.exports = {
         23.25: "5.813rem",
         26: "6.5rem",
         33.5: "8.375rem",
+        43: "10.75rem",
         44.752: "11.188rem",
         54: "13.5rem",
         56: "14rem",
@@ -133,6 +137,7 @@ module.exports = {
         31.5: "7.875rem",
         33.5: "8.375rem",
         37.5: "9.375",
+        43: "10.75rem",
         44.752: "11.188rem",
         53.5: "13.375rem",
         54: "13.5rem",
@@ -322,5 +327,5 @@ module.exports = {
     },
     opacity: ({ after }) => after(["disabled"]),
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin"), require("@tailwindcss/forms")],
 };
