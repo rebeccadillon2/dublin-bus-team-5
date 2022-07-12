@@ -5,7 +5,8 @@ import {
   AuthenticatedContext,
 } from "../../App";
 
-import { LoadingSpinner } from "../loading";
+import { WeatherContent } from "../weather";
+import { TableSkeleton } from "../skeleton";
 import ConnectSpotify from "../spotify/connect";
 import { ContentContainer } from "../container";
 import { useMapContainerType } from "../../hooks";
@@ -59,8 +60,8 @@ export function JourneyContainer(props) {
               setUserLocation={setUserLocation}
             />
             {loading ? (
-              <div className='mt-20'>
-                <LoadingSpinner />
+              <div className='mt-6'>
+                <TableSkeleton />
               </div>
             ) : (
               mapDetails.resObj && <RouteOptions />
@@ -81,6 +82,8 @@ export function JourneyContainer(props) {
         />
       ) : mapContainerType.type === ContainerType.FAV_STOPS ? (
         <FavouriteStops setSelectedStop={setSelectedStop} />
+      ) : mapContainerType.type === ContainerType.WEATHER ? (
+        <WeatherContent />
       ) : (
         <></>
       )}

@@ -20,6 +20,7 @@ export const ContainerType = {
   SPOTIFY: "spotify",
   REALTIME: "realtime",
   FAV_STOPS: "fav_stops",
+  WEATHER: "weather",
 };
 
 export const PlaceType = {

@@ -58,6 +58,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-spotify-web-playback": "^0.10.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tw-elements": "^1.0.0-alpha12"
   }
 }
