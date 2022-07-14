@@ -1,4 +1,4 @@
-import { getShortRouteName, getStopTimes } from "../../lib/api";
+import { getUpcomingStopTimesRoutes } from "../../lib/api";
 
 export const getMinutes = (hms) => {
   const a = hms.split(":");
@@ -14,9 +14,24 @@ export const panToSelectedStop = (panTo, selectedStop) => {
 
 export const getCurrentTime = () => {
   const now = new Date();
-  return String(
-    now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
-  );
+  let hrs = now.getHours();
+  let mins = now.getMinutes();
+  let secs = now.getSeconds();
+  hrs = String(hrs).length > 1 ? hrs : `0${String(hrs)}`;
+  mins = String(mins).length > 1 ? mins : `0${String(mins)}`;
+  secs = String(secs).length > 1 ? hrs : `0${String(secs)}`;
+
+  return String(hrs + ":" + mins + ":" + secs);
+};
+
+export const getETA = (time, arrivalTime) => {
+  const now = getMinutes(time);
+  const arrivalMin = getMinutes(arrivalTime);
+  const diff = arrivalMin - now;
+  if (diff < 1) {
+    return 1;
+  }
+  return diff;
 };
 
 export const getDisplayData = async (
@@ -27,58 +42,11 @@ export const getDisplayData = async (
   setError
 ) => {
   try {
-    setError(false);
     setLoading(true);
-    const { data } = await getStopTimes(selectedStop.stopId, time);
-    console.log("check", data);
-    const res = await getShortRouteName(
-      data[0].tripId,
-      data[1].tripId,
-      data[2].tripId,
-      data[3].tripId
-    );
-
-    const newState = data.map((obj) => {
-      const nowMins = getMinutes(time);
-      const temp = getMinutes(obj.arrivalTime) - nowMins;
-      const arrivingIn = temp === 0 ? 1 : temp;
-      if (obj.tripId === res.data[0].tripId) {
-        return {
-          ...obj,
-          routeShortName: res.data[0].routeShortName,
-          arrivingIn: arrivingIn,
-        };
-      }
-      if (obj.tripId === res.data[1].tripId) {
-        return {
-          ...obj,
-          routeShortName: res.data[1].routeShortName,
-          arrivingIn: arrivingIn,
-        };
-      }
-      if (obj.tripId === res.data[2].tripId) {
-        return {
-          ...obj,
-          routeShortName: res.data[2].routeShortName,
-          arrivingIn: arrivingIn,
-        };
-      }
-      if (obj.tripId === res.data[3].tripId) {
-        return {
-          ...obj,
-          routeShortName: res.data[3].routeShortName,
-          arrivingIn: arrivingIn,
-        };
-      }
-      return {
-        ...obj,
-        routeShortName: res.data[0].routeShortName,
-        arrivingIn: arrivingIn,
-      };
-    });
+    const { data } = await getUpcomingStopTimesRoutes(selectedStop.id, time);
+    console.log("data", data);
+    setDisplayValues(data);
     setLoading(false);
-    console.log("ns", newState);
-    setDisplayValues(newState);
   } catch (e) {
     setLoading(false);
     setError(true);

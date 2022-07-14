@@ -69,9 +69,9 @@ export function StopsSearch({
                       : "bg-primary-white text-system-grey5"
                   }`}
                 >
-                  {filteredStops().map((stop) => (
+                  {filteredStops().map((stop, idx) => (
                     <Combobox.Option
-                      key={stop.stopId}
+                      key={`${stop.stopId}${idx}`}
                       value={stop}
                       className={({ active }) =>
                         classNames(
