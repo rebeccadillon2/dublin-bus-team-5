@@ -1,8 +1,9 @@
 import React from "react";
 
 import { useTheme } from "../../hooks";
+import { getETA } from "./helpers";
 
-export function TimeTable({ displayValues }) {
+export function TimeTable({ time, displayValues }) {
   const [isDarkMode] = useTheme();
 
   return (
@@ -27,6 +28,7 @@ export function TimeTable({ displayValues }) {
           </tr>
           {displayValues.map((value, idx) => (
             <tr
+              key={`${value.id}${idx}`}
               className={`flex justify-around py-1 text-sm  ${
                 isDarkMode ? "text-system-grey3" : "text-system-grey6"
               } ${
@@ -36,12 +38,20 @@ export function TimeTable({ displayValues }) {
                   ? "border-b border-b-system-grey6"
                   : "border-b border-b-system-grey2"
               }`}
-              key={idx}
             >
               <td className='min-w-40 text-center'>{value.routeShortName}</td>
               <td className='min-w-40 text-center'>
-                {value.arrivingIn} {value.arrivingIn < 2 ? "min" : "mins"}
+                {String(getETA(time, value.arrivalTime))}
+                {getETA(time, value.arrivalTime) === 1 ? " min" : " mins"}
               </td>
+              {console.log(
+                time,
+                "-",
+                value.arrivalTime,
+                "-",
+                getETA(time, value.arrivalTime)
+              )}
+              {}
             </tr>
           ))}
         </tbody>

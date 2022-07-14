@@ -10,6 +10,7 @@ import {
 } from ".";
 import { Error } from "../error";
 import { Header } from "../journey";
+import { useTheme } from "../../hooks";
 import { TableSkeleton } from "../skeleton";
 import { StopsSearch } from "../elements/form";
 import { MapContainerContext } from "../../App";
@@ -44,6 +45,16 @@ function FavouriteSection({
   );
 }
 
+function NoMoreBuses() {
+  const [isDarkMode] = useTheme();
+  const classes = `${
+    isDarkMode ? "text-system-grey3" : "text-system-grey6"
+  } text-sm pl-2`;
+  return (
+    <div className={classes}>No more buses arriving at this stop today</div>
+  );
+}
+
 export function RealTimeContent({
   panTo,
   allStops,
@@ -54,6 +65,7 @@ export function RealTimeContent({
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [favStops, setFavStops] = useState(null);
+  const [times, setTimes] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [displayValues, setDisplayValues] = useState([]);
@@ -82,6 +94,7 @@ export function RealTimeContent({
     }
     panToSelectedStop(panTo, selectedStop);
     const time = getCurrentTime();
+    setTimes(time);
     console.log("currentTime", time);
     console.log("selectedStop", selectedStop);
     getDisplayData(time, selectedStop, setDisplayValues, setLoading, setError);
@@ -90,7 +103,7 @@ export function RealTimeContent({
 
   const handleAddRemoveFav = async () => {
     try {
-      const { data } = await favouriteStop(selectedStop.stopId, userId);
+      const { data } = await favouriteStop(selectedStop.id, userId);
       console.log("favRes", data);
       const res = await getUser(userId);
       setFavStops(res.data.favouritedStops);
@@ -106,7 +119,7 @@ export function RealTimeContent({
       }, 250);
     } else {
       if (favStops.length < 1) return false;
-      return favStops.find((stop) => stop.stopId === selectedStop.stopId);
+      return favStops.find((stop) => stop.id === selectedStop.id);
     }
   };
 
@@ -138,9 +151,9 @@ export function RealTimeContent({
         ) : loading ? (
           <TableSkeleton />
         ) : displayValues.length > 0 ? (
-          <TimeTable displayValues={displayValues} />
+          <TimeTable time={times} displayValues={displayValues} />
         ) : (
-          <></>
+          <NoMoreBuses />
         )}
       </div>
       <div></div>
