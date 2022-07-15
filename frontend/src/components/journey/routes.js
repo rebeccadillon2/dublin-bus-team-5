@@ -37,7 +37,11 @@ function TravelType(props) {
         <div className='flex items-center bg-yellow-500 rounded px-1 text-primary-black'>
           <FaBus className='' />
           <div className='pl-1'>
-            <p>{step.transit.line.short_name}</p>
+            <p>
+              {step.transit.line.short_name
+                ? step.transit.line.short_name
+                : step.transit.line.name}
+            </p>
           </div>
         </div>
       ) : (
