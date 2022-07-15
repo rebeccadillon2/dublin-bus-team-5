@@ -69,7 +69,7 @@ export function Journey() {
         origin: originVal,
         destination: destinationVal,
         travelMode: window.google.maps.TravelMode.TRANSIT,
-        transitOptions: { modes: ["BUS"] },
+        transitOptions: { departureTime: time, modes: ["BUS"] },
         provideRouteAlternatives: true,
       });
 
