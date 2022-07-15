@@ -153,7 +153,7 @@ export function RealTimeContent({
         ) : displayValues.length > 0 ? (
           <TimeTable time={times} displayValues={displayValues} />
         ) : (
-          <NoMoreBuses />
+          selectedStop && <NoMoreBuses />
         )}
       </div>
       <div></div>
