@@ -11,12 +11,12 @@ export function RoutesContent({ allRoutes, selectedRoute, setSelectedRoute }) {
   // const [favRoutes, setFavRoutes] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    if (selectedRoute === null) {
-      return;
-    }
-    console.log("New route selected");
-  }, [selectedRoute]);
+  // useEffect(() => {
+  //   if (selectedRoute === null) {
+  //     return;
+  //   }
+  //   console.log("New route selected");
+  // }, [selectedRoute]);
 
   return (
     <div>

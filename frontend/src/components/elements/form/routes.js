@@ -57,6 +57,7 @@ export function RoutesSearch({
                 }`}
                 onChange={(event) => setSearchTerm(event.target.value)}
                 displayValue={(route) =>
+                  selectedRoute &&
                   `${route?.routeId_RouteShortName}: ${route?.headsign}`
                 }
               />

@@ -23,7 +23,7 @@ import {
   getMapContainerStyle,
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
-import { getAllRoutes, getAllStops } from "../lib/api";
+import { getAllRoutes, getAllStops, getRouteStopsSingle } from "../lib/api";
 import { LoadingSpinner } from "../components/loading";
 import { useWindowSize, useTheme, useExpanded } from "../hooks";
 import {
@@ -50,6 +50,7 @@ export function Journey() {
 
   const [allRoutes, setAllRoutes] = useState(null);
   const [selectedRoute, setSelectedRoute] = useState(null);
+  const [selectedRouteMarkers, setSelectedRouteMarkers] = useState(null);
 
   const [allStops, setAllStops] = useState(null);
   const [selectedStop, setSelectedStop] = useState(null);
@@ -144,10 +145,35 @@ export function Journey() {
     getAllRoutesData();
   }, []);
 
-  const panTo = useCallback(({ lat, lng }) => {
+  const panTo = useCallback(({ lat, lng }, zoom) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(20);
+    mapRef.current.setZoom(zoom);
   }, []);
+
+  useEffect(() => {
+    if (selectedRoute === null) {
+      return;
+    }
+    console.log("sr", selectedRoute);
+    const getRouteMarkers = async () => {
+      try {
+        const { data } = await getRouteStopsSingle(
+          selectedRoute.routeId,
+          selectedRoute.headsign
+        );
+        console.log("markers:", data);
+        setSelectedRouteMarkers(data);
+        const mid = Math.floor(data.length / 2);
+        const lat = parseFloat(data[mid].stopId_StopLat);
+        const lng = parseFloat(data[mid].stopId_StopLon);
+        panTo({ lat, lng }, 12);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getRouteMarkers();
+    console.log("New route selected");
+  }, [selectedRoute]);
 
   if (!isLoaded)
     return (
@@ -207,7 +233,18 @@ export function Journey() {
         ) : mapContainerType.type === ContainerType.ROUTES ||
           mapContainerType.type === ContainerType.FAV_ROUTES ||
           mapContainerType.place === PlaceType.ROUTES ? (
-          <></>
+          <>
+            {selectedRouteMarkers &&
+              selectedRouteMarkers.map((marker, idx) => (
+                <Marker
+                  key={`${marker.stopId}`}
+                  position={{
+                    lat: marker.stopId_StopLat,
+                    lng: marker.stopId_StopLon,
+                  }}
+                />
+              ))}
+          </>
         ) : (
           <>
             {mapDetails.markers &&
