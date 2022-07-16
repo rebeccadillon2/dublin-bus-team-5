@@ -21,6 +21,8 @@ export const ContainerType = {
   REALTIME: "realtime",
   FAV_STOPS: "fav_stops",
   WEATHER: "weather",
+  ROUTES: "routes",
+  FAV_ROUTES: "fav_routes",
 };
 
 export const PlaceType = {
@@ -29,6 +31,7 @@ export const PlaceType = {
   COFFEE: "cafe",
   HOTEL: "lodging",
   TOGGLE: "toggle",
+  ROUTES: "routes",
   REALTIME: "realtime",
   HOSPITAL: "hospital",
   PHARMACY: "pharmacy",

@@ -46,6 +46,15 @@ export function MobileMenu() {
     });
   };
 
+  const handleRoutesClick = () => {
+    navigate("/");
+    setMapContainerType({
+      ...mapContainerType,
+      type: "routes",
+      place: "routes",
+    });
+  };
+
   const handleJourneyClick = () => {
     navigate("/");
     setMapContainerType({
@@ -84,6 +93,7 @@ export function MobileMenu() {
           Real Time
         </Disclosure.Button>
         <Disclosure.Button
+          onClick={handleRoutesClick}
           className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
         >
           Routes

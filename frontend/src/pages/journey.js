@@ -48,6 +48,8 @@ export function Journey() {
   const { mapContainerType } = useContext(MapContainerContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
 
+  // const [allRoutes, setAllRoutes] = useState(null)
+
   const [selectedStop, setSelectedStop] = useState(null);
   const [allStops, setAllStops] = useState(null);
 
@@ -186,6 +188,10 @@ export function Journey() {
               </MarkerClusterer>
             )}
           </>
+        ) : mapContainerType.type === ContainerType.ROUTES ||
+          mapContainerType.type === ContainerType.FAV_ROUTES ||
+          mapContainerType.place === PlaceType.ROUTES ? (
+          <></>
         ) : (
           <>
             {mapDetails.markers &&

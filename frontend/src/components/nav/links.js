@@ -25,6 +25,15 @@ export function Links() {
     });
   };
 
+  const handleRoutesClick = () => {
+    navigate("/");
+    setMapContainerType({
+      ...mapContainerType,
+      type: "routes",
+      place: "routes",
+    });
+  };
+
   const handleJourneyClick = () => {
     navigate("/");
     setMapContainerType({
@@ -72,12 +81,12 @@ export function Links() {
             >
               Real Time
             </div>
-            <Link
-              to='/'
+            <div
+              onClick={handleRoutesClick}
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}
             >
               Routes
-            </Link>
+            </div>
             <div
               onClick={handleWeatherClick}
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}

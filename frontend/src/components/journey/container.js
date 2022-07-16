@@ -5,6 +5,7 @@ import {
   AuthenticatedContext,
 } from "../../App";
 
+import { RoutesContent } from "../routes";
 import { WeatherContent } from "../weather";
 import { TableSkeleton } from "../skeleton";
 import ConnectSpotify from "../spotify/connect";
@@ -84,6 +85,8 @@ export function JourneyContainer(props) {
         <FavouriteStops setSelectedStop={setSelectedStop} />
       ) : mapContainerType.type === ContainerType.WEATHER ? (
         <WeatherContent />
+      ) : mapContainerType.type === ContainerType.ROUTES ? (
+        <RoutesContent />
       ) : (
         <></>
       )}
