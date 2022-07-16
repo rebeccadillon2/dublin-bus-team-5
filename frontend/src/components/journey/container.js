@@ -21,6 +21,9 @@ export function JourneyContainer(props) {
   const { isAuthenticated } = useContext(AuthenticatedContext);
 
   const {
+    allRoutes,
+    selectedRoute,
+    setSelectedRoute,
     panTo,
     allStops,
     selectedStop,
@@ -86,7 +89,11 @@ export function JourneyContainer(props) {
       ) : mapContainerType.type === ContainerType.WEATHER ? (
         <WeatherContent />
       ) : mapContainerType.type === ContainerType.ROUTES ? (
-        <RoutesContent />
+        <RoutesContent
+          allRoutes={allRoutes}
+          selectedRoute={selectedRoute}
+          setSelectedRoute={setSelectedRoute}
+        />
       ) : (
         <></>
       )}

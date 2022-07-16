@@ -71,7 +71,7 @@ export function StopsSearch({
                 >
                   {filteredStops().map((stop, idx) => (
                     <Combobox.Option
-                      key={`${stop.stopId}${idx}`}
+                      key={`${stop.id}${idx}`}
                       value={stop}
                       className={({ active }) =>
                         classNames(
@@ -105,7 +105,7 @@ export function StopsSearch({
                               {stop.stopName}
                               <span className='sr-only'>
                                 {" "}
-                                is {stop.stopId ? "online" : "offline"}
+                                is {stop.id ? "online" : "offline"}
                               </span>
                             </span>
                           </div>

@@ -23,6 +23,7 @@ import {
   getMapContainerStyle,
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
+import { getAllRoutes, getAllStops } from "../lib/api";
 import { LoadingSpinner } from "../components/loading";
 import { useWindowSize, useTheme, useExpanded } from "../hooks";
 import {
@@ -32,7 +33,6 @@ import {
   ContainerType,
   PlaceType,
 } from "../App";
-import { getAllStops } from "../lib/api";
 
 export function Journey() {
   const mapRef = useRef();
@@ -48,10 +48,11 @@ export function Journey() {
   const { mapContainerType } = useContext(MapContainerContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
 
-  // const [allRoutes, setAllRoutes] = useState(null)
+  const [allRoutes, setAllRoutes] = useState(null);
+  const [selectedRoute, setSelectedRoute] = useState(null);
 
-  const [selectedStop, setSelectedStop] = useState(null);
   const [allStops, setAllStops] = useState(null);
+  const [selectedStop, setSelectedStop] = useState(null);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -118,7 +119,6 @@ export function Journey() {
   }, []);
 
   useEffect(() => {
-    console.log("jere");
     const getAllStopsData = async () => {
       try {
         const { data } = await getAllStops();
@@ -129,6 +129,19 @@ export function Journey() {
       }
     };
     getAllStopsData();
+  }, []);
+
+  useEffect(() => {
+    const getAllRoutesData = async () => {
+      try {
+        const { data } = await getAllRoutes();
+        console.log("ALl routes: ", data);
+        setAllRoutes(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getAllRoutesData();
   }, []);
 
   const panTo = useCallback(({ lat, lng }) => {
@@ -146,6 +159,9 @@ export function Journey() {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <JourneyContainer
+        allRoutes={allRoutes}
+        selectedRoute={selectedRoute}
+        setSelectedRoute={setSelectedRoute}
         panTo={panTo}
         allStops={allStops}
         selectedStop={selectedStop}

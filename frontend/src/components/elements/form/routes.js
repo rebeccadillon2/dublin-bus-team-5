@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function StopsSearch({
+export function RoutesSearch({
   routes,
   searchTerm,
   selectedRoute,
@@ -17,16 +17,16 @@ export function StopsSearch({
 }) {
   const [isDarkMode] = useTheme();
 
-  const filteredStops = () => {
+  const filteredRoutes = () => {
     if (searchTerm === "") {
       return routes.slice(0, 20);
     } else {
       const filtered = routes.filter((route) => {
         return (
-          route.routeShortName
+          route.routeId_RouteShortName
             .toLowerCase()
             .includes(searchTerm.toLowerCase()) ||
-          route.headSign.toLowerCase().includes(searchTerm.toLowerCase())
+          route.headsign.toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
       if (filtered.length <= 20) {
@@ -49,14 +49,16 @@ export function StopsSearch({
           >
             <div className='relative mt-1'>
               <Combobox.Input
-                placeholder='Search stops'
+                placeholder='Search routes'
                 className={`w-full rounded-md border-0 shadow-lg py-2 pl-3 pr-10 sm:text-sm  caret-primary-blue focus:border-0 focus:outline-0  focus:ring-0 focus:shadow-0	 ${
                   isDarkMode
                     ? "bg-primary-black text-system-grey4"
                     : "bg-primary-white text-sytem-grey5"
                 }`}
                 onChange={(event) => setSearchTerm(event.target.value)}
-                displayValue={(route) => route?.routeShortName}
+                displayValue={(route) =>
+                  `${route?.routeId_RouteShortName}: ${route?.headsign}`
+                }
               />
               <Combobox.Button className='absolute inset-y-0 right-0 flex items-center rounded-r-md px-2'>
                 <SelectorIcon
@@ -66,7 +68,7 @@ export function StopsSearch({
                   aria-hidden='true'
                 />
               </Combobox.Button>
-              {filteredStops().length > 0 && (
+              {filteredRoutes().length > 0 && (
                 <Combobox.Options
                   className={`absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md  py-1 text-base shadow-lg  sm:text-sm ${
                     isDarkMode
@@ -74,10 +76,10 @@ export function StopsSearch({
                       : "bg-primary-white text-system-grey5"
                   }`}
                 >
-                  {filteredStops().map((stop, idx) => (
+                  {filteredRoutes().map((route, idx) => (
                     <Combobox.Option
-                      key={`${stop.stopId}${idx}`}
-                      value={stop}
+                      key={`${route.routeId}${idx}`}
+                      value={route}
                       className={({ active }) =>
                         classNames(
                           "relative cursor-default select-none py-2 pl-3 pr-9",
@@ -97,7 +99,9 @@ export function StopsSearch({
                             <span
                               className={classNames(
                                 "inline-block h-2 w-2 flex-shrink-0 rounded-full",
-                                stop.id ? "bg-primary-green" : "bg-gray-200"
+                                route.routeId
+                                  ? "bg-primary-green"
+                                  : "bg-gray-200"
                               )}
                               aria-hidden='true'
                             />
@@ -107,10 +111,10 @@ export function StopsSearch({
                                 selected && "font-semibold"
                               )}
                             >
-                              {stop.stopName}
+                              {route.routeId_RouteShortName}: {route.headsign}
                               <span className='sr-only'>
                                 {" "}
-                                is {stop.stopId ? "online" : "offline"}
+                                is {route.routeId ? "online" : "offline"}
                               </span>
                             </span>
                           </div>
