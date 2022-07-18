@@ -23,7 +23,7 @@ export function RoutesSearch({
     } else {
       const filtered = routes.filter((route) => {
         return (
-          route.routeId_RouteShortName
+          route.routeShortName
             .toLowerCase()
             .includes(searchTerm.toLowerCase()) ||
           route.headsign.toLowerCase().includes(searchTerm.toLowerCase())
@@ -58,7 +58,7 @@ export function RoutesSearch({
                 onChange={(event) => setSearchTerm(event.target.value)}
                 displayValue={(route) =>
                   selectedRoute &&
-                  `${route?.routeId_RouteShortName}: ${route?.headsign}`
+                  `${route?.routeShortName}: ${route?.headsign}`
                 }
               />
               <Combobox.Button className='absolute inset-y-0 right-0 flex items-center rounded-r-md px-2'>
@@ -112,7 +112,7 @@ export function RoutesSearch({
                                 selected && "font-semibold"
                               )}
                             >
-                              {route.routeId_RouteShortName}: {route.headsign}
+                              {route.routeShortName}: {route.headsign}
                               <span className='sr-only'>
                                 {" "}
                                 is {route.routeId ? "online" : "offline"}

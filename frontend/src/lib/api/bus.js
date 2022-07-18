@@ -62,5 +62,5 @@ export function getRouteDirectionStopCount(routeId, headSign) {
 }
 
 export function getAllRoutes() {
-  return axios.get(`${baseUrl}/api/bus/get-all-routes/`, headers());
+  return axios.get(`${baseUrl}/api/bus/get-all-routes/`);
 }
