@@ -5,13 +5,13 @@ import {
   AuthenticatedContext,
 } from "../../App";
 
-import { RoutesContent } from "../routes";
 import { WeatherContent } from "../weather";
 import { TableSkeleton } from "../skeleton";
 import ConnectSpotify from "../spotify/connect";
 import { ContentContainer } from "../container";
 import { useMapContainerType } from "../../hooks";
 import { SpotifyContent } from "../spotify/content";
+import { FavouriteRoutes, RoutesContent } from "../routes";
 import { RealTimeContent, FavouriteStops } from "../realtime";
 import { RouteOptions, JourneyForm, ExploreContent, Header } from ".";
 
@@ -97,6 +97,8 @@ export function JourneyContainer(props) {
           setSelectedRoute={setSelectedRoute}
           setSelectedRouteMarkers={setSelectedRouteMarkers}
         />
+      ) : mapContainerType.type === ContainerType.FAV_ROUTES ? (
+        <FavouriteRoutes setSelectedRoute={setSelectedRoute} />
       ) : (
         <></>
       )}
