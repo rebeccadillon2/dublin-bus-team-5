@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="/static/index.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+</head>
+
+<body>
+    <header>
+      <h1>Dublin Bus</h1>
+    </header>
+  
+
+    </div>
+    <div class="wrapper">
+      <br>
+    
+      <form name="form" , method="POST" , style="text-align: center;">
+        <br>
+        Direction:
+        <select id='direction' name='direction' class='dropdown'>
+            <option value ='1'>1</option>
+        </select>
+        Line:
+        <select id="line" name="line" class="dropdown">
+            <option value='1'>Line 1</option>
+        </select>
+        <br><br>
+        Weekday: <select id="weekday" name="weekday" class="dropdown">
+          <option value="0">Monday</option>
+        </select>
+        Time: <select id="plannedtime_dep" name="plannedtime_dep" class="dropdown">
+            <option value='19800'>19800</option>
+        </select>
+        <br><br>
+        Month: <select id='month' name='month' class='dropdown'>
+            <option value='0'>January</option>
+        </select>
+        <br><br>
+        <button id="mrbutton" value="submit" method="POST">Predict</button>
+        <br>
+        <p style="text-align: center;">{{ output }}</p>
+
+      </form>
+  
+    </div>
+    <br><br>
+    <footer>
+    </footer>
+  </body>
+  
+  </html>
