@@ -24,6 +24,7 @@ export function JourneyContainer(props) {
     allRoutes,
     selectedRoute,
     setSelectedRoute,
+    setSelectedRouteMarkers,
     panTo,
     allStops,
     selectedStop,
@@ -90,9 +91,11 @@ export function JourneyContainer(props) {
         <WeatherContent />
       ) : mapContainerType.type === ContainerType.ROUTES ? (
         <RoutesContent
+          panTo={panTo}
           allRoutes={allRoutes}
           selectedRoute={selectedRoute}
           setSelectedRoute={setSelectedRoute}
+          setSelectedRouteMarkers={setSelectedRouteMarkers}
         />
       ) : (
         <></>

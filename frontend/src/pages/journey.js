@@ -23,7 +23,7 @@ import {
   getMapContainerStyle,
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
-import { getAllRoutes, getAllStops, getRouteStopsSingle } from "../lib/api";
+import { getAllRoutes, getAllStops } from "../lib/api";
 import { LoadingSpinner } from "../components/loading";
 import { useWindowSize, useTheme, useExpanded } from "../hooks";
 import {
@@ -151,31 +151,6 @@ export function Journey() {
     mapRef.current.setZoom(zoom);
   }, []);
 
-  useEffect(() => {
-    if (selectedRoute === null) {
-      return;
-    }
-    console.log("sr", selectedRoute);
-    const getRouteMarkers = async () => {
-      try {
-        const { data } = await getRouteStopsSingle(
-          selectedRoute.routeId,
-          selectedRoute.headsign
-        );
-        console.log("markers:", data);
-        setSelectedRouteMarkers(data);
-        const mid = Math.floor(data.length / 2);
-        const lat = parseFloat(data[mid].stopId_StopLat);
-        const lng = parseFloat(data[mid].stopId_StopLon);
-        panTo({ lat, lng }, 12);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getRouteMarkers();
-    console.log("New route selected");
-  }, [selectedRoute]);
-
   if (!isLoaded)
     return (
       <div className='h-[100vh] w-[100vw] flex items-center justify-center'>
@@ -189,6 +164,7 @@ export function Journey() {
         allRoutes={allRoutes}
         selectedRoute={selectedRoute}
         setSelectedRoute={setSelectedRoute}
+        setSelectedRouteMarkers={setSelectedRouteMarkers}
         panTo={panTo}
         allStops={allStops}
         selectedStop={selectedStop}
