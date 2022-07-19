@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import joblib
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
@@ -99,3 +100,18 @@ class AllRoutesWithHeadSignView(APIView):
         print('COUNT', routes.count())
         serializedRoutes = BasicRoutesWithHeadSignSerializer(routes, many=True)
         return Response(serializedRoutes.data, status=status.HTTP_200_OK)
+
+
+
+class MLPredictionView(APIView):
+    '''ML Prediction View for ML routes'''
+
+    def get(self, request):
+        # features = request.GET['features']
+        # file = request.GET['file']
+
+        filename = '/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/data/modelling/randomforest/joblibfiles/line_27_model/dir1/line_27_rfr.joblib' 
+        model = joblib.load(filename) 
+        res = model.predict([[75,5.1,19800,1,21]])
+        print('RES', res)        
+        return Response({}, status=status.HTTP_200_OK)
