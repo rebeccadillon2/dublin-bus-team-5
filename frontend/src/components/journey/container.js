@@ -11,6 +11,7 @@ import ConnectSpotify from "../spotify/connect";
 import { ContentContainer } from "../container";
 import { useMapContainerType } from "../../hooks";
 import { SpotifyContent } from "../spotify/content";
+import { FavouriteRoutes, RoutesContent } from "../routes";
 import { RealTimeContent, FavouriteStops } from "../realtime";
 import { RouteOptions, JourneyForm, ExploreContent, Header } from ".";
 
@@ -20,6 +21,10 @@ export function JourneyContainer(props) {
   const { isAuthenticated } = useContext(AuthenticatedContext);
 
   const {
+    allRoutes,
+    selectedRoute,
+    setSelectedRoute,
+    setSelectedRouteMarkers,
     panTo,
     allStops,
     selectedStop,
@@ -84,6 +89,16 @@ export function JourneyContainer(props) {
         <FavouriteStops setSelectedStop={setSelectedStop} />
       ) : mapContainerType.type === ContainerType.WEATHER ? (
         <WeatherContent />
+      ) : mapContainerType.type === ContainerType.ROUTES ? (
+        <RoutesContent
+          panTo={panTo}
+          allRoutes={allRoutes}
+          selectedRoute={selectedRoute}
+          setSelectedRoute={setSelectedRoute}
+          setSelectedRouteMarkers={setSelectedRouteMarkers}
+        />
+      ) : mapContainerType.type === ContainerType.FAV_ROUTES ? (
+        <FavouriteRoutes setSelectedRoute={setSelectedRoute} />
       ) : (
         <></>
       )}

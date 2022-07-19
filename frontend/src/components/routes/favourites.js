@@ -5,17 +5,17 @@ import { useTheme } from "../../hooks";
 import { getUser } from "../../lib/api";
 import { TableSkeleton } from "../skeleton";
 import { getPayload } from "../../lib/auth";
-import { MapContainerContext } from "../../App";
 import { Navigation, Header } from "../journey";
+import { MapContainerContext } from "../../App";
 
-function NoFavStops() {
+function NoFavRoutes() {
   const [isDarkMode] = useTheme();
   const classes = `${isDarkMode ? "text-system-grey4" : "text-system-grey5"}`;
 
-  return <div className={classes}>No favourite stops</div>;
+  return <div className={classes}>No favourite routes</div>;
 }
 
-function FavStopsList({ favStops, handleClick }) {
+function FavRoutesList({ favRoutes, handleClick }) {
   const [isDarkMode] = useTheme();
   const themeClasses = `${
     isDarkMode
@@ -26,48 +26,49 @@ function FavStopsList({ favStops, handleClick }) {
 
   return (
     <div className={classes}>
-      {favStops.map((stop, idx) => (
+      {favRoutes.map((route, idx) => (
         <div
-          onClick={() => handleClick(stop)}
-          key={`${stop.id}${idx}`}
+          onClick={() => handleClick(route)}
+          key={`${route.rouetId}${idx}`}
           className={`px-2 py-3 truncate cursor-pointer transition-all ease-in-out ${
             isDarkMode
               ? "hover:bg-system-grey6 active:bg-system-grey5"
               : "hover:bg-system-grey2 active:bg-system-grey3"
           } ${
-            idx === favStops.length - 1
+            idx === favRoutes.length - 1
               ? "rounded-b-xl"
               : isDarkMode
               ? "border-b border-b-system-grey6"
               : "border-b border-b-system-grey2"
           } ${idx === 0 ? "rounded-t-xl" : ""}`}
         >
-          <p>{stop.stopName}</p>
+          <p className='truncate'>
+            {route.routeShortName}: {route.headsign}
+          </p>
         </div>
       ))}
     </div>
   );
 }
 
-export function FavouriteStops({ setSelectedStop }) {
+export function FavouriteRoutes({ setSelectedRoute }) {
   const userId = getPayload().sub;
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [favStops, setFavStops] = useState(null);
+  const [favRoutes, setFavRoutes] = useState(null);
   const { setMapContainerType } = useContext(MapContainerContext);
 
-  const handleClick = (stop) => {
-    setSelectedStop(stop);
-    setMapContainerType({ type: "realtime" });
+  const handleClick = (route) => {
+    setSelectedRoute(route);
+    setMapContainerType({ type: "routes" });
   };
 
   useEffect(() => {
-    const getFavStops = async () => {
+    const getFavRoutes = async () => {
       try {
         setLoading(true);
         const { data } = await getUser(userId);
-        console.log("data", data.favouritedStops);
-        setFavStops(data.favouritedStops);
+        setFavRoutes(data.favouritedRoutes);
         setLoading(false);
       } catch (e) {
         setLoading(false);
@@ -75,24 +76,24 @@ export function FavouriteStops({ setSelectedStop }) {
         console.log(e);
       }
     };
-    getFavStops();
+    getFavRoutes();
   }, []);
 
   return (
     <div className='mb-6'>
       <Navigation type={"realtime"} />
-      <Header variant={true} title={"Favourite Stops"} />
+      <Header variant={true} title={"Favourite Routes"} />
       <div className='mt-2'>
         {error ? (
           <Error variant='default' />
         ) : loading ? (
           <TableSkeleton />
-        ) : favStops ? (
+        ) : favRoutes ? (
           <>
-            {favStops.length < 1 ? (
-              <NoFavStops />
+            {favRoutes.length < 1 ? (
+              <NoFavRoutes />
             ) : (
-              <FavStopsList favStops={favStops} handleClick={handleClick} />
+              <FavRoutesList favRoutes={favRoutes} handleClick={handleClick} />
             )}
           </>
         ) : (

@@ -34,3 +34,47 @@ export function favouriteStop(stopId, userId) {
     headers()
   );
 }
+
+export function favouriteRoute(routeId, headSign, userId) {
+  return axios.post(
+    `${baseUrl}/api/bus/favourite-route/${routeId}/${headSign}/${userId}/`,
+    {
+      params: {
+        routeId,
+        headSign,
+        userId,
+      },
+    },
+    headers()
+  );
+}
+
+export function getRouteStopsSingle(routeId, headSign) {
+  return axios.get(
+    `${baseUrl}/api/bus/get-route-stops-single/`,
+    {
+      params: {
+        routeId,
+        headSign,
+      },
+    },
+    headers()
+  );
+}
+
+export function getRouteDirectionStopCount(routeId, headSign) {
+  return axios.get(
+    `${baseUrl}/api/bus/get-route-direction-stop-count/`,
+    {
+      params: {
+        routeId,
+        headSign,
+      },
+    },
+    headers()
+  );
+}
+
+export function getAllRoutes() {
+  return axios.get(`${baseUrl}/api/bus/get-all-routes/`);
+}

@@ -9,7 +9,7 @@ export const getMinutes = (hms) => {
 export const panToSelectedStop = (panTo, selectedStop) => {
   const lat = parseFloat(selectedStop.stopLat);
   const lng = parseFloat(selectedStop.stopLon);
-  panTo({ lat, lng });
+  panTo({ lat, lng }, 20);
 };
 
 export const getCurrentTime = () => {

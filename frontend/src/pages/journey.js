@@ -23,6 +23,7 @@ import {
   getMapContainerStyle,
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
+import { getAllRoutes, getAllStops } from "../lib/api";
 import { LoadingSpinner } from "../components/loading";
 import { useWindowSize, useTheme, useExpanded } from "../hooks";
 import {
@@ -32,7 +33,6 @@ import {
   ContainerType,
   PlaceType,
 } from "../App";
-import { getAllStops } from "../lib/api";
 
 export function Journey() {
   const mapRef = useRef();
@@ -48,8 +48,12 @@ export function Journey() {
   const { mapContainerType } = useContext(MapContainerContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
 
-  const [selectedStop, setSelectedStop] = useState(null);
+  const [allRoutes, setAllRoutes] = useState(null);
+  const [selectedRoute, setSelectedRoute] = useState(null);
+  const [selectedRouteMarkers, setSelectedRouteMarkers] = useState(null);
+
   const [allStops, setAllStops] = useState(null);
+  const [selectedStop, setSelectedStop] = useState(null);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -116,7 +120,6 @@ export function Journey() {
   }, []);
 
   useEffect(() => {
-    console.log("jere");
     const getAllStopsData = async () => {
       try {
         const { data } = await getAllStops();
@@ -129,9 +132,23 @@ export function Journey() {
     getAllStopsData();
   }, []);
 
-  const panTo = useCallback(({ lat, lng }) => {
+  useEffect(() => {
+    const getAllRoutesData = async () => {
+      try {
+        const { data } = await getAllRoutes();
+        data.shift();
+        console.log("ALl routes: ", data);
+        setAllRoutes(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getAllRoutesData();
+  }, []);
+
+  const panTo = useCallback(({ lat, lng }, zoom) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(20);
+    mapRef.current.setZoom(zoom);
   }, []);
 
   if (!isLoaded)
@@ -144,6 +161,10 @@ export function Journey() {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <JourneyContainer
+        allRoutes={allRoutes}
+        selectedRoute={selectedRoute}
+        setSelectedRoute={setSelectedRoute}
+        setSelectedRouteMarkers={setSelectedRouteMarkers}
         panTo={panTo}
         allStops={allStops}
         selectedStop={selectedStop}
@@ -185,6 +206,21 @@ export function Journey() {
                 }
               </MarkerClusterer>
             )}
+          </>
+        ) : mapContainerType.type === ContainerType.ROUTES ||
+          mapContainerType.type === ContainerType.FAV_ROUTES ||
+          mapContainerType.place === PlaceType.ROUTES ? (
+          <>
+            {selectedRouteMarkers &&
+              selectedRouteMarkers.map((marker, idx) => (
+                <Marker
+                  key={`${marker.stopId}`}
+                  position={{
+                    lat: marker.stopId_StopLat,
+                    lng: marker.stopId_StopLon,
+                  }}
+                />
+              ))}
           </>
         ) : (
           <>
