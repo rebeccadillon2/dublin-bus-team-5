@@ -78,3 +78,7 @@ export function getRouteDirectionStopCount(routeId, headSign) {
 export function getAllRoutes() {
   return axios.get(`${baseUrl}/api/bus/get-all-routes/`);
 }
+
+export function getMLPrediction() {
+  return axios.get(`${baseUrl}/api/bus/get-ml-prediction/`);
+}

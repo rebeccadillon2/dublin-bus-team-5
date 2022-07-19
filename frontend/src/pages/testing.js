@@ -1,47 +1,11 @@
 import React from "react";
-import {
-  favouriteStop,
-  getAllStops,
-  getForecastWeather,
-  getUser,
-} from "../lib/api";
-import { getPayload } from "../lib/auth";
+import { getMLPrediction } from "../lib/api";
 
 export function Testing() {
-  const userId = getPayload().sub;
-
-  const handleGetUser = async () => {
+  const handlePrediction = async () => {
     try {
-      const { data } = await getUser(userId);
-      console.log("userRes", data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleFavouriteStop = async () => {
-    try {
-      const { data } = await favouriteStop("8250DB002016", userId);
-      console.log("favRes", data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleGetAllStops = async () => {
-    console.log("clicked");
-    try {
-      const { data } = await getAllStops();
-      console.log("ALl stops: ", data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleGetForecastWeather = async () => {
-    try {
-      const { data } = await getForecastWeather();
-      console.log("wether", data);
+      const res = await getMLPrediction();
+      console.log("res", res);
     } catch (e) {
       console.log(e);
     }
@@ -51,28 +15,10 @@ export function Testing() {
     <>
       <div>
         <button
-          onClick={handleGetUser}
+          onClick={handlePrediction}
           className='p-2 rounded-lg bg-primary-blue m-4'
         >
-          Get User
-        </button>
-        <button
-          onClick={handleFavouriteStop}
-          className='p-2 rounded-lg bg-primary-green m-4'
-        >
-          Favourite Stop
-        </button>
-        <button
-          onClick={handleGetAllStops}
-          className='p-2 rounded-lg bg-primary-green m-4'
-        >
-          Get all stops
-        </button>
-        <button
-          onClick={handleGetForecastWeather}
-          className='p-2 rounded-lg bg-primary-green m-4'
-        >
-          Get forecast weather
+          Get prediction
         </button>
       </div>
     </>
