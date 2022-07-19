@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-# from api.serializers import BasicStopsSerializer, BasicRoutesSignSerializer
+from api.serializers import BasicStopsSerializer, BasicRoutesSignSerializer
 from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import make_password
 
@@ -27,8 +27,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 
 class BasicProfileSerializer(serializers.ModelSerializer):
-    # favourited_stops = BasicStopsSerializer(many=True)
-    # favourited_routes = BasicRoutesSignSerializer(many=True)
+    favourited_stops = BasicStopsSerializer(many=True)
+    favourited_routes = BasicRoutesSignSerializer(many=True)
 
     class Meta:
         model = User
@@ -36,8 +36,8 @@ class BasicProfileSerializer(serializers.ModelSerializer):
             'id',
             'email',
             'profile_image',
-            # 'favourited_stops',
-            # 'favourited_routes',
+            'favourited_stops',
+            'favourited_routes',
         )
 
 class UserUpdateSerializer(serializers.ModelSerializer):
