@@ -11,9 +11,9 @@ const PodcastDetail = (props) => {
   const [isDarkMode] = useTheme();
 
   const themeClasses = `${
-    isDarkMode ? "bg-system-grey7 border-system-grey6" : ""
+    isDarkMode ? "bg-system-grey7 border-system-grey6" : "bg-system-grey1"
   }`;
-  const classes = `border shadow w-100% p-4 my-2 rounded-xl min-h-44.752 max-h-44.752 ${themeClasses}`;
+  const classes = `border shadow-xl w-100% p-4 my-2 rounded-xl min-h-44.752 max-h-44.752 ${themeClasses}`;
 
   const userId = getPayload().sub;
   let [episodeDetails, setEpisodeDetails] = useState({
