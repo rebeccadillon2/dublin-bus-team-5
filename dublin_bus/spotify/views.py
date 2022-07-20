@@ -120,9 +120,11 @@ class PauseTrack(APIView):
 class GetAccessToken(APIView):
     def get(self, request):
         uid = request.GET['uid']
+        print('HERE')
         try:
             is_spotify_authenticated(uid)
             access_token = get_user_tokens(uid).access_token
+            print('at', access_token)
             return Response({'access_token': access_token}, status=status.HTTP_200_OK)
         except:
             traceback.print_exc()
