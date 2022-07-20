@@ -81,7 +81,7 @@ export function FavouriteRoutes({ setSelectedRoute }) {
 
   return (
     <div className='mb-6'>
-      <Navigation type={"realtime"} />
+      <Navigation type={"routes"} />
       <Header variant={true} title={"Favourite Routes"} />
       <div className='mt-2'>
         {error ? (
