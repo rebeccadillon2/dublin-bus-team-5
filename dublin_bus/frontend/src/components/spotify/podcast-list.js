@@ -1,46 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
-import { BsExclamationTriangleFill } from "react-icons/bs";
 
+import { Warning } from ".";
 import { Error } from "../error";
-import { useTheme } from "../../hooks";
 import { SpotifyContext } from "../../App";
 import { TableSkeleton } from "../skeleton";
 import PodcastDetail from "./podcast-detail";
 import { getDublinPodcasts } from "../../lib/api";
-
-const Warning = () => {
-  const [isDarkMode] = useTheme();
-
-  return (
-    <div
-      className={`rounded-xl ${
-        isDarkMode ? "bg-system-grey7	" : "bg-system-grey1"
-      } p-4 my-2 shadow-lg`}
-    >
-      <div className='flex'>
-        <div className='flex-shrink-0'>
-          <BsExclamationTriangleFill
-            className='h-5 w-5 text-yellow-400'
-            aria-hidden='true'
-          />
-        </div>
-        <div className='ml-3'>
-          <h3 className='text-sm  font-semibold	text-yellow-700'>
-            Spotify Warning
-          </h3>
-          <div className='mt-2 text-sm text-yellow-700'>
-            <p>
-              Your browser has failed to connect to the Spotify SDK. To conintue
-              to use Spotify on this application ensure that your Spotify is
-              open on this device.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const PodcastList = () => {
   const [podcastDetails, setPodcastDetails] = useState({ podcasts: [] });
