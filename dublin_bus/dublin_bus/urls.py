@@ -23,3 +23,5 @@ urlpatterns = [
     path('api/auth/', include('jwt_auth.urls')),
     path('api/spotify/', include('spotify.urls')),
 ]
+
+urlpatterns += [path('', include('frontend.urls'))]

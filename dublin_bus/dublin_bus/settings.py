@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'spotify.apps.SpotifyConfig',
     'jwt_auth',
+    'frontend.apps.FrontendConfig',
     'api',
 ]
 

@@ -1,7 +1,7 @@
 BASE_URL = "https://api.spotify.com/v1/me/"
 CALLBACK = 'http://127.0.0.1:8000/api/spotify/redirect/'
 # REDIRECT_URI = 'http://localhost:3000/spotify'
-REDIRECT_URI = 'http://localhost:3000'
+REDIRECT_URI = 'http://127.0.0.1:8000'
 
 CLIENT_ID = '14779dc725d849d6bb6aa8b1fc9bcdb7'
 CLIENT_SECRET = 'ccba67daff1e43499a334f8515d8522f'
