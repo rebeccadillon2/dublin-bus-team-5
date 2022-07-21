@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
+import { useTheme } from "../../hooks";
+
 export function SidePanel(props) {
   const { open, handleClose, className, children, setIsOpen, ...rest } = props;
+  const [isDarkMode] = useTheme();
   const base = `fixed inset-0 overflow-hidden z-50`;
   const classes = `${base} ${className}`;
   return (
@@ -35,7 +38,11 @@ export function SidePanel(props) {
               <div className='max-w-80 min-w-80 w-80'>
                 <div
                   // style={{ backgroundColor: "#101112" }}
-                  className='flex flex-1 flex-col h-full rounded-l-md bg-primary-white pt-4 pb-8 shadow-xl'
+                  className={`${
+                    isDarkMode
+                      ? "bg-primary-black text-system-grey4"
+                      : "bg-primary-white text-system-grey6"
+                  } flex flex-1 flex-col h-full rounded-l-md pt-4 pb-8 shadow-xl`}
                 >
                   {children}
                 </div>

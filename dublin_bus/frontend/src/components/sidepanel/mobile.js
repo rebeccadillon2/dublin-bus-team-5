@@ -4,14 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { SidePanel } from ".";
 import { MapContainerContext } from "../../App";
-import { useAuthenticate, useExpanded } from "../../hooks";
+import { useAuthenticate, useExpanded, useTheme } from "../../hooks";
 import { getUser } from "../../lib/api";
 import { getPayload } from "../../lib/auth";
 
 export function MobileSidePanel({ open, setOpen, handleClose }) {
   const uid = getPayload().sub;
-  const [isAuthenticated] = useAuthenticate();
+  const [isDarkMode] = useTheme();
   const [email, setEmail] = useState(null);
+  const [isAuthenticated] = useAuthenticate();
 
   const [isExpanded, handleExpandedToggle] = useExpanded();
   const navigate = useNavigate();
@@ -87,8 +88,12 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
       className=''
       setIsOpen={setOpen}
     >
-      <div className='flex flex-col items-start justify-start w-[100%]'>
-        <div className='flex items-center justify-between w-[100%] border-b border-system-grey2 pb-4'>
+      <div className={` flex flex-col items-start justify-start w-[100%]`}>
+        <div
+          className={`${
+            isDarkMode ? "border-system-grey6 " : "border-system-grey2"
+          } flex items-center justify-between w-[100%] border-b  pb-4`}
+        >
           <div className='outline-none pl-6'>
             <Link to='/' className='outline-none'>
               <img
@@ -136,7 +141,11 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
         {isAuthenticated ? (
           <>
             {email && (
-              <div className='flex flex-col border-y border-system-grey2 w-[100%]'>
+              <div
+                className={`${
+                  isDarkMode ? "border-system-grey6" : "border-system-grey2"
+                } flex flex-col border-y  w-[100%]`}
+              >
                 <div className='pt-4 pb-1 pl-6 text-sm'>Signed in as</div>
                 <div className='pt-1 pb-4 pl-6'>{email}</div>
               </div>
@@ -152,7 +161,11 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
           </>
         ) : (
           <>
-            <div className='flex flex-col border-t border-system-grey2 w-[100%]'>
+            <div
+              className={`${
+                isDarkMode ? "border-system-grey6" : "border-system-grey2"
+              } flex flex-col border-t w-[100%]`}
+            >
               <div
                 onClick={() => navigate("/login")}
                 className='pt-4 pb-2 pl-6 cursor-pointer w-[100%]'
