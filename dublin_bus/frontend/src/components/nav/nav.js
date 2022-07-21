@@ -8,24 +8,25 @@ export function Nav() {
   const [isDarkMode] = useTheme();
 
   return (
-    <Disclosure
-      as='nav'
-      className={`hidden md:inline ${
+    <div
+      className={`hidden md:inline-block w-[100%]	 ${
         isDarkMode ? "bg-primary-black" : "bg-system-grey1"
       } transition-all ease-in-out`}
     >
-      {({ open }) => (
-        <>
-          <div className='mx-auto px-4 sm:px-6 lg:px-6'>
-            <div className='flex items-center justify-between h-16'>
-              <Links />
-              <DesktopRight />
-              <MobileButton open={open} />
+      <Disclosure as='nav'>
+        {({ open }) => (
+          <>
+            <div className='mx-auto px-4 sm:px-6 lg:px-6'>
+              <div className='flex items-center justify-between h-16'>
+                <Links />
+                <DesktopRight />
+                <MobileButton open={open} />
+              </div>
             </div>
-          </div>
-          <MobileMenu />
-        </>
-      )}
-    </Disclosure>
+            <MobileMenu />
+          </>
+        )}
+      </Disclosure>
+    </div>
   );
 }
