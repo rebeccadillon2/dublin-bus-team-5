@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { SidePanel } from ".";
-import { useAuthenticate } from "../../hooks";
+import { MapContainerContext } from "../../App";
+import { useAuthenticate, useExpanded } from "../../hooks";
 import { getUser } from "../../lib/api";
 import { getPayload } from "../../lib/auth";
 
@@ -11,6 +12,11 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
   const uid = getPayload().sub;
   const [isAuthenticated] = useAuthenticate();
   const [email, setEmail] = useState(null);
+
+  const [isExpanded, handleExpandedToggle] = useExpanded();
+  const navigate = useNavigate();
+  const { mapContainerType, setMapContainerType } =
+    useContext(MapContainerContext);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -25,6 +31,54 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
     };
     getUserData();
   }, []);
+
+  const handleStopsClick = () => {
+    setOpen(false);
+    navigate("/");
+    setMapContainerType({
+      ...mapContainerType,
+      type: "realtime",
+      place: "realtime",
+    });
+    if (!isExpanded) {
+      handleExpandedToggle(true);
+    }
+  };
+
+  const handleRoutesClick = () => {
+    setOpen(false);
+    navigate("/");
+    setMapContainerType({
+      ...mapContainerType,
+      type: "routes",
+      place: "routes",
+    });
+    if (!isExpanded) {
+      handleExpandedToggle(true);
+    }
+  };
+
+  const handleJourneyClick = () => {
+    setOpen(false);
+    navigate("/");
+    setMapContainerType({
+      ...mapContainerType,
+      type: "default",
+      place: null,
+    });
+    if (!isExpanded) {
+      handleExpandedToggle(true);
+    }
+  };
+
+  const handleWeatherClick = () => {
+    setOpen(false);
+    navigate("/");
+    setMapContainerType({ ...mapContainerType, type: "weather" });
+    if (!isExpanded) {
+      handleExpandedToggle(true);
+    }
+  };
 
   return (
     <SidePanel
@@ -53,11 +107,31 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
             <FiX className='w-6 h-6' />
           </div>
         </div>
-        <div className='flex flex-col'>
-          <div className='pt-4 pb-2 pl-6 cursor-pointer'>Journey</div>
-          <div className='py-2 pl-6 cursor-pointer'>Stops</div>
-          <div className='py-2 pl-6 cursor-pointer'>Routes</div>
-          <div className='pt-2 pb-4 pl-6 cursor-pointer'>Weather</div>
+        <div className='flex flex-col w-[100%]'>
+          <div
+            className='pt-4 pb-2 pl-6 cursor-pointer w-[100%]'
+            onClick={handleJourneyClick}
+          >
+            Journey
+          </div>
+          <div
+            className='py-2 pl-6 cursor-pointer w-[100%]'
+            onClick={handleStopsClick}
+          >
+            Stops
+          </div>
+          <div
+            className='py-2 pl-6 cursor-pointer w-[100%]'
+            onClick={handleRoutesClick}
+          >
+            Routes
+          </div>
+          <div
+            className='pt-2 pb-4 pl-6 cursor-pointer w-[100%]'
+            onClick={handleWeatherClick}
+          >
+            Weather
+          </div>
         </div>
         {isAuthenticated ? (
           <>
@@ -67,16 +141,30 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
                 <div className='pt-1 pb-4 pl-6'>{email}</div>
               </div>
             )}
-            <div className='flex flex-col '>
-              <div className='pt-4 pb-2 pl-6 cursor-pointer'>Account</div>
-              <div className='pt-2 pb-4 pl-6 cursor-pointer'>Sign out</div>
+            <div className='flex flex-col w-[100%]'>
+              <div className='pt-4 pb-2 pl-6 cursor-pointer w-[100%]'>
+                Account
+              </div>
+              <div className='pt-2 pb-4 pl-6 cursor-pointer w-[100%]'>
+                Sign out
+              </div>
             </div>
           </>
         ) : (
           <>
             <div className='flex flex-col border-t border-system-grey2 w-[100%]'>
-              <div className='pt-4 pb-2 pl-6 cursor-pointer'>Sign in</div>
-              <div className='pt-2 pb-4 pl-6 cursor-pointer'>Register</div>
+              <div
+                onClick={() => navigate("/login")}
+                className='pt-4 pb-2 pl-6 cursor-pointer w-[100%]'
+              >
+                Login
+              </div>
+              <div
+                onClick={() => navigate("/signup")}
+                className='pt-2 pb-4 pl-6 cursor-pointer w-[100%]'
+              >
+                Sign up
+              </div>
             </div>
           </>
         )}

@@ -51,7 +51,6 @@ export function MobileMainMenu({ setOpenSidePanel }) {
   const handleWeatherClick = () => {
     navigate("/");
     setMapContainerType({ ...mapContainerType, type: "weather" });
-
     if (!isExpanded) {
       handleExpandedToggle(true);
     }
