@@ -5,8 +5,11 @@ import { ThemeToggle } from "../toggle";
 import { WeatherDisplay, DropDown } from ".";
 import { isUserAuthenticated } from "../../lib/auth";
 import { PrimaryButton, SecondaryButton } from "../elements/button";
+import { useAuthenticate } from "../../hooks";
 
 export function DesktopRight() {
+  const [isAuthenticated] = useAuthenticate();
+
   const [auth, setAuth] = useState(false);
   useEffect(() => {
     setAuth(isUserAuthenticated());
@@ -17,7 +20,7 @@ export function DesktopRight() {
       <div className='flex items-center'>
         <WeatherDisplay variant='large' className='pr-3' />
         <ThemeToggle />
-        {auth ? (
+        {isAuthenticated ? (
           <DropDown />
         ) : (
           <>

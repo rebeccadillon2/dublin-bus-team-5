@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-import { useTheme } from "../../hooks";
+import { useAuthenticate, useTheme } from "../../hooks";
 import { UserDetailsContext } from "../../App";
 
 export function DropDown() {
@@ -16,12 +16,17 @@ export function DropDown() {
       ? "text-system-grey3 hover:text-system-grey1"
       : "text-system-grey5 hover:text-system-grey7"
   }`;
+  const navigate = useNavigate();
+  const [isAuthenticated, toggleAuthenticated] = useAuthenticate();
 
   const handleSignout = async () => {
     const inner = async () => {
       await window.localStorage.removeItem("token");
       // eslint-disable-next-line no-restricted-globals
-      location.reload();
+      // location.reload();
+      toggleAuthenticated(false);
+
+      navigate("/");
     };
     try {
       inner();
