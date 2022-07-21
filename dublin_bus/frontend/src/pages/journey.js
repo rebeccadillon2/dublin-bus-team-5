@@ -48,10 +48,10 @@ export function Journey() {
   const { mapContainerType } = useContext(MapContainerContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
 
+  const [origin, setOrigin] = useState(null);
   const [allRoutes, setAllRoutes] = useState(null);
   const [selectedRoute, setSelectedRoute] = useState(null);
   const [selectedRouteMarkers, setSelectedRouteMarkers] = useState(null);
-
   const [allStops, setAllStops] = useState(null);
   const [selectedStop, setSelectedStop] = useState(null);
 
@@ -60,10 +60,12 @@ export function Journey() {
     libraries,
   });
 
-  const calculateRoute = async () => {
-    const originVal = originRef.current.value;
-    const destinationVal = destinationRef.current.value;
+  const calculateRoute = async (ol, dl) => {
+    const originVal = typeof ol === "string" ? ol : originRef.current.value;
+    const destinationVal =
+      typeof dl === "string" ? dl : destinationRef.current.value;
     if (routeErrorCheck(originVal, destinationVal, setInputError, time)) return;
+    setOrigin(originVal);
     const dirServ = new window.google.maps.DirectionsService();
 
     try {
@@ -161,6 +163,7 @@ export function Journey() {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <JourneyContainer
+        origin={origin}
         allRoutes={allRoutes}
         selectedRoute={selectedRoute}
         setSelectedRoute={setSelectedRoute}

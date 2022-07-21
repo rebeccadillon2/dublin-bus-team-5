@@ -1,16 +1,18 @@
+import { MdOutlineDirections } from "react-icons/md";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import React, { useState, useContext, useEffect } from "react";
 import { AiFillPushpin, AiOutlinePushpin } from "react-icons/ai";
 
-import { Error } from "../../error";
-import { useTheme } from "../../../hooks";
-import { LoadingSpinner } from "../../loading";
-import { SearchInput } from "../../elements/form";
 import {
   MapRefContext,
   MapDetailsContext,
   MapContainerContext,
 } from "../../../App";
+import { Popup } from "../../popup";
+import { Error } from "../../error";
+import { useTheme } from "../../../hooks";
+import { LoadingSpinner } from "../../loading";
+import { SearchInput } from "../../elements/form";
 
 const arr = [1, 2, 3, 4, 5];
 
@@ -59,12 +61,13 @@ function Stars(props) {
 }
 
 export function PlaceCard(props) {
-  const { place, ...rest } = props;
+  const { place, calculateRoute, origin, ...rest } = props;
   const [isDarkMode] = useTheme();
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
   const placeLat = place.geometry.location.lat();
   const placeLng = place.geometry.location.lng();
   const [pinned, setPinned] = useState(false);
+  const [popup, setPopup] = useState(false);
 
   const themeClasses = `${
     isDarkMode
@@ -96,81 +99,99 @@ export function PlaceCard(props) {
     }
   };
 
+  const handleUpdateRoute = () => {
+    calculateRoute(origin, place.vicinity);
+    setTimeout(() => {
+      setPopup(true);
+    }, 1000);
+    setTimeout(() => {
+      setPopup(false);
+    }, 3000);
+  };
+
   return (
-    <div className={classes} {...rest}>
-      <div className='description md:mx-w-95 md:w-95 max-w-48.75 w-48.75'>
-        <div
-          className={`flex justify-between items-center mb-1.5 ${
-            isDarkMode ? "text-system-grey3" : "text-system-grey6"
-          }`}
-        >
-          <p
-            className={`flex justify-between items-start text-md font-semibold md:mx-w-95 md:w-95 max-w-48.75 w-48.75`}
-          >
-            {place.name}
-          </p>
+    <>
+      <div className={classes} {...rest}>
+        <div className='description md:mx-w-95 md:w-95 max-w-48.75 w-48.75'>
           <div
-            onClick={handlePinClick}
-            className='flex items-center justify-end text-md text-right pl-1'
+            className={`flex justify-between items-center mb-1.5 ${
+              isDarkMode ? "text-system-grey3" : "text-system-grey6"
+            }`}
           >
-            {pinned ? <AiFillPushpin /> : <AiOutlinePushpin />}
+            <p
+              className={`flex justify-between items-start text-md font-semibold md:mx-w-95 md:w-95 max-w-48.75 w-48.75`}
+            >
+              {place.name}
+            </p>
+            <div className='flex items-center jusityf-center'>
+              <div
+                onClick={handlePinClick}
+                className='flex items-center justify-end text-md text-right pl-1 cursor-pointer'
+              >
+                {pinned ? <AiFillPushpin /> : <AiOutlinePushpin />}
+              </div>
+              <div className='ml-1 cursor-pointer' onClick={handleUpdateRoute}>
+                <MdOutlineDirections />
+              </div>
+            </div>
+          </div>
+          <div className='flex items-center justify-start text-sm'>
+            <p>{place.rating}</p>
+            <p className='px-1'>•</p>
+            <Stars rating={place.rating} />
+            <p className='pl-0.5'>({place.user_ratings_total})</p>
+            {place.price_level && (
+              <>
+                <p className='px-1'>•</p>
+                <PriceLevel priceLevel={place.price_level} />
+              </>
+            )}
+          </div>
+          <div className='mt-1.5'>
+            <p className='text-xs max-w-48.75 truncate'>{place.vicinity}</p>
+          </div>
+          <div className='flex mt-1.5'>
+            {place.types && (
+              <p className='text-xs'>{`${place.types[0][0].toUpperCase()}${place.types[0]
+                .slice(1)
+                .replaceAll("_", " ")}`}</p>
+            )}
+            {place.types &&
+              place.types[1] &&
+              !place.types[1].includes("point") && (
+                <p className='text-xs'>
+                  {" "}
+                  •{" "}
+                  {`${place.types[1][0].toUpperCase()}${place.types[1]
+                    .slice(1)
+                    .replaceAll("_", " ")}`}
+                </p>
+              )}
+            <p className='text-xs max-w-48.75 truncate'></p>
           </div>
         </div>
-        <div className='flex items-center justify-start text-sm'>
-          <p>{place.rating}</p>
-          <p className='px-1'>•</p>
-          <Stars rating={place.rating} />
-          <p className='pl-0.5'>({place.user_ratings_total})</p>
-          {place.price_level && (
-            <>
-              <p className='px-1'>•</p>
-              <PriceLevel priceLevel={place.price_level} />
-            </>
-          )}
-        </div>
-        <div className='mt-1.5'>
-          <p className='text-xs max-w-48.75 truncate'>{place.vicinity}</p>
-        </div>
-        <div className='flex mt-1.5'>
-          {place.types && (
-            <p className='text-xs'>{`${place.types[0][0].toUpperCase()}${place.types[0]
-              .slice(1)
-              .replaceAll("_", " ")}`}</p>
-          )}
-          {place.types &&
-            place.types[1] &&
-            !place.types[1].includes("point") && (
-              <p className='text-xs'>
-                {" "}
-                •{" "}
-                {`${place.types[1][0].toUpperCase()}${place.types[1]
-                  .slice(1)
-                  .replaceAll("_", " ")}`}
-              </p>
-            )}
-          <p className='text-xs max-w-48.75 truncate'></p>
-        </div>
+        {place.photos && (
+          <div className='image flex items-center justify-center '>
+            <img
+              alt='place'
+              className='rounded-xl flex items-center justify-center shadow-md'
+              src={place.photos[0].getUrl()}
+              height={100}
+              width={120}
+              style={{
+                maxHeight: "100px",
+                height: "100px",
+                minHeight: "100px",
+                maxWidth: "120px",
+                width: "120px",
+                minWidth: "120px",
+              }}
+            />
+          </div>
+        )}
       </div>
-      {place.photos && (
-        <div className='image flex items-center justify-center '>
-          <img
-            alt='place'
-            className='rounded-xl flex items-center justify-center shadow-md'
-            src={place.photos[0].getUrl()}
-            height={100}
-            width={120}
-            style={{
-              maxHeight: "100px",
-              height: "100px",
-              minHeight: "100px",
-              maxWidth: "120px",
-              width: "120px",
-              minWidth: "120px",
-            }}
-          />
-        </div>
-      )}
-    </div>
+      {popup && <Popup popup={popup} text='Updated journey' />}
+    </>
   );
 }
 
@@ -224,7 +245,7 @@ function Header(props) {
   );
 }
 
-export function ExploreContent() {
+export function ExploreContent({ calculateRoute, origin }) {
   const { mapContainerType } = useContext(MapContainerContext);
   const [places, setPlaces] = useState(null);
   const [error, setError] = useState(false);
@@ -306,7 +327,13 @@ export function ExploreContent() {
         <>
           {filterPlaces().map((place, idx) => (
             <div key={`${place.name}${idx}`}>
-              {place.rating && <PlaceCard place={place} />}
+              {place.rating && (
+                <PlaceCard
+                  place={place}
+                  calculateRoute={calculateRoute}
+                  origin={origin}
+                />
+              )}
             </div>
           ))}
         </>

@@ -21,6 +21,7 @@ export function JourneyContainer(props) {
   const { isAuthenticated } = useContext(AuthenticatedContext);
 
   const {
+    origin,
     allRoutes,
     selectedRoute,
     setSelectedRoute,
@@ -75,7 +76,7 @@ export function JourneyContainer(props) {
           </div>
         </>
       ) : mapContainerType.type === ContainerType.EXPLORE ? (
-        <ExploreContent />
+        <ExploreContent calculateRoute={calculateRoute} origin={origin} />
       ) : mapContainerType.type === ContainerType.SPOTIFY ? (
         <SpotifyContent />
       ) : mapContainerType.type === ContainerType.REALTIME ? (
