@@ -45,7 +45,7 @@ function FavouriteSection({
   );
 }
 
-function NoMoreBuses() {
+export function NoMoreBuses() {
   const [isDarkMode] = useTheme();
   const classes = `${
     isDarkMode ? "text-system-grey3" : "text-system-grey6"
@@ -97,7 +97,13 @@ export function RealTimeContent({
     setTimes(time);
     console.log("currentTime", time);
     console.log("selectedStop", selectedStop);
-    getDisplayData(time, selectedStop, setDisplayValues, setLoading, setError);
+    getDisplayData(
+      time,
+      selectedStop.id,
+      setDisplayValues,
+      setLoading,
+      setError
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedStop]);
 

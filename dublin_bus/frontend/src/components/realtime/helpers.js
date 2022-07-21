@@ -36,14 +36,14 @@ export const getETA = (time, arrivalTime) => {
 
 export const getDisplayData = async (
   time,
-  selectedStop,
+  stopId,
   setDisplayValues,
   setLoading,
   setError
 ) => {
   try {
     setLoading(true);
-    const { data } = await getUpcomingStopTimesRoutes(selectedStop.id, time);
+    const { data } = await getUpcomingStopTimesRoutes(stopId, time);
     console.log("data", data);
     setDisplayValues(data);
     setLoading(false);

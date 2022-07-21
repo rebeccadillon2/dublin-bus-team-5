@@ -3,49 +3,13 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 
 import { Error } from "../error";
+import { RouteStopsList } from ".";
 import { Header } from "../journey";
-import { useTheme } from "../../hooks";
 import { TableSkeleton } from "../skeleton";
 import { MapContainerContext } from "../../App";
 import { RoutesSearch } from "../elements/form";
 import { getPayload, isUserAuthenticated } from "../../lib/auth";
 import { favouriteRoute, getRouteStopsSingle, getUser } from "../../lib/api";
-
-function FavStopsList({ stops }) {
-  const [isDarkMode] = useTheme();
-  const themeClasses = `${
-    isDarkMode
-      ? "border-system-grey7  bg-system-grey7 text-system-grey2"
-      : "border-system-grey3  bg-system-grey1 text-system-grey6"
-  }`;
-  const classes = `flex flex-col border rounded-xl shadow-lg text-sm ${themeClasses}`;
-
-  return (
-    <div className={classes}>
-      {stops.map((stop, idx) => (
-        <div
-          // onClick={() => handleClick(stop)}
-          key={`${stop.id}${idx}`}
-          className={`px-2 py-3 truncate cursor-pointer transition-all ease-in-out ${
-            isDarkMode
-              ? "hover:bg-system-grey6 active:bg-system-grey5"
-              : "hover:bg-system-grey2 active:bg-system-grey3"
-          } ${
-            idx === stops.length - 1
-              ? "rounded-b-xl"
-              : isDarkMode
-              ? "border-b border-b-system-grey6"
-              : "border-b border-b-system-grey2"
-          } ${idx === 0 ? "rounded-t-xl" : ""}`}
-        >
-          <p>
-            {stop.progressNum}. {stop.stopId_StopName}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 function FavouriteSection({
   selectedRoute,
@@ -196,7 +160,7 @@ export function RoutesContent({
         <TableSkeleton />
       ) : stops ? (
         <>
-          <FavStopsList stops={stops} />
+          <RouteStopsList stops={stops} />
         </>
       ) : (
         <></>
