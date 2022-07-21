@@ -1,9 +1,9 @@
 import React from "react";
 import { useTheme } from "../../hooks";
 
-export function TableSkeleton() {
+export function TableSkeleton({ variant }) {
   const [isDarkMode] = useTheme();
-  const classes = `w-90`;
+  const classes = `${variant === "routes" ? "w-86" : "w-90"}`;
   const themeClasses = `${isDarkMode ? "bg-primary-black" : "bg-system-grey3"}`;
 
   return (

@@ -3,11 +3,11 @@ import React from "react";
 import { useTheme } from "../../hooks";
 import { getETA } from "./helpers";
 
-export function TimeTable({ time, displayValues }) {
+export function TimeTable({ time, displayValues, variant }) {
   const [isDarkMode] = useTheme();
 
   return (
-    <div className='w-90 '>
+    <div className={`${variant === "routes" ? "w-86" : "w-90"}`}>
       <table
         className={`flex flex-col item-center border rounded-xl shadow-lg ${
           isDarkMode
@@ -23,7 +23,7 @@ export function TimeTable({ time, displayValues }) {
                 : "bg-system-grey2 text-system-grey7"
             }`}
           >
-            <td className='min-w-40 text-center'>Bus Route</td>
+            <td className='min-w-40 text-center'>Bus</td>
             <td className='min-w-40 text-center'>ETA</td>
           </tr>
           {displayValues.map((value, idx) => (

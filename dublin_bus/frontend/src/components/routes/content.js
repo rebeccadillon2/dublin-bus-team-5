@@ -2,11 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 
+import { Error } from "../error";
+import { RouteStopsList } from ".";
 import { Header } from "../journey";
-import { getPayload, isUserAuthenticated } from "../../lib/auth";
-import { RoutesSearch } from "../elements/form";
-import { favouriteRoute, getRouteStopsSingle, getUser } from "../../lib/api";
+import { TableSkeleton } from "../skeleton";
 import { MapContainerContext } from "../../App";
+import { RoutesSearch } from "../elements/form";
+import { getPayload, isUserAuthenticated } from "../../lib/auth";
+import { favouriteRoute, getRouteStopsSingle, getUser } from "../../lib/api";
 
 function FavouriteSection({
   selectedRoute,
@@ -44,6 +47,7 @@ export function RoutesContent({
   setSelectedRouteMarkers,
 }) {
   const userId = getPayload().sub;
+  const [stops, setStops] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [favRoutes, setFavRoutes] = useState(null);
@@ -75,17 +79,23 @@ export function RoutesContent({
     console.log("sr", selectedRoute);
     const getRouteMarkers = async () => {
       try {
+        setLoading(true);
         const { data } = await getRouteStopsSingle(
           selectedRoute.routeId,
           selectedRoute.headsign
         );
         console.log("markers:", data);
         setSelectedRouteMarkers(data);
+        setStops(data);
         const mid = Math.floor(data.length / 2);
         const lat = parseFloat(data[mid].stopId_StopLat);
         const lng = parseFloat(data[mid].stopId_StopLon);
         panTo({ lat, lng }, 12);
+        setLoading(false);
+        setError(false);
       } catch (e) {
+        setLoading(false);
+        setError(true);
         console.log(e);
       }
     };
@@ -144,7 +154,17 @@ export function RoutesContent({
           setSelectedRoute={setSelectedRoute}
         />
       </div>
-      <div></div>
+      {error ? (
+        <Error variant='bus-stop' />
+      ) : loading ? (
+        <TableSkeleton />
+      ) : stops ? (
+        <>
+          <RouteStopsList stops={stops} />
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
