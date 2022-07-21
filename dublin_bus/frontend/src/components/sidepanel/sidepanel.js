@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 
 export function SidePanel(props) {
   const { open, handleClose, className, children, setIsOpen, ...rest } = props;
-  const base = `fixed inset-0 overflow-hidden z-20`;
+  const base = `fixed inset-0 overflow-hidden z-50`;
   const classes = `${base} ${className}`;
   return (
     <Transition.Root show={open} as={Fragment} {...rest}>

@@ -12,7 +12,6 @@ import {
   MarkerClusterer,
   DirectionsRenderer,
 } from "@react-google-maps/api";
-import { GiHamburgerMenu } from "react-icons/gi";
 
 import {
   errorTypes,
@@ -22,6 +21,7 @@ import {
   getInputOptions,
   JourneyContainer,
   getMapContainerStyle,
+  MobileMainMenu,
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
 import { getAllRoutes, getAllStops } from "../lib/api";
@@ -170,23 +170,9 @@ export function Journey() {
 
   return (
     <>
-      <div className='md:hidden absolute top-2 left-2 right-2 bg-primary-white h-12 min-h-12 z-10  mx-auto rounded-xl shadow-xl'>
-        <div className='flex items-center justify-around min-h-12 h-12'>
-          <div className='mx-2 cursor-pointer'>Journey</div>
-          <div className='mx-2 cursor-pointer'>Stops</div>
-          <div className='mx-2 cursor-pointer'>Routes</div>
-          <div className='mx-2 cursor-pointer'>Weather</div>
-          <div
-            className='mr-2 cursor-pointer'
-            onClick={() => setOpenSidePanel(true)}
-          >
-            <GiHamburgerMenu />
-          </div>
-        </div>
-      </div>
-
+      <MobileMainMenu setOpenSidePanel={setOpenSidePanel} />
       <div style={{ height: "100%", width: "100%" }}>
-        {/* <JourneyContainer
+        <JourneyContainer
           origin={origin}
           allRoutes={allRoutes}
           selectedRoute={selectedRoute}
@@ -208,7 +194,7 @@ export function Journey() {
           calculateRoute={calculateRoute}
           inputOptions={getInputOptions()}
           setUserLocation={setUserLocation}
-        /> */}
+        />
         <GoogleMap
           center={center}
           zoom={12}

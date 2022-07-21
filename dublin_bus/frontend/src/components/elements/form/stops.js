@@ -35,7 +35,7 @@ export function StopsSearch({
   return (
     <div>
       {stops && (
-        <div className='w-90 '>
+        <div className='md:w-90 w-80 '>
           <Combobox
             as='div'
             value={selectedStop}

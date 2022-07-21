@@ -40,7 +40,7 @@ export function RoutesSearch({
   return (
     <div>
       {routes && (
-        <div className='w-90 '>
+        <div className='md:w-90 w-80 '>
           <Combobox
             as='div'
             value={selectedRoute}
