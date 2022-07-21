@@ -30,7 +30,7 @@ export function ContentContainer(props) {
   const [isDarkMode] = useTheme();
   const [isExpanded] = useExpanded();
 
-  const containerClasses = `relative flex items-end flex-col w-full overflow-y-scroll shadow-2xl  md:absolute md:top-18 md:left-0 md:z-50 md:w-100.1 `;
+  const containerClasses = `flex items-end flex-col w-full overflow-y-scroll shadow-2xl  md:absolute md:top-18 md:left-0 md:z-50 md:w-100.1 `;
   const themeClasses = `${isDarkMode ? "bg-system-grey6" : "bg-system-grey2"}`;
   const expandedClasses = `${
     isExpanded

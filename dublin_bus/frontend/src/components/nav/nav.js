@@ -10,7 +10,7 @@ export function Nav() {
   return (
     <Disclosure
       as='nav'
-      className={`${
+      className={`hidden md:inline ${
         isDarkMode ? "bg-primary-black" : "bg-system-grey1"
       } transition-all ease-in-out`}
     >
