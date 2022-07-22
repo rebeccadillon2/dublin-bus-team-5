@@ -4,14 +4,16 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { SidePanel } from ".";
 import { getUser } from "../../lib/api";
-import { MapContainerContext } from "../../App";
+import { MapContainerContext, UserDetailsContext } from "../../App";
 import { getPayload, removeToken } from "../../lib/auth";
 import { useAuthenticate, useExpanded, useTheme } from "../../hooks";
 
 export function MobileSidePanel({ open, setOpen, handleClose }) {
+  const { userDetails } = useContext(UserDetailsContext);
+
   const uid = getPayload().sub;
   const [isDarkMode] = useTheme();
-  const [email, setEmail] = useState(null);
+  // const [userDetails, setUserDetails] = useState(null);
   const [isAuthenticated, toggleAuthenticated] = useAuthenticate();
 
   const [isExpanded, handleExpandedToggle] = useExpanded();
@@ -19,19 +21,19 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
   const { mapContainerType, setMapContainerType } =
     useContext(MapContainerContext);
 
-  useEffect(() => {
-    const getUserData = async () => {
-      if (!isAuthenticated) return;
-      try {
-        const { data } = await getUser(uid);
-        console.log("data", data);
-        setEmail(data.email);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getUserData();
-  }, []);
+  // useEffect(() => {
+  //   const getUserData = async () => {
+  //     if (!isAuthenticated) return;
+  //     try {
+  //       const { data } = await getUser(uid);
+  //       console.log("data", data);
+  //       setUserDetails(data);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   };
+  //   getUserData();
+  // }, []);
 
   const handleStopsClick = () => {
     setOpen(false);
@@ -122,7 +124,7 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
               />
             </Link>
           </div>
-          <div className='pr-6' onClick={() => setOpen(false)}>
+          <div className='mr-6' onClick={() => setOpen(false)}>
             <FiX className='w-6 h-6' />
           </div>
         </div>
@@ -154,14 +156,28 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
         </div>
         {isAuthenticated ? (
           <>
-            {email && (
+            {userDetails && (
               <div
                 className={`${
                   isDarkMode ? "border-system-grey6" : "border-system-grey2"
-                } flex flex-col border-y  w-[100%]`}
+                } border-y flex items-center justify-between w-[100%]`}
               >
-                <div className='pt-4 pb-1 pl-6 text-sm'>Signed in as</div>
-                <div className='pt-1 pb-4 pl-6'>{email}</div>
+                <div className={`flex flex-col   w-[100%]`}>
+                  <div className='pt-4 pb-1 pl-6 text-sm'>Signed in as</div>
+                  <div className='pt-1 pb-4 pl-6'>{userDetails.email}</div>
+                </div>
+                <div className='flex items-center justify-end w-[100%] pr-6'>
+                  <img
+                    width={32}
+                    height={32}
+                    alt='profile'
+                    className='rounded-full h-8 w-8'
+                    src={
+                      userDetails.profileImage ||
+                      "https://res.cloudinary.com/dk0r9bcxy/image/upload/v1633014391/project-image-upload-test/pqqrv32aicedep9a5usi.jpg"
+                    }
+                  />
+                </div>
               </div>
             )}
             <div className='flex flex-col w-[100%]'>
