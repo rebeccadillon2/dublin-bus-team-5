@@ -1,0 +1,11 @@
+
+Train metrics for line 77X:
+MAE: 183.08036
+MAPE: 0.0327
+MSE: 247.7608
+R2: 0.88794
+Test metrics for line 77X:
+MAE: 428.60286
+MAPE: 0.07504
+MSE: 520.21371
+R2: -0.12247
