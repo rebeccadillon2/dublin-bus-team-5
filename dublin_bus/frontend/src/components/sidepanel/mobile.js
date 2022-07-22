@@ -81,6 +81,11 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
     }
   };
 
+  const handleAccountClick = () => {
+    setOpen(false);
+    navigate("/account");
+  };
+
   return (
     <SidePanel
       open={open}
@@ -91,7 +96,9 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
       <div className={` flex flex-col items-start justify-start w-[100%]`}>
         <div
           className={`${
-            isDarkMode ? "border-system-grey6 " : "border-system-grey2"
+            isDarkMode
+              ? "border-system-grey6 text-system-grey4 hover:text-system-grey6"
+              : "border-system-grey2 text-system-grey5 hover:text-system-grey3"
           } flex items-center justify-between w-[100%] border-b  pb-4`}
         >
           <div className='outline-none pl-6'>
@@ -151,7 +158,10 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
               </div>
             )}
             <div className='flex flex-col w-[100%]'>
-              <div className='pt-4 pb-2 pl-6 cursor-pointer w-[100%]'>
+              <div
+                onClick={handleAccountClick}
+                className='pt-4 pb-2 pl-6 cursor-pointer w-[100%]'
+              >
                 Account
               </div>
               <div className='pt-2 pb-4 pl-6 cursor-pointer w-[100%]'>

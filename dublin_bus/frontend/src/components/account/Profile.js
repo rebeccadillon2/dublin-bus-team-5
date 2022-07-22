@@ -36,7 +36,7 @@ export function ProfileSettings() {
   return (
     <AccountSection title='Profile'>
       <Card isFirst={true} className='relative'>
-        <div className='sm:pr-10'>
+        <div className='sm:pr-0 pr-10'>
           <p
             className={`${
               isDarkMode ? "text-primary-white" : "text-primary-black"
@@ -65,7 +65,7 @@ export function ProfileSettings() {
       </Card>
       <div className={`${isDarkMode ? "bg-system-grey7 h-px" : ""} `} />
       <Card isFirst={true} className='relative'>
-        <div className='sm:pr-10'>
+        <div className='sm:pr-0 pr-10'>
           <p
             className={`${
               isDarkMode ? "text-primary-white" : "text-primary-black"
@@ -73,7 +73,7 @@ export function ProfileSettings() {
           >
             Profile Image
           </p>
-          <p className='text-sm'>
+          <p className='text-sm '>
             Change the profile image linked with your account.
           </p>
           <EditProfileImage
