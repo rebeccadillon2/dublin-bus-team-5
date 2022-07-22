@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { useTheme } from "../../hooks";
@@ -7,6 +7,7 @@ import { loginUser } from "../../lib/api";
 import { setToken } from "../../lib/auth";
 import { LoadingSpinner } from "../loading";
 import { PrimaryButton } from "../elements/button";
+import { AuthenticatedContext } from "../../App";
 
 export function LoginForm() {
   const initialState = {
@@ -22,6 +23,9 @@ export function LoginForm() {
   const [formData, setFormData] = useState(initialState);
   const [missingError, setMissingValuesError] = useState(null);
 
+  const { isAuthenticated, toggleAuthenticated } =
+    useContext(AuthenticatedContext);
+
   const handleChange = (e) => {
     const value = e.target.value;
     setFormData({ ...formData, [e.target.name]: value });
@@ -34,8 +38,10 @@ export function LoginForm() {
       console.log("token", data.token);
       setToken(data.token);
       navigate("/");
+      toggleAuthenticated(true);
       // eslint-disable-next-line no-restricted-globals
-      location.reload();
+
+      // location.reload();
     } catch (err) {
       console.log(err.response.data.detail);
       setFormErrors(err.response);

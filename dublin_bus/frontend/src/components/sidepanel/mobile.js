@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
 import { FiX } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 
 import { SidePanel } from ".";
-import { MapContainerContext } from "../../App";
-import { useAuthenticate, useExpanded, useTheme } from "../../hooks";
 import { getUser } from "../../lib/api";
-import { getPayload } from "../../lib/auth";
+import { MapContainerContext } from "../../App";
+import { getPayload, removeToken } from "../../lib/auth";
+import { useAuthenticate, useExpanded, useTheme } from "../../hooks";
 
 export function MobileSidePanel({ open, setOpen, handleClose }) {
   const uid = getPayload().sub;
   const [isDarkMode] = useTheme();
   const [email, setEmail] = useState(null);
-  const [isAuthenticated] = useAuthenticate();
+  const [isAuthenticated, toggleAuthenticated] = useAuthenticate();
 
   const [isExpanded, handleExpandedToggle] = useExpanded();
   const navigate = useNavigate();
@@ -84,6 +84,13 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
   const handleAccountClick = () => {
     setOpen(false);
     navigate("/account");
+  };
+
+  const handleLogout = () => {
+    setOpen(false);
+    removeToken();
+    toggleAuthenticated(false);
+    navigate("/");
   };
 
   return (
@@ -164,8 +171,11 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
               >
                 Account
               </div>
-              <div className='pt-2 pb-4 pl-6 cursor-pointer w-[100%]'>
-                Sign out
+              <div
+                onClick={handleLogout}
+                className='pt-2 pb-4 pl-6 cursor-pointer w-[100%]'
+              >
+                Logout
               </div>
             </div>
           </>

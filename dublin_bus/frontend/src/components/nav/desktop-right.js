@@ -1,19 +1,13 @@
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 import { ThemeToggle } from "../toggle";
 import { WeatherDisplay, DropDown } from ".";
-import { isUserAuthenticated } from "../../lib/auth";
+import { AuthenticatedContext } from "../../App";
 import { PrimaryButton, SecondaryButton } from "../elements/button";
-import { useAuthenticate } from "../../hooks";
 
 export function DesktopRight() {
-  const [isAuthenticated] = useAuthenticate();
-
-  const [auth, setAuth] = useState(false);
-  useEffect(() => {
-    setAuth(isUserAuthenticated());
-  }, []);
+  const { isAuthenticated } = useContext(AuthenticatedContext);
 
   return (
     <div className='hidden md:ml-6 md:block'>

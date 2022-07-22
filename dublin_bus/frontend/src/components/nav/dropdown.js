@@ -78,7 +78,7 @@ export function DropDown() {
             className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	cursor-pointer`}
           >
             <Menu.Item>
-              <>Sign out</>
+              <>Logout</>
             </Menu.Item>
           </div>
         </Menu.Items>
