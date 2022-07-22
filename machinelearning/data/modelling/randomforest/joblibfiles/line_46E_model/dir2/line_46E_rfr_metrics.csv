@@ -1,0 +1,11 @@
+
+Train metrics for line 46E:
+MAE: 147.93
+MAPE: 0.03861
+MSE: 192.83642
+R2: 0.86743
+Test metrics for line 46E:
+MAE: 424.9744
+MAPE: 0.10021
+MSE: 572.69991
+R2: 0.21355
