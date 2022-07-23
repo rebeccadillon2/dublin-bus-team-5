@@ -16,9 +16,13 @@ export function Wordle() {
 
   return (
     <div className={classes}>
-      {/* {solution && (
-        <WordleContainer solution={solution} setReset={setReset} reset={reset} />
-      )} */}
+      {solution && (
+        <WordleContainer
+          solution={solution}
+          setReset={setReset}
+          reset={reset}
+        />
+      )}
     </div>
   );
 }
