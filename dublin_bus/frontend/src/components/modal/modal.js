@@ -40,7 +40,7 @@ export function Modal(props) {
               <Dialog.Panel
                 className={`relative ${
                   isDarkMode ? "bg-primary-black" : "bg-primary-white"
-                }  rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full sm:p-6 max-w-120`}
+                }  rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full sm:p-6 max-w-120 min-w-[250px]`}
               >
                 {children}
               </Dialog.Panel>

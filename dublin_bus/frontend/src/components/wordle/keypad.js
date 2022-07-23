@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import myData from "./db.json";
-import { ThemeContext } from "../../App";
+import { useTheme } from "../../hooks";
 
 export function Keypad({ usedKeys, handleKeyup }) {
-  const [isDarkMode] = useContext(ThemeContext);
+  const [isDarkMode] = useTheme();
   const [letters, setLetters] = useState(null);
 
   const theme = `${isDarkMode ? "bg-zinc-500" : "bg-zinc-100"}`;
@@ -16,7 +16,6 @@ export function Keypad({ usedKeys, handleKeyup }) {
   }, []);
 
   const handleClick = (key) => {
-    console.log(key);
     handleKeyup({ key });
   };
 

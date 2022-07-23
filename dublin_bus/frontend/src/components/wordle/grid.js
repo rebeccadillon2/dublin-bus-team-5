@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { Row } from ".";
-import { ThemeContext } from "../../App";
+import { useTheme } from "../../hooks";
 
 export function Grid({ currentGuess, guesses, turn }) {
-  const [isDarkMode] = useContext(ThemeContext);
+  const [isDarkMode] = useTheme();
 
   return (
     <div className={`${isDarkMode ? "text-zinc-700" : "text-black"}`}>

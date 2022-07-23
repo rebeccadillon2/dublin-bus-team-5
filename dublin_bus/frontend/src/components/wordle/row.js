@@ -1,8 +1,11 @@
 import React from "react";
+import { useTheme } from "../../hooks";
 
 export function Row({ guess, currentGuess }) {
+  const [isDarkMode] = useTheme();
   const rowParent = `flex justify-center text-center row`;
-  const rowClasses = `flex items-center justify-center md:w-[60px] md:h-[60px] w-[50px] h-[50px] border border-grey m-1 text-center md:leading-10 leading-8	uppercase font-bold md:text-4xl text-2xl`;
+  const themeClasses = `${isDarkMode ? "border-grey" : "border-system-grey3"}`;
+  const rowClasses = `flex items-center justify-center md:w-[60px] md:h-[60px] w-[50px] h-[50px] border  m-1 text-center md:leading-10 leading-8	uppercase font-bold md:text-4xl text-2xl ${themeClasses}`;
 
   if (guess) {
     return (
