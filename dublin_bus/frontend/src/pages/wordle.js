@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+
 import { useTheme } from "../hooks";
 import myData from "../components/wordle/db.json";
+import { WordleContainer } from "../components/wordle";
 
 export function Wordle() {
   const [isDarkMode] = useTheme();
