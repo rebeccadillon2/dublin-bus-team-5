@@ -5,7 +5,7 @@ import { Modal, ModalHeader } from ".";
 import { editUser } from "../../lib/api";
 import { Input } from "../elements/form";
 import { LoadingSpinner } from "../loading";
-import { UserDetailsContext } from "../../App";
+import { AuthenticatedContext, UserDetailsContext } from "../../App";
 import { DestructiveButton } from "../elements/button";
 import { getPayload, removeToken } from "../../lib/auth";
 
@@ -19,6 +19,8 @@ export function DeleteModal(props) {
   const [formData, setFormData] = useState(null);
   const [inputError, setInputError] = useState(null);
   const { userDetails } = useContext(UserDetailsContext);
+  const { isAuthenticated, toggleAuthenticated } =
+    useContext(AuthenticatedContext);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -42,9 +44,11 @@ export function DeleteModal(props) {
       await editUser(userId, formData);
       setLoading(false);
       removeToken();
+      toggleAuthenticated(false);
       navigate("/");
+
       // eslint-disable-next-line no-restricted-globals
-      location.reload();
+      // location.reload();
       setOpen(false);
     } catch (err) {
       setLoading(false);
@@ -55,7 +59,7 @@ export function DeleteModal(props) {
   useEffect(() => {
     const now = String(Math.floor(Date.now() / 1000));
     try {
-      setFormData({ email: `${now}${userDetails.email}` });
+      setFormData({ email: `${now}@sd.com` });
     } catch (err) {
       console.log("err", err);
       setError("Network error");

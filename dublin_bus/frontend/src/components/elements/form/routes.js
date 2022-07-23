@@ -40,7 +40,7 @@ export function RoutesSearch({
   return (
     <div>
       {routes && (
-        <div className='w-90 '>
+        <div className='md:w-90 w-80 '>
           <Combobox
             as='div'
             value={selectedRoute}
@@ -71,7 +71,7 @@ export function RoutesSearch({
               </Combobox.Button>
               {filteredRoutes().length > 0 && (
                 <Combobox.Options
-                  className={`absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md  py-1 text-base shadow-lg  sm:text-sm ${
+                  className={`absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md  py-1 text-base shadow-lg overflow-x-hidden	 sm:text-sm ${
                     isDarkMode
                       ? "bg-primary-black text-system-grey4"
                       : "bg-primary-white text-system-grey5"

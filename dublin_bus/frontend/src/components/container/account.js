@@ -15,7 +15,7 @@ export function AccountSection(props) {
   } md:w-180   w-full rounded-default`;
 
   return (
-    <div className={`${first && "mt-10"} mb-10 min-w-117`} {...rest}>
+    <div className={`${first && "md:mt-10 mt-2"} mb-10 min-w-117`} {...rest}>
       <p className={headerClasses}>{title}</p>
       <ul className={classes}>{children}</ul>
     </div>

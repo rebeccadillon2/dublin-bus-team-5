@@ -1,7 +1,7 @@
 import React from "react";
 import { MdOutlineExpandMore, MdOutlineExpandLess } from "react-icons/md";
 
-import { useTheme, useExpanded } from "../../hooks";
+import { useTheme, useExpanded, useWindowSize } from "../../hooks";
 
 function ExpandToggle() {
   const [isDarkMode] = useTheme();
@@ -29,19 +29,26 @@ export function ContentContainer(props) {
   const { children, ...rest } = props;
   const [isDarkMode] = useTheme();
   const [isExpanded] = useExpanded();
+  const [width] = useWindowSize();
 
-  const containerClasses = `relative flex items-end flex-col w-full overflow-y-scroll shadow-2xl  md:absolute md:top-18 md:left-0 md:z-50 md:w-100.1 `;
+  const containerClasses = `${
+    width > 768
+      ? "md:min-h-[calc(100vh-64px)] md:absolute md:top-18 md:left-0 md:z-50 md:w-100.1  overflow-y-scroll"
+      : "absolute z-10 top-14 left-2 right-2 z-10 mx-auto"
+  }  overflow-y-scroll shadow-2xl `;
   const themeClasses = `${isDarkMode ? "bg-system-grey6" : "bg-system-grey2"}`;
   const expandedClasses = `${
     isExpanded
-      ? "min-h-80vh max-h-80vh h-80vh md:min-h-[calc(100vh-64px)]"
-      : "max-h-54 min-h-54 h-54 md:min-h-[calc(100vh-64px)]"
+      ? "min-h-[85vh] max-h-[85vh] h-[85vh] "
+      : "hidden min-h-0 h-0 max-h-0 "
+  } md:h-full`;
+  const innerClasses = `container-to-make py-2 md:px-4 px-4 md:w-100.1 transition-all ease-in-out duration-500 md:min-h-[calc(100vh-64px)] md:max-h-[calc(100vh-64px)] overflow-y-scroll ${themeClasses} ${
+    width > 768 ? "" : expandedClasses
   }`;
-  const innerClasses = `container-to-make py-2 md:px-4 px-2 w-full md:w-100.1 transition-all ease-in-out duration-500  overflow-y-scroll ${themeClasses} ${expandedClasses}`;
   return (
     <div className={containerClasses} {...rest}>
       <div className={innerClasses}>{children}</div>
-      <ExpandToggle />
+      {/* <ExpandToggle /> */}
     </div>
   );
 }

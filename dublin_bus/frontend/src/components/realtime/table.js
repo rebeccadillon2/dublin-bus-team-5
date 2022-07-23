@@ -7,7 +7,9 @@ export function TimeTable({ time, displayValues, variant }) {
   const [isDarkMode] = useTheme();
 
   return (
-    <div className={`${variant === "routes" ? "w-86" : "w-90"}`}>
+    <div
+      className={`${variant === "routes" ? "md:w-86 w-76" : "md:w-90 w-80"}`}
+    >
       <table
         className={`flex flex-col item-center border rounded-xl shadow-lg ${
           isDarkMode

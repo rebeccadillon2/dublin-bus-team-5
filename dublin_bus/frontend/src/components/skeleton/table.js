@@ -3,7 +3,7 @@ import { useTheme } from "../../hooks";
 
 export function TableSkeleton({ variant }) {
   const [isDarkMode] = useTheme();
-  const classes = `${variant === "routes" ? "w-86" : "w-90"}`;
+  const classes = `${variant === "routes" ? "md:w-86 w-78" : "md:w-90 w-80"}`;
   const themeClasses = `${isDarkMode ? "bg-primary-black" : "bg-system-grey3"}`;
 
   return (

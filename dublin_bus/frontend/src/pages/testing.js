@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MobileSidePanel } from "../components/sidepanel";
 import { getMLPrediction } from "../lib/api";
 
 export function Testing() {
+  const [openSidePanel, setOpenSidePanel] = useState(false);
+
   const handlePrediction = async () => {
     try {
       const res = await getMLPrediction();
@@ -9,6 +13,10 @@ export function Testing() {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleSidePanelClose = () => {
+    setOpenSidePanel(false);
   };
 
   return (
@@ -20,7 +28,15 @@ export function Testing() {
         >
           Get prediction
         </button>
+        <div className='pr-2' onClick={() => setOpenSidePanel(true)}>
+          <GiHamburgerMenu />
+        </div>
       </div>
+      <MobileSidePanel
+        open={openSidePanel}
+        setOpen={setOpenSidePanel}
+        handleClose={handleSidePanelClose}
+      />
     </>
   );
 }

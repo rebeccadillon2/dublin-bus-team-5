@@ -21,6 +21,7 @@ import {
   getInputOptions,
   JourneyContainer,
   getMapContainerStyle,
+  MobileMainMenu,
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
 import { getAllRoutes, getAllStops } from "../lib/api";
@@ -33,6 +34,7 @@ import {
   ContainerType,
   PlaceType,
 } from "../App";
+import { MobileSidePanel } from "../components/sidepanel";
 
 export function Journey() {
   const mapRef = useRef();
@@ -48,6 +50,8 @@ export function Journey() {
   const { mapContainerType } = useContext(MapContainerContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
 
+  const [openSidePanel, setOpenSidePanel] = useState(false);
+
   const [origin, setOrigin] = useState(null);
   const [allRoutes, setAllRoutes] = useState(null);
   const [selectedRoute, setSelectedRoute] = useState(null);
@@ -59,6 +63,10 @@ export function Journey() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
+
+  const handleSidePanelClose = () => {
+    setOpenSidePanel(false);
+  };
 
   const calculateRoute = async (ol, dl) => {
     const originVal = typeof ol === "string" ? ol : originRef.current.value;
@@ -161,89 +169,97 @@ export function Journey() {
     );
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
-      <JourneyContainer
-        origin={origin}
-        allRoutes={allRoutes}
-        selectedRoute={selectedRoute}
-        setSelectedRoute={setSelectedRoute}
-        setSelectedRouteMarkers={setSelectedRouteMarkers}
-        panTo={panTo}
-        allStops={allStops}
-        selectedStop={selectedStop}
-        setSelectedStop={setSelectedStop}
-        time={time}
-        setTime={setTime}
-        loading={loading}
-        originRef={originRef}
-        inputError={inputError}
-        clearRoute={clearRoute}
-        handleFocus={handleFocus}
-        handleSwitch={handleSwitch}
-        destinationRef={destinationRef}
-        calculateRoute={calculateRoute}
-        inputOptions={getInputOptions()}
-        setUserLocation={setUserLocation}
-      />
-      <GoogleMap
-        center={center}
-        zoom={12}
-        options={getMapOptions(isDarkMode)}
-        mapContainerStyle={getMapContainerStyle(width, isExpanded)}
-        onLoad={onMapLoad}
-      >
-        {mapContainerType.type === ContainerType.REALTIME ||
-        mapContainerType.type === ContainerType.FAV_STOPS ||
-        mapContainerType.place === PlaceType.REALTIME ? (
-          <>
-            {allStops && (
-              <MarkerClusterer>
-                {(clusterer) =>
-                  allStops.map((stop, idx) => (
-                    <Marker
-                      key={`${stop.id}${idx}`}
-                      clusterer={clusterer}
-                      position={{ lat: stop.stopLat, lng: stop.stopLon }}
-                    />
-                  ))
-                }
-              </MarkerClusterer>
-            )}
-          </>
-        ) : mapContainerType.type === ContainerType.ROUTES ||
-          mapContainerType.type === ContainerType.FAV_ROUTES ||
-          mapContainerType.place === PlaceType.ROUTES ? (
-          <>
-            {selectedRouteMarkers &&
-              selectedRouteMarkers.map((marker, idx) => (
-                <Marker
-                  key={`${marker.stopId}`}
-                  position={{
-                    lat: marker.stopId_StopLat,
-                    lng: marker.stopId_StopLon,
-                  }}
+    <>
+      <MobileMainMenu setOpenSidePanel={setOpenSidePanel} />
+      <div style={{ height: "100%", width: "100%" }}>
+        <JourneyContainer
+          origin={origin}
+          allRoutes={allRoutes}
+          selectedRoute={selectedRoute}
+          setSelectedRoute={setSelectedRoute}
+          setSelectedRouteMarkers={setSelectedRouteMarkers}
+          panTo={panTo}
+          allStops={allStops}
+          selectedStop={selectedStop}
+          setSelectedStop={setSelectedStop}
+          time={time}
+          setTime={setTime}
+          loading={loading}
+          originRef={originRef}
+          inputError={inputError}
+          clearRoute={clearRoute}
+          handleFocus={handleFocus}
+          handleSwitch={handleSwitch}
+          destinationRef={destinationRef}
+          calculateRoute={calculateRoute}
+          inputOptions={getInputOptions()}
+          setUserLocation={setUserLocation}
+        />
+        <GoogleMap
+          center={center}
+          zoom={12}
+          options={getMapOptions(isDarkMode)}
+          mapContainerStyle={getMapContainerStyle(width, isExpanded)}
+          onLoad={onMapLoad}
+        >
+          {mapContainerType.type === ContainerType.REALTIME ||
+          mapContainerType.type === ContainerType.FAV_STOPS ||
+          mapContainerType.place === PlaceType.REALTIME ? (
+            <>
+              {allStops && (
+                <MarkerClusterer>
+                  {(clusterer) =>
+                    allStops.map((stop, idx) => (
+                      <Marker
+                        key={`${stop.id}${idx}`}
+                        clusterer={clusterer}
+                        position={{ lat: stop.stopLat, lng: stop.stopLon }}
+                      />
+                    ))
+                  }
+                </MarkerClusterer>
+              )}
+            </>
+          ) : mapContainerType.type === ContainerType.ROUTES ||
+            mapContainerType.type === ContainerType.FAV_ROUTES ||
+            mapContainerType.place === PlaceType.ROUTES ? (
+            <>
+              {selectedRouteMarkers &&
+                selectedRouteMarkers.map((marker, idx) => (
+                  <Marker
+                    key={`${marker.stopId}`}
+                    position={{
+                      lat: marker.stopId_StopLat,
+                      lng: marker.stopId_StopLon,
+                    }}
+                  />
+                ))}
+            </>
+          ) : (
+            <>
+              {mapDetails.markers &&
+                mapDetails.markers.length >= 1 &&
+                mapDetails.markers.map((marker, idx) => (
+                  <Marker
+                    key={`${marker.lat}${idx}`}
+                    position={{ lat: marker.lat, lng: marker.lng }}
+                  />
+                ))}
+              {mapDetails.resObj && (
+                <DirectionsRenderer
+                  directions={mapDetails.resObj}
+                  routeIndex={getRoute()}
                 />
-              ))}
-          </>
-        ) : (
-          <>
-            {mapDetails.markers &&
-              mapDetails.markers.length >= 1 &&
-              mapDetails.markers.map((marker, idx) => (
-                <Marker
-                  key={`${marker.lat}${idx}`}
-                  position={{ lat: marker.lat, lng: marker.lng }}
-                />
-              ))}
-            {mapDetails.resObj && (
-              <DirectionsRenderer
-                directions={mapDetails.resObj}
-                routeIndex={getRoute()}
-              />
-            )}
-          </>
-        )}
-      </GoogleMap>
-    </div>
+              )}
+            </>
+          )}
+        </GoogleMap>
+        <MobileSidePanel
+          open={openSidePanel}
+          setOpen={setOpenSidePanel}
+          handleClose={handleSidePanelClose}
+        />
+      </div>
+    </>
   );
 }

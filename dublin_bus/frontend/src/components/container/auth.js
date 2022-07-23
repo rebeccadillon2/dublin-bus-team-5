@@ -9,7 +9,7 @@ export function AuthContainer(props) {
       ? "bg-system-grey6 text-system-grey2"
       : "bg-system-grey3 text-system-grey6"
   }`;
-  const classes = `max-w-130 md:w-98 w-86 px-4 py-6 mt-14 rounded-lg ${themeClasses}`;
+  const classes = `max-w-130 md:w-98 w-86 px-4 py-6 md:mt-14 mt-6 rounded-lg ${themeClasses}`;
   return (
     <div className={classes} {...rest}>
       {children}
