@@ -7,12 +7,20 @@ import "tailwindcss/tailwind.css";
 
 import { getUser } from "./lib/api";
 import { Nav } from "./components/nav/";
+import { Testing2 } from "./pages/testing2";
 import { getPayload, isUserAuthenticated } from "./lib/auth";
 import SetupSpotifyWebPlayer from "./components/spotify/setup";
-import { Signup, Journey, Account, Login, Testing, Stops } from "./pages";
 import UpdateCurrentTrack from "./components/spotify/update-track";
 import { CurrentTrackContextProvider } from "./components/spotify/context";
-import { Testing2 } from "./pages/testing2";
+import {
+  Signup,
+  Journey,
+  Account,
+  Login,
+  Testing,
+  Stops,
+  Wordle,
+} from "./pages";
 
 export const ContainerType = {
   DEFAULT: "default",
@@ -174,6 +182,7 @@ function App() {
                           <Route element={<ProtectedRoute />}>
                             {" "}
                             <Route path={"/account"} element={<Account />} />
+                            <Route path={"/wordle"} element={<Wordle />} />
                           </Route>
                         </Routes>
                       </BrowserRouter>
