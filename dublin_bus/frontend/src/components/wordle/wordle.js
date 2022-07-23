@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
+import { Grid, Keypad } from ".";
 import { useWordle } from "../../hooks";
-import { ThemeContext } from "../../App";
 
 export function WordleContainer({ solution, setReset, reset }) {
   const {
@@ -19,7 +19,6 @@ export function WordleContainer({ solution, setReset, reset }) {
     setCurrGuess,
   } = useWordle(solution);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDarkMode] = useContext(ThemeContext);
 
   useEffect(() => {
     window.addEventListener("keyup", handleKeyup);
@@ -75,9 +74,9 @@ export function WordleContainer({ solution, setReset, reset }) {
           </div>
         </div>
       </div>
-      {/* <Grid currentGuess={currGuess} guesses={guesses} turn={turn} />
+      <Grid currentGuess={currGuess} guesses={guesses} turn={turn} />
       <Keypad usedKeys={usedKeys} handleKeyup={handleKeyup} />
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
       )} */}
     </div>
