@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+// Code inspiration https://github.com/iamshaunjp/React-Wordle
+
 export const useWordle = (solution) => {
   const [old, setOld] = useState([]);
   const [turn, setTurn] = useState(0);
