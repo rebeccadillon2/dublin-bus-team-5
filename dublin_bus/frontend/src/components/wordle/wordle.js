@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../../App";
 
 import { useWordle } from "../../hooks";
+import { ThemeContext } from "../../App";
 
 export function WordleContainer({ solution, setReset, reset }) {
   const {
