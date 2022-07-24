@@ -1,11 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useTheme } from "../../hooks";
 import { FareToggle, ThemeToggle } from "../toggle";
 import { AccountSection, Card } from "../container";
+import { SecondaryButton } from "../elements/button";
 
 export function GeneralSettings() {
   const [isDarkMode] = useTheme();
+  const navigate = useNavigate();
 
   return (
     <AccountSection title='General' first={true}>
@@ -25,7 +28,7 @@ export function GeneralSettings() {
         <ThemeToggle />
       </Card>
       <div className={`${isDarkMode ? "bg-system-grey7 h-px" : ""} `} />
-      <Card isLast={true}>
+      <Card>
         <div className='pr-10'>
           <p
             className={`${
@@ -40,6 +43,23 @@ export function GeneralSettings() {
           </p>
         </div>
         <FareToggle />
+      </Card>
+      <Card isLast={true}>
+        <div className='pr-10'>
+          <p
+            className={`${
+              isDarkMode ? "text-primary-white" : "text-primary-black"
+            }`}
+          >
+            Dublin Street Wordle
+          </p>
+          <p className='text-sm'>
+            Why not pass the time with our custom dublin street wordle game.
+          </p>
+        </div>
+        <SecondaryButton onClick={() => navigate("/wordle")} type='action'>
+          Play
+        </SecondaryButton>
       </Card>
     </AccountSection>
   );
