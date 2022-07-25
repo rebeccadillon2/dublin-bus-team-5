@@ -316,6 +316,10 @@ module.exports = {
         "9c": "3100px",
         "10c": "3400px",
       },
+      brightness: {
+        65: ".65",
+        175: "1.75",
+      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         manrope: ["Manrope", "sans-serif"],

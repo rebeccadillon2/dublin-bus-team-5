@@ -14,3 +14,4 @@ export * from "./bus";
 export * from "./users";
 export * from "./spotify";
 export * from "./weather";
+export * from "./ticketmaster";

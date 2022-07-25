@@ -10,7 +10,7 @@ export function PageContainer(props) {
   const [openSidePanel, setOpenSidePanel] = useState(false);
 
   const themeClasses = `${isDarkMode ? "bg-system-grey7" : "bg-system-grey2"}`;
-  const classes = `page-me flex flex-col items-center justify-start min-h-screen w-100 md:px-8 px-4 transition-all ease-in-out duration-300 pb-10 ${themeClasses}`;
+  const classes = `page-me flex flex-col items-center justify-start md:min-h-[calc(100vh-64px)] min-h-[calc(100vh)] w-100 transition-all ease-in-out duration-300 ${themeClasses}`;
 
   const handleSidePanelClose = () => {
     setOpenSidePanel(false);
