@@ -69,6 +69,7 @@ export function Journey() {
   };
 
   const calculateRoute = async (ol, dl) => {
+    console.log(ol, dl);
     const originVal = typeof ol === "string" ? ol : originRef.current.value;
     const destinationVal =
       typeof dl === "string" ? dl : destinationRef.current.value;
