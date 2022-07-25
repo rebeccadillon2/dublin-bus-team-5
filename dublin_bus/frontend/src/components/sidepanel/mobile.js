@@ -83,6 +83,16 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
     }
   };
 
+  const handleEventsClick = () => {
+    setOpen(false);
+    navigate("/events");
+  };
+
+  const handleWordleClick = () => {
+    setOpen(false);
+    navigate("/wordle");
+  };
+
   const handleAccountClick = () => {
     setOpen(false);
     navigate("/account");
@@ -156,6 +166,24 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
         </div>
         {isAuthenticated ? (
           <>
+            <div
+              className={`border-t ${
+                isDarkMode ? "border-system-grey6" : "border-system-grey2"
+              } flex flex-col w-[100%]`}
+            >
+              <div
+                onClick={handleEventsClick}
+                className='pt-4 pb-2 pl-6 cursor-pointer w-[100%]'
+              >
+                Events
+              </div>
+              <div
+                onClick={handleWordleClick}
+                className='pt-2 pb-4 pl-6 cursor-pointer w-[100%]'
+              >
+                Dublin Street Worlde
+              </div>
+            </div>
             {userDetails && (
               <div
                 className={`${

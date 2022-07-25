@@ -65,6 +65,14 @@ export function DropDown() {
           className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${themeBgClasses}`}
         >
           <Link
+            to='/events'
+            className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+          >
+            <Menu.Item>
+              <>Events</>
+            </Menu.Item>
+          </Link>
+          <Link
             to='/account'
             className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
           >
@@ -72,7 +80,16 @@ export function DropDown() {
               <>Account</>
             </Menu.Item>
           </Link>
-          <div
+
+          <Link
+            to='/wordle'
+            className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	`}
+          >
+            <Menu.Item>
+              <>Dublin Street Wordle</>
+            </Menu.Item>
+          </Link>
+          {/* <div
             href='#'
             onClick={handleSignout}
             className={`block px-4 py-2 text-sm ${themeMenuClasses} transition ease-in-out duration-300	cursor-pointer`}
@@ -80,7 +97,7 @@ export function DropDown() {
             <Menu.Item>
               <>Logout</>
             </Menu.Item>
-          </div>
+          </div> */}
         </Menu.Items>
       </Transition>
     </Menu>
