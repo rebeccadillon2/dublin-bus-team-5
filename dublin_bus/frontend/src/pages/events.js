@@ -1,9 +1,8 @@
 import React from "react";
 
-// import { Slider } from "./slider";
-// import { EventCard } from "./card";
-
 import { useTheme } from "../hooks";
+import { Slider, EventCard } from "../components/events";
+
 export function Events({ events }) {
   const [isDarkMode] = useTheme();
 
