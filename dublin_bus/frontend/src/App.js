@@ -5,7 +5,13 @@ import { ProtectedRoute } from "./pages/protected";
 import "./styles/globals.css";
 import "tailwindcss/tailwind.css";
 
-import { getUser } from "./lib/api";
+import {
+  getComedyEvents,
+  getPopEvents,
+  getRapEvents,
+  getSportEvents,
+  getUser,
+} from "./lib/api";
 import { Nav } from "./components/nav/";
 import { Testing2 } from "./pages/testing2";
 import { getPayload, isUserAuthenticated } from "./lib/auth";
@@ -20,6 +26,7 @@ import {
   Testing,
   Stops,
   Wordle,
+  Events,
 } from "./pages";
 
 export const ContainerType = {
@@ -64,6 +71,7 @@ export const SpotifyContext = createContext({
 });
 
 function App() {
+  const [events, setEvents] = useState(null);
   const [sdkReady, setSdkReady] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isExpanded, toggleExpanded] = useState(false);
@@ -135,6 +143,31 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const getEventsData = async () => {
+      let obj = {};
+      try {
+        const popRes = await getPopEvents();
+        obj = { ...obj, pops: popRes.data._embedded.events };
+
+        const rapRes = await getRapEvents();
+        obj = { ...obj, raps: rapRes.data._embedded.events };
+
+        const sportRes = await getSportEvents();
+        obj = { ...obj, sports: sportRes.data._embedded.events };
+
+        const comedyRes = await getComedyEvents();
+        obj = { ...obj, comedies: comedyRes.data._embedded.events };
+
+        console.log("obj", obj);
+        setEvents({ ...obj });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getEventsData();
+  }, []);
+
   window.onSpotifyWebPlaybackSDKReady = () => setSdkReady(true);
 
   return (
@@ -183,6 +216,10 @@ function App() {
                             {" "}
                             <Route path={"/account"} element={<Account />} />
                             <Route path={"/wordle"} element={<Wordle />} />
+                            <Route
+                              path={"/events"}
+                              element={<Events events={events} />}
+                            />
                           </Route>
                         </Routes>
                       </BrowserRouter>
