@@ -1,0 +1,11 @@
+
+Train metrics for line 79:
+MAE: 90.32878
+MAPE: 0.03625
+MSE: 133.72126
+R2: 0.9303
+Test metrics for line 79:
+MAE: 245.16732
+MAPE: 0.09761
+MSE: 368.80989
+R2: 0.47978

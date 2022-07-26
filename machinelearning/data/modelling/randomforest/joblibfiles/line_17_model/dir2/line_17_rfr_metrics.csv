@@ -1,0 +1,11 @@
+
+Train metrics for line 17:
+MAE: 125.61539
+MAPE: 0.03343
+MSE: 172.49315
+R2: 0.96537
+Test metrics for line 17:
+MAE: 336.57215
+MAPE: 0.0912
+MSE: 461.15827
+R2: 0.73863

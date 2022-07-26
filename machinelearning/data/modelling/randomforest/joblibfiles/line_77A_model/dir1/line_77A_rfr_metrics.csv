@@ -1,0 +1,11 @@
+
+Train metrics for line 77A:
+MAE: 147.16708
+MAPE: 0.03421
+MSE: 202.39855
+R2: 0.95578
+Test metrics for line 77A:
+MAE: 384.18331
+MAPE: 0.08941
+MSE: 521.80898
+R2: 0.7063

@@ -1,0 +1,11 @@
+
+Train metrics for line 68A:
+MAE: 101.57863
+MAPE: 0.04993
+MSE: 140.4903
+R2: 0.86521
+Test metrics for line 68A:
+MAE: 324.39308
+MAPE: 0.15038
+MSE: 508.49189
+R2: 0.12941

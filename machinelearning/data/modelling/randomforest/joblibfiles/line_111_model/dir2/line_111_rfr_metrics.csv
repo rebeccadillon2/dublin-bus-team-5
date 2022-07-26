@@ -1,0 +1,11 @@
+
+Train metrics for line 111:
+MAE: 138.40577
+MAPE: 0.06482
+MSE: 189.52189
+R2: 0.95046
+Test metrics for line 111:
+MAE: 346.57955
+MAPE: 0.1235
+MSE: 444.78517
+R2: 0.69008

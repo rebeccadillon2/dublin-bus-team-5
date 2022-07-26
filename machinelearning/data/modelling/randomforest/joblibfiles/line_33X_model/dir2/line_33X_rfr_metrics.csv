@@ -1,0 +1,11 @@
+
+Train metrics for line 33X:
+MAE: 124.68873
+MAPE: 0.02505
+MSE: 182.96906
+R2: 0.90684
+Test metrics for line 33X:
+MAE: 261.51387
+MAPE: 0.05315
+MSE: 398.07089
+R2: 0.62236

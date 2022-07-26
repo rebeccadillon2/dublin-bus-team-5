@@ -1,0 +1,11 @@
+
+Train metrics for line 185:
+MAE: 61.09697
+MAPE: 0.06145
+MSE: 115.05322
+R2: 0.93392
+Test metrics for line 185:
+MAE: 161.39371
+MAPE: 0.15294
+MSE: 275.73562
+R2: 0.62119

@@ -1,0 +1,11 @@
+
+Train metrics for line 238:
+MAE: 60.63077
+MAPE: 0.0396
+MSE: 86.19324
+R2: 0.91284
+Test metrics for line 238:
+MAE: 152.11243
+MAPE: 0.09315
+MSE: 204.66715
+R2: 0.40788

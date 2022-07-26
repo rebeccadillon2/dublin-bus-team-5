@@ -1,0 +1,11 @@
+
+Train metrics for line 75:
+MAE: 139.58165
+MAPE: 0.02859
+MSE: 196.49548
+R2: 0.96297
+Test metrics for line 75:
+MAE: 386.82063
+MAPE: 0.07867
+MSE: 558.4156
+R2: 0.71119

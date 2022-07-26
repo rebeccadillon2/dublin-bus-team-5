@@ -1,0 +1,11 @@
+
+Train metrics for line 76:
+MAE: 116.40088
+MAPE: 0.04074
+MSE: 160.52893
+R2: 0.94653
+Test metrics for line 76:
+MAE: 335.62346
+MAPE: 0.11929
+MSE: 457.9874
+R2: 0.5259

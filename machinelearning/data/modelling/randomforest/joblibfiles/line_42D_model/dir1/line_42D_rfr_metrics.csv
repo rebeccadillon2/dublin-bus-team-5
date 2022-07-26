@@ -1,0 +1,11 @@
+
+Train metrics for line 42D:
+MAE: 109.06833
+MAPE: 0.03355
+MSE: 163.55035
+R2: 0.82578
+Test metrics for line 42D:
+MAE: 200.21385
+MAPE: 0.06632
+MSE: 267.4426
+R2: -0.35676

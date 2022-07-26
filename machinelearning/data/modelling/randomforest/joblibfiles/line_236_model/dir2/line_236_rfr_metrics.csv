@@ -1,0 +1,11 @@
+
+Train metrics for line 236:
+MAE: 97.48129
+MAPE: 0.04549
+MSE: 142.27822
+R2: 0.86364
+Test metrics for line 236:
+MAE: 244.62514
+MAPE: 0.11851
+MSE: 310.35612
+R2: -0.26462

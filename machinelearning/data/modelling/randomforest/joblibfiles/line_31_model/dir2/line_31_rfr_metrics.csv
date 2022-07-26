@@ -1,0 +1,11 @@
+
+Train metrics for line 31:
+MAE: 82.73814
+MAPE: 0.03335
+MSE: 114.7055
+R2: 0.93416
+Test metrics for line 31:
+MAE: 227.84407
+MAPE: 0.09308
+MSE: 307.91665
+R2: 0.52855

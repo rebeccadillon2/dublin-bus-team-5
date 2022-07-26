@@ -1,0 +1,11 @@
+
+Train metrics for line 61:
+MAE: 111.47973
+MAPE: 0.03567
+MSE: 205.43072
+R2: 0.92122
+Test metrics for line 61:
+MAE: 278.60169
+MAPE: 0.08727
+MSE: 411.79681
+R2: 0.61272

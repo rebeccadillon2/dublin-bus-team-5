@@ -1,0 +1,11 @@
+
+Train metrics for line 37:
+MAE: 133.68598
+MAPE: 0.03251
+MSE: 180.02238
+R2: 0.94761
+Test metrics for line 37:
+MAE: 359.80658
+MAPE: 0.08767
+MSE: 484.50668
+R2: 0.62845

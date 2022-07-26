@@ -1,0 +1,11 @@
+
+Train metrics for line 16C:
+MAE: 62.60867
+MAPE: 0.03341
+MSE: 85.6172
+R2: 0.94922
+Test metrics for line 16C:
+MAE: 193.26571
+MAPE: 0.09819
+MSE: 249.63252
+R2: 0.49573

@@ -1,0 +1,11 @@
+
+Train metrics for line 54A:
+MAE: 107.88863
+MAPE: 0.03212
+MSE: 162.25988
+R2: 0.93553
+Test metrics for line 54A:
+MAE: 278.14202
+MAPE: 0.08366
+MSE: 412.07686
+R2: 0.48578

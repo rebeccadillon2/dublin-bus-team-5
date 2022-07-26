@@ -1,0 +1,11 @@
+
+Train metrics for line 39A:
+MAE: 134.43343
+MAPE: 0.02704
+MSE: 179.79141
+R2: 0.95896
+Test metrics for line 39A:
+MAE: 353.42876
+MAPE: 0.07126
+MSE: 463.47653
+R2: 0.73087

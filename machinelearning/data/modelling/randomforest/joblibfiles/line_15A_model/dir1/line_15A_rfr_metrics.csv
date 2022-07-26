@@ -1,0 +1,11 @@
+
+Train metrics for line 15A:
+MAE: 90.43776
+MAPE: 0.0363
+MSE: 125.16182
+R2: 0.95895
+Test metrics for line 15A:
+MAE: 241.07529
+MAPE: 0.09777
+MSE: 325.8572
+R2: 0.74563

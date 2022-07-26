@@ -1,0 +1,11 @@
+
+Train metrics for line 33A:
+MAE: 99.40798
+MAPE: 0.03206
+MSE: 144.80243
+R2: 0.91824
+Test metrics for line 33A:
+MAE: 276.31731
+MAPE: 0.08128
+MSE: 393.31321
+R2: 0.45951

@@ -1,0 +1,11 @@
+
+Train metrics for line 184:
+MAE: 77.21766
+MAPE: 0.0289
+MSE: 129.96463
+R2: 0.90045
+Test metrics for line 184:
+MAE: 201.42971
+MAPE: 0.07468
+MSE: 273.0712
+R2: 0.4409

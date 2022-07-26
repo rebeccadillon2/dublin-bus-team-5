@@ -1,0 +1,11 @@
+
+Train metrics for line 40D:
+MAE: 98.15047
+MAPE: 0.03374
+MSE: 144.52796
+R2: 0.92462
+Test metrics for line 40D:
+MAE: 250.89377
+MAPE: 0.08846
+MSE: 338.71848
+R2: 0.54385

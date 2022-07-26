@@ -1,0 +1,11 @@
+
+Train metrics for line 47:
+MAE: 132.92027
+MAPE: 0.03585
+MSE: 211.64394
+R2: 0.95136
+Test metrics for line 47:
+MAE: 303.64328
+MAPE: 0.08289
+MSE: 467.65978
+R2: 0.72927

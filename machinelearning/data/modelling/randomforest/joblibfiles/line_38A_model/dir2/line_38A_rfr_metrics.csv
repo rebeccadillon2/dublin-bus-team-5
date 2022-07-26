@@ -1,0 +1,11 @@
+
+Train metrics for line 38A:
+MAE: 185.02546
+MAPE: 0.04458
+MSE: 245.09104
+R2: 0.9412
+Test metrics for line 38A:
+MAE: 523.79653
+MAPE: 0.12615
+MSE: 707.57217
+R2: 0.52607

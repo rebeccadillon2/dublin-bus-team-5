@@ -1,0 +1,11 @@
+
+Train metrics for line 104:
+MAE: 110.92029
+MAPE: 0.04543
+MSE: 153.65922
+R2: 0.88839
+Test metrics for line 104:
+MAE: 277.67636
+MAPE: 0.11457
+MSE: 383.63174
+R2: 0.27758

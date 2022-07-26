@@ -1,0 +1,11 @@
+
+Train metrics for line 16D:
+MAE: 148.01556
+MAPE: 0.02628
+MSE: 189.21111
+R2: 0.91672
+Test metrics for line 16D:
+MAE: 295.908
+MAPE: 0.05181
+MSE: 400.96932
+R2: 0.46521

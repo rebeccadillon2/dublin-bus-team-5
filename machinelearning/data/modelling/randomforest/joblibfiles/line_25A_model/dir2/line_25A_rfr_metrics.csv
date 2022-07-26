@@ -1,0 +1,11 @@
+
+Train metrics for line 25A:
+MAE: 90.71569
+MAPE: 0.0262
+MSE: 127.6495
+R2: 0.96744
+Test metrics for line 25A:
+MAE: 247.08023
+MAPE: 0.07068
+MSE: 329.89015
+R2: 0.78501

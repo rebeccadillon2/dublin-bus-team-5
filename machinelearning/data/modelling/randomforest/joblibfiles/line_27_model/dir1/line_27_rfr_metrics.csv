@@ -1,0 +1,11 @@
+
+Train metrics for line 27:
+MAE: 171.84942
+MAPE: 0.03166
+MSE: 254.10875
+R2: 0.96551
+Test metrics for line 27:
+MAE: 433.1757
+MAPE: 0.08018
+MSE: 586.79383
+R2: 0.80648

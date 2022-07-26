@@ -1,0 +1,11 @@
+
+Train metrics for line 33:
+MAE: 187.02746
+MAPE: 0.03232
+MSE: 298.18307
+R2: 0.93939
+Test metrics for line 33:
+MAE: 546.91121
+MAPE: 0.09236
+MSE: 841.79363
+R2: 0.55047

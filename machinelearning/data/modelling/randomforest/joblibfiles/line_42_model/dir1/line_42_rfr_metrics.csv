@@ -1,0 +1,11 @@
+
+Train metrics for line 42:
+MAE: 97.50089
+MAPE: 0.03238
+MSE: 143.8929
+R2: 0.93988
+Test metrics for line 42:
+MAE: 270.78941
+MAPE: 0.08093
+MSE: 392.1259
+R2: 0.55867

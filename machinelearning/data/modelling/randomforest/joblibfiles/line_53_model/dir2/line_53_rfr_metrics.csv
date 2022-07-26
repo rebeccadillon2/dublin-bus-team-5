@@ -1,0 +1,11 @@
+
+Train metrics for line 53:
+MAE: 58.42913
+MAPE: 0.04336
+MSE: 100.06424
+R2: 0.86848
+Test metrics for line 53:
+MAE: 142.16023
+MAPE: 0.10851
+MSE: 198.51521
+R2: 0.12805

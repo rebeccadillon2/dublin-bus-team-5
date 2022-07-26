@@ -1,0 +1,11 @@
+
+Train metrics for line 9:
+MAE: 131.40923
+MAPE: 0.02809
+MSE: 176.19271
+R2: 0.96187
+Test metrics for line 9:
+MAE: 345.30052
+MAPE: 0.07505
+MSE: 447.97889
+R2: 0.74594

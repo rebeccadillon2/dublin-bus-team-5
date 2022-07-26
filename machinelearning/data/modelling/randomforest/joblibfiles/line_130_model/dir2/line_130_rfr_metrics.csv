@@ -1,0 +1,11 @@
+
+Train metrics for line 130:
+MAE: 72.69233
+MAPE: 0.03932
+MSE: 109.63346
+R2: 0.91458
+Test metrics for line 130:
+MAE: 193.64995
+MAPE: 0.1077
+MSE: 265.99902
+R2: 0.4577

@@ -1,0 +1,11 @@
+
+Train metrics for line 49:
+MAE: 169.48465
+MAPE: 0.04516
+MSE: 251.05593
+R2: 0.90184
+Test metrics for line 49:
+MAE: 441.73715
+MAPE: 0.11951
+MSE: 609.28005
+R2: 0.35777

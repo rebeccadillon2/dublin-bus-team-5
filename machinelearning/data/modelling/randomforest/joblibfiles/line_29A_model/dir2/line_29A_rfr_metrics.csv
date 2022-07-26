@@ -1,0 +1,11 @@
+
+Train metrics for line 29A:
+MAE: 82.02367
+MAPE: 0.0326
+MSE: 118.6444
+R2: 0.94833
+Test metrics for line 29A:
+MAE: 207.14072
+MAPE: 0.08318
+MSE: 274.29646
+R2: 0.68292

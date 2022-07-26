@@ -1,0 +1,11 @@
+
+Train metrics for line 67X:
+MAE: 155.62514
+MAPE: 0.02865
+MSE: 221.08724
+R2: 0.89821
+Test metrics for line 67X:
+MAE: 458.09452
+MAPE: 0.0794
+MSE: 638.31508
+R2: 0.42166

@@ -1,0 +1,11 @@
+
+Train metrics for line 239:
+MAE: 166.36454
+MAPE: 0.0543
+MSE: 231.76695
+R2: 0.87214
+Test metrics for line 239:
+MAE: 485.32833
+MAPE: 0.15949
+MSE: 656.96113
+R2: 0.15675

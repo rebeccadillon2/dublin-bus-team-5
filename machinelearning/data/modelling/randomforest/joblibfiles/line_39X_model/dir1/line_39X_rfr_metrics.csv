@@ -1,0 +1,11 @@
+
+Train metrics for line 39X:
+MAE: 149.91686
+MAPE: 0.0277
+MSE: 267.41366
+R2: 0.87031
+Test metrics for line 39X:
+MAE: 346.09771
+MAPE: 0.07001
+MSE: 418.43576
+R2: 0.30389

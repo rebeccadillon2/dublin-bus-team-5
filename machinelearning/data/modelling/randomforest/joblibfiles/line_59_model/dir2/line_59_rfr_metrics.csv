@@ -1,0 +1,11 @@
+
+Train metrics for line 59:
+MAE: 51.99541
+MAPE: 0.04339
+MSE: 74.84207
+R2: 0.90459
+Test metrics for line 59:
+MAE: 134.51656
+MAPE: 0.11128
+MSE: 189.36513
+R2: 0.28871

@@ -1,0 +1,11 @@
+
+Train metrics for line 270:
+MAE: 75.35457
+MAPE: 0.05252
+MSE: 105.03241
+R2: 0.87899
+Test metrics for line 270:
+MAE: 211.60743
+MAPE: 0.15043
+MSE: 290.1545
+R2: 0.01966

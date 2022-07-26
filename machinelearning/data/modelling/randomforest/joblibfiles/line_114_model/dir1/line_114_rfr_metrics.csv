@@ -1,0 +1,11 @@
+
+Train metrics for line 114:
+MAE: 70.29407
+MAPE: 0.03782
+MSE: 98.79838
+R2: 0.93663
+Test metrics for line 114:
+MAE: 192.25475
+MAPE: 0.10194
+MSE: 259.07183
+R2: 0.64158

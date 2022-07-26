@@ -1,0 +1,11 @@
+
+Train metrics for line 51D:
+MAE: 81.115
+MAPE: 0.02418
+MSE: 99.06211
+R2: 0.82236
+Test metrics for line 51D:
+MAE: 176.66471
+MAPE: 0.0528
+MSE: 206.77741
+R2: 0.50416

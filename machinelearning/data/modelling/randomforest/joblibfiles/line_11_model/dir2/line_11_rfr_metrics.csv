@@ -1,0 +1,11 @@
+
+Train metrics for line 11:
+MAE: 132.87042
+MAPE: 0.03151
+MSE: 188.93864
+R2: 0.96063
+Test metrics for line 11:
+MAE: 355.83095
+MAPE: 0.08356
+MSE: 486.19551
+R2: 0.74026

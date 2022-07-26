@@ -1,0 +1,11 @@
+
+Train metrics for line 56A:
+MAE: 108.23174
+MAPE: 0.03151
+MSE: 153.61368
+R2: 0.95603
+Test metrics for line 56A:
+MAE: 280.74687
+MAPE: 0.08206
+MSE: 386.60004
+R2: 0.70878

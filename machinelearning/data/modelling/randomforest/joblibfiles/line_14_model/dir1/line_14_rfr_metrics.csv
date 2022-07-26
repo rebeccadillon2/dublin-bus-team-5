@@ -1,0 +1,11 @@
+
+Train metrics for line 14:
+MAE: 146.35633
+MAPE: 0.03011
+MSE: 206.37309
+R2: 0.94436
+Test metrics for line 14:
+MAE: 380.9565
+MAPE: 0.07763
+MSE: 520.98259
+R2: 0.60754

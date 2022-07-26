@@ -1,0 +1,11 @@
+
+Train metrics for line 123:
+MAE: 119.73765
+MAPE: 0.03385
+MSE: 159.36145
+R2: 0.94048
+Test metrics for line 123:
+MAE: 314.19523
+MAPE: 0.08879
+MSE: 408.85029
+R2: 0.59103
