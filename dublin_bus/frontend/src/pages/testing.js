@@ -1,18 +1,33 @@
 import React, { useState } from "react";
-import { getMLPrediction } from "../lib/api";
+import { getForecastWeather, getMLPrediction, getSixteenDay } from "../lib/api";
 
 export function Testing() {
   const handlePrediction = async () => {
     try {
-      const res = await getMLPrediction(
+      const { data } = await getMLPrediction(
         "Outside Train Station - Phoenix Park Gate",
-        "46A"
+        "46A",
+        75,
+        5.1,
+        19800,
+        1,
+        10
       );
-      console.log("res", res);
+      console.log("prediction", data[0]);
     } catch (e) {
       console.log(e);
     }
   };
+
+  const handleWeather = async () => {
+    try {
+      const res = await getForecastWeather();
+      console.log("weather", res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  //        [75, 5.1, 19800, 1, 10]
 
   return (
     <>
@@ -21,6 +36,12 @@ export function Testing() {
         className='p-2 rounded-lg bg-primary-blue m-4'
       >
         Get prediction
+      </button>
+      <button
+        onClick={handleWeather}
+        className='p-2 rounded-lg bg-primary-blue m-4'
+      >
+        Get 16 day weather
       </button>
     </>
   );

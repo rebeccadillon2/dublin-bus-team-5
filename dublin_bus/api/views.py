@@ -110,10 +110,15 @@ class MLPredictionView(APIView):
         routeShortName = request.GET['routeShortName']
         direction = Trip.objects.filter(headsign = headSign)[0].direction
         directory = 'dir2' if direction == 1 else 'dir1'
-        print('directory', directory)
+
+        humidity = request.GET['humidity']
+        wind = request.GET['wind']
+        seconds = request.GET['seconds']
+        day = request.GET['day']
+        month = request.GET['month']
 
         filename = f'/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/machinelearning/data/modelling/randomforest/joblibfiles/line_{routeShortName}_model/{directory}/line_{routeShortName}_rfr.joblib' 
         model = joblib.load(filename) 
-        res = model.predict([[75,5.1,19800,1,10]])
+        res = model.predict([[int(humidity),float(wind),int(seconds),int(day),int(month)]])
         print('RES', res)        
         return Response(res, status=status.HTTP_200_OK)

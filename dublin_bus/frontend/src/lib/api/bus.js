@@ -79,10 +79,20 @@ export function getAllRoutes() {
   return axios.get(`${baseUrl}/api/bus/get-all-routes/`);
 }
 
-export function getMLPrediction(headSign, routeShortName) {
+export function getMLPrediction(
+  headSign,
+  routeShortName,
+  humidity,
+  wind,
+  seconds,
+  day,
+  month
+) {
   return axios.get(
     `${baseUrl}/api/bus/get-ml-prediction/`,
-    { params: { headSign, routeShortName } },
+    {
+      params: { headSign, routeShortName, humidity, wind, seconds, day, month },
+    },
     null
   );
 }
