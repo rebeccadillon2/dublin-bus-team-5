@@ -10,6 +10,7 @@ from .serializers import BasicStopTimesRoutesSerializer, BasicStopsSerializer, S
 from django.db.models import Q
 from django.core import serializers
 import json
+import os
 
 class UpcomingStopTimesRoutes(APIView):
     def get(self, request):
@@ -104,14 +105,15 @@ class AllRoutesWithHeadSignView(APIView):
 
 
 class MLPredictionView(APIView):
-    '''ML Prediction View for ML routes'''
-
     def get(self, request):
-        # features = request.GET['features']
-        # file = request.GET['file']
+        headSign = request.GET['headSign']
+        routeShortName = request.GET['routeShortName']
+        direction = Trip.objects.filter(headsign = headSign)[0].direction
+        directory = 'dir2' if direction == 1 else 'dir1'
+        print('directory', directory)
 
-        filename = '/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/data/modelling/randomforest/joblibfiles/line_27_model/dir1/line_27_rfr.joblib' 
+        filename = f'/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/machinelearning/data/modelling/randomforest/joblibfiles/line_{routeShortName}_model/{directory}/line_{routeShortName}_rfr.joblib' 
         model = joblib.load(filename) 
-        res = model.predict([[75,5.1,19800,1,21]])
+        res = model.predict([[75,5.1,19800,1,10]])
         print('RES', res)        
-        return Response({}, status=status.HTTP_200_OK)
+        return Response(res, status=status.HTTP_200_OK)
