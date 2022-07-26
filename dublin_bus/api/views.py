@@ -90,7 +90,7 @@ class RouteDirectionStopCountView(APIView):
         routeId= request.GET['routeId']
         headSign= request.GET['headSign']
         tripId = Trip.objects.filter(Q(route_id_id=routeId) & Q(headsign=headSign))[0].trip_id
-        stops = StopTimes.objects.filter(trip_id_id=tripId).values('stop_id', 'stop_id__stop_lat', 'stop_id__stop_lon', 'stop_id__stop_name', 'progress_num')
+        stops = StopTimes.objects.filter(trip_id=tripId).values('stop_id', 'stop_id__stop_lat', 'stop_id__stop_lon', 'stop_id__stop_name', 'progress_num')
         return Response(stops.count(), status=status.HTTP_200_OK)
 
 

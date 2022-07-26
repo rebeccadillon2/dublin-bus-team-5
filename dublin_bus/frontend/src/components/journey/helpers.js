@@ -1,5 +1,10 @@
 import { errorTypes } from ".";
-import { getForecastWeather, getLiveWeather } from "../../lib/api";
+import {
+  getForecastWeather,
+  getLiveWeather,
+  getMLPrediction,
+  getRouteDirectionStopCount,
+} from "../../lib/api";
 import { center, darkStyles } from "../../lib/map";
 
 export const currentBrowser = (window) => getBrowser(window);
@@ -144,4 +149,133 @@ export const configureWeatherVariables = async (time) => {
     wind: 2.2,
     humidity: 75,
   };
+};
+
+const getMonthNum = (month) => {
+  switch (month) {
+    case "Jan":
+      return 0;
+    case "Feb":
+      return 1;
+    case "Mar":
+      return 2;
+    case "Apr":
+      return 3;
+    case "May":
+      return 4;
+    case "Jun":
+      return 5;
+    case "Jul":
+      return 6;
+    case "Aug":
+      return 7;
+    case "Sep":
+      return 8;
+    case "Oct":
+      return 9;
+    case "Nov":
+      return 10;
+    case "Dec":
+      return 11;
+    default:
+      return 1;
+  }
+};
+
+const getDayNum = (day) => {
+  switch (day) {
+    case "Mon":
+      return 0;
+    case "Tue":
+      return 1;
+    case "Wed":
+      return 2;
+    case "Thu":
+      return 3;
+    case "Fri":
+      return 4;
+    case "Sat":
+      return 5;
+    case "Sun":
+      return 6;
+    default:
+      return 1;
+  }
+};
+
+const convertToSeconds = (str) => {
+  const [hrs, mins, secs] = str.split(":");
+  return Number(hrs) * 60 * 60 + Number(mins) * 60 + Number(secs);
+};
+
+export const addMLPredictionsToResponse = async (results, weatherVariables) => {
+  const obj = { ...results };
+
+  // Iterating over each of the journeys
+  for (let i = 0; i < results.routes.length; i++) {
+    // Duration in seconds
+    let duration = 0;
+    // Iterating over each of the steps in a journey
+    for (let j = 0; j < results.routes[i].legs[0].steps.length; j++) {
+      // Check if not Dublin Bus step
+
+      if (
+        results.routes[i].legs[0].steps[j].travel_mode !== "TRANSIT" ||
+        results.routes[i].legs[0].steps[j].transit.line.agencies[0].name !==
+          "Dublin Bus"
+      ) {
+        duration += results.routes[i].legs[0].steps[j].duration.value;
+      } else {
+        // Getting headsign parameter
+        const headSign = results.routes[i].legs[0].steps[j].transit.line.name;
+
+        // Getting route short name parameter
+        const routeShortName =
+          results.routes[i].legs[0].steps[j].transit.line.short_name;
+
+        // Getting seconds from start of day parameter
+        const secondsFromStartOfDay = convertToSeconds(
+          String(
+            results.routes[i].legs[0].steps[j].transit.departure_time.value
+          ).slice(16, 24)
+        );
+
+        // Getting day of week parameter
+        const day = getDayNum(
+          String(
+            results.routes[i].legs[0].steps[j].transit.departure_time.value
+          ).slice(0, 3)
+        );
+
+        // Getting month parameter
+        const month = getMonthNum(
+          String(
+            results.routes[i].legs[0].steps[j].transit.departure_time.value
+          ).slice(4, 7)
+        );
+
+        try {
+          // Getting the number of stops for the route
+          // const numStops = await getRouteDirectionStopCount(
+          //   `60-${routeShortName}-d12-1`,
+          //   headSign
+          // );
+          // console.log("numStops", numStops);
+          // Getting our ML Prediction
+          // const { data } = await getMLPrediction(
+          //   headSign,
+          //   routeShortName,
+          //   weatherVariables.humidity,
+          //   weatherVariables.wind,
+          //   secondsFromStartOfDay,
+          //   day,
+          //   month
+          // );
+          // console.log("PR", Math.floor(data/60));
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
+  }
 };

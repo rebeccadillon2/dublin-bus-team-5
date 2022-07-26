@@ -23,6 +23,7 @@ import {
   getMapContainerStyle,
   MobileMainMenu,
   configureWeatherVariables,
+  addMLPredictionsToResponse,
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
 import { getAllRoutes, getAllStops } from "../lib/api";
@@ -94,7 +95,7 @@ export function Journey() {
 
       setLoading(false);
       console.log("res", results);
-
+      addMLPredictionsToResponse(results, weatherVariables);
       setMapDetails({ resObj: results, routeIdx: 0, markers: [] });
     } catch (e) {
       console.log(e);
