@@ -1,0 +1,11 @@
+
+Train metrics for line 41D:
+MAE: 312.568
+MAPE: 0.07869
+MSE: 446.75104
+R2: 0.79596
+Test metrics for line 41D:
+MAE: 221.31
+MAPE: 0.07578
+MSE: 275.31926
+R2: -41.5727
