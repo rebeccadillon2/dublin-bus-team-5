@@ -5,12 +5,13 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import RouteSign, StopTimes, StopTimesRoutes, Stop, Trip, Route
+from .models import RouteSign, StopTimes, StopTimesRoutes, Stop, Trip, Route, Tripnewnew
 from .serializers import BasicStopTimesRoutesSerializer, BasicStopsSerializer, StopSerializer, BasicRouteStopsSingleDirectionsSerializer, BasicRoutesWithHeadSignSerializer, BasicRoutesSignSerializer, RouteSignSerializer
 from django.db.models import Q
 from django.core import serializers
 import json
 import os
+import math
 
 class UpcomingStopTimesRoutes(APIView):
     def get(self, request):
@@ -106,11 +107,21 @@ class AllRoutesWithHeadSignView(APIView):
 
 class MLPredictionView(APIView):
     def get(self, request):
+        numStops = request.GET['numStops']
         headSign = request.GET['headSign']
+        routeHeadSign = request.GET['routeHeadSign']
         routeShortName = request.GET['routeShortName']
-        direction = Trip.objects.filter(headsign = headSign)[0].direction
+        direction = Tripnewnew.objects.filter(headsign = headSign)[0].direction
         directory = 'dir2' if direction == 1 else 'dir1'
 
+        with open('/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/dublin_bus/api/directions.json', 'r') as f:
+            dictDirs = json.load(f)
+        try:
+            numberOfStops = dictDirs[f'60-{routeShortName}-d12-1'][f' {routeHeadSign}']
+        except:
+            numberOfStops = dictDirs[f'60-{routeShortName}-b12-1'][f' {routeHeadSign}']
+            
+                
         humidity = request.GET['humidity']
         wind = request.GET['wind']
         seconds = request.GET['seconds']
@@ -120,5 +131,8 @@ class MLPredictionView(APIView):
         filename = f'/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/machinelearning/data/modelling/randomforest/joblibfiles/line_{routeShortName}_model/{directory}/line_{routeShortName}_rfr.joblib' 
         model = joblib.load(filename) 
         res = model.predict([[int(humidity),float(wind),int(seconds),int(day),int(month)]])
-        print('RES', res)        
-        return Response(res, status=status.HTTP_200_OK)
+        print('PREDICTION:', res[0]/60)        
+        print('PART_STOPS:', numStops)        
+        print('TOTAL_STOPS:', numberOfStops)  
+        print('PREDICTION', (float(res[0])/60) * (int(numStops)/int(numberOfStops)) )  
+        return Response(math.floor((float(res[0])/60) * (int(numStops)/int(numberOfStops))), status=status.HTTP_200_OK)

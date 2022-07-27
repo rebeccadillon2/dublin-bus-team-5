@@ -91,3 +91,26 @@ class TripsStops(models.Model):
 
     class Meta:
         db_table = 'trips_stops'
+
+# Table has been formed to to get all trips
+class Tripnew(models.Model):
+    id = models.CharField(primary_key=True, max_length=50)
+    route_id = models.ForeignKey(Route, on_delete=models.CASCADE)
+    trip_id = models.CharField(max_length=255, default=0)
+    headsign = models.CharField(max_length=250,  default=0)
+    direction = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        db_table = 'tripsnew'
+
+
+# Table has been formed to to get all trips
+class Tripnewnew(models.Model):
+    id = models.CharField(primary_key=True, max_length=50)
+    route_id = models.ForeignKey(Route, on_delete=models.CASCADE)
+    trip_id = models.CharField(max_length=255, default=0)
+    headsign = models.CharField(max_length=255,  default=0)
+    direction = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        db_table = 'tripsnewnew'

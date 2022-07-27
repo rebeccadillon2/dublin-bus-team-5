@@ -232,6 +232,7 @@ export const addMLPredictionsToResponse = async (results, weatherVariables) => {
         // Getting route short name parameter
         const routeShortName =
           results.routes[i].legs[0].steps[j].transit.line.short_name;
+        console.log("routeShortName", routeShortName);
 
         // Getting seconds from start of day parameter
         const secondsFromStartOfDay = convertToSeconds(
@@ -254,6 +255,13 @@ export const addMLPredictionsToResponse = async (results, weatherVariables) => {
           ).slice(4, 7)
         );
 
+        // Getting routeheadsign parameter
+        const routeHeadSign =
+          results.routes[i].legs[0].steps[j].transit.headsign;
+
+        // Getting numStops parameter
+        const numStops = results.routes[i].legs[0].steps[j].transit.num_stops;
+
         try {
           // Getting the number of stops for the route
           // const numStops = await getRouteDirectionStopCount(
@@ -262,16 +270,18 @@ export const addMLPredictionsToResponse = async (results, weatherVariables) => {
           // );
           // console.log("numStops", numStops);
           // Getting our ML Prediction
-          // const { data } = await getMLPrediction(
-          //   headSign,
-          //   routeShortName,
-          //   weatherVariables.humidity,
-          //   weatherVariables.wind,
-          //   secondsFromStartOfDay,
-          //   day,
-          //   month
-          // );
-          // console.log("PR", Math.floor(data/60));
+          const { data } = await getMLPrediction(
+            headSign,
+            routeShortName,
+            weatherVariables.humidity,
+            weatherVariables.wind,
+            secondsFromStartOfDay,
+            day,
+            month,
+            routeHeadSign,
+            numStops
+          );
+          console.log("PR", data);
         } catch (e) {
           console.log(e);
         }

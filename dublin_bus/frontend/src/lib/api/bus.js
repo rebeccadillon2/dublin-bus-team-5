@@ -86,12 +86,24 @@ export function getMLPrediction(
   wind,
   seconds,
   day,
-  month
+  month,
+  routeHeadSign,
+  numStops
 ) {
   return axios.get(
     `${baseUrl}/api/bus/get-ml-prediction/`,
     {
-      params: { headSign, routeShortName, humidity, wind, seconds, day, month },
+      params: {
+        headSign,
+        routeShortName,
+        humidity,
+        wind,
+        seconds,
+        day,
+        month,
+        routeHeadSign,
+        numStops,
+      },
     },
     null
   );
