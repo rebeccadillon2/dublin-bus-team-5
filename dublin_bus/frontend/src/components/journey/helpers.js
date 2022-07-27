@@ -154,29 +154,29 @@ export const configureWeatherVariables = async (time) => {
 const getMonthNum = (month) => {
   switch (month) {
     case "Jan":
-      return 0;
-    case "Feb":
       return 1;
-    case "Mar":
+    case "Feb":
       return 2;
-    case "Apr":
+    case "Mar":
       return 3;
-    case "May":
+    case "Apr":
       return 4;
-    case "Jun":
+    case "May":
       return 5;
-    case "Jul":
+    case "Jun":
       return 6;
-    case "Aug":
+    case "Jul":
       return 7;
-    case "Sep":
+    case "Aug":
       return 8;
-    case "Oct":
+    case "Sep":
       return 9;
-    case "Nov":
+    case "Oct":
       return 10;
-    case "Dec":
+    case "Nov":
       return 11;
+    case "Dec":
+      return 12;
     default:
       return 1;
   }
@@ -263,12 +263,6 @@ export const addMLPredictionsToResponse = async (results, weatherVariables) => {
         const numStops = results.routes[i].legs[0].steps[j].transit.num_stops;
 
         try {
-          // Getting the number of stops for the route
-          // const numStops = await getRouteDirectionStopCount(
-          //   `60-${routeShortName}-d12-1`,
-          //   headSign
-          // );
-          // console.log("numStops", numStops);
           // Getting our ML Prediction
           const { data } = await getMLPrediction(
             headSign,
@@ -281,11 +275,56 @@ export const addMLPredictionsToResponse = async (results, weatherVariables) => {
             routeHeadSign,
             numStops
           );
-          console.log("PR", data);
+          console.log("PR", data * 60);
+          // Adding ML prediction to the total duration
+          duration += data * 60;
+
+          // Adding ML prediction to the bus part of the journey
+          obj.routes[i].legs[0].steps[j].duration = {
+            ...obj.routes[i].legs[0].steps[j].duration,
+            predictedValue: data * 60,
+          };
         } catch (e) {
+          duration += results.routes[i].legs[0].steps[j].duration.value;
           console.log(e);
         }
       }
     }
+    // Adding the duration to the object
+    console.log("Duration:", duration);
+    obj.routes[i].legs[0].duration = {
+      ...obj.routes[i].legs[0].duration,
+      predictedValue: duration,
+    };
   }
+  return obj;
+};
+
+export const convertMinutesToDisplay = (minutes) => {
+  if (minutes < 60) {
+    return `${minutes} mins`;
+  }
+  const hrs = Math.floor(minutes / 60);
+  const mins = minutes - hrs * 60;
+  if (hrs === 1) {
+    return `${hrs} hour ${mins} mins`;
+  }
+  return `${hrs} hours ${mins} mins`;
+};
+
+export const addMinutesToTime = (time, minutes) => {
+  const newMins = parseInt(time.slice(3, 5));
+  if (newMins + minutes < 60) {
+    return `${time.slice(0, 2)}:${newMins + minutes}`;
+  }
+  const hrs = Math.floor((newMins + minutes) / 60);
+
+  if (time.slice(0, 2) === "23") {
+    if (hrs < 10) {
+      return `0${hrs}:${(newMins + minutes) % 60}`;
+    } else {
+      return `${hrs}:${(newMins + minutes) % 60}`;
+    }
+  }
+  return `${parseInt(time.slice(0, 2)) + hrs}:${(newMins + minutes) % 60}`;
 };

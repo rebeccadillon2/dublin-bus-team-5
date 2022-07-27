@@ -93,10 +93,13 @@ export function Journey() {
         provideRouteAlternatives: true,
       });
 
+      const predictedResults = await addMLPredictionsToResponse(
+        results,
+        weatherVariables
+      );
+      console.log("predictedResults", predictedResults);
       setLoading(false);
-      console.log("res", results);
-      addMLPredictionsToResponse(results, weatherVariables);
-      setMapDetails({ resObj: results, routeIdx: 0, markers: [] });
+      setMapDetails({ resObj: predictedResults, routeIdx: 0, markers: [] });
     } catch (e) {
       console.log(e);
       setLoading(false);
