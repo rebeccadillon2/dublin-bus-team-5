@@ -10,6 +10,18 @@ export const useWordle = (solution) => {
   const [isCorrect, setIsCorrect] = useState(false);
   const [guesses, setGuesses] = useState([...Array(6)]);
 
+  const [popup, setPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+
+  const openPopup = (message) => {
+    if (popup) return;
+    setPopupMessage(message);
+    setPopup(true);
+    setTimeout(() => {
+      setPopup(false);
+    }, 2000);
+  };
+
   // Function to format the guess
   const formatGuess = () => {
     let solutionArr = [...solution];
@@ -81,17 +93,17 @@ export const useWordle = (solution) => {
   const handleKeyup = ({ key }) => {
     if (key.toLowerCase() === "enter") {
       if (turn > 5) {
-        console.log("you used all your guesses!");
+        openPopup("You used all your guesses!");
         return;
       }
 
       if (old.includes(currGuess)) {
-        console.log("you already tried that word.");
+        openPopup("You already tried that word!");
         return;
       }
 
       if (currGuess.length !== 5) {
-        console.log("word must be 5 chars.");
+        openPopup("Word must be 5 letters long!");
         return;
       }
 
@@ -111,6 +123,8 @@ export const useWordle = (solution) => {
   };
 
   return {
+    popup,
+    popupMessage,
     turn,
     setOld,
     setTurn,
