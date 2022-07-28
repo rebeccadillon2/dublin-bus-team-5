@@ -3,7 +3,10 @@
 
 export const calculateFare = (numOfStops) => {
   const type = window.localStorage.getItem("fare");
-  if (!type || type === "adult") {
+  const payment = window.localStorage.getItem("payment");
+
+  // Adult and cash
+  if ((!type || type === "adult") && (!payment || payment === "cash")) {
     if (numOfStops <= 6) {
       return "€2.40";
     } else if (numOfStops <= 8) {
@@ -45,7 +48,53 @@ export const calculateFare = (numOfStops) => {
     } else if (numOfStops <= 80) {
       return "€15.00";
     }
-  } else {
+  }
+  // Adult and leap card
+  else if ((!type || type === "adult") && payment === "leap") {
+    if (numOfStops <= 6) {
+      return "€1.68";
+    } else if (numOfStops <= 8) {
+      return "€1.96";
+    } else if (numOfStops <= 10) {
+      return "€2.31";
+    } else if (numOfStops <= 12) {
+      return "€2.80";
+    } else if (numOfStops <= 14) {
+      return "€3.01";
+    } else if (numOfStops <= 16) {
+      return "€3.29";
+    } else if (numOfStops <= 18) {
+      return "€3.50";
+    } else if (numOfStops <= 20) {
+      return "€3.85";
+    } else if (numOfStops <= 22) {
+      return "€4.20";
+    } else if (numOfStops <= 24) {
+      return "€4.55";
+    } else if (numOfStops <= 26) {
+      return "€5.11";
+    } else if (numOfStops <= 30) {
+      return "€5.39";
+    } else if (numOfStops <= 32) {
+      return "€5.95";
+    } else if (numOfStops <= 36) {
+      return "€6.65";
+    } else if (numOfStops <= 38) {
+      return "€7.00";
+    } else if (numOfStops <= 42) {
+      return "€7.70";
+    } else if (numOfStops <= 46) {
+      return "€8.40";
+    } else if (numOfStops <= 60) {
+      return "€9.10";
+    } else if (numOfStops <= 70) {
+      return "€9.80";
+    } else if (numOfStops <= 80) {
+      return "€10.50";
+    }
+  }
+  // Child and cash
+  else if (type === "child" && (!payment || payment === "cash")) {
     if (numOfStops <= 6) {
       return "€1.40";
     } else if (numOfStops <= 8) {
@@ -86,6 +135,50 @@ export const calculateFare = (numOfStops) => {
       return "€8.00";
     } else if (numOfStops <= 80) {
       return "€9.00";
+    }
+  }
+  // Child and leap
+  else {
+    if (numOfStops <= 6) {
+      return "€0.98";
+    } else if (numOfStops <= 8) {
+      return "€1.19";
+    } else if (numOfStops <= 10) {
+      return "€1.33";
+    } else if (numOfStops <= 12) {
+      return "€1.61";
+    } else if (numOfStops <= 14) {
+      return "€1.68";
+    } else if (numOfStops <= 16) {
+      return "€1.96";
+    } else if (numOfStops <= 18) {
+      return "€2.10";
+    } else if (numOfStops <= 20) {
+      return "€2.31";
+    } else if (numOfStops <= 22) {
+      return "€2.45";
+    } else if (numOfStops <= 24) {
+      return "€2.73";
+    } else if (numOfStops <= 26) {
+      return "€3.01";
+    } else if (numOfStops <= 30) {
+      return "€3.22";
+    } else if (numOfStops <= 32) {
+      return "€3.50";
+    } else if (numOfStops <= 36) {
+      return "€3.71";
+    } else if (numOfStops <= 38) {
+      return "€3.99";
+    } else if (numOfStops <= 42) {
+      return "€4.55";
+    } else if (numOfStops <= 46) {
+      return "€4.90";
+    } else if (numOfStops <= 60) {
+      return "€5.25";
+    } else if (numOfStops <= 70) {
+      return "€5.60";
+    } else if (numOfStops <= 80) {
+      return "€6.30";
     }
   }
 };
