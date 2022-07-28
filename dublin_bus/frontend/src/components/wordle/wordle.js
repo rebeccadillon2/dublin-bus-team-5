@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Grid, Keypad, WordleModal } from ".";
 import { useTheme, useWordle } from "../../hooks";
 import { Popup } from "../popup";
+import Confetti from "./confetti";
 
 export function WordleContainer({ solution, setReset, reset }) {
   const {
     popup,
+    confetti,
+    setConfetti,
     popupMessage,
     turn,
     setOld,
@@ -31,6 +34,8 @@ export function WordleContainer({ solution, setReset, reset }) {
     if (isCorrect) {
       if (!hasModalBeenOpened) {
         setHasModalBeenOpened(true);
+        setConfetti(true);
+
         setTimeout(() => {
           setIsModalOpen(true);
         }, 2000);
@@ -56,6 +61,7 @@ export function WordleContainer({ solution, setReset, reset }) {
   useEffect(() => {}, [guesses, turn, isCorrect]);
 
   const handleStartOver = () => {
+    setConfetti(false);
     setGuesses([...Array(6)]);
     setCurrGuess("");
     setTurn(0);
@@ -94,7 +100,9 @@ export function WordleContainer({ solution, setReset, reset }) {
           setOpen={setIsModalOpen}
           handleStartOver={handleStartOver}
         />
+        {confetti && <Confetti />}
       </div>
+
       <Popup popup={popup} text={popupMessage} color={"red"} />
     </>
   );

@@ -10,6 +10,7 @@ export const useWordle = (solution) => {
   const [isCorrect, setIsCorrect] = useState(false);
   const [guesses, setGuesses] = useState([...Array(6)]);
 
+  const [confetti, setConfetti] = useState(false);
   const [popup, setPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
 
@@ -124,6 +125,8 @@ export const useWordle = (solution) => {
 
   return {
     popup,
+    confetti,
+    setConfetti,
     popupMessage,
     turn,
     setOld,
