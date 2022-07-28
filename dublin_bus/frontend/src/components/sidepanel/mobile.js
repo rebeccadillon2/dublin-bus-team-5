@@ -116,8 +116,8 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
         <div
           className={`${
             isDarkMode
-              ? "border-system-grey6 text-system-grey4 hover:text-system-grey6"
-              : "border-system-grey2 text-system-grey5 hover:text-system-grey3"
+              ? "border-system-grey6 text-system-grey4 "
+              : "border-system-grey2 text-system-grey5 "
           } flex items-center justify-between w-[100%] border-b  pb-4`}
         >
           <div className='outline-none pl-6'>
@@ -134,8 +134,14 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
               />
             </Link>
           </div>
-          <div className='mr-6' onClick={() => setOpen(false)}>
-            <FiX className='w-6 h-6' />
+          <div className='mr-6 ' onClick={() => setOpen(false)}>
+            <FiX
+              className={`${
+                isDarkMode
+                  ? "hover:text-system-grey6"
+                  : "hover:text-system-grey6"
+              } w-6 h-6 cursor-pointer`}
+            />
           </div>
         </div>
         <div className='flex flex-col w-[100%]'>

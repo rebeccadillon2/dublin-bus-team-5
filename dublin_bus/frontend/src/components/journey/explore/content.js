@@ -11,7 +11,7 @@ import {
 import { Popup } from "../../popup";
 import { Error } from "../../error";
 import { useTheme } from "../../../hooks";
-import { LoadingSpinner } from "../../loading";
+import { TableSkeleton } from "../../skeleton";
 import { SearchInput } from "../../elements/form";
 
 const arr = [1, 2, 3, 4, 5];
@@ -317,7 +317,7 @@ export function ExploreContent({ calculateRoute, origin }) {
       )}
       {loading ? (
         <div className='mt-8'>
-          <LoadingSpinner />
+          <TableSkeleton />
         </div>
       ) : error ? (
         <div className='mt-8'>

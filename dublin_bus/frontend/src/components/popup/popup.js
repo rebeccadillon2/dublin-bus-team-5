@@ -2,8 +2,10 @@ import React from "react";
 import { Transition } from "@headlessui/react";
 
 export function Popup(props) {
-  const { popup, text, ...rest } = props;
-  const classes = `fixed bg-primary-green text-primary-white top-6 right-6 p-4 rounded-lg shadow-lg z-50`;
+  const { popup, text, color, ...rest } = props;
+  const classes = `fixed ${
+    color === "red" ? "bg-primary-red" : "bg-primary-green"
+  } text-primary-white top-6 right-6 p-4 rounded-lg shadow-lg z-50`;
 
   return (
     <Transition

@@ -1,4 +1,5 @@
 export * from "./form";
+export * from "./fare";
 export * from "./types";
 export * from "./mobile";
 export * from "./routes";

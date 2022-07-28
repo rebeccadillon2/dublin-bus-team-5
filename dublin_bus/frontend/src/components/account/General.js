@@ -1,14 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useTheme } from "../../hooks";
-import { FareToggle, ThemeToggle } from "../toggle";
 import { AccountSection, Card } from "../container";
-import { SecondaryButton } from "../elements/button";
+import { FareToggle, PaymentToggle, ThemeToggle } from "../toggle";
 
 export function GeneralSettings() {
   const [isDarkMode] = useTheme();
-  const navigate = useNavigate();
 
   return (
     <AccountSection title='General' first={true}>
@@ -51,15 +48,14 @@ export function GeneralSettings() {
               isDarkMode ? "text-primary-white" : "text-primary-black"
             }`}
           >
-            Dublin Street Wordle
+            Payment Type
           </p>
           <p className='text-sm'>
-            Why not pass the time with our custom dublin street wordle game.
+            Let us know if you are paying with cash or a leap card, so we can
+            accurately calculate your fare.
           </p>
         </div>
-        <SecondaryButton onClick={() => navigate("/wordle")} type='action'>
-          Play
-        </SecondaryButton>
+        <PaymentToggle />
       </Card>
     </AccountSection>
   );
