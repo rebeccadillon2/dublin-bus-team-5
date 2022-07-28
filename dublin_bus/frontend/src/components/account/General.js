@@ -28,7 +28,7 @@ export function GeneralSettings() {
         <ThemeToggle />
       </Card>
       <div className={`${isDarkMode ? "bg-system-grey7 h-px" : ""} `} />
-      <Card>
+      <Card isLast={true}>
         <div className='pr-10'>
           <p
             className={`${
@@ -43,23 +43,6 @@ export function GeneralSettings() {
           </p>
         </div>
         <FareToggle />
-      </Card>
-      <Card isLast={true}>
-        <div className='pr-10'>
-          <p
-            className={`${
-              isDarkMode ? "text-primary-white" : "text-primary-black"
-            }`}
-          >
-            Dublin Street Wordle
-          </p>
-          <p className='text-sm'>
-            Why not pass the time with our custom dublin street wordle game.
-          </p>
-        </div>
-        <SecondaryButton onClick={() => navigate("/wordle")} type='action'>
-          Play
-        </SecondaryButton>
       </Card>
     </AccountSection>
   );
