@@ -1,13 +1,18 @@
 import { FaBus } from "react-icons/fa";
 import { MdDirectionsWalk } from "react-icons/md";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import { useTheme } from "../../hooks";
 import { Display } from "../container";
 import { MapDetailsContext } from "../../App";
-import { addMinutesToTime, convertMinutesToDisplay, Explore } from ".";
+import {
+  addMinutesToTime,
+  convertMinutesToDisplay,
+  Explore,
+  calculateFare,
+} from ".";
 
 export function Header(props) {
   const { title, variant } = props;
@@ -197,7 +202,7 @@ function ExpandedContext(props) {
                   <p className='px-1'>|</p>
                   <p>{step.transit.num_stops} stops</p>
                   <p className='px-1'>|</p>
-                  <p>Cost: €2.50</p>
+                  <p>Estimated Cost: {calculateFare(step.transit.num_stops)}</p>
                 </div>
               ) : (
                 <p className=''>About: {step.duration.text}</p>
