@@ -41,6 +41,7 @@ export function BasicDateTimePicker({ time, setTime }) {
         renderInput={(props) => <TextField {...props} />}
         value={time}
         onChange={(newValue) => {
+          console.log("NV", newValue);
           setTime(newValue);
         }}
       />

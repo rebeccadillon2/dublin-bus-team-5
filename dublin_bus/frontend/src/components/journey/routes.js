@@ -4,10 +4,10 @@ import React, { useContext, useState } from "react";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
-import { Explore } from ".";
 import { useTheme } from "../../hooks";
 import { Display } from "../container";
 import { MapDetailsContext } from "../../App";
+import { addMinutesToTime, convertMinutesToDisplay, Explore } from ".";
 
 export function Header(props) {
   const { title, variant } = props;
@@ -101,11 +101,18 @@ function RouteContent(props) {
                 .split(" ")[4]
                 .slice(0, -3)}{" "}
               -{" "}
-              {String(route.legs[0].arrival_time.value)
-                .split(" ")[4]
-                .slice(0, -3)}{" "}
+              {addMinutesToTime(
+                String(route.legs[0].departure_time.value)
+                  .split(" ")[4]
+                  .slice(0, -3),
+                Math.floor(route.legs[0].duration.predictedValue / 60)
+              )}
               <div className='inline px-2'>|</div>
-              {route.legs[0].duration.text}
+              {route.legs[0].duration.predictedValue / 60
+                ? convertMinutesToDisplay(
+                    Math.floor(route.legs[0].duration.predictedValue / 60)
+                  )
+                : route.legs[0].duration.text}
             </div>
           )}
         </div>
@@ -179,14 +186,21 @@ function ExpandedContext(props) {
                 isDarkMode ? "text-system-grey4" : "text-system-grey5"
               } flex pt-0.5 text-xs`}
             >
-              <p className=''>About {step.duration.text}</p>
-              {step.travel_mode === "TRANSIT" && (
+              {step.travel_mode === "TRANSIT" ? (
                 <div className='flex'>
+                  <p>
+                    About{" "}
+                    {step.duration.predictedValue
+                      ? `${Math.floor(step.duration.predictedValue / 60)} mins`
+                      : `${step.duration.text}`}
+                  </p>
                   <p className='px-1'>|</p>
                   <p>{step.transit.num_stops} stops</p>
                   <p className='px-1'>|</p>
-                  <p>Estimated cost: €2.50</p>
+                  <p>Cost: €2.50</p>
                 </div>
+              ) : (
+                <p className=''>About: {step.duration.text}</p>
               )}
             </div>
           </div>

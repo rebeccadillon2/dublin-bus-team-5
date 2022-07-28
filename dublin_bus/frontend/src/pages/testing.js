@@ -1,42 +1,48 @@
 import React, { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { MobileSidePanel } from "../components/sidepanel";
-import { getMLPrediction } from "../lib/api";
+import { getForecastWeather, getMLPrediction, getSixteenDay } from "../lib/api";
 
 export function Testing() {
-  const [openSidePanel, setOpenSidePanel] = useState(false);
-
   const handlePrediction = async () => {
     try {
-      const res = await getMLPrediction();
-      console.log("res", res);
+      const { data } = await getMLPrediction(
+        "Outside Train Station - Phoenix Park Gate",
+        "46A",
+        75,
+        5.1,
+        19800,
+        1,
+        10
+      );
+      console.log("prediction", data[0]);
     } catch (e) {
       console.log(e);
     }
   };
 
-  const handleSidePanelClose = () => {
-    setOpenSidePanel(false);
+  const handleWeather = async () => {
+    try {
+      const res = await getForecastWeather();
+      console.log("weather", res);
+    } catch (e) {
+      console.log(e);
+    }
   };
+  //        [75, 5.1, 19800, 1, 10]
 
   return (
     <>
-      <div>
-        <button
-          onClick={handlePrediction}
-          className='p-2 rounded-lg bg-primary-blue m-4'
-        >
-          Get prediction
-        </button>
-        <div className='pr-2' onClick={() => setOpenSidePanel(true)}>
-          <GiHamburgerMenu />
-        </div>
-      </div>
-      <MobileSidePanel
-        open={openSidePanel}
-        setOpen={setOpenSidePanel}
-        handleClose={handleSidePanelClose}
-      />
+      <button
+        onClick={handlePrediction}
+        className='p-2 rounded-lg bg-primary-blue m-4'
+      >
+        Get prediction
+      </button>
+      <button
+        onClick={handleWeather}
+        className='p-2 rounded-lg bg-primary-blue m-4'
+      >
+        Get 16 day weather
+      </button>
     </>
   );
 }

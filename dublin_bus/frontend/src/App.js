@@ -228,7 +228,7 @@ function App() {
                         authenticated={spotAuth}
                       />
                       {/* Uncomment when in production */}
-                      <UpdateCurrentTrack authenticated={spotAuth} />
+                      {/* <UpdateCurrentTrack authenticated={spotAuth} /> */}
                     </CurrentTrackContextProvider>
                   </MapDetailsContext.Provider>
                 </MapRefContext.Provider>

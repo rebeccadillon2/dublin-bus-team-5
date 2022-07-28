@@ -22,6 +22,8 @@ import {
   JourneyContainer,
   getMapContainerStyle,
   MobileMainMenu,
+  configureWeatherVariables,
+  addMLPredictionsToResponse,
 } from "../components/journey";
 import { center, libraries } from "../lib/map";
 import { getAllRoutes, getAllStops } from "../lib/api";
@@ -77,6 +79,9 @@ export function Journey() {
     setOrigin(originVal);
     const dirServ = new window.google.maps.DirectionsService();
 
+    const weatherVariables = await configureWeatherVariables(time);
+    console.log("WV", weatherVariables);
+
     try {
       setInputError(null);
       setLoading(true);
@@ -88,9 +93,13 @@ export function Journey() {
         provideRouteAlternatives: true,
       });
 
+      const predictedResults = await addMLPredictionsToResponse(
+        results,
+        weatherVariables
+      );
+      console.log("predictedResults", predictedResults);
       setLoading(false);
-      console.log("res", results);
-      setMapDetails({ resObj: results, routeIdx: 0, markers: [] });
+      setMapDetails({ resObj: predictedResults, routeIdx: 0, markers: [] });
     } catch (e) {
       console.log(e);
       setLoading(false);

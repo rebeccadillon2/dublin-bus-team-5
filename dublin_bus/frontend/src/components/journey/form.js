@@ -1,5 +1,6 @@
 import React from "react";
 import { IoMdLocate } from "react-icons/io";
+import { BsArrowRepeat } from "react-icons/bs";
 import { Autocomplete } from "@react-google-maps/api";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 
@@ -67,7 +68,15 @@ export function JourneyForm(props) {
         </div>
       </div>
       <div className='h-2' />
-      <BasicDateTimePicker time={time} setTime={setTime} />
+      <div className='flex'>
+        <BasicDateTimePicker time={time} setTime={setTime} />
+        <button
+          onClick={() => setTime(new Date())}
+          className='flex items-center justify-center h-10 rounded-xl bg-system-grey5 w-8 ml-2 text-white active:bg-system-grey4'
+        >
+          <BsArrowRepeat />
+        </button>
+      </div>
       {inputError ? (
         <div className='flex items-center h-6'>
           <p className='py-0 my-0 px-2 text-xs text-primary-red'>
