@@ -3,11 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { useTheme } from "../../hooks";
 import { Input } from "../elements/form";
-import { loginUser } from "../../lib/api";
-import { setToken } from "../../lib/auth";
 import { LoadingSpinner } from "../loading";
 import { PrimaryButton } from "../elements/button";
-import { AuthenticatedContext } from "../../App";
+import { getUser, loginUser } from "../../lib/api";
+import { getPayload, setToken } from "../../lib/auth";
+import { AuthenticatedContext, UserDetailsContext } from "../../App";
 
 export function LoginForm() {
   const initialState = {
@@ -25,6 +25,7 @@ export function LoginForm() {
 
   const { isAuthenticated, toggleAuthenticated } =
     useContext(AuthenticatedContext);
+  const { userDetails, setUserDetails } = useContext(UserDetailsContext);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -40,8 +41,19 @@ export function LoginForm() {
       navigate("/");
       toggleAuthenticated(true);
       // eslint-disable-next-line no-restricted-globals
-
       // location.reload();
+      let userId = getPayload().sub;
+      if (!userId) {
+        setInterval(() => {
+          userId = getPayload().sub;
+        }, 150);
+      }
+      const res = await getUser(userId);
+      setUserDetails({
+        email: res.data.email,
+        userId: res.data.id,
+        profileImage: res.data.profileImage,
+      });
     } catch (err) {
       console.log(err.response.data.detail);
       setFormErrors(err.response);
