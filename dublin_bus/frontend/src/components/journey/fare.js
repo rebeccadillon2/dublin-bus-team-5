@@ -93,6 +93,93 @@ export const calculateFare = (numOfStops) => {
       return "€10.50";
     }
   }
+  // Student and cash
+  else if (type === "student" && (!payment || payment === "cash")) {
+    if (numOfStops <= 6) {
+      return "€2.40";
+    } else if (numOfStops <= 8) {
+      return "€2.80";
+    } else if (numOfStops <= 10) {
+      return "€2.80";
+    } else if (numOfStops <= 12) {
+      return "€3.20";
+    } else if (numOfStops <= 14) {
+      return "€3.40";
+    } else if (numOfStops <= 16) {
+      return "€3.70";
+    } else if (numOfStops <= 18) {
+      return "€4.00";
+    } else if (numOfStops <= 20) {
+      return "€4.30";
+    } else if (numOfStops <= 22) {
+      return "€4.80";
+    } else if (numOfStops <= 24) {
+      return "€5.20";
+    } else if (numOfStops <= 26) {
+      return "€5.80";
+    } else if (numOfStops <= 30) {
+      return "€6.10";
+    } else if (numOfStops <= 32) {
+      return "€6.80";
+    } else if (numOfStops <= 36) {
+      return "€7.50";
+    } else if (numOfStops <= 38) {
+      return "€8.00";
+    } else if (numOfStops <= 42) {
+      return "€8.50";
+    } else if (numOfStops <= 46) {
+      return "€9.50";
+    } else if (numOfStops <= 60) {
+      return "€10.00";
+    } else if (numOfStops <= 70) {
+      return "€11.00";
+    } else if (numOfStops <= 80) {
+      return "€12.00";
+    }
+    // Student and leap
+  } else if (type === "student" && payment === "leap") {
+    if (numOfStops <= 6) {
+      return "€1.68";
+    } else if (numOfStops <= 8) {
+      return "€1.96";
+    } else if (numOfStops <= 10) {
+      return "€1.96";
+    } else if (numOfStops <= 12) {
+      return "€2.24";
+    } else if (numOfStops <= 14) {
+      return "€2.38";
+    } else if (numOfStops <= 16) {
+      return "€2.59";
+    } else if (numOfStops <= 18) {
+      return "€2.80";
+    } else if (numOfStops <= 20) {
+      return "€3.01";
+    } else if (numOfStops <= 22) {
+      return "€3.36";
+    } else if (numOfStops <= 24) {
+      return "€3.64";
+    } else if (numOfStops <= 26) {
+      return "€4.06";
+    } else if (numOfStops <= 30) {
+      return "€4.27";
+    } else if (numOfStops <= 32) {
+      return "€4.76";
+    } else if (numOfStops <= 36) {
+      return "€5.25";
+    } else if (numOfStops <= 38) {
+      return "€5.60";
+    } else if (numOfStops <= 42) {
+      return "€5.95";
+    } else if (numOfStops <= 46) {
+      return "€6.65";
+    } else if (numOfStops <= 60) {
+      return "€7.00";
+    } else if (numOfStops <= 70) {
+      return "€7.70";
+    } else if (numOfStops <= 80) {
+      return "€8.40";
+    }
+  }
   // Child and cash
   else if (type === "child" && (!payment || payment === "cash")) {
     if (numOfStops <= 6) {
