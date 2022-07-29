@@ -5,7 +5,7 @@ import { SpotifyContext, MapContainerContext } from "../../App";
 import { useIsMounted, useTheme } from "../../hooks";
 import { getSpotifyAuthUrl, isSpotifyAuthenticated } from "../../lib/api";
 
-const ConnectSpotify = () => {
+const ConnectSpotify = ({ events }) => {
   const { setMapContainerType } = useContext(MapContainerContext);
   const isMounted = useIsMounted();
   let [isSportifyAuthenticated, setIsSpotifyAuthenticated] = useState(false);
@@ -55,17 +55,28 @@ const ConnectSpotify = () => {
 
   return (
     <div className='mb-6'>
-      <div className='mt-6 mb-4'>
-        <p className={headerTextClasses}>Spotify</p>
-      </div>
-      {isSportifyAuthenticated ? (
-        <div
-          onClick={handleClick}
-          className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white active:bg-[#00a240] cursor-pointer'
-        >
-          <BsSpotify />
-          <p className='pl-2'>Dublin on Spotify</p>
+      {events ? (
+        <></>
+      ) : (
+        <div className='mt-6 mb-4'>
+          <p className={headerTextClasses}>Spotify</p>
         </div>
+      )}
+      {isSportifyAuthenticated ? (
+        events ? (
+          <div className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white '>
+            <BsSpotify />
+            <p className='pl-2'>Preview with Spotify</p>
+          </div>
+        ) : (
+          <div
+            onClick={handleClick}
+            className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white active:bg-[#00a240] cursor-pointer'
+          >
+            <BsSpotify />
+            <p className='pl-2'>Dublin on Spotify</p>
+          </div>
+        )
       ) : (
         LoginButton()
       )}
