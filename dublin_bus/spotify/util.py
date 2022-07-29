@@ -146,6 +146,7 @@ def create_url(name):
     qs = urllib.parse.urlencode(qd)
     return f"{ep}?{qs}"
 
+
 def run_search(url, name, access_token):
     res = requests.get(url, headers={'Authorization':'Bearer ' + access_token})
     data = res.json()
@@ -158,7 +159,15 @@ def run_search(url, name, access_token):
     return artist_check[-1]
 
 
-def search_artist(id, access_token):
+def artist_search(name):
+    try:
+        url = create_url(name)
+        return run_search(url, name)
+    except:
+        return None
+
+
+def get_artist_top_songs(id, access_token):
     ep = "https://api.spotify.com/v1/artists/"
     url = f"{ep}{id}/top-tracks?market=ES"
     res = requests.get(url, headers={'Authorization':'Bearer ' + access_token})
