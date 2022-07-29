@@ -11,15 +11,8 @@ import { playTrack, pauseTrack } from "../../lib/api";
 import { CalculateTrackLength, SpotifyProgressBar } from ".";
 
 const TrackDetail = (props) => {
-  const {
-    type,
-    track,
-    preview,
-    loading,
-    moveForwards,
-    moveBackwards,
-    ...rest
-  } = props;
+  const { type, track, sample, loading, moveForwards, moveBackwards, ...rest } =
+    props;
   const [isDarkMode] = useTheme();
   const uid = getPayload().sub;
   const { playSpotifyTrack } = useContext(SpotifyContext);
@@ -57,7 +50,7 @@ const TrackDetail = (props) => {
     <>
       <div className='w-100% flex justify-center items-center z-20' {...rest}>
         <div className='flex flex-1 justify-start'>
-          {preview ? null : (
+          {sample ? null : (
             <div
               className={`${
                 isDarkMode ? "text-system-grey3" : "text-system-grey6"
@@ -71,7 +64,7 @@ const TrackDetail = (props) => {
               <FaStepBackward />
             </div>
           )}
-          {preview ? (
+          {sample ? (
             <BsSpotify className='w-3 h-3 text-[#1DB954] mr-[8px]' />
           ) : null}
         </div>
@@ -91,7 +84,7 @@ const TrackDetail = (props) => {
           )}
         </div>
         <div className='flex flex-1 justify-end'>
-          {preview ? null : (
+          {sample ? null : (
             <div
               className={`${
                 isDarkMode ? "text-system-grey3" : "text-system-grey6"
@@ -107,7 +100,7 @@ const TrackDetail = (props) => {
         </div>
       </div>
 
-      {preview ? null : (
+      {sample ? null : (
         <>
           <div className='w-100% my-1'>
             <SpotifyProgressBar progress={progress} trackLength={trackLength} />
