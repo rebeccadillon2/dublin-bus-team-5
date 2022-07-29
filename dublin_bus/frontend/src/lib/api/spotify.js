@@ -98,3 +98,18 @@ export async function getAccesssToken(uid) {
   }
   return res;
 }
+
+export async function getArtistInfo(artistName, uid) {
+  let res;
+  try {
+    res = await axios.get(
+      `${baseUrl}/api/spotify/get-artist-info/`,
+      { params: uid, artistName },
+      headers()
+    );
+  } catch (e) {
+    console.log(e);
+    res = e.message;
+  }
+  return res;
+}

@@ -7,6 +7,7 @@ urlpatterns = [
     path('play-track/', PlayTrack.as_view()),
     path('pause-track/', PauseTrack.as_view()),
     path('current-song/', CurrentSong.as_view()),
+    path('get-artist-info/', GetArtistInfo.as_view()),
     path('get-access-token/', GetAccessToken.as_view()),
     path('get-podcasts/', GetDublinPodcasts.as_view()),
     path('is-authenticated/', IsAuthenticated.as_view()),
