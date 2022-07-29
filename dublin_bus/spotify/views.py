@@ -1,16 +1,16 @@
-from email.policy import HTTP
+import json
+import traceback
+from .util import *
 from os import access
+from email.policy import HTTP
 from rest_framework import status
 from requests import Request, post, get
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
-from .util import *
-from .constants import REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, CALLBACK, dublin_postcast_ids
-import traceback
-from django.http import HttpResponseBadRequest
-import json
 from django.http.response import HttpResponse
+from django.http import HttpResponseBadRequest
+from .constants import REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, CALLBACK, dublin_postcast_ids
 
 
 globalUID = 0
@@ -129,3 +129,19 @@ class GetAccessToken(APIView):
         except:
             traceback.print_exc()
             return HttpResponseBadRequest(json.dumps({'error': 'Unable to authenticate Spotify'} ))
+
+
+class GetArtistInfo(APIView):
+    def get(self, request):
+        uid = request.GET['uid']
+        artist_name = request.get['artist']
+        try:
+            is_spotify_authenticated(uid)
+            access_token = get_user_tokens(uid).access_token
+            url = create_url(artist_name)
+            artist = run_search(url, artist_name,  access_token)
+            top_songs = get_artist_top_songs(artist[1], access_token)
+        except:
+            top_songs = []
+        
+        return HttpResponse(json.dumps({'songs':top_songs}))
