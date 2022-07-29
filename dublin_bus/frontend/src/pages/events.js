@@ -50,11 +50,20 @@ export function Events({ events }) {
             </div>
           </div>
           <div className=''>
-            {events.pops && (
+            {/* {events.pops && (
               <Slider id={"popContentSlider"} title={"Pop"}>
                 <>
                   {events.pops.map((pop) => (
-                    <EventCard event={pop} key={pop.id} />
+                    <EventCard type={"music"} event={pop} key={pop.id} />
+                  ))}
+                </>
+              </Slider>
+            )} */}
+            {events.musics && (
+              <Slider id={"musicContentSlider"} title={"Music"}>
+                <>
+                  {events.musics.map((music) => (
+                    <EventCard type={"music"} event={music} key={music.id} />
                   ))}
                 </>
               </Slider>
@@ -63,17 +72,35 @@ export function Events({ events }) {
               <Slider id={"rapContentSlider"} title={"Rap"}>
                 <>
                   {events.raps.map((rap) => (
-                    <EventCard event={rap} key={rap.id} />
+                    <EventCard type={"music"} event={rap} key={rap.id} />
+                  ))}
+                </>
+              </Slider>
+            )}
+            {events.folks && (
+              <Slider id={"folkContentSlider"} title={"Folk"}>
+                <>
+                  {events.folks.map((folk) => (
+                    <EventCard type={"music"} event={folk} key={folk.id} />
+                  ))}
+                </>
+              </Slider>
+            )}
+            {events.rocks && (
+              <Slider id={"rapContentSlider"} title={"Rock"}>
+                <>
+                  {events.rocks.map((rock) => (
+                    <EventCard type={"music"} event={rock} key={rock.id} />
                   ))}
                 </>
               </Slider>
             )}
 
-            {events.sports && (
+            {/* {events.sports && (
               <Slider id={"sportContentSlider"} title={"Sports"}>
                 <>
                   {events.sports.map((sport) => (
-                    <EventCard event={sport} key={sport.id} />
+                    <EventCard type={"sport"} event={sport} key={sport.id} />
                   ))}
                 </>
               </Slider>
@@ -82,11 +109,11 @@ export function Events({ events }) {
               <Slider id={"comedyContentSlider"} title={"Comedy"}>
                 <>
                   {events.comedies.map((comedy) => (
-                    <EventCard event={comedy} key={comedy.id} />
+                    <EventCard type={"comedy"} event={comedy} key={comedy.id} />
                   ))}
                 </>
               </Slider>
-            )}
+            )} */}
           </div>
           <MobileSidePanel
             open={openSidePanel}

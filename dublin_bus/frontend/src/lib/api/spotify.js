@@ -104,7 +104,12 @@ export async function getArtistInfo(artistName, uid) {
   try {
     res = await axios.get(
       `${baseUrl}/api/spotify/get-artist-info/`,
-      { params: uid, artistName },
+      {
+        params: {
+          uid,
+          artistName,
+        },
+      },
       headers()
     );
   } catch (e) {

@@ -51,6 +51,7 @@ class LoginView(APIView):
             raise PermissionDenied(detail='Unauthorized')
         # Setting an expiry time of one week
         expiry_time = datetime.now() + timedelta(days=7)
+        EXP = int(expiry_time.strftime('%s'))
         token = jwt.encode(
             {'sub': user_to_login.id,
             'exp': int(expiry_time.strftime('%s'))
@@ -61,7 +62,8 @@ class LoginView(APIView):
         # Returning a response with the token
         return Response({
             'token': token,
-            'message': f'Welcome back, {email}!'
+            'message': f'Welcome back, {email}!',
+            'expires_in': f'{EXP}'
         }, status=status.HTTP_200_OK)
 
 

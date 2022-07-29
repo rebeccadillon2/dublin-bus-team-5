@@ -134,7 +134,7 @@ class GetAccessToken(APIView):
 class GetArtistInfo(APIView):
     def get(self, request):
         uid = request.GET['uid']
-        artist_name = request.get['artistName']
+        artist_name = request.GET['artistName']
         try:
             is_spotify_authenticated(uid)
             access_token = get_user_tokens(uid).access_token
@@ -142,6 +142,7 @@ class GetArtistInfo(APIView):
             artist = run_search(url, artist_name,  access_token)
             top_songs = get_artist_top_songs(artist[1], access_token)
         except:
+            traceback.print_exc()
             top_songs = []
         
         return HttpResponse(json.dumps({'songs':top_songs}))

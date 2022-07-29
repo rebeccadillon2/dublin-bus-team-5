@@ -65,13 +65,19 @@ const TrackDetail = (props) => {
             </div>
           )}
           {sample ? (
-            <BsSpotify className='w-3 h-3 text-[#1DB954] mr-[8px]' />
+            <BsSpotify className='w-6 h-6 text-[#1DB954] mb-3 ml-5' />
           ) : null}
         </div>
         <div
           className={`${
-            isDarkMode ? "text-system-grey3" : "text-system-grey6"
-          } cursor-pointer active:text-system-grey4`}
+            isDarkMode
+              ? sample
+                ? "text-system-grey4 active:text-system-grey3"
+                : "text-system-grey3  active:text-system-grey4"
+              : sample
+              ? "text-system-grey2 active:text-system-grey3"
+              : "text-system-grey6 active:text-system-grey4"
+          } ${sample && "pb-3 pr-1 "} cursor-pointer `}
           onClick={(e) => {
             e.stopPropagation();
             is_playing == false ? playTrackNow() : pauseTrackNow();

@@ -9,9 +9,12 @@ export function SpotifySample({ artistName }) {
 
   useEffect(() => {
     const getArtistSongs = async () => {
+      console.log("uid", uid);
+      console.log("artistName", artistName);
       try {
         const res = await getArtistInfo(artistName, uid);
-        setArtistSongs(res.data);
+        console.log("RES", res);
+        setArtistSongs(res.data.songs);
       } catch (e) {
         console.log(e);
       }
@@ -22,7 +25,13 @@ export function SpotifySample({ artistName }) {
   return (
     <div>
       {artistSongs && artistSongs.length > 0 ? (
-        <div className='absolute top-0 right-0 index-20 bg-[rgba(255, 255, 255, 0.5)] p-4 w-[55px] h-[55px] border-l-[100px] flex flex-row justify-end'>
+        <div
+          style={{
+            borderRadius: "0 8px 0 100px",
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
+          }}
+          className='absolute top-0 right-0 z-50 bg-primary-blue p-5 w-[60px] h-[60px] flex flex-row justify-end rounded-t-xl'
+        >
           <TrackDetail
             type='track'
             sample={true}
