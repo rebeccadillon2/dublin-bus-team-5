@@ -42,7 +42,9 @@ const ConnectSpotify = ({ events }) => {
     return (
       <div
         onClick={LoginSpotify}
-        className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white active:bg-[#00a240] cursor-pointer'
+        className={`flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white active:bg-[#00a240] cursor-pointer ${
+          events && "sm:w-100 w-[200px]"
+        }`}
       >
         <BsSpotify /> <p className='pl-2'>Connect to Spotify</p>
       </div>
@@ -64,7 +66,11 @@ const ConnectSpotify = ({ events }) => {
       )}
       {isSportifyAuthenticated ? (
         events ? (
-          <div className='flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white '>
+          <div
+            className={`flex items-center justify-center h-10 rounded-xl bg-[#21c45a] w-60 text-white ${
+              events && "sm:w-100 w-[200px]"
+            }`}
+          >
             <BsSpotify />
             <p className='pl-2'>Preview with Spotify</p>
           </div>

@@ -30,25 +30,45 @@
     { "key": "DEL" }
   ],
   "solutions": [
-    { "id": 1, "word": "abbey" },
-    { "id": 2, "word": "achil" },
-    { "id": 3, "word": "acres" },
-    { "id": 4, "word": "adare" },
-    { "id": 5, "word": "cabra" },
-    { "id": 6, "word": "canon" },
-    { "id": 7, "word": "clare" },
-    { "id": 8, "word": "druid" },
-    { "id": 9, "word": "dukes" },
-    { "id": 10, "word": "fleet" },
-    { "id": 11, "word": "howth" },
-    { "id": 12, "word": "joyce" },
-    { "id": 13, "word": "kings" },
-    { "id": 14, "word": "maple" },
-    { "id": 15, "word": "moore" },
-    { "id": 16, "word": "percy" },
-    { "id": 17, "word": "pines" },
-    { "id": 19, "word": "spire" },
-    { "id": 19, "word": "thorn" },
-    { "id": 20, "word": "usher" }
+    {
+      "id": 1,
+      "word": "abbey",
+      "location": { "lat": 53.347591, "lng": -6.2661111 }
+    },
+    {
+      "id": 2,
+      "word": "cabra",
+      "location": { "lat": 53.3669485, "lng": -6.2933936 }
+    },
+    {
+      "id": 3,
+      "word": "clare",
+      "location": { "lat": 53.3414612, "lng": -6.2516512 }
+    },
+    {
+      "id": 4,
+      "word": "howth",
+      "location": { "lat": 53.3858337, "lng": -6.065118 }
+    },
+    {
+      "id": 5,
+      "word": "joyce",
+      "location": { "lat": 53.3462796, "lng": -6.2827906 }
+    },
+    {
+      "id": 6,
+      "word": "moore",
+      "location": { "lat": 53.3501016, "lng": -6.2625083 }
+    },
+    {
+      "id": 7,
+      "word": "spire",
+      "location": { "lat": 53.3498018, "lng": -6.2602541 }
+    },
+    {
+      "id": 8,
+      "word": "usher",
+      "location": { "lat": 53.3453732, "lng": -6.2808845 }
+    }
   ]
 }

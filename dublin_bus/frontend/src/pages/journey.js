@@ -35,6 +35,7 @@ import {
   MapContainerContext,
   ContainerType,
   PlaceType,
+  DirectionsContext,
 } from "../App";
 import { MobileSidePanel } from "../components/sidepanel";
 
@@ -51,7 +52,8 @@ export function Journey() {
   const { setMapRefContext } = useContext(MapRefContext);
   const { mapContainerType } = useContext(MapContainerContext);
   const { mapDetails, setMapDetails } = useContext(MapDetailsContext);
-
+  const { directionsDetails, setDirectionsDetails } =
+    useContext(DirectionsContext);
   const [openSidePanel, setOpenSidePanel] = useState(false);
 
   const [origin, setOrigin] = useState(null);
@@ -76,6 +78,13 @@ export function Journey() {
     const destinationVal =
       typeof dl === "string" ? dl : destinationRef.current.value;
     if (routeErrorCheck(originVal, destinationVal, setInputError, time)) return;
+
+    setDirectionsDetails({
+      ...directionsDetails,
+      origin: originVal,
+      destination: destinationVal,
+    });
+
     setOrigin(originVal);
     const dirServ = new window.google.maps.DirectionsService();
 

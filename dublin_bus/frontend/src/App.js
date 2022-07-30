@@ -62,6 +62,7 @@ export const ThemeContext = createContext({});
 export const MapRefContext = createContext({});
 export const ExpandedContext = createContext({});
 export const MapDetailsContext = createContext({});
+export const DirectionsContext = createContext({});
 export const UserDetailsContext = createContext({});
 export const MapContainerContext = createContext({});
 export const AuthenticatedContext = createContext({});
@@ -80,6 +81,10 @@ function App() {
   const [isExpanded, toggleExpanded] = useState(false);
   const [mapRefContext, setMapRefContext] = useState(null);
   const [isAuthenticated, toggleAuthenticated] = useState(false);
+  const [directionsDetails, setDirectionsDetails] = useState({
+    origin: null,
+    destination: null,
+  });
   const [userDetails, setUserDetails] = useState({
     email: null,
     userId: null,
@@ -183,73 +188,81 @@ function App() {
   window.onSpotifyWebPlaybackSDKReady = () => setSdkReady(true);
 
   return (
-    <MapContainerContext.Provider
-      value={{ mapContainerType, setMapContainerType }}
+    <DirectionsContext.Provider
+      value={{ directionsDetails, setDirectionsDetails }}
     >
-      <SpotifyContext.Provider
-        value={{
-          updateSpotifyStateTwo: updateSpotifyPlayerStateTwo,
-          updateSpotifyState: updateSpotifyPlayerState,
-          playSpotifyTrack: spotifyPlayer.playSpotifyTrack,
-          authenticated: spotifyPlayer.authenticated,
-        }}
+      <MapContainerContext.Provider
+        value={{ mapContainerType, setMapContainerType }}
       >
-        <UserDetailsContext.Provider value={{ userDetails, setUserDetails }}>
-          <AuthenticatedContext.Provider
-            value={{ isAuthenticated, toggleAuthenticated }}
-          >
-            <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
-              <ExpandedContext.Provider value={{ isExpanded, toggleExpanded }}>
-                <MapRefContext.Provider
-                  value={{ mapRefContext, setMapRefContext }}
+        <SpotifyContext.Provider
+          value={{
+            updateSpotifyStateTwo: updateSpotifyPlayerStateTwo,
+            updateSpotifyState: updateSpotifyPlayerState,
+            playSpotifyTrack: spotifyPlayer.playSpotifyTrack,
+            authenticated: spotifyPlayer.authenticated,
+          }}
+        >
+          <UserDetailsContext.Provider value={{ userDetails, setUserDetails }}>
+            <AuthenticatedContext.Provider
+              value={{ isAuthenticated, toggleAuthenticated }}
+            >
+              <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+                <ExpandedContext.Provider
+                  value={{ isExpanded, toggleExpanded }}
                 >
-                  <MapDetailsContext.Provider
-                    value={{ mapDetails, setMapDetails }}
+                  <MapRefContext.Provider
+                    value={{ mapRefContext, setMapRefContext }}
                   >
-                    <CurrentTrackContextProvider
-                      value={{
-                        currentTrackName: currentTrackDetails.currentTrackName,
-                        currentTrackId: currentTrackDetails.currentTrackId,
-                        progress: currentTrackDetails.progress,
-                        isPlaying: currentTrackDetails.isPlaying,
-                        updateCurrentTrackDetails: UpdateCurrentTrackDetailsNow,
-                      }}
+                    <MapDetailsContext.Provider
+                      value={{ mapDetails, setMapDetails }}
                     >
-                      <BrowserRouter>
-                        <Nav />
-                        <Routes>
-                          <Route path={"/"} element={<Journey />} />
-                          <Route path={"/login"} element={<Login />} />
-                          <Route path={"/signup"} element={<Signup />} />
-                          <Route path={"/testing"} element={<Testing />} />
-                          <Route path={"/testing2"} element={<Testing2 />} />
-                          <Route path={"/stops"} element={<Stops />} />
-                          <Route element={<ProtectedRoute />}>
-                            {" "}
-                            <Route path={"/account"} element={<Account />} />
-                            <Route path={"/wordle"} element={<Wordle />} />
-                            <Route
-                              path={"/events"}
-                              element={<Events events={events} />}
-                            />
-                          </Route>
-                        </Routes>
-                      </BrowserRouter>
-                      <SetupSpotifyWebPlayer
-                        sdkReady={sdkReady}
-                        authenticated={spotAuth}
-                      />
-                      {/* Uncomment when in production */}
-                      {/* <UpdateCurrentTrack authenticated={spotAuth} /> */}
-                    </CurrentTrackContextProvider>
-                  </MapDetailsContext.Provider>
-                </MapRefContext.Provider>
-              </ExpandedContext.Provider>
-            </ThemeContext.Provider>
-          </AuthenticatedContext.Provider>
-        </UserDetailsContext.Provider>
-      </SpotifyContext.Provider>
-    </MapContainerContext.Provider>
+                      <CurrentTrackContextProvider
+                        value={{
+                          currentTrackName:
+                            currentTrackDetails.currentTrackName,
+                          currentTrackId: currentTrackDetails.currentTrackId,
+                          progress: currentTrackDetails.progress,
+                          isPlaying: currentTrackDetails.isPlaying,
+                          updateCurrentTrackDetails:
+                            UpdateCurrentTrackDetailsNow,
+                        }}
+                      >
+                        <BrowserRouter>
+                          <Nav />
+                          <Routes>
+                            <Route path={"/"} element={<Journey />} />
+                            <Route path={"/login"} element={<Login />} />
+                            <Route path={"/signup"} element={<Signup />} />
+                            <Route path={"/testing"} element={<Testing />} />
+                            <Route path={"/testing2"} element={<Testing2 />} />
+                            <Route path={"/stops"} element={<Stops />} />
+                            <Route element={<ProtectedRoute />}>
+                              {" "}
+                              <Route path={"/account"} element={<Account />} />
+                              <Route path={"/wordle"} element={<Wordle />} />
+                              <Route
+                                path={"/events"}
+                                element={<Events events={events} />}
+                              />
+                            </Route>
+                          </Routes>
+                        </BrowserRouter>
+                        <SetupSpotifyWebPlayer
+                          sdkReady={sdkReady}
+                          authenticated={spotAuth}
+                        />
+                        {/* Uncomment when in production */}
+                        {/* <UpdateCurrentTrack authenticated={spotAuth} /> */}
+                      </CurrentTrackContextProvider>
+                    </MapDetailsContext.Provider>
+                  </MapRefContext.Provider>
+                </ExpandedContext.Provider>
+              </ThemeContext.Provider>
+            </AuthenticatedContext.Provider>
+          </UserDetailsContext.Provider>
+        </SpotifyContext.Provider>
+      </MapContainerContext.Provider>
+    </DirectionsContext.Provider>
   );
 }
 
