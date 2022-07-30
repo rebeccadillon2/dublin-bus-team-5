@@ -9,12 +9,15 @@ export function Wordle() {
   const [isDarkMode] = useTheme();
   const [reset, setReset] = useState(false);
   const [solution, setSolution] = useState(null);
+  const [coords, setCoords] = useState(null);
   const classes = `${
     isDarkMode ? "bg-system-grey7" : "bg-system-grey2"
   } width-full`;
 
   useEffect(() => {
-    setSolution(myData.solutions[Math.floor(Math.random() * 20)].word);
+    const obj = myData.solutions[Math.floor(Math.random() * 8)];
+    setSolution(obj.word);
+    setCoords(obj.location);
   }, [reset]);
 
   return (
@@ -22,6 +25,7 @@ export function Wordle() {
       <div className={classes}>
         {solution && (
           <WordleContainer
+            coords={coords}
             solution={solution}
             setReset={setReset}
             reset={reset}

@@ -5,7 +5,7 @@ import { useTheme, useWordle } from "../../hooks";
 import { Popup } from "../popup";
 import Confetti from "./confetti";
 
-export function WordleContainer({ solution, setReset, reset }) {
+export function WordleContainer({ solution, setReset, reset, coords }) {
   const {
     popup,
     confetti,
@@ -98,6 +98,7 @@ export function WordleContainer({ solution, setReset, reset }) {
           solution={solution}
           isCorrect={isCorrect}
           setOpen={setIsModalOpen}
+          coords={coords}
           handleStartOver={handleStartOver}
         />
         {confetti && <Confetti />}
