@@ -72,7 +72,7 @@ export function JourneyForm(props) {
         <BasicDateTimePicker time={time} setTime={setTime} />
         <button
           onClick={() => setTime(new Date())}
-          className='flex items-center justify-center h-10 rounded-xl bg-system-grey5 w-8 ml-2 text-white active:bg-system-grey4'
+          className='flex items-center justify-center h-10 rounded-xl bg-system-grey5 w-8 ml-2 text-white active:bg-system-grey4 '
         >
           <BsArrowRepeat />
         </button>
