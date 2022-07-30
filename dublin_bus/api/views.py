@@ -31,12 +31,33 @@ class AllStopsView(APIView):
         return Response(serializedStops.data, status=status.HTTP_200_OK)
 
 
+class GetSingleStop(APIView):
+
+    def get(self, request, stop_id):
+        try:
+            stop = Stop.objects.get(id=stop_id)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        serializedStop = BasicStopsSerializer(stop)
+        return Response(serializedStop.data, status=status.HTTP_200_OK)
+
+
 class AllRoutesView(APIView):
 
     def get(self, request):
         routes = RouteSign.objects.all()
         serializedRoutes = BasicRoutesSignSerializer(routes, many=True)
         return Response(serializedRoutes.data, status=status.HTTP_200_OK)
+
+class GetSingleRoute(APIView):
+
+    def get(self, request, route_id):
+        try:
+            route = RouteSign.objects.get(route_id=route_id)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        serializedRoute = BasicRoutesWithHeadSignSerializer(route)
+        return Response(serializedRoute.data, status=status.HTTP_200_OK)
 
 
 class StopFavouriteView(APIView):
