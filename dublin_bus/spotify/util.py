@@ -1,11 +1,15 @@
-from datetime import timedelta
-from django.utils import timezone
-import datetime
-from .models import SpotifyToken
-from requests import post, put, get
-from .constants import CLIENT_ID, CLIENT_SECRET, BASE_URL
-import requests
 import json
+import datetime
+import requests
+import traceback
+import urllib.parse
+from datetime import timedelta
+from .models import SpotifyToken
+from django.utils import timezone
+from requests import post, put, get
+from difflib import SequenceMatcher
+from .constants import CLIENT_ID, CLIENT_SECRET, BASE_URL
+
 
 # Code inspiration from https://github.com/techwithtim/Music-Controller-Web-App-Tutorial
 
@@ -133,4 +137,40 @@ def play_track(uri, access_token):
     data = {"uris":[uri]}  
     print('URI', uri)
     # Making the request
-    requests.put(endpoint, data=json.dumps(data), headers=header)  
+    requests.put(endpoint, data=json.dumps(data), headers=header) 
+
+
+def create_url(name):
+    ep = "https://api.spotify.com/v1/search"
+    qd = {'q':name, 'type':'artist'}
+    qs = urllib.parse.urlencode(qd)
+    return f"{ep}?{qs}"
+
+
+def run_search(url, name, access_token):
+    res = requests.get(url, headers={'Authorization':'Bearer ' + access_token})
+    data = res.json()
+    try:
+        artist_check = list(map(lambda x: (x['name'], x['id'], SequenceMatcher(None, name, x['name']).ratio()), data['artists']['items'])) 
+    except: 
+        traceback.print_exc()
+        return None
+    artist_check.sort(key=lambda x: x[-1])
+    return artist_check[-1]
+
+
+def artist_search(name):
+    try:
+        url = create_url(name)
+        return run_search(url, name)
+    except:
+        return None
+
+
+def get_artist_top_songs(id, access_token):
+    ep = "https://api.spotify.com/v1/artists/"
+    url = f"{ep}{id}/top-tracks?market=ES"
+    res = requests.get(url, headers={'Authorization':'Bearer ' + access_token})
+    data = res.json()
+    songs = list(map(lambda x: {'name':x['name'], 'id':x['id'], 'image':x['album']['images'][-1]['url']}, data['tracks'])) 
+    return songs

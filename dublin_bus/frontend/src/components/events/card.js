@@ -3,8 +3,9 @@ import { RiTicket2Line } from "react-icons/ri";
 import { MdOutlineDirections } from "react-icons/md";
 
 import { useTheme } from "../../hooks";
+import { SpotifySample } from "../spotify";
 
-export function EventCard({ event }) {
+export function EventCard({ type, event }) {
   const [isDarkMode] = useTheme();
 
   return (
@@ -13,6 +14,7 @@ export function EventCard({ event }) {
         key={event.id}
         className='relative md:min-w-[305px] md:h-[203px] min-w-[190px] h-[203px]  mt-2 md:mx-4 mx-1  scroll-y-none '
       >
+        {type === "music" && <SpotifySample artistName={event.name} />}
         <img
           className='md:w-[305px] md:h-[203px] h-[203px] w-[190px] rounded-t-md mb-1 shadow-lg	brightness-65	 '
           alt={"event"}
