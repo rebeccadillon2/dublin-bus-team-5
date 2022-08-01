@@ -1,13 +1,11 @@
 from django.urls import path
-from .views import MLPredictionView, UpcomingStopTimesRoutes, AllStopsView, StopFavouriteView, RouteStopsSingleDirectionsView, AllRoutesView, RouteDirectionStopCountView, RouteSignFavouriteView, GetSingleStop, GetSingleRoute
+from .views import MLPredictionView, UpcomingStopTimesRoutes, AllStopsView, StopFavouriteView, RouteStopsSingleDirectionsView, AllRoutesView, RouteDirectionStopCountView, RouteSignFavouriteView
 
 urlpatterns = [
     path('get-all-stops/', AllStopsView.as_view()),
     path('get-all-routes/', AllRoutesView.as_view()),
     path('get-ml-prediction/', MLPredictionView.as_view()),
     path('upcoming-stoptimes/', UpcomingStopTimesRoutes.as_view()),
-    path('get-single-stop/<str:stop_id>/', GetSingleStop.as_view()),
-    path('get-single-route/<int:route_id>/', GetSingleRoute.as_view()),
     path('get-route-stops-single/', RouteStopsSingleDirectionsView.as_view()),
     path('get-route-direction-stop-count/', RouteDirectionStopCountView.as_view()),
     path('favourite-stop/<str:stop_pk>/<str:user_id>/', StopFavouriteView.as_view()),
