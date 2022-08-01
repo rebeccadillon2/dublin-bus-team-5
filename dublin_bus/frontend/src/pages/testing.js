@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { getForecastWeather, getMLPrediction, getSixteenDay } from "../lib/api";
+import {
+  getForecastWeather,
+  getMLPrediction,
+  getSixteenDay,
+  getUpcomingStopTimesRoutes,
+} from "../lib/api";
 
 export function Testing() {
   const handlePrediction = async () => {
@@ -27,6 +32,15 @@ export function Testing() {
       console.log(e);
     }
   };
+
+  const handleTest = async () => {
+    try {
+      const res = await getUpcomingStopTimesRoutes("8250DB000768", "12:00:00");
+      console.log("test", res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   //        [75, 5.1, 19800, 1, 10]
 
   return (
@@ -42,6 +56,12 @@ export function Testing() {
         className='p-2 rounded-lg bg-primary-blue m-4'
       >
         Get 16 day weather
+      </button>
+      <button
+        onClick={handleTest}
+        className='p-2 rounded-lg bg-primary-blue m-4'
+      >
+        Get testing info
       </button>
     </>
   );
