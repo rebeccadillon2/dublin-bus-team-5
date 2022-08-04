@@ -48,10 +48,10 @@ export function routeErrorCheck(
   return false;
 }
 
-export function getMapContainerStyle(width, isExpanded) {
+export function getMapContainerStyle(width, isExpanded, windowHeight) {
   return {
     width: width >= 768 ? "calc(100vw - 400px)" : "100vw",
-    height: width >= 768 ? "calc(100vh - 64px)" : "100vh",
+    height: width >= 768 ? "calc(100vh - 64px)" : `${windowHeight}px`,
     // isExpanded
     // ? "calc(100vh - 64px - 80vh)"
     // : "calc(100vh - 64px - 216px)",

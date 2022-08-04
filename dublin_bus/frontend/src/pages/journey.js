@@ -28,7 +28,7 @@ import {
 import { center, libraries } from "../lib/map";
 import { getAllRoutes, getAllStops } from "../lib/api";
 import { LoadingSpinner } from "../components/loading";
-import { useWindowSize, useTheme, useExpanded } from "../hooks";
+import { useWindowSize, useTheme, useExpanded, useResize } from "../hooks";
 import {
   MapDetailsContext,
   MapRefContext,
@@ -55,6 +55,8 @@ export function Journey() {
   const { directionsDetails, setDirectionsDetails } =
     useContext(DirectionsContext);
   const [openSidePanel, setOpenSidePanel] = useState(false);
+
+  const [, windowHeight] = useResize();
 
   const [origin, setOrigin] = useState(null);
   const [allRoutes, setAllRoutes] = useState(null);
@@ -218,7 +220,11 @@ export function Journey() {
           center={center}
           zoom={12}
           options={getMapOptions(isDarkMode)}
-          mapContainerStyle={getMapContainerStyle(width, isExpanded)}
+          mapContainerStyle={getMapContainerStyle(
+            width,
+            isExpanded,
+            windowHeight
+          )}
           onLoad={onMapLoad}
         >
           {mapContainerType.type === ContainerType.REALTIME ||
