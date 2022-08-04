@@ -25,7 +25,7 @@ export function JourneyForm(props) {
 
   const [isDarkMode] = useTheme();
 
-  const inputClasses = `h-10 rounded-xl md:w-80 w-72 px-2 focus:outline-none hover:placeholder-primary-blue ${
+  const inputClasses = `h-10 rounded-xl md:w-76 w-72 px-2 focus:outline-none hover:placeholder-primary-blue ${
     isDarkMode
       ? "bg-primary-black text-system-grey1 placeholder-system-grey4"
       : "bg-primary-white text-system-grey7"
