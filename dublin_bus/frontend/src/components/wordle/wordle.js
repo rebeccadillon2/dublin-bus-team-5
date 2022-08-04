@@ -86,9 +86,6 @@ export function WordleContainer({ solution, setReset, reset, coords }) {
           <div>
             <p className='text-3xl font-strong'>Dublin Street Wordle</p>
           </div>
-          <div className='flex items-center'>
-            <div>Current solution - {solution}</div>
-          </div>
         </div>
         <Grid currentGuess={currGuess} guesses={guesses} turn={turn} />
         <Keypad usedKeys={usedKeys} handleKeyup={handleKeyup} />
