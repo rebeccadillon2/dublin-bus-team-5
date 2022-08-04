@@ -51,7 +51,7 @@ export function JourneyContainer(props) {
           <div className='md:flex hidden'>
             <Header variant={true} title={"Search"} />
           </div>
-          <div className='input-container overflow-y-scroll	md:mt-2 overflow-x-hidden'>
+          <div className='input-container	md:mt-2 overflow-x-hidden'>
             <JourneyForm
               time={time}
               setTime={setTime}
