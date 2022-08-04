@@ -39,7 +39,7 @@ export function ContentContainer(props) {
   const themeClasses = `${isDarkMode ? "bg-system-grey6" : "bg-system-grey2"}`;
   const expandedClasses = `${
     isExpanded
-      ? "min-h-[85vh] max-h-[85vh] h-[85vh] "
+      ? "min-h-[80vh] max-h-[80vh] h-[80vh] "
       : "hidden min-h-0 h-0 max-h-0 "
   } md:h-full`;
   const innerClasses = `container-to-make py-2 md:px-4 px-4 md:w-100.1 transition-all ease-in-out duration-500 md:min-h-[calc(100vh-64px)] md:max-h-[calc(100vh-64px)] overflow-y-scroll ${themeClasses} ${

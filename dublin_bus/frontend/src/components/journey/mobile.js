@@ -110,7 +110,7 @@ export function MobileMainMenu({ setOpenSidePanel }) {
         </div>
       </div>
       <div
-        className={`${isExpanded ? "top-[calc(85vh+56px)]" : "top-14"} ${
+        className={`${isExpanded ? "top-[calc(80vh+56px)]" : "top-14"} ${
           isDarkMode
             ? "bg-primary-black text-system-grey4 hover:text-system-grey5"
             : "bg-primary-white text-system-grey6 hover:text-system-grey5"
