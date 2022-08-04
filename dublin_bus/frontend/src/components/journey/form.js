@@ -52,11 +52,11 @@ export function JourneyForm(props) {
           </Autocomplete>
         </div>
         <div className='pl-2 sm:pl-4'>
-          {currentBrowser(window) !== "Google Chrome" && (
+          {/* {currentBrowser(window) !== "Google Chrome" && (
             <div className='flex items-center justify-center bg-primary-blue p-1.5 rounded-lg text-system-grey2 mb-4'>
               <IoMdLocate onClick={() => setUserLocation(originRef)} />
             </div>
-          )}
+          )} */}
           <HiOutlineSwitchVertical
             onClick={handleSwitch}
             className={`h-7 w-7 hover:cursor-pointer ${
