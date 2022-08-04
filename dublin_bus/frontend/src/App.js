@@ -152,6 +152,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log("TEST PULL");
     const getEventsData = async () => {
       let obj = {};
       try {
