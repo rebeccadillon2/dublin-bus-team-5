@@ -32,7 +32,7 @@ export function JourneyForm(props) {
   }`;
 
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <div className='flex items-center'>
         <div>
           <Autocomplete options={inputOptions}>
