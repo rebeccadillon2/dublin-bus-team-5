@@ -104,13 +104,12 @@ export function PlaceCard(props) {
   };
 
   const handleUpdateRoute = () => {
-    calculateRoute(directionsDetails.origin, place.vicinity);
-    setTimeout(() => {
+    calculateRoute(directionsDetails.origin, place.vicinity).then(() => {
       setPopup(true);
-    }, 1000);
-    setTimeout(() => {
-      setPopup(false);
-    }, 3000);
+      setTimeout(() => {
+        setPopup(false);
+      }, 3000);
+    });
   };
 
   return (
