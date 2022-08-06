@@ -66,7 +66,6 @@ export function FavouriteStops({ setSelectedStop }) {
       try {
         setLoading(true);
         const { data } = await getUser(userId);
-        console.log("data", data.favouritedStops);
         setFavStops(data.favouritedStops);
         setLoading(false);
       } catch (e) {

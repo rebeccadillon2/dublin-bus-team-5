@@ -44,7 +44,6 @@ export function EditProfileEmail({
 
     try {
       setLoading(true);
-      console.log("FD", formData);
       await editUser(userId, formData);
       setPopupText("Successfully updated email");
       setLoading(false);
@@ -55,7 +54,6 @@ export function EditProfileEmail({
       // setIsEditingEmail(false);
     } catch (err) {
       setLoading(false);
-      console.log(err.response.data);
       setFormErrors(err.response.data);
       if (!err.response.data) {
         setMissingValuesError("Opps something went wrong");

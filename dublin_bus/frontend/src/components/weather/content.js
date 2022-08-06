@@ -30,7 +30,6 @@ export function WeatherContent() {
       try {
         setLoading(true);
         const { data } = await getForecastWeather();
-        console.log("weather data: ", data.list);
         setXData(data.list.slice(0, 20));
         parseYData(data.list);
         setLoading(false);

@@ -72,10 +72,8 @@ export const setUserLocation = (originRef) => {
           if (status !== window.google.maps.GeocoderStatus.OK) {
             // eslint-disable-next-line no-alert
             alert("There was a problem trying to find your location");
-            console.log(status);
           }
           if (status === window.google.maps.GeocoderStatus.OK && results) {
-            console.log("res", results);
             originRef.current.value = results[0].formatted_address;
           }
         });
@@ -109,7 +107,6 @@ export const configureWeatherVariables = async (time) => {
 
   // Checking if selected time is over 5 days away
   if (datum > now + 60 * 60 * 24 * 5) {
-    console.log("over five days away");
     // If selection is over 5 days away, no forecast data so use Dublin mean values
     return {
       wind: 2.2,
@@ -118,7 +115,6 @@ export const configureWeatherVariables = async (time) => {
 
     // Check if selected time is greter than 3 hours away
   } else if (datum > now + 60 * 60 * 3) {
-    console.log("over three hours away");
     try {
       const { data } = await getForecastWeather();
       for (let i = 0; i < data.list.length; i++) {
@@ -135,7 +131,6 @@ export const configureWeatherVariables = async (time) => {
 
     // Returning current weather
   } else {
-    console.log("within three hours");
     try {
       const { data } = await getLiveWeather();
       return { wind: data.wind.speed, humidity: data.main.humidity };
@@ -232,7 +227,6 @@ export const addMLPredictionsToResponse = async (results, weatherVariables) => {
         // Getting route short name parameter
         const routeShortName =
           results.routes[i].legs[0].steps[j].transit.line.short_name;
-        console.log("routeShortName", routeShortName);
 
         // Getting seconds from start of day parameter
         const secondsFromStartOfDay = convertToSeconds(
@@ -291,7 +285,6 @@ export const addMLPredictionsToResponse = async (results, weatherVariables) => {
       }
     }
     // Adding the duration to the object
-    console.log("Duration:", duration);
     obj.routes[i].legs[0].duration = {
       ...obj.routes[i].legs[0].duration,
       predictedValue: duration,

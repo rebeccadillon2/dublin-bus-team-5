@@ -30,7 +30,6 @@ export function EventCard({ type, event }) {
 
   return (
     <div className='flex flex-col items-start justify-start '>
-      {console.log("event", event)}
       <div
         key={event.id}
         className='relative md:min-w-[305px] md:h-[203px] min-w-[190px] h-[203px]  mt-2 md:mx-4 mx-1  scroll-y-none '

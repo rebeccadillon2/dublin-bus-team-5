@@ -26,7 +26,6 @@ export function MobileSidePanel({ open, setOpen, handleClose }) {
   //     if (!isAuthenticated) return;
   //     try {
   //       const { data } = await getUser(uid);
-  //       console.log("data", data);
   //       setUserDetails(data);
   //     } catch (e) {
   //       console.log(e);

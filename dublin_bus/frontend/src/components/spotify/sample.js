@@ -9,11 +9,8 @@ export function SpotifySample({ artistName }) {
 
   useEffect(() => {
     const getArtistSongs = async () => {
-      console.log("uid", uid);
-      console.log("artistName", artistName);
       try {
         const res = await getArtistInfo(artistName, uid);
-        console.log("RES", res);
         setArtistSongs(res.data.songs);
       } catch (e) {
         console.log(e);

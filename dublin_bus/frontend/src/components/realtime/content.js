@@ -95,8 +95,7 @@ export function RealTimeContent({
     panToSelectedStop(panTo, selectedStop);
     const time = getCurrentTime();
     setTimes(time);
-    console.log("currentTime", time);
-    console.log("selectedStop", selectedStop);
+
     getDisplayData(
       time,
       selectedStop.id,

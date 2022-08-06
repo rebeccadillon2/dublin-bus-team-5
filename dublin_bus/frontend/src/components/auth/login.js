@@ -36,7 +36,6 @@ export function LoginForm() {
     try {
       setLoading(true);
       const { data } = await loginUser(formData);
-      console.log("token", data.token);
       setToken(data.token);
       navigate("/");
       toggleAuthenticated(true);
@@ -55,7 +54,6 @@ export function LoginForm() {
         profileImage: res.data.profileImage,
       });
     } catch (err) {
-      console.log(err.response.data.detail);
       setFormErrors(err.response);
       setLoading(false);
       setFormErrors(err.response.data);

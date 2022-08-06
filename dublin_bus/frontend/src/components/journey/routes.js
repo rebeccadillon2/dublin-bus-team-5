@@ -67,7 +67,6 @@ function RouteContent(props) {
   const [isDarkMode] = useTheme();
 
   const routeChange = (index) => {
-    console.log("index", index);
     setMapDetails({
       ...mapDetails,
       routeIdx: Number(index),

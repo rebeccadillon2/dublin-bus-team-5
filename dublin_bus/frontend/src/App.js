@@ -138,7 +138,6 @@ function App() {
     if (!userDetails.email && isUserAuthenticated()) {
       const getUserInfo = async () => {
         const userId = getPayload().sub;
-        console.log(userId);
         const { data } = await getUser(userId);
         setUserDetails({
           email: data.email,
@@ -152,21 +151,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("TEST PULL");
     const getEventsData = async () => {
       let obj = {};
       try {
-        // const popRes = await getPopEvents();
-        // obj = { ...obj, pops: popRes.data._embedded.events };
-
         const rapRes = await getRapEvents();
         obj = { ...obj, raps: rapRes.data._embedded.events };
-
-        // const sportRes = await getSportEvents();
-        // obj = { ...obj, sports: sportRes.data._embedded.events };
-
-        // const comedyRes = await getComedyEvents();
-        // obj = { ...obj, comedies: comedyRes.data._embedded.events };
 
         const folkRes = await getFolkEvents();
         obj = { ...obj, folks: folkRes.data._embedded.events };
@@ -174,10 +163,6 @@ function App() {
         const rockRes = await getRockEvents();
         obj = { ...obj, rocks: rockRes.data._embedded.events };
 
-        // const musicRes = await getMusicEvents();
-        // obj = { ...obj, musics: musicRes.data._embedded.events };
-
-        console.log("obj", obj);
         setEvents({ ...obj });
       } catch (e) {
         console.log(e);
