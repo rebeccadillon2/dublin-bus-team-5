@@ -2,7 +2,7 @@ import React from "react";
 
 import { useTheme } from "../../hooks";
 import { AccountSection, Card } from "../container";
-import { FareToggle, PaymentToggle, ThemeToggle } from "../toggle";
+import { FareSelect, PaymentToggle, ThemeToggle } from "../toggle";
 
 export function GeneralSettings() {
   const [isDarkMode] = useTheme();
@@ -35,11 +35,11 @@ export function GeneralSettings() {
             Fare Calculator
           </p>
           <p className='text-sm'>
-            Let us know if you are an adult or child, so we can accurately
-            calculate your fare.
+            Let us know if you are an adult, student or child, so we can
+            accurately calculate your fare.
           </p>
         </div>
-        <FareToggle />
+        <FareSelect />
       </Card>
       <Card isLast={true}>
         <div className='pr-10'>

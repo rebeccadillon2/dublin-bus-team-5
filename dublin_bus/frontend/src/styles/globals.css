@@ -16,6 +16,11 @@ code {
     monospace;
 }
 
+select:focus {
+  box-shadow: none;
+  outline: none;
+}
+
 ::selection {
   background: rgb(255, 73, 164);
   color: black;
