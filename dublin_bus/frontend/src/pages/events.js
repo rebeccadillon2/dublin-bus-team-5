@@ -44,7 +44,6 @@ export function Events({ events }) {
                 {isAuthenticated && <ConnectSpotify events={true} />}
               </div>
             </div>
-
             <div className='absolute top-4 right-4'>
               <div
                 className={`md:hidden ${
@@ -59,24 +58,6 @@ export function Events({ events }) {
             </div>
           </div>
           <div className=''>
-            {/* {events.pops && (
-              <Slider id={"popContentSlider"} title={"Pop"}>
-                <>
-                  {events.pops.map((pop) => (
-                    <EventCard type={"music"} event={pop} key={pop.id} />
-                  ))}
-                </>
-              </Slider>
-            )} */}
-            {/* {events.musics && (
-              <Slider id={"musicContentSlider"} title={"Music"}>
-                <>
-                  {events.musics.map((music) => (
-                    <EventCard type={"music"} event={music} key={music.id} />
-                  ))}
-                </>
-              </Slider>
-            )} */}
             {events.raps && (
               <Slider id={"rapContentSlider"} title={"Rap"}>
                 <>
@@ -104,25 +85,6 @@ export function Events({ events }) {
                 </>
               </Slider>
             )}
-
-            {/* {events.sports && (
-              <Slider id={"sportContentSlider"} title={"Sports"}>
-                <>
-                  {events.sports.map((sport) => (
-                    <EventCard type={"sport"} event={sport} key={sport.id} />
-                  ))}
-                </>
-              </Slider>
-            )}
-            {events.comedies && (
-              <Slider id={"comedyContentSlider"} title={"Comedy"}>
-                <>
-                  {events.comedies.map((comedy) => (
-                    <EventCard type={"comedy"} event={comedy} key={comedy.id} />
-                  ))}
-                </>
-              </Slider>
-            )} */}
           </div>
           <MobileSidePanel
             open={openSidePanel}
