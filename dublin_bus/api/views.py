@@ -33,6 +33,19 @@ class AllStopsView(APIView):
         serializedStops = BasicStopsSerializer(stops, many=True)
         return Response(serializedStops.data, status=status.HTTP_200_OK)
 
+class AllStopsFileView(APIView):
+    def get(self, request):
+        with open('/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/dublin_bus/api/all_stops.json', 'r') as f:
+            stops = json.load(f)
+        return Response(stops, status=status.HTTP_200_OK)
+
+
+class AllRoutesFileView(APIView):
+    def get(self, request):
+        with open('/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/dublin_bus/api/all_routes.json', 'r') as f:
+            routes = json.load(f)
+        return Response(routes, status=status.HTTP_200_OK)
+
 
 class AllRoutesView(APIView):
 

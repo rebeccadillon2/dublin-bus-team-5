@@ -19,7 +19,7 @@ export function getUpcomingStopTimesRoutes(stopId, time) {
 }
 
 export function getAllStops() {
-  return axios.get(`${baseUrl}/api/bus/get-all-stops/`);
+  return axios.get(`${baseUrl}/api/bus/get-all-stops-file/`);
 }
 
 export function favouriteStop(stopId, userId) {
@@ -76,7 +76,7 @@ export function getRouteDirectionStopCount(routeId, headSign) {
 }
 
 export function getAllRoutes() {
-  return axios.get(`${baseUrl}/api/bus/get-all-routes/`);
+  return axios.get(`${baseUrl}/api/bus/get-all-routes-file/`);
 }
 
 export function getMLPrediction(

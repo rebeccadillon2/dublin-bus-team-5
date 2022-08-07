@@ -1,0 +1,1262 @@
+[
+    {
+        "route_id": "60-1-d12-1",
+        "route_short_name": "1",
+        "headsign": "Shaw Street - Shanard Road (Shanard Avenue)",
+        "id": 0
+    },
+    {
+        "route_id": "60-1-d12-1",
+        "route_short_name": "1",
+        "headsign": "Shanard Road (Shanard Avenue) - Shaw Street",
+        "id": 1
+    },
+    {
+        "route_id": "60-11-d12-1",
+        "route_short_name": "11",
+        "headsign": "Blackthorn Road - Saint Pappin's Road",
+        "id": 2
+    },
+    {
+        "route_id": "60-11-d12-1",
+        "route_short_name": "11",
+        "headsign": "Saint Pappin's Road - Blackthorn Drive (Blackthorn Road)",
+        "id": 3
+    },
+    {
+        "route_id": "60-116-d12-1",
+        "route_short_name": "116",
+        "headsign": "Church of Our Lady of Good Council - Parnell Square North",
+        "id": 4
+    },
+    {
+        "route_id": "60-116-d12-1",
+        "route_short_name": "116",
+        "headsign": "Sussex Road - Church of Our Lady of Good Council",
+        "id": 5
+    },
+    {
+        "route_id": "60-118-d12-1",
+        "route_short_name": "118",
+        "headsign": "Enniskerry Road (Ballycorus Rd) - Eden Quay",
+        "id": 6
+    },
+    {
+        "route_id": "60-120-d12-1",
+        "route_short_name": "120",
+        "headsign": "Rathbourne Avenue - Marlborough Street",
+        "id": 7
+    },
+    {
+        "route_id": "60-120-d12-1",
+        "route_short_name": "120",
+        "headsign": "Merrion Road RDS - River Road",
+        "id": 8
+    },
+    {
+        "route_id": "60-122-d12-1",
+        "route_short_name": "122",
+        "headsign": "Ashington Park - Errigal Rd",
+        "id": 9
+    },
+    {
+        "route_id": "60-122-d12-1",
+        "route_short_name": "122",
+        "headsign": "Drimnagh Road (Our Lady's Hospital for Sick Children) - Ashington Gardens",
+        "id": 10
+    },
+    {
+        "route_id": "60-123-d12-1",
+        "route_short_name": "123",
+        "headsign": "Kilnamanagh Road - Griffith Avenue (Malahide Road)",
+        "id": 11
+    },
+    {
+        "route_id": "60-123-d12-1",
+        "route_short_name": "123",
+        "headsign": "Griffith Avenue (Malahide Road) - Kilnamanagh Road",
+        "id": 12
+    },
+    {
+        "route_id": "60-13-d12-1",
+        "route_short_name": "13",
+        "headsign": "Business Park Bus Terminus - Harristown Bus Garage",
+        "id": 13
+    },
+    {
+        "route_id": "60-13-d12-1",
+        "route_short_name": "13",
+        "headsign": "Harristown Bus Depot - Business Park Bus Terminus",
+        "id": 14
+    },
+    {
+        "route_id": "60-130-d12-1",
+        "route_short_name": "130",
+        "headsign": "Saint John The Baptist Cemetery - Talbot Street",
+        "id": 15
+    },
+    {
+        "route_id": "60-130-d12-1",
+        "route_short_name": "130",
+        "headsign": "Talbot Street - Clontarf Castle",
+        "id": 16
+    },
+    {
+        "route_id": "60-14-d12-1",
+        "route_short_name": "14",
+        "headsign": "Outside Luas Station - Maryfield Drive",
+        "id": 17
+    },
+    {
+        "route_id": "60-14-d12-1",
+        "route_short_name": "14",
+        "headsign": "Maryfield Drive - Outside Luas Station",
+        "id": 18
+    },
+    {
+        "route_id": "60-140-d12-1",
+        "route_short_name": "140",
+        "headsign": "Saint Margaret's Road - Upper Rathmines Road",
+        "id": 19
+    },
+    {
+        "route_id": "60-140-d12-1",
+        "route_short_name": "140",
+        "headsign": "Palmerston Park - Saint Margaret's Road",
+        "id": 20
+    },
+    {
+        "route_id": "60-142-d12-1",
+        "route_short_name": "142",
+        "headsign": "University College of Dublin UCD - Coast Road",
+        "id": 21
+    },
+    {
+        "route_id": "60-142-d12-1",
+        "route_short_name": "142",
+        "headsign": "Wendell Avenue - University College of Dublin UCD",
+        "id": 22
+    },
+    {
+        "route_id": "60-145-d12-1",
+        "route_short_name": "145",
+        "headsign": "Outside Heuston Train Station - Ballywaltrim",
+        "id": 23
+    },
+    {
+        "route_id": "60-145-d12-1",
+        "route_short_name": "145",
+        "headsign": "Kilmacanogue (Esso Garage) - Outside Heuston Train Station",
+        "id": 24
+    },
+    {
+        "route_id": "60-15-d12-1",
+        "route_short_name": "15",
+        "headsign": "Ballycullen Road (Hunter's Avenue) - Park and Ride Car Park",
+        "id": 25
+    },
+    {
+        "route_id": "60-15-d12-1",
+        "route_short_name": "15",
+        "headsign": "Main Street - Ballycullen Road (Hunter's Avenue)",
+        "id": 26
+    },
+    {
+        "route_id": "60-150-d12-1",
+        "route_short_name": "150",
+        "headsign": "Orwell Road - Hawkin House",
+        "id": 27
+    },
+    {
+        "route_id": "60-150-d12-1",
+        "route_short_name": "150",
+        "headsign": "Hawkin's Street - Orwell Road",
+        "id": 28
+    },
+    {
+        "route_id": "60-151-d12-1",
+        "route_short_name": "151",
+        "headsign": "Foxborough Estate - Bargy Road",
+        "id": 29
+    },
+    {
+        "route_id": "60-151-d12-1",
+        "route_short_name": "151",
+        "headsign": "Bargy Road - Foxborough Estate",
+        "id": 30
+    },
+    {
+        "route_id": "60-155-d12-1",
+        "route_short_name": "155",
+        "headsign": "St.Margaret's Road - Outside Train Station",
+        "id": 31
+    },
+    {
+        "route_id": "60-155-d12-1",
+        "route_short_name": "155",
+        "headsign": "Outside Train Station - St.Margaret's Road",
+        "id": 32
+    },
+    {
+        "route_id": "60-15A-d12-1",
+        "route_short_name": "15a",
+        "headsign": "Greenhills College - Merrion Square South",
+        "id": 33
+    },
+    {
+        "route_id": "60-15A-d12-1",
+        "route_short_name": "15a",
+        "headsign": "Merrion Square South - Limekiln Avenue",
+        "id": 34
+    },
+    {
+        "route_id": "60-15B-d12-1",
+        "route_short_name": "15b",
+        "headsign": "Dalriada Estate - Merrion Square South",
+        "id": 35
+    },
+    {
+        "route_id": "60-15B-d12-1",
+        "route_short_name": "15b",
+        "headsign": "Merrion Square South - Dalriada Estate",
+        "id": 36
+    },
+    {
+        "route_id": "60-15D-d12-1",
+        "route_short_name": "15d",
+        "headsign": "Merrion Square South - Church of Our Lady of Good Council",
+        "id": 37
+    },
+    {
+        "route_id": "60-15D-d12-1",
+        "route_short_name": "15d",
+        "headsign": "Whitechurch Green - Merrion Square South",
+        "id": 38
+    },
+    {
+        "route_id": "60-16-d12-1",
+        "route_short_name": "16",
+        "headsign": "Kingston Estate - Dublin Airport",
+        "id": 39
+    },
+    {
+        "route_id": "60-16-d12-1",
+        "route_short_name": "16",
+        "headsign": "Dublin Airport - Kingston Estate",
+        "id": 40
+    },
+    {
+        "route_id": "60-16D-d12-1",
+        "route_short_name": "16d",
+        "headsign": "Dublin Airport - Kingston Estate",
+        "id": 41
+    },
+    {
+        "route_id": "60-26-d12-1",
+        "route_short_name": "26",
+        "headsign": "Liffey Valley SC - Merrion Square South",
+        "id": 42
+    },
+    {
+        "route_id": "60-26-d12-1",
+        "route_short_name": "26",
+        "headsign": "Merrion Square South - Liffey Valley SC",
+        "id": 43
+    },
+    {
+        "route_id": "60-27-d12-1",
+        "route_short_name": "27",
+        "headsign": "Templeview Avenue - Fortunestown Road",
+        "id": 44
+    },
+    {
+        "route_id": "60-27-d12-1",
+        "route_short_name": "27",
+        "headsign": "Fortunestown Road - Templeview Avenue",
+        "id": 45
+    },
+    {
+        "route_id": "60-27A-d12-1",
+        "route_short_name": "27a",
+        "headsign": "Naomh Barrog GAA Club - Eden Quay",
+        "id": 46
+    },
+    {
+        "route_id": "60-27A-d12-1",
+        "route_short_name": "27a",
+        "headsign": "Liberty Hall - Blunden Drive",
+        "id": 47
+    },
+    {
+        "route_id": "60-27B-d12-1",
+        "route_short_name": "27b",
+        "headsign": "Liberty Hall - Harristown Bus Garage",
+        "id": 48
+    },
+    {
+        "route_id": "60-27B-d12-1",
+        "route_short_name": "27b",
+        "headsign": "Harristown Bus Garage - Eden Quay",
+        "id": 49
+    },
+    {
+        "route_id": "60-27X-d12-1",
+        "route_short_name": "27x",
+        "headsign": "Templeview Avenue - University College Dublin",
+        "id": 50
+    },
+    {
+        "route_id": "60-27X-d12-1",
+        "route_short_name": "27x",
+        "headsign": "University College Dublin - Clare Hall Estate (Templeview Avenue)",
+        "id": 51
+    },
+    {
+        "route_id": "60-32X-d12-1",
+        "route_short_name": "32x",
+        "headsign": "Swords Road (Lawson Spinney) - University College Dublin",
+        "id": 52
+    },
+    {
+        "route_id": "60-32X-d12-1",
+        "route_short_name": "32x",
+        "headsign": "University College Dublin - Swords Road (Millview)",
+        "id": 53
+    },
+    {
+        "route_id": "60-33-d12-1",
+        "route_short_name": "33",
+        "headsign": "Saint Paul's Crescent - Irish Life Mall",
+        "id": 54
+    },
+    {
+        "route_id": "60-33-d12-1",
+        "route_short_name": "33",
+        "headsign": "Irish Life Mall - Church",
+        "id": 55
+    },
+    {
+        "route_id": "60-33D-d12-1",
+        "route_short_name": "33d",
+        "headsign": "Custom House Quay - Smarts Lane",
+        "id": 56
+    },
+    {
+        "route_id": "60-33D-d12-1",
+        "route_short_name": "33d",
+        "headsign": "Smarts Lane - Huguenot Cemetery",
+        "id": 57
+    },
+    {
+        "route_id": "60-33E-d12-1",
+        "route_short_name": "33e",
+        "headsign": "Irish Life Mall - Northcliffe Heights",
+        "id": 58
+    },
+    {
+        "route_id": "60-33X-d12-1",
+        "route_short_name": "33x",
+        "headsign": "Northcliffe Heights - Merrion Square West",
+        "id": 59
+    },
+    {
+        "route_id": "60-33X-d12-1",
+        "route_short_name": "33x",
+        "headsign": "Custom House Quay - Church",
+        "id": 60
+    },
+    {
+        "route_id": "60-37-d12-1",
+        "route_short_name": "37",
+        "headsign": "Wilton Terrace - Shopping Centre",
+        "id": 61
+    },
+    {
+        "route_id": "60-37-d12-1",
+        "route_short_name": "37",
+        "headsign": "Shopping Centre - Wilton Terrace",
+        "id": 62
+    },
+    {
+        "route_id": "60-38-d12-1",
+        "route_short_name": "38",
+        "headsign": "Burlington Road (Mespil Road) - Damastown Drive",
+        "id": 63
+    },
+    {
+        "route_id": "60-38-d12-1",
+        "route_short_name": "38",
+        "headsign": "Damastown Drive - Burlington Road (Mespil Road)",
+        "id": 64
+    },
+    {
+        "route_id": "60-38A-d12-1",
+        "route_short_name": "38a",
+        "headsign": "Damastown Drive - Burlington Road (Mespil Road)",
+        "id": 65
+    },
+    {
+        "route_id": "60-38A-d12-1",
+        "route_short_name": "38a",
+        "headsign": "Burlington Road (Mespil Road) - Damastown Drive",
+        "id": 66
+    },
+    {
+        "route_id": "60-38B-d12-1",
+        "route_short_name": "38b",
+        "headsign": "Burlington Road (Mespil Road) - Damastown Drive",
+        "id": 67
+    },
+    {
+        "route_id": "60-38B-d12-1",
+        "route_short_name": "38b",
+        "headsign": "Damastown Drive - Burlington Road (Mespil Road)",
+        "id": 68
+    },
+    {
+        "route_id": "60-38D-d12-1",
+        "route_short_name": "38d",
+        "headsign": "Damastown Drive - Burlington Road (Mespil Road)",
+        "id": 69
+    },
+    {
+        "route_id": "60-38D-d12-1",
+        "route_short_name": "38d",
+        "headsign": "Burlington Road (Mespil Road) - Damastown Drive",
+        "id": 70
+    },
+    {
+        "route_id": "60-39-d12-1",
+        "route_short_name": "39",
+        "headsign": "Delhurst Estate - Burlington Road (Mespil Road)",
+        "id": 71
+    },
+    {
+        "route_id": "60-39-d12-1",
+        "route_short_name": "39",
+        "headsign": "Burlington Road (Mespil Road) - Ongar Road (Hansfield Road)",
+        "id": 72
+    },
+    {
+        "route_id": "60-39A-d12-1",
+        "route_short_name": "39a",
+        "headsign": "Delhurst Estate - University College Dublin",
+        "id": 73
+    },
+    {
+        "route_id": "60-39A-d12-1",
+        "route_short_name": "39a",
+        "headsign": "University College Dublin - Ongar Road (Hansfield Road)",
+        "id": 74
+    },
+    {
+        "route_id": "60-39X-d12-1",
+        "route_short_name": "39x",
+        "headsign": "Delhurst Estate - Burlington Road (Mespil Road)",
+        "id": 75
+    },
+    {
+        "route_id": "60-39X-d12-1",
+        "route_short_name": "39x",
+        "headsign": "Burlington Road (Mespil Road) - Ongar Road (Hansfield Road)",
+        "id": 76
+    },
+    {
+        "route_id": "60-4-d12-1",
+        "route_short_name": "4",
+        "headsign": "Monkstown Fitness Centre - Harristown Bus Garage",
+        "id": 77
+    },
+    {
+        "route_id": "60-4-d12-1",
+        "route_short_name": "4",
+        "headsign": "Harristown Bus Garage - Monkstown Avenue (Richmond Grove)",
+        "id": 78
+    },
+    {
+        "route_id": "60-40-d12-1",
+        "route_short_name": "40",
+        "headsign": "Liffey Valley SC - Charlestown Centre",
+        "id": 79
+    },
+    {
+        "route_id": "60-40-d12-1",
+        "route_short_name": "40",
+        "headsign": "Charlestown Shopping Centre - Liffey Valley SC",
+        "id": 80
+    },
+    {
+        "route_id": "60-40B-d12-1",
+        "route_short_name": "40b",
+        "headsign": "The Gate Hotel - River Meade Avenue",
+        "id": 81
+    },
+    {
+        "route_id": "60-40B-d12-1",
+        "route_short_name": "40b",
+        "headsign": "River Meade Avenue - Marlborough Street",
+        "id": 82
+    },
+    {
+        "route_id": "60-40D-d12-1",
+        "route_short_name": "40d",
+        "headsign": "The Oaks - Marlborough Street",
+        "id": 83
+    },
+    {
+        "route_id": "60-40D-d12-1",
+        "route_short_name": "40d",
+        "headsign": "The Gate Hotel - The Oaks",
+        "id": 84
+    },
+    {
+        "route_id": "60-40E-d12-1",
+        "route_short_name": "40e",
+        "headsign": "Carlton Hotel - Broombridge Luas",
+        "id": 85
+    },
+    {
+        "route_id": "60-40E-d12-1",
+        "route_short_name": "40e",
+        "headsign": "Broombridge Luas - Carlton Hotel",
+        "id": 86
+    },
+    {
+        "route_id": "60-41-d12-1",
+        "route_short_name": "41",
+        "headsign": "Abbeyvale Brackenstown Road - Marlborough Street",
+        "id": 87
+    },
+    {
+        "route_id": "60-41-d12-1",
+        "route_short_name": "41",
+        "headsign": "Marlborough Street - Abbeyvale Estate",
+        "id": 88
+    },
+    {
+        "route_id": "60-41B-d12-1",
+        "route_short_name": "41b",
+        "headsign": "Rolestown Cottages - Marlborough Street",
+        "id": 89
+    },
+    {
+        "route_id": "60-41B-d12-1",
+        "route_short_name": "41b",
+        "headsign": "Marlborough Street - Cemetery",
+        "id": 90
+    },
+    {
+        "route_id": "60-41C-d12-1",
+        "route_short_name": "41c",
+        "headsign": "Marlborough Street - Abbeyvale Estate",
+        "id": 91
+    },
+    {
+        "route_id": "60-41C-d12-1",
+        "route_short_name": "41c",
+        "headsign": "Abbeyvale Brackenstown Road - Marlborough Street",
+        "id": 92
+    },
+    {
+        "route_id": "60-41D-d12-1",
+        "route_short_name": "41d",
+        "headsign": "Marlborough Street - Swords Business Park",
+        "id": 93
+    },
+    {
+        "route_id": "60-41D-d12-1",
+        "route_short_name": "41d",
+        "headsign": "Swords Business Park - Marlborough Street",
+        "id": 94
+    },
+    {
+        "route_id": "60-41X-d12-1",
+        "route_short_name": "41x",
+        "headsign": "Knocksedan - University College Dublin",
+        "id": 95
+    },
+    {
+        "route_id": "60-41X-d12-1",
+        "route_short_name": "41x",
+        "headsign": "University College Dublin - Knocksedan",
+        "id": 96
+    },
+    {
+        "route_id": "60-42-d12-1",
+        "route_short_name": "42",
+        "headsign": "Talbot Street (opp Bank of Ireland) - Coast Road",
+        "id": 97
+    },
+    {
+        "route_id": "60-42-d12-1",
+        "route_short_name": "42",
+        "headsign": "Wendell Avenue - Talbot Street (opp Bank of Ireland)",
+        "id": 98
+    },
+    {
+        "route_id": "60-43-d12-1",
+        "route_short_name": "43",
+        "headsign": "Jugback Lane - Talbot Street (opp Bank of Ireland)",
+        "id": 99
+    },
+    {
+        "route_id": "60-43-d12-1",
+        "route_short_name": "43",
+        "headsign": "Talbot Street (opp Bank of Ireland) - Swords Business Park",
+        "id": 100
+    },
+    {
+        "route_id": "60-44-d12-1",
+        "route_short_name": "44",
+        "headsign": "Enniskerry Village - The Helix",
+        "id": 101
+    },
+    {
+        "route_id": "60-44-d12-1",
+        "route_short_name": "44",
+        "headsign": "The Helix - Enniskerry Village",
+        "id": 102
+    },
+    {
+        "route_id": "60-44B-d12-1",
+        "route_short_name": "44b",
+        "headsign": "Outside Luas Station - Hill View",
+        "id": 103
+    },
+    {
+        "route_id": "60-44B-d12-1",
+        "route_short_name": "44b",
+        "headsign": "Hill View - Outside Luas Station",
+        "id": 104
+    },
+    {
+        "route_id": "60-46A-d12-1",
+        "route_short_name": "46a",
+        "headsign": "Outside Train Station - Phoenix Park Gate",
+        "id": 105
+    },
+    {
+        "route_id": "60-46A-d12-1",
+        "route_short_name": "46a",
+        "headsign": "Phoenix Park Gate - University College Dublin",
+        "id": 106
+    },
+    {
+        "route_id": "60-46E-d12-1",
+        "route_short_name": "46e",
+        "headsign": "Outside Train Station - Mountjoy Square",
+        "id": 107
+    },
+    {
+        "route_id": "60-47-d12-1",
+        "route_short_name": "47",
+        "headsign": "Belarmine Plaza - Poolbeg Street",
+        "id": 108
+    },
+    {
+        "route_id": "60-47-d12-1",
+        "route_short_name": "47",
+        "headsign": "Poolbeg Street - Castlethorn Estate",
+        "id": 109
+    },
+    {
+        "route_id": "60-49-d12-1",
+        "route_short_name": "49",
+        "headsign": "Trinity College - Tallaght, The Square Shopping Centre",
+        "id": 110
+    },
+    {
+        "route_id": "60-49-d12-1",
+        "route_short_name": "49",
+        "headsign": "Fortunestown Road - Trinity College",
+        "id": 111
+    },
+    {
+        "route_id": "60-51D-d12-1",
+        "route_short_name": "51d",
+        "headsign": "Watery Lane - Waterloo Road (Wellington Lane)",
+        "id": 112
+    },
+    {
+        "route_id": "60-51D-d12-1",
+        "route_short_name": "51d",
+        "headsign": "Aston Quay - Woodford Hill",
+        "id": 113
+    },
+    {
+        "route_id": "60-52-d12-1",
+        "route_short_name": "52",
+        "headsign": "Ringsend Road - Intel Campus 1",
+        "id": 114
+    },
+    {
+        "route_id": "60-52-d12-1",
+        "route_short_name": "52",
+        "headsign": "Intel Campus 1 - Barrow Street",
+        "id": 115
+    },
+    {
+        "route_id": "60-53-d12-1",
+        "route_short_name": "53",
+        "headsign": "Irish Ferries Terminal - Talbot Street (opp Bank of Ireland)",
+        "id": 116
+    },
+    {
+        "route_id": "60-53-d12-1",
+        "route_short_name": "53",
+        "headsign": "Talbot Street (opp Bank of Ireland) - Irish Ferries Terminal",
+        "id": 117
+    },
+    {
+        "route_id": "60-54A-d12-1",
+        "route_short_name": "54a",
+        "headsign": "Trinity College - Kiltipper Way",
+        "id": 118
+    },
+    {
+        "route_id": "60-54A-d12-1",
+        "route_short_name": "54a",
+        "headsign": "Marlfield Estate - Trinity College",
+        "id": 119
+    },
+    {
+        "route_id": "60-56A-d12-1",
+        "route_short_name": "56a",
+        "headsign": "Ringsend Road - Tallaght Luas",
+        "id": 120
+    },
+    {
+        "route_id": "60-56A-d12-1",
+        "route_short_name": "56a",
+        "headsign": "Tallaght Luas - Barrow Street",
+        "id": 121
+    },
+    {
+        "route_id": "60-6-d12-1",
+        "route_short_name": "6",
+        "headsign": "National Lottery Head Quarters - Outside Train Station",
+        "id": 122
+    },
+    {
+        "route_id": "60-6-d12-1",
+        "route_short_name": "6",
+        "headsign": "Outside Train Station - National Lottery Head Quarters",
+        "id": 123
+    },
+    {
+        "route_id": "60-61-d12-1",
+        "route_short_name": "61",
+        "headsign": "Edmondstown Road (Rockbrook Park School) - Eden Quay",
+        "id": 124
+    },
+    {
+        "route_id": "60-61-d12-1",
+        "route_short_name": "61",
+        "headsign": "Eden Quay - Edmondstown Road (Rockbrook Park School)",
+        "id": 125
+    },
+    {
+        "route_id": "60-65-d12-1",
+        "route_short_name": "65",
+        "headsign": "Poolbeg Street - Valleymount Road",
+        "id": 126
+    },
+    {
+        "route_id": "60-65-d12-1",
+        "route_short_name": "65",
+        "headsign": "Valleymount Road - Poolbeg Street",
+        "id": 127
+    },
+    {
+        "route_id": "60-65B-d12-1",
+        "route_short_name": "65b",
+        "headsign": "Poolbeg Street - Bianconi Avenue",
+        "id": 128
+    },
+    {
+        "route_id": "60-65B-d12-1",
+        "route_short_name": "65b",
+        "headsign": "Bianconi Avenue - Poolbeg Street",
+        "id": 129
+    },
+    {
+        "route_id": "60-68-d12-1",
+        "route_short_name": "68",
+        "headsign": "Greenoge - Poolbeg Street",
+        "id": 130
+    },
+    {
+        "route_id": "60-68-d12-1",
+        "route_short_name": "68",
+        "headsign": "Hawkin's Street - Greenoge",
+        "id": 131
+    },
+    {
+        "route_id": "60-68A-d12-1",
+        "route_short_name": "68a",
+        "headsign": "Hawkin's Street - Bulfin Road",
+        "id": 132
+    },
+    {
+        "route_id": "60-68A-d12-1",
+        "route_short_name": "68a",
+        "headsign": "Bulfin Road - Poolbeg Street",
+        "id": 133
+    },
+    {
+        "route_id": "60-69-d12-1",
+        "route_short_name": "69",
+        "headsign": "Hawkin's Street - Community School",
+        "id": 134
+    },
+    {
+        "route_id": "60-69-d12-1",
+        "route_short_name": "69",
+        "headsign": "Rathlawns (Green Lane) - Poolbeg Street",
+        "id": 135
+    },
+    {
+        "route_id": "60-69X-d12-1",
+        "route_short_name": "69x",
+        "headsign": "Hawkin's Street - Community School",
+        "id": 136
+    },
+    {
+        "route_id": "60-69X-d12-1",
+        "route_short_name": "69x",
+        "headsign": "Rathlawns (Green Lane) - Poolbeg Street",
+        "id": 137
+    },
+    {
+        "route_id": "60-7-d12-1",
+        "route_short_name": "7",
+        "headsign": "Mountjoy Square Park - Bride's Glen Bus Stop",
+        "id": 138
+    },
+    {
+        "route_id": "60-7-d12-1",
+        "route_short_name": "7",
+        "headsign": "Bride's Glen Bus Stop - Mountjoy Square",
+        "id": 139
+    },
+    {
+        "route_id": "60-70-d12-1",
+        "route_short_name": "70",
+        "headsign": "Dunboyne Village - Burlington Road (Mespil Road)",
+        "id": 140
+    },
+    {
+        "route_id": "60-70-d12-1",
+        "route_short_name": "70",
+        "headsign": "Burlington Road (Mespil Road) - Dunboyne Village",
+        "id": 141
+    },
+    {
+        "route_id": "60-77A-d12-1",
+        "route_short_name": "77a",
+        "headsign": "Ringsend Road - Bianconi Avenue",
+        "id": 142
+    },
+    {
+        "route_id": "60-77A-d12-1",
+        "route_short_name": "77a",
+        "headsign": "Bianconi Avenue - Barrow Street",
+        "id": 143
+    },
+    {
+        "route_id": "60-77X-d12-1",
+        "route_short_name": "77x",
+        "headsign": "Bianconi Avenue - University College Dublin",
+        "id": 144
+    },
+    {
+        "route_id": "60-79-d12-1",
+        "route_short_name": "79",
+        "headsign": "Spiddal Park - Aston Quay",
+        "id": 145
+    },
+    {
+        "route_id": "60-79-d12-1",
+        "route_short_name": "79",
+        "headsign": "Aston Quay - Spiddal Park",
+        "id": 146
+    },
+    {
+        "route_id": "60-79A-d12-1",
+        "route_short_name": "79a",
+        "headsign": "Aston Quay - Park West Hotel",
+        "id": 147
+    },
+    {
+        "route_id": "60-79A-d12-1",
+        "route_short_name": "79a",
+        "headsign": "Park West Hotel - Aston Quay",
+        "id": 148
+    },
+    {
+        "route_id": "60-7A-d12-1",
+        "route_short_name": "7a",
+        "headsign": "Mountjoy Square Park - Loughlinstown Wood Estate",
+        "id": 149
+    },
+    {
+        "route_id": "60-7A-d12-1",
+        "route_short_name": "7a",
+        "headsign": "Loughlinstown Wood Estate - Mountjoy Square",
+        "id": 150
+    },
+    {
+        "route_id": "60-7B-d12-1",
+        "route_short_name": "7b",
+        "headsign": "Beechfield Manor - Mountjoy Square",
+        "id": 151
+    },
+    {
+        "route_id": "60-7B-d12-1",
+        "route_short_name": "7b",
+        "headsign": "Mountjoy Square - Beechfield Manor",
+        "id": 152
+    },
+    {
+        "route_id": "60-7D-d12-1",
+        "route_short_name": "7d",
+        "headsign": "Castle Street - Mountjoy Square",
+        "id": 153
+    },
+    {
+        "route_id": "60-7D-d12-1",
+        "route_short_name": "7d",
+        "headsign": "Mountjoy Square - Castle Street",
+        "id": 154
+    },
+    {
+        "route_id": "60-83-d12-1",
+        "route_short_name": "83",
+        "headsign": "Stannaway Court - Charlestown Shopping Centre",
+        "id": 155
+    },
+    {
+        "route_id": "60-83-d12-1",
+        "route_short_name": "83",
+        "headsign": "Harristown Bus Garage - Stannaway Court",
+        "id": 156
+    },
+    {
+        "route_id": "60-83A-d12-1",
+        "route_short_name": "83a",
+        "headsign": "Stannaway Court - Charlestown Shopping Centre",
+        "id": 157
+    },
+    {
+        "route_id": "60-83A-d12-1",
+        "route_short_name": "83a",
+        "headsign": "Harristown Bus Garage - Stannaway Court",
+        "id": 158
+    },
+    {
+        "route_id": "60-84-d12-1",
+        "route_short_name": "84",
+        "headsign": "Sea Road - Temple Road",
+        "id": 159
+    },
+    {
+        "route_id": "60-84-d12-1",
+        "route_short_name": "84",
+        "headsign": "Temple Road - Newcastle Road (Sea Road)",
+        "id": 160
+    },
+    {
+        "route_id": "60-84A-d12-1",
+        "route_short_name": "84a",
+        "headsign": "Outside Train Station - Temple Road",
+        "id": 161
+    },
+    {
+        "route_id": "60-84A-d12-1",
+        "route_short_name": "84a",
+        "headsign": "Temple Road - Outside Train Station",
+        "id": 162
+    },
+    {
+        "route_id": "60-84X-d12-1",
+        "route_short_name": "84x",
+        "headsign": "Trinity College - Newcastle Road (Sea Road)",
+        "id": 163
+    },
+    {
+        "route_id": "60-84X-d12-1",
+        "route_short_name": "84x",
+        "headsign": "Sea Road - Eden Quay",
+        "id": 164
+    },
+    {
+        "route_id": "60-9-d12-1",
+        "route_short_name": "9",
+        "headsign": "Charlestown Shopping Centre - Greenhills College",
+        "id": 165
+    },
+    {
+        "route_id": "60-9-d12-1",
+        "route_short_name": "9",
+        "headsign": "Greenhills College - Charlestown Shopping Centre",
+        "id": 166
+    },
+    {
+        "route_id": "60-H1-d12-1",
+        "route_short_name": "H1",
+        "headsign": "Baldoyle Village - National Lottery Head Quarters",
+        "id": 167
+    },
+    {
+        "route_id": "60-H1-d12-1",
+        "route_short_name": "H1",
+        "headsign": "National Lottery Head Quarters - Old Race Course",
+        "id": 168
+    },
+    {
+        "route_id": "60-H2-d12-1",
+        "route_short_name": "H2",
+        "headsign": "National Lottery Head Quarters - Malahide Garda Station",
+        "id": 169
+    },
+    {
+        "route_id": "60-H2-d12-1",
+        "route_short_name": "H2",
+        "headsign": "Saint James's Terrace - National Lottery Head Quarters",
+        "id": 170
+    },
+    {
+        "route_id": "60-H3-d12-1",
+        "route_short_name": "H3",
+        "headsign": "Howth Summit - National Lottery Head Quarters",
+        "id": 171
+    },
+    {
+        "route_id": "60-H3-d12-1",
+        "route_short_name": "H3",
+        "headsign": "National Lottery Head Quarters - Howth Summit",
+        "id": 172
+    },
+    {
+        "route_id": "60-C1-d12-1",
+        "route_short_name": "C1",
+        "headsign": "Saint John's Church - Outside Train Station",
+        "id": 173
+    },
+    {
+        "route_id": "60-C1-d12-1",
+        "route_short_name": "C1",
+        "headsign": "Outside Train Station - Saint John's Church",
+        "id": 174
+    },
+    {
+        "route_id": "60-C2-d12-1",
+        "route_short_name": "C2",
+        "headsign": "Outside Train Station - Saint John's Church",
+        "id": 175
+    },
+    {
+        "route_id": "60-C2-d12-1",
+        "route_short_name": "C2",
+        "headsign": "Saint John's Church - Outside Train Station",
+        "id": 176
+    },
+    {
+        "route_id": "60-C3-d12-1",
+        "route_short_name": "C3",
+        "headsign": "Hayfield - Barrow Street",
+        "id": 177
+    },
+    {
+        "route_id": "60-C3-d12-1",
+        "route_short_name": "C3",
+        "headsign": "Ringsend Road - Hayfield",
+        "id": 178
+    },
+    {
+        "route_id": "60-C4-d12-1",
+        "route_short_name": "C4",
+        "headsign": "Ringsend Road - Straffan Road",
+        "id": 179
+    },
+    {
+        "route_id": "60-C4-d12-1",
+        "route_short_name": "C4",
+        "headsign": "Straffan Road - Barrow Street",
+        "id": 180
+    },
+    {
+        "route_id": "60-C5-d12-1",
+        "route_short_name": "C5",
+        "headsign": "Hayfield - Barrow Street",
+        "id": 181
+    },
+    {
+        "route_id": "60-C5-d12-1",
+        "route_short_name": "C5",
+        "headsign": "Ringsend Road - Hayfield",
+        "id": 182
+    },
+    {
+        "route_id": "60-C6-d12-1",
+        "route_short_name": "C6",
+        "headsign": "Ringsend Road - Straffan Road",
+        "id": 183
+    },
+    {
+        "route_id": "60-C6-d12-1",
+        "route_short_name": "C6",
+        "headsign": "Straffan Road - Barrow Street",
+        "id": 184
+    },
+    {
+        "route_id": "60-P29-d12-1",
+        "route_short_name": "P29",
+        "headsign": "Outside Train Station - Barrow Street",
+        "id": 185
+    },
+    {
+        "route_id": "60-P29-d12-1",
+        "route_short_name": "P29",
+        "headsign": "Ringsend Road - Outside Train Station",
+        "id": 186
+    },
+    {
+        "route_id": "60-L53-d12-1",
+        "route_short_name": "L53",
+        "headsign": "Outside Train Station - Liffey Valley SC",
+        "id": 187
+    },
+    {
+        "route_id": "60-L53-d12-1",
+        "route_short_name": "L53",
+        "headsign": "Liffey Valley SC - Outside Train Station",
+        "id": 188
+    },
+    {
+        "route_id": "60-L54-d12-1",
+        "route_short_name": "L54",
+        "headsign": "River Forest - Red Cow Luas",
+        "id": 189
+    },
+    {
+        "route_id": "60-L54-d12-1",
+        "route_short_name": "L54",
+        "headsign": "Red Cow Luas - River Forest",
+        "id": 190
+    },
+    {
+        "route_id": "60-L58-d12-1",
+        "route_short_name": "L58",
+        "headsign": "Hazelhatch Station - River Forest",
+        "id": 191
+    },
+    {
+        "route_id": "60-L58-d12-1",
+        "route_short_name": "L58",
+        "headsign": "River Forest - Hazelhatch Station",
+        "id": 192
+    },
+    {
+        "route_id": "60-L59-d12-1",
+        "route_short_name": "L59",
+        "headsign": "River Forest - Hazelhatch Station",
+        "id": 193
+    },
+    {
+        "route_id": "60-L59-d12-1",
+        "route_short_name": "L59",
+        "headsign": "Hazelhatch Station - River Forest",
+        "id": 194
+    },
+    {
+        "route_id": "60-X25-d12-1",
+        "route_short_name": "X25",
+        "headsign": "Straffan Road (Kingsbury Estate) - University College Dublin",
+        "id": 195
+    },
+    {
+        "route_id": "60-X25-d12-1",
+        "route_short_name": "X25",
+        "headsign": "University College Dublin - Kingsbury Estate",
+        "id": 196
+    },
+    {
+        "route_id": "60-X26-d12-1",
+        "route_short_name": "X26",
+        "headsign": "Straffan Road (Kingsbury Estate) - Lower Leeson Street",
+        "id": 197
+    },
+    {
+        "route_id": "60-X27-d12-1",
+        "route_short_name": "X27",
+        "headsign": "Salesian College - Lower Leeson Street",
+        "id": 198
+    },
+    {
+        "route_id": "60-X27-d12-1",
+        "route_short_name": "X27",
+        "headsign": "University College Dublin - Salesian College",
+        "id": 199
+    },
+    {
+        "route_id": "60-X28-d12-1",
+        "route_short_name": "X28",
+        "headsign": "Salesian College - Lower Leeson Street",
+        "id": 200
+    },
+    {
+        "route_id": "60-X28-d12-1",
+        "route_short_name": "X28",
+        "headsign": "University College Dublin - Salesian College",
+        "id": 201
+    },
+    {
+        "route_id": "60-X30-d12-1",
+        "route_short_name": "X30",
+        "headsign": "Dodsboro Road - University College Dublin",
+        "id": 202
+    },
+    {
+        "route_id": "60-X30-d12-1",
+        "route_short_name": "X30",
+        "headsign": "University College Dublin - The Paddocks Drive",
+        "id": 203
+    },
+    {
+        "route_id": "60-X31-d12-1",
+        "route_short_name": "X31",
+        "headsign": "River Forest - Saint Stephen's Green House",
+        "id": 204
+    },
+    {
+        "route_id": "60-X31-d12-1",
+        "route_short_name": "X31",
+        "headsign": "Earlsfort Terrace - River Forest",
+        "id": 205
+    },
+    {
+        "route_id": "60-X32-d12-1",
+        "route_short_name": "X32",
+        "headsign": "Alensgrove - Saint Stephen's Green House",
+        "id": 206
+    },
+    {
+        "route_id": "60-X32-d12-1",
+        "route_short_name": "X32",
+        "headsign": "Earlsfort Terrace - Hewlett Packard",
+        "id": 207
+    },
+    {
+        "route_id": "60-N4-d12-1",
+        "route_short_name": "N4",
+        "headsign": "Shopping Centre - Point Village",
+        "id": 208
+    },
+    {
+        "route_id": "60-N4-d12-1",
+        "route_short_name": "N4",
+        "headsign": "Point Village - Shopping Centre",
+        "id": 209
+    }
+]
