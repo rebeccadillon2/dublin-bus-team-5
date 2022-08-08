@@ -81,7 +81,7 @@ export function MobileMainMenu({ setOpenSidePanel }) {
             } mx-2 cursor-pointer`}
             onClick={handleStopsClick}
           >
-            Real Time
+            Stops
           </div>
           <div
             className={`${

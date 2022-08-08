@@ -90,7 +90,7 @@ export function MobileMenu() {
           onClick={handleStopsClick}
           className={`${themeClasses} block mb-0.5 px-3 py-2 rounded-md transition ease-in-out duration-300	flex w-full`}
         >
-          Real Time
+          Stops
         </Disclosure.Button>
         <Disclosure.Button
           onClick={handleRoutesClick}

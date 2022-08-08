@@ -79,7 +79,7 @@ export function Links() {
               onClick={handleStopsClick}
               className={`${themeClasses} px-2 py-2 transition ease-in-out duration-300	cursor-pointer`}
             >
-              Real Time
+              Stops
             </div>
             <div
               onClick={handleRoutesClick}

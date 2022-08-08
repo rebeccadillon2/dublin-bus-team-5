@@ -131,7 +131,7 @@ export function RealTimeContent({
   return (
     <div>
       <div className='flex items-center justify-between ml-1'>
-        <Header variant={true} title={"Realtime"} />
+        <Header variant={true} title={"Stops"} />
         {isUserAuthenticated() && (
           <FavouriteSection
             selectedStop={selectedStop}
