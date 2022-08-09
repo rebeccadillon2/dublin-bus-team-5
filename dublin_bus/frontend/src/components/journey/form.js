@@ -25,7 +25,7 @@ export function JourneyForm(props) {
 
   const [isDarkMode] = useTheme();
 
-  const inputClasses = `h-10 rounded-xl md:w-76 w-72 px-2 focus:outline-none hover:placeholder-primary-blue ${
+  const inputClasses = `h-10 rounded-xl md:w-72 w-72 px-2 focus:outline-none hover:placeholder-primary-blue ${
     isDarkMode
       ? "bg-primary-black text-system-grey1 placeholder-system-grey4"
       : "bg-primary-white text-system-grey7"
@@ -88,13 +88,13 @@ export function JourneyForm(props) {
       )}
       <button
         onClick={calculateRoute}
-        className='h-10 rounded-xl bg-primary-blue w-60 text-white active:bg-dark-blue1'
+        className='h-10 rounded-xl bg-primary-blue w-54 text-white active:bg-dark-blue1'
       >
         Submit
       </button>
       <button
         onClick={clearRoute}
-        className='h-10 rounded-xl bg-system-grey5 w-18 ml-2 text-white active:bg-system-grey4'
+        className='h-10 rounded-xl bg-system-grey5 w-16 ml-2 text-white active:bg-system-grey4'
       >
         Clear
       </button>

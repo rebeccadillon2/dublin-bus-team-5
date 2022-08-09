@@ -22,7 +22,7 @@ export function BasicDateTimePicker({ time, setTime }) {
   const widthStyle =
     width < 768
       ? { width: "18rem", maxWidth: "18rem", minWidth: "18rem" }
-      : { width: "304px", maxWidth: "304px", minWidth: "304px" };
+      : { width: "288px", maxWidth: "288px", minWidth: "288px" };
 
   const style = {
     maxHeight: "40px",

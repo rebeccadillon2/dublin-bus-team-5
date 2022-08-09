@@ -33,7 +33,7 @@ export function ContentContainer(props) {
 
   const containerClasses = `${
     width > 768
-      ? "md:min-h-[calc(100vh-64px)] md:absolute md:top-18 md:left-0 md:z-50 md:w-100.1  overflow-y-scroll"
+      ? "md:min-h-[calc(100vh-64px)] md:absolute md:top-18 md:left-0 md:z-50 md:w-100.1  overflow-y-scroll overflow-x-hidden"
       : "absolute z-10 top-14 left-2 right-2 z-10 mx-auto"
   }  overflow-y-scroll shadow-2xl `;
   const themeClasses = `${isDarkMode ? "bg-system-grey6" : "bg-system-grey2"}`;
