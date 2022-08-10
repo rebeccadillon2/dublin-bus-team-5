@@ -2,7 +2,7 @@ from re import U
 from .test_setup import TestSetUp
 from ..models import User
 
-class TestViews(TestSetUp):    
+class TestViews(TestSetUp): 
     def test_register_sucess(self): 
         res = self.client.post("/api/auth/register/", self.valid_reigster_data, format='json')
         self.assertEqual(res.status_code, 201)

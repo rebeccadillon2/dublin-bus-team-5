@@ -183,9 +183,6 @@ class MLPredictView(APIView):
         filename = f'/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/machinelearning/data/modelling/randomforest/joblibfiles/line_{routeShortName}_model/{directory}/line_{routeShortName}_rfr.joblib' 
         model = joblib.load(filename) 
         res = model.predict([[int(humidity),float(wind),int(seconds),int(day),int(month)]])
-        print('PREDICTION:', res[0]/60)        
-        print('PART_STOPS:', numStops)        
-        print('TOTAL_STOPS:', numberOfStops)  
-        print('PREDICTION', (float(res[0])/60) * (int(numStops)/int(numberOfStops)) )  
+        
         return Response(math.floor((float(res[0])/60) * (int(numStops)/int(numberOfStops))), status=status.HTTP_200_OK)
 

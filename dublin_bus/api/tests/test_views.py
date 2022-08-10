@@ -6,13 +6,13 @@ import json
 class TestViews(TestSetUp):
 
     def test_all_stops(self):
-        response = self.client.get('/api/bus/get-all-stops/')
-        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/api/bus/get-all-stops-file/')
+        self.assertEqual(len(response.data), 4310)
 
 
     def test_all_routes(self):
-        response = self.client.get('/api/bus/get-all-routes/')
-        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/api/bus/get-all-routes-file/')
+        self.assertEqual( len(response.data), 210)
 
 
     def test_all_upcoming_stoptimes(self):
