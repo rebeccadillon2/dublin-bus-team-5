@@ -62,6 +62,7 @@ class LoginView(APIView):
         # Returning a response with the token
         return Response({
             'token': token,
+            'id': user_to_login.id,
             'message': f'Welcome back, {email}!',
             'expires_in': f'{EXP}'
         }, status=status.HTTP_200_OK)
