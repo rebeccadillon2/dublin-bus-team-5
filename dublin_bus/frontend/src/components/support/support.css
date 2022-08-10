@@ -1,0 +1,178 @@
+.support {
+  position: relative;
+  width: 100%;
+  padding: 0 0 40px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: start;
+}
+
+.card {
+  margin: 20px 0 0 4px;
+  width: 500px;
+  border-radius: 8px;
+  padding: 0 0 10px 0;
+  background-color: rgba(236, 237, 237, 1);
+}
+
+.card_dark {
+  background-color: rgba(19, 20, 22, 1);
+}
+
+.card > div {
+  width: 100%;
+  padding: 6px 10px 0 10px;
+}
+
+.card > div > span {
+  display: block;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  color: #6e717a;
+}
+
+.card > div > span.large_font {
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+}
+
+.card > div > span.large_font_dark {
+  color: white;
+}
+
+.card > div.reply > textarea {
+  border: none !important;
+  outline: none !important;
+  resize: none !important;
+  display: block;
+  width: 400px;
+  margin-top: 10px;
+  color: #6e717a;
+  border-radius: 8px;
+}
+
+.card > div.reply > textarea.textarea_dark {
+  color: white;
+  background-color: #444242;
+}
+
+.card > div.reply > textarea.textarea_dark::placeholder {
+  color: white;
+  background-color: #444242;
+}
+
+.card > div.reply > textarea:focus {
+  border: none !important;
+  outline: none !important;
+  resize: none !important;
+}
+
+.card > div.reply > .reply_btn_div {
+  display: flex;
+}
+
+.card > div.reply > .reply_btn_div > button {
+  display: block;
+  border-radius: 8px;
+  background-color: rgba(51, 119, 255, 1);
+  margin: 20px 10px 10px 10px;
+}
+
+.card > div.reply > .reply_btn_div > button:nth-of-type(2) {
+  background-color: rgba(109, 0, 26, 1);
+  opacity: 1;
+}
+
+.card > div.reply > .reply_btn_div > button:hover {
+  background-color: rgba(51, 119, 255, 0.7);
+}
+
+.card > div.reply > .reply_btn_div > button:nth-of-type(2):hover {
+  background-color: rgba(109, 0, 26, 0.7);
+  opacity: 0.7;
+}
+
+.card > div.reply > .reply_btn_div > button > span {
+  color: white;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 5px 20px 5px 20px;
+}
+
+.fixed_input_div {
+  width: 100%;
+  overflow: hidden;
+}
+
+.fixed_input_div > .input_div {
+  width: 500px;
+}
+
+.fixed_input_div > .input_div > textarea {
+  border: none;
+  outline: none;
+  resize: none;
+  display: block;
+  width: 99%;
+  margin: 10px 0 10px 4px;
+  color: #6e717a;
+  border-radius: 8px;
+}
+
+.fixed_input_div > .input_div > textarea.t_dark {
+  color: white;
+  background-color: #444242;
+}
+
+.fixed_input_div > .input_div > textarea.t_dark::placeholder {
+  color: white;
+  background-color: #444242;
+}
+
+.fixed_input_div > .input_div > textarea:focus {
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+.fixed_input_div > .input_div > button {
+  display: block;
+  border-radius: 8px;
+  background-color: rgba(51, 119, 255, 1);
+  margin: 20px 0 10px 4px;
+}
+
+.fixed_input_div > .input_div > button:hover {
+  background-color: rgba(51, 119, 255, 0.7);
+}
+
+.fixed_input_div > .input_div > button > span {
+  color: white;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 5px 20px 5px 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .card {
+    width: 95%;
+  }
+
+  .fixed_input_div > .input_div {
+    width: 95%;
+  }
+
+  .fixed_input_div > .input_div > textarea {
+    width: 99%;
+  }
+
+  .card > div.reply > textarea {
+    width: 90%;
+  }
+}
