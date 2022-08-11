@@ -308,6 +308,9 @@ export const convertMinutesToDisplay = (minutes) => {
 export const addMinutesToTime = (time, minutes) => {
   const newMins = parseInt(time.slice(3, 5));
   if (newMins + minutes < 60) {
+    if (parseInt(newMins + minutes) < 10) {
+      return `${time.slice(0, 2)}:0${newMins + minutes}`;
+    }
     return `${time.slice(0, 2)}:${newMins + minutes}`;
   }
   const hrs = Math.floor((newMins + minutes) / 60);
@@ -319,5 +322,10 @@ export const addMinutesToTime = (time, minutes) => {
       return `${hrs}:${(newMins + minutes) % 60}`;
     }
   }
-  return `${parseInt(time.slice(0, 2)) + hrs}:${(newMins + minutes) % 60}`;
+
+  if ((newMins + minutes) % 60 < 10) {
+    return `${parseInt(time.slice(0, 2)) + hrs}:0${(newMins + minutes) % 60}`;
+  } else {
+    return `${parseInt(time.slice(0, 2)) + hrs}:${(newMins + minutes) % 60}`;
+  }
 };

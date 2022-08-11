@@ -1,7 +1,7 @@
 // const devUrl = `http://127.0.0.1:8000`;
 // const prodUrl = `http://127.0.0.1:8000`;
-const devUrl = `http://34.247.102.152`;
-const prodUrl = `http://34.247.102.152`;
+const devUrl = `http://54.74.132.111`;
+const prodUrl = `http://54.74.132.111`;
 export const baseUrl = process.env.NODE_ENV === "production" ? prodUrl : devUrl;
 
 export const headers = () => {

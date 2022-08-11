@@ -151,7 +151,6 @@ export function Journey() {
     const getAllStopsData = async () => {
       try {
         const { data } = await getAllStops();
-        console.log("ALl stops: ", data);
         setAllStops(data);
       } catch (e) {
         console.log(e);
@@ -165,7 +164,6 @@ export function Journey() {
       try {
         const { data } = await getAllRoutes();
         data.shift();
-        console.log("ALl routes: ", data);
         setAllRoutes(data);
       } catch (e) {
         console.log(e);

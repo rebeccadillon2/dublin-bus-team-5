@@ -35,7 +35,7 @@ class TestViews(TestSetUp):
         minDiff = abs(15-minRes)
         difference = max(maxDiff, minDiff)
 
-        self.assertGreaterEqual(13, difference)
+        self.assertGreaterEqual(9, difference)
 
 
     def test_all_get_ml_predict_most_data(self):

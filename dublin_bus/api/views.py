@@ -11,6 +11,7 @@ from django.db.models import Q
 from django.core import serializers
 import json
 import os
+import pickle
 import math
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
@@ -95,9 +96,7 @@ class RouteStopsSingleDirectionsView(APIView):
         routeId= request.GET['routeId']
         headSign= request.GET['headSign']
         tripId = Trip.objects.filter(Q(route_id_id=routeId) & Q(headsign=headSign))[0].trip_id
-        print('TID', tripId)
         stops = StopTimes.objects.filter(trip_id=tripId).values('stop_id', 'stop_id__stop_lat', 'stop_id__stop_lon', 'stop_id__stop_name', 'progress_num')
-        print('COUNT', stops.count())
         serializedStops = BasicRouteStopsSingleDirectionsSerializer(stops, many=True)
         return Response(serializedStops.data, status=status.HTTP_200_OK)
 
@@ -115,7 +114,6 @@ class AllRoutesWithHeadSignView(APIView):
 
     def get(self, request):
         routes = Trip.objects.filter().values('route_id', 'route_id__route_short_name','headsign').distinct().order_by('route_id__route_short_name')
-        print('COUNT', routes.count())
         serializedRoutes = BasicRoutesWithHeadSignSerializer(routes, many=True)
         return Response(serializedRoutes.data, status=status.HTTP_200_OK)
 
@@ -144,13 +142,12 @@ class MLPredictionView(APIView):
         day = request.GET['day']
         month = request.GET['month']
 
-        filename = f'/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/machinelearning/data/modelling/randomforest/joblibfiles/line_{routeShortName}_model/{directory}/line_{routeShortName}_rfr.joblib' 
-        model = joblib.load(filename) 
-        res = model.predict([[int(humidity),float(wind),int(seconds),int(day),int(month)]])
-        print('PREDICTION:', res[0]/60)        
-        print('PART_STOPS:', numStops)        
-        print('TOTAL_STOPS:', numberOfStops)  
-        print('PREDICTION', (float(res[0])/60) * (int(numStops)/int(numberOfStops)) )  
+        filename = f'/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/machinelearning/data/modelling/randomforest/picklefiles/line_{routeShortName}_model/{directory}/line_{routeShortName}_rfr.pkl' 
+        model = pickle.load(open(filename, 'rb')) 
+        rush_hour = 1 if 0<= int(day) <= 4 and (25200 <= int(seconds) <= 32400 or 54000 <= int(seconds) <= 61200) else 0
+        print('rush_hour', rush_hour)
+        res = model.predict([[int(seconds), int(rush_hour), int(humidity),float(wind),int(day),int(month)]])
+
         return Response(math.floor((float(res[0])/60) * (int(numStops)/int(numberOfStops))), status=status.HTTP_200_OK)
 
 
@@ -180,9 +177,11 @@ class MLPredictView(APIView):
         day = request.GET['day']
         month = request.GET['month']
 
-        filename = f'/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/machinelearning/data/modelling/randomforest/joblibfiles/line_{routeShortName}_model/{directory}/line_{routeShortName}_rfr.joblib' 
-        model = joblib.load(filename) 
-        res = model.predict([[int(humidity),float(wind),int(seconds),int(day),int(month)]])
+        filename = f'/Users/eoinbarr/Desktop/UCD/dublin-bus-team-5/machinelearning/data/modelling/randomforest/picklefiles/line_{routeShortName}_model/{directory}/line_{routeShortName}_rfr.pkl' 
+        model = pickle.load(open(filename, 'rb')) 
+        rush_hour = 1 if 0<= int(day) <= 4 and (25200 <= int(seconds) <= 32400 or 54000 <= int(seconds) <= 61200) else 0
+        print('rush_hour', rush_hour)
+        res = model.predict([[int(seconds), int(rush_hour), int(humidity),float(wind),int(day),int(month)]])
         
         return Response(math.floor((float(res[0])/60) * (int(numStops)/int(numberOfStops))), status=status.HTTP_200_OK)
 
