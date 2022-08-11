@@ -1,0 +1,11 @@
+
+Train metrics for line 63:
+MAE: 118.04684
+MAPE: 0.04772
+MSE: 172.73238
+R2: 0.90062
+Test metrics for line 63:
+MAE: 317.25639
+MAPE: 0.12507
+MSE: 468.63987
+R2: 0.3434

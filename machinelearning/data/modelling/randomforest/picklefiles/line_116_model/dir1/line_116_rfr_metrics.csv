@@ -1,0 +1,11 @@
+
+Train metrics for line 116:
+MAE: 168.50448
+MAPE: 0.05153
+MSE: 206.43114
+R2: 0.88921
+Test metrics for line 116:
+MAE: 418.87135
+MAPE: 0.12677
+MSE: 533.70878
+R2: 0.38593

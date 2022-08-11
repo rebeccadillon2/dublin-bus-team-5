@@ -1,0 +1,11 @@
+
+Train metrics for line 39:
+MAE: 151.08357
+MAPE: 0.03093
+MSE: 210.24769
+R2: 0.95313
+Test metrics for line 39:
+MAE: 380.82185
+MAPE: 0.07859
+MSE: 514.97858
+R2: 0.72349

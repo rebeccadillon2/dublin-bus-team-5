@@ -1,0 +1,11 @@
+
+Train metrics for line 102:
+MAE: 116.1396
+MAPE: 0.03232
+MSE: 161.28392
+R2: 0.90714
+Test metrics for line 102:
+MAE: 295.31294
+MAPE: 0.08309
+MSE: 396.27027
+R2: 0.41513

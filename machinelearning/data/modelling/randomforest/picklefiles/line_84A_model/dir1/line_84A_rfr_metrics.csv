@@ -1,0 +1,11 @@
+
+Train metrics for line 84A:
+MAE: 150.14236
+MAPE: 0.05051
+MSE: 231.22057
+R2: 0.90993
+Test metrics for line 84A:
+MAE: 365.06978
+MAPE: 0.11762
+MSE: 559.38516
+R2: 0.48023

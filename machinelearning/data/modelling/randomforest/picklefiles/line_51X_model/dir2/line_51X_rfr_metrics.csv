@@ -1,0 +1,11 @@
+
+Train metrics for line 51X:
+MAE: 132.14243
+MAPE: 0.02605
+MSE: 168.02662
+R2: 0.86223
+Test metrics for line 51X:
+MAE: 399.84455
+MAPE: 0.0774
+MSE: 520.63156
+R2: 0.09312

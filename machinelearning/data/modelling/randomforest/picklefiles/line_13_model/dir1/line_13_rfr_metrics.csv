@@ -1,0 +1,11 @@
+
+Train metrics for line 13:
+MAE: 184.66005
+MAPE: 0.03117
+MSE: 250.03328
+R2: 0.95204
+Test metrics for line 13:
+MAE: 479.78895
+MAPE: 0.08223
+MSE: 647.05951
+R2: 0.67684

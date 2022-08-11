@@ -1,0 +1,11 @@
+
+Train metrics for line 84X:
+MAE: 232.76782
+MAPE: 0.04668
+MSE: 387.10046
+R2: 0.8073
+Test metrics for line 84X:
+MAE: 588.70436
+MAPE: 0.11791
+MSE: 892.382
+R2: 0.15073

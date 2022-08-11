@@ -1,0 +1,11 @@
+
+Train metrics for line 79A:
+MAE: 75.42621
+MAPE: 0.03624
+MSE: 126.66365
+R2: 0.89399
+Test metrics for line 79A:
+MAE: 193.88532
+MAPE: 0.09535
+MSE: 308.99685
+R2: 0.33061

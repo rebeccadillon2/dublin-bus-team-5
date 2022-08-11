@@ -1,0 +1,11 @@
+
+Train metrics for line 43:
+MAE: 101.28269
+MAPE: 0.03436
+MSE: 140.62884
+R2: 0.93252
+Test metrics for line 43:
+MAE: 276.12673
+MAPE: 1.16073
+MSE: 384.42691
+R2: 0.52183

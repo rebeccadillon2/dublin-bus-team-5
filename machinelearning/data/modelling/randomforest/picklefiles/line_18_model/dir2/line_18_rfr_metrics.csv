@@ -1,0 +1,11 @@
+
+Train metrics for line 18:
+MAE: 138.56154
+MAPE: 0.04895
+MSE: 195.58055
+R2: 0.95615
+Test metrics for line 18:
+MAE: 360.34863
+MAPE: 0.09261
+MSE: 481.77477
+R2: 0.73934

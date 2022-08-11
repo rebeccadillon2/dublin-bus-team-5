@@ -1,0 +1,11 @@
+
+Train metrics for line 14C:
+MAE: 52.53329
+MAPE: 0.04637
+MSE: 68.62339
+R2: 0.88275
+Test metrics for line 14C:
+MAE: 127.35108
+MAPE: 0.11477
+MSE: 156.63025
+R2: 0.18356

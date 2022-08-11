@@ -1,0 +1,11 @@
+
+Train metrics for line 40E:
+MAE: 90.24771
+MAPE: 0.04943
+MSE: 137.65831
+R2: 0.82336
+Test metrics for line 40E:
+MAE: 224.8453
+MAPE: 0.11791
+MSE: 322.99792
+R2: 0.02794

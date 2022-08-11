@@ -1,0 +1,11 @@
+
+Train metrics for line 44:
+MAE: 146.58394
+MAPE: 0.02742
+MSE: 212.72347
+R2: 0.97531
+Test metrics for line 44:
+MAE: 382.507
+MAPE: 0.07159
+MSE: 519.91178
+R2: 0.86149

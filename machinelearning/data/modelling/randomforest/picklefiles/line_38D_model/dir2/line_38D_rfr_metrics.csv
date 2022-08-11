@@ -1,0 +1,11 @@
+
+Train metrics for line 38D:
+MAE: 70.65744
+MAPE: 0.02084
+MSE: 94.20966
+R2: 0.84098
+Test metrics for line 38D:
+MAE: 148.68571
+MAPE: 0.04741
+MSE: 213.81106
+R2: 0.18804

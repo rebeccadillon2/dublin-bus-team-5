@@ -1,0 +1,11 @@
+
+Train metrics for line 45A:
+MAE: 124.0894
+MAPE: 0.03457
+MSE: 173.02673
+R2: 0.93955
+Test metrics for line 45A:
+MAE: 323.76832
+MAPE: 0.08986
+MSE: 438.84243
+R2: 0.59883

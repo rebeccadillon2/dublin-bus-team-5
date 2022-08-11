@@ -1,0 +1,11 @@
+
+Train metrics for line 67:
+MAE: 127.29034
+MAPE: 0.02905
+MSE: 173.9225
+R2: 0.94547
+Test metrics for line 67:
+MAE: 340.21125
+MAPE: 0.07696
+MSE: 469.61311
+R2: 0.62109

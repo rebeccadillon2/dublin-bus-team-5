@@ -1,0 +1,11 @@
+
+Train metrics for line 142:
+MAE: 82.44321
+MAPE: 0.03348
+MSE: 127.68357
+R2: 0.9973
+Test metrics for line 142:
+MAE: 186.10515
+MAPE: 0.08225
+MSE: 291.14627
+R2: 0.98529

@@ -1,0 +1,11 @@
+
+Train metrics for line 41A:
+MAE: 217.80919
+MAPE: 0.04946
+MSE: 327.64984
+R2: 0.89278
+Test metrics for line 41A:
+MAE: 664.43315
+MAPE: 0.14548
+MSE: 902.77406
+R2: 0.3366

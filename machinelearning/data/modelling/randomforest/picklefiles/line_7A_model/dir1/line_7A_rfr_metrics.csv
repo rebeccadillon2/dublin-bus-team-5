@@ -1,0 +1,11 @@
+
+Train metrics for line 7A:
+MAE: 144.80157
+MAPE: 0.03317
+MSE: 194.7771
+R2: 0.94117
+Test metrics for line 7A:
+MAE: 380.59431
+MAPE: 0.08607
+MSE: 508.73712
+R2: 0.6133

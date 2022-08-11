@@ -1,0 +1,11 @@
+
+Train metrics for line 41C:
+MAE: 128.435
+MAPE: 0.03727
+MSE: 181.40311
+R2: 0.93547
+Test metrics for line 41C:
+MAE: 338.63332
+MAPE: 0.09221
+MSE: 467.93346
+R2: 0.57449

@@ -1,0 +1,11 @@
+
+Train metrics for line 220:
+MAE: 133.27109
+MAPE: 0.0284
+MSE: 182.93922
+R2: 0.92525
+Test metrics for line 220:
+MAE: 338.72668
+MAPE: 0.07256
+MSE: 454.96802
+R2: 0.52737

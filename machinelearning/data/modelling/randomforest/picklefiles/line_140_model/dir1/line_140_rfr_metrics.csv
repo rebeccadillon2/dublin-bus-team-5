@@ -1,0 +1,11 @@
+
+Train metrics for line 140:
+MAE: 109.09678
+MAPE: 0.03065
+MSE: 151.36024
+R2: 0.93634
+Test metrics for line 140:
+MAE: 287.47512
+MAPE: 0.08024
+MSE: 404.68324
+R2: 0.55539

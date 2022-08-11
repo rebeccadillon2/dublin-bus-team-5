@@ -1,0 +1,11 @@
+
+Train metrics for line 1:
+MAE: 102.90117
+MAPE: 0.03838
+MSE: 162.20423
+R2: 0.95298
+Test metrics for line 1:
+MAE: 274.14989
+MAPE: 0.10141
+MSE: 385.02799
+R2: 0.73943

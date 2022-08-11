@@ -1,0 +1,11 @@
+
+Train metrics for line 65B:
+MAE: 293.83125
+MAPE: 0.06933
+MSE: 417.5728
+R2: 0.891
+Test metrics for line 65B:
+MAE: 758.96875
+MAPE: 0.18205
+MSE: 1026.44379
+R2: 0.28075

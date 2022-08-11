@@ -1,0 +1,11 @@
+
+Train metrics for line 76A:
+MAE: 216.86032
+MAPE: 0.04817
+MSE: 285.43824
+R2: 0.87231
+Test metrics for line 76A:
+MAE: 525.02306
+MAPE: 0.10677
+MSE: 665.80288
+R2: 0.26101

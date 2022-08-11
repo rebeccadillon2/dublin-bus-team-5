@@ -1,0 +1,11 @@
+
+Train metrics for line 25D:
+MAE: 170.71624
+MAPE: 0.04588
+MSE: 229.80421
+R2: 0.88472
+Test metrics for line 25D:
+MAE: 469.53926
+MAPE: 0.12614
+MSE: 613.72887
+R2: 0.16498

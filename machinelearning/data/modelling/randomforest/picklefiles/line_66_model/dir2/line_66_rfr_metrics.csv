@@ -1,0 +1,11 @@
+
+Train metrics for line 66:
+MAE: 121.28612
+MAPE: 0.02984
+MSE: 170.00448
+R2: 0.94842
+Test metrics for line 66:
+MAE: 317.13298
+MAPE: 0.0787
+MSE: 430.98514
+R2: 0.66412

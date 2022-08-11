@@ -1,0 +1,11 @@
+
+Train metrics for line 161:
+MAE: 76.2533
+MAPE: 0.06507
+MSE: 103.88853
+R2: 0.92849
+Test metrics for line 161:
+MAE: 183.55423
+MAPE: 0.15406
+MSE: 251.15702
+R2: 0.55858

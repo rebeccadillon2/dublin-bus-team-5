@@ -1,0 +1,11 @@
+
+Train metrics for line 26:
+MAE: 88.49207
+MAPE: 0.04211
+MSE: 123.91666
+R2: 0.92209
+Test metrics for line 26:
+MAE: 239.83166
+MAPE: 0.11205
+MSE: 333.37325
+R2: 0.47237

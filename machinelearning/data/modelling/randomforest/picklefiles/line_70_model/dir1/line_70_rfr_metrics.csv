@@ -1,0 +1,11 @@
+
+Train metrics for line 70:
+MAE: 152.56623
+MAPE: 0.0348
+MSE: 208.58854
+R2: 0.94633
+Test metrics for line 70:
+MAE: 407.5075
+MAPE: 0.09147
+MSE: 545.452
+R2: 0.64375

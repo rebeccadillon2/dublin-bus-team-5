@@ -1,0 +1,11 @@
+
+Train metrics for line 70D:
+MAE: 155.00598
+MAPE: 0.03738
+MSE: 206.44534
+R2: 0.80309
+Test metrics for line 70D:
+MAE: 364.04966
+MAPE: 0.08671
+MSE: 467.96856
+R2: -0.18288

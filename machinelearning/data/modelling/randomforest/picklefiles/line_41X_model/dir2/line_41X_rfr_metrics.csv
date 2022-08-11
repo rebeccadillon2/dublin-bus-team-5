@@ -1,0 +1,11 @@
+
+Train metrics for line 41X:
+MAE: 185.75481
+MAPE: 0.03898
+MSE: 262.4031
+R2: 0.86251
+Test metrics for line 41X:
+MAE: 379.60506
+MAPE: 0.07995
+MSE: 525.9719
+R2: 0.42697

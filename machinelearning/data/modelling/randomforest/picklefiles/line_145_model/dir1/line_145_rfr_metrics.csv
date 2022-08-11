@@ -1,0 +1,11 @@
+
+Train metrics for line 145:
+MAE: 169.23085
+MAPE: 0.03675
+MSE: 268.59924
+R2: 0.91048
+Test metrics for line 145:
+MAE: 427.29387
+MAPE: 0.09064
+MSE: 593.82488
+R2: 0.55915

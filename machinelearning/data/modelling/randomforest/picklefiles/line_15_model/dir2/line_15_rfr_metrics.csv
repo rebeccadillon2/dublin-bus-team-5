@@ -1,0 +1,11 @@
+
+Train metrics for line 15:
+MAE: 183.16085
+MAPE: 0.03691
+MSE: 249.72884
+R2: 0.93539
+Test metrics for line 15:
+MAE: 479.43201
+MAPE: 0.09713
+MSE: 634.50541
+R2: 0.5814

@@ -1,0 +1,11 @@
+
+Train metrics for line 151:
+MAE: 114.58907
+MAPE: 0.02969
+MSE: 158.35614
+R2: 0.94723
+Test metrics for line 151:
+MAE: 297.8842
+MAPE: 0.07764
+MSE: 404.36823
+R2: 0.65204

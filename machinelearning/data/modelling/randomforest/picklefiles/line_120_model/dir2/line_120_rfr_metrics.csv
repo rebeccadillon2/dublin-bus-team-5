@@ -1,0 +1,11 @@
+
+Train metrics for line 120:
+MAE: 63.47095
+MAPE: 0.03932
+MSE: 96.15123
+R2: 0.96279
+Test metrics for line 120:
+MAE: 164.22252
+MAPE: 0.1019
+MSE: 247.16177
+R2: 0.74843

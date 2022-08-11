@@ -1,0 +1,11 @@
+
+Train metrics for line 83:
+MAE: 163.49135
+MAPE: 0.03685
+MSE: 223.45906
+R2: 0.94822
+Test metrics for line 83:
+MAE: 433.86316
+MAPE: 0.09799
+MSE: 576.63798
+R2: 0.66349

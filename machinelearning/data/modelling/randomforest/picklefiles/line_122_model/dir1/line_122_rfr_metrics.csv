@@ -1,0 +1,11 @@
+
+Train metrics for line 122:
+MAE: 123.3967
+MAPE: 0.03322
+MSE: 167.08089
+R2: 0.95333
+Test metrics for line 122:
+MAE: 327.96588
+MAPE: 0.08661
+MSE: 433.80542
+R2: 0.68067

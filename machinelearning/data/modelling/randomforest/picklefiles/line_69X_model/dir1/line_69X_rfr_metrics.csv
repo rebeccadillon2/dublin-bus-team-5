@@ -1,0 +1,11 @@
+
+Train metrics for line 69X:
+MAE: 91.08698
+MAPE: 0.02752
+MSE: 119.33979
+R2: 0.86501
+Test metrics for line 69X:
+MAE: 271.29877
+MAPE: 0.07835
+MSE: 353.09591
+R2: -0.11802

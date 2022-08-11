@@ -1,0 +1,11 @@
+
+Train metrics for line 66B:
+MAE: 105.24635
+MAPE: 0.03183
+MSE: 152.59007
+R2: 0.9428
+Test metrics for line 66B:
+MAE: 303.68909
+MAPE: 0.09132
+MSE: 433.30407
+R2: 0.56031
